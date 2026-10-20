@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.superpowers/
+*.dmp
+*.bin
+*.exe
+*.snapshot
+node_modules/
+
+# Output of PL9 (printed PDFs) never enters the repository.
+*.pdf

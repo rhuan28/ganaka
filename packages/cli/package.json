@@ -1,0 +1,9 @@
+{
+  "name": "@reverse/cli",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "license": "AGPL-3.0-or-later",
+  "scripts": { "chart": "tsx src/main.ts", "dashas": "tsx src/main.ts dashas", "strengths": "tsx src/main.ts strengths", "transits": "tsx src/main.ts transits", "panchanga": "tsx src/main.ts panchanga", "varshaphala": "tsx src/main.ts varshaphala", "muhurta": "tsx src/main.ts muhurta" },
+  "dependencies": { "@reverse/core": "workspace:*", "@reverse/ephemeris": "workspace:*" }
+}

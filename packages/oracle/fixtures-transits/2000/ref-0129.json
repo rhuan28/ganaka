@@ -1,0 +1,4032 @@
+{
+ "id": "ref-0129",
+ "date": "2000",
+ "pl9": {
+  "now": {
+   "pos": {
+    "lagna": {
+     "dms": "28:00:19",
+     "sign": "Can",
+     "nakshatra": "Ashlesha",
+     "retrograde": false
+    },
+    "sun": {
+     "dms": "29:15:29",
+     "sign": "Vir",
+     "nakshatra": "Chitra",
+     "retrograde": false
+    },
+    "moon": {
+     "dms": "09:26:54",
+     "sign": "Sag",
+     "nakshatra": "Moola",
+     "retrograde": false
+    },
+    "mars": {
+     "dms": "16:25:10",
+     "sign": "Can",
+     "nakshatra": "Pushya",
+     "retrograde": false
+    },
+    "mercury": {
+     "dms": "23:42:38",
+     "sign": "Lib",
+     "nakshatra": "Vishakha",
+     "retrograde": false
+    },
+    "jupiter": {
+     "dms": "28:00:03",
+     "sign": "Can",
+     "nakshatra": "Ashlesha",
+     "retrograde": false
+    },
+    "venus": {
+     "dms": "10:42:22",
+     "sign": "Lib",
+     "nakshatra": "Swati",
+     "retrograde": true
+    },
+    "saturn": {
+     "dms": "16:06:41",
+     "sign": "Pis",
+     "nakshatra": "U.Bhadra.",
+     "retrograde": true
+    },
+    "rahu": {
+     "dms": "03:50:41",
+     "sign": "Aqu",
+     "nakshatra": "Dhanish.",
+     "retrograde": false
+    },
+    "ketu": {
+     "dms": "03:50:41",
+     "sign": "Leo",
+     "nakshatra": "Magha",
+     "retrograde": false
+    }
+   },
+   "sb": {
+    "sun": 0.81,
+    "moon": 1.21,
+    "mars": 1.73,
+    "mercury": 1.17,
+    "jupiter": 1.32,
+    "venus": 1.5,
+    "saturn": 1.17
+   },
+   "kaksha": {
+    "sun": {
+     "sign": "Vir",
+     "bindu": 1,
+     "lord": "lagna",
+     "ash": 3,
+     "sarva": 25
+    },
+    "moon": {
+     "sign": "Sag",
+     "bindu": 1,
+     "lord": "mars",
+     "ash": 4,
+     "sarva": 27
+    },
+    "mars": {
+     "sign": "Can",
+     "bindu": 0,
+     "lord": "venus",
+     "ash": 2,
+     "sarva": 29
+    },
+    "mercury": {
+     "sign": "Lib",
+     "bindu": 1,
+     "lord": "moon",
+     "ash": 2,
+     "sarva": 23
+    },
+    "jupiter": {
+     "sign": "Can",
+     "bindu": 1,
+     "lord": "lagna",
+     "ash": 5,
+     "sarva": 29
+    },
+    "venus": {
+     "sign": "Lib",
+     "bindu": 1,
+     "lord": "mars",
+     "ash": 4,
+     "sarva": 23
+    },
+    "saturn": {
+     "sign": "Pis",
+     "bindu": 1,
+     "lord": "venus",
+     "ash": 2,
+     "sarva": 30
+    }
+   },
+   "gochara": {
+    "tarabala": "Sampat: Wealth and prosper",
+    "chandrabala": "10 Auspicious",
+    "tithi": "Shukla Shashthi",
+    "karana": "Taitila (donkey)",
+    "yoga": "Atiganda: Criminal tendenci",
+    "vimshottari": "Ve-Ju-Ra-Ma-Ve",
+    "narayana": "Vi-Ta-Vi-Pi-Ar",
+    "yogini": "Ju-Su-Me-Me-Ve",
+    "ashtottari": "Ve-Ju-Ju-Ve-Ve"
+   },
+   "at": "2026-10-17 01:54:19",
+   "place": {
+    "latitude": "26N55'00",
+    "longitude": "75E49'40",
+    "timezone": "-5:30:00"
+   },
+   "ingress": [
+    {
+     "planet": "sun",
+     "sign": "Pis",
+     "from": "03-14",
+     "to": "04-14",
+     "retrograde": false
+    },
+    {
+     "planet": "mars",
+     "sign": "Pis",
+     "from": "04-02",
+     "to": "05-11",
+     "retrograde": false
+    },
+    {
+     "planet": "mercury",
+     "sign": "Pis",
+     "from": "04-10",
+     "to": "04-30",
+     "retrograde": false
+    },
+    {
+     "planet": "venus",
+     "sign": "Pis",
+     "from": "03-01",
+     "to": "03-25",
+     "retrograde": false
+    },
+    {
+     "planet": "saturn",
+     "sign": "Pis",
+     "from": "01-01",
+     "to": "end",
+     "retrograde": false
+    },
+    {
+     "planet": "sun",
+     "sign": "Ari",
+     "from": "04-14",
+     "to": "05-15",
+     "retrograde": false
+    },
+    {
+     "planet": "mars",
+     "sign": "Ari",
+     "from": "05-11",
+     "to": "06-20",
+     "retrograde": false
+    },
+    {
+     "planet": "mercury",
+     "sign": "Ari",
+     "from": "04-30",
+     "to": "05-14",
+     "retrograde": false
+    },
+    {
+     "planet": "venus",
+     "sign": "Ari",
+     "from": "03-25",
+     "to": "04-19",
+     "retrograde": false
+    },
+    {
+     "planet": "sun",
+     "sign": "Tau",
+     "from": "05-15",
+     "to": "06-15",
+     "retrograde": false
+    },
+    {
+     "planet": "mars",
+     "sign": "Tau",
+     "from": "06-20",
+     "to": "08-02",
+     "retrograde": false
+    },
+    {
+     "planet": "mercury",
+     "sign": "Tau",
+     "from": "05-14",
+     "to": "05-29",
+     "retrograde": false
+    },
+    {
+     "planet": "venus",
+     "sign": "Tau",
+     "from": "04-19",
+     "to": "05-14",
+     "retrograde": false
+    },
+    {
+     "planet": "sun",
+     "sign": "Gem",
+     "from": "06-15",
+     "to": "07-16",
+     "retrograde": false
+    },
+    {
+     "planet": "mars",
+     "sign": "Gem",
+     "from": "08-02",
+     "to": "09-18",
+     "retrograde": false
+    },
+    {
+     "planet": "mercury",
+     "sign": "Gem",
+     "from": "05-29",
+     "to": "06-22",
+     "retrograde": false
+    },
+    {
+     "planet": "mercury",
+     "sign": "Gem",
+     "from": "07-07",
+     "to": "08-05",
+     "retrograde": true
+    },
+    {
+     "planet": "jupiter",
+     "sign": "Gem",
+     "from": "01-01",
+     "to": "06-01",
+     "retrograde": false
+    },
+    {
+     "planet": "venus",
+     "sign": "Gem",
+     "from": "05-14",
+     "to": "06-08",
+     "retrograde": false
+    },
+    {
+     "planet": "sun",
+     "sign": "Aqu",
+     "from": "02-12",
+     "to": "03-14",
+     "retrograde": false
+    },
+    {
+     "planet": "mars",
+     "sign": "Aqu",
+     "from": "02-23",
+     "to": "04-02",
+     "retrograde": false
+    },
+    {
+     "planet": "mercury",
+     "sign": "Aqu",
+     "from": "02-03",
+     "to": "04-10",
+     "retrograde": false
+    },
+    {
+     "planet": "venus",
+     "sign": "Aqu",
+     "from": "02-05",
+     "to": "03-01",
+     "retrograde": false
+    },
+    {
+     "planet": "rahu",
+     "sign": "Aqu",
+     "from": "01-01",
+     "to": "end",
+     "retrograde": true
+    },
+    {
+     "planet": "sun",
+     "sign": "Cap",
+     "from": "01-14",
+     "to": "02-12",
+     "retrograde": false
+    },
+    {
+     "planet": "mars",
+     "sign": "Cap",
+     "from": "01-15",
+     "to": "02-23",
+     "retrograde": false
+    },
+    {
+     "planet": "mercury",
+     "sign": "Cap",
+     "from": "01-17",
+     "to": "02-03",
+     "retrograde": false
+    },
+    {
+     "planet": "venus",
+     "sign": "Cap",
+     "from": "01-12",
+     "to": "02-05",
+     "retrograde": false
+    },
+    {
+     "planet": "rahu",
+     "sign": "Cap",
+     "from": "11-25",
+     "to": "end",
+     "retrograde": true
+    },
+    {
+     "planet": "sun",
+     "sign": "Sag",
+     "from": "01-01",
+     "to": "01-14",
+     "retrograde": false
+    },
+    {
+     "planet": "sun",
+     "sign": "Sag",
+     "from": "12-16",
+     "to": "12-31",
+     "retrograde": false
+    },
+    {
+     "planet": "mars",
+     "sign": "Sag",
+     "from": "01-01",
+     "to": "01-15",
+     "retrograde": false
+    },
+    {
+     "planet": "mercury",
+     "sign": "Sag",
+     "from": "01-01",
+     "to": "01-17",
+     "retrograde": false
+    },
+    {
+     "planet": "mercury",
+     "sign": "Sag",
+     "from": "12-22",
+     "to": "12-31",
+     "retrograde": false
+    },
+    {
+     "planet": "venus",
+     "sign": "Sag",
+     "from": "01-01",
+     "to": "01-12",
+     "retrograde": false
+    },
+    {
+     "planet": "sun",
+     "sign": "Can",
+     "from": "07-16",
+     "to": "08-17",
+     "retrograde": false
+    },
+    {
+     "planet": "mars",
+     "sign": "Can",
+     "from": "09-18",
+     "to": "11-12",
+     "retrograde": false
+    },
+    {
+     "planet": "mercury",
+     "sign": "Can",
+     "from": "06-22",
+     "to": "07-07",
+     "retrograde": false
+    },
+    {
+     "planet": "mercury",
+     "sign": "Can",
+     "from": "08-05",
+     "to": "08-22",
+     "retrograde": false
+    },
+    {
+     "planet": "jupiter",
+     "sign": "Can",
+     "from": "06-01",
+     "to": "10-31",
+     "retrograde": false
+    },
+    {
+     "planet": "venus",
+     "sign": "Can",
+     "from": "06-08",
+     "to": "07-04",
+     "retrograde": false
+    },
+    {
+     "planet": "ketu",
+     "sign": "Can",
+     "from": "11-25",
+     "to": "end",
+     "retrograde": true
+    },
+    {
+     "planet": "sun",
+     "sign": "Leo",
+     "from": "08-17",
+     "to": "09-17",
+     "retrograde": false
+    },
+    {
+     "planet": "mars",
+     "sign": "Leo",
+     "from": "11-12",
+     "to": "12-31",
+     "retrograde": false
+    },
+    {
+     "planet": "mercury",
+     "sign": "Leo",
+     "from": "08-22",
+     "to": "09-07",
+     "retrograde": false
+    },
+    {
+     "planet": "jupiter",
+     "sign": "Leo",
+     "from": "10-31",
+     "to": "11-26",
+     "retrograde": false
+    },
+    {
+     "planet": "venus",
+     "sign": "Leo",
+     "from": "07-04",
+     "to": "08-01",
+     "retrograde": false
+    },
+    {
+     "planet": "ketu",
+     "sign": "Leo",
+     "from": "01-01",
+     "to": "end",
+     "retrograde": true
+    },
+    {
+     "planet": "sun",
+     "sign": "Vir",
+     "from": "09-17",
+     "to": "10-17",
+     "retrograde": false
+    },
+    {
+     "planet": "mercury",
+     "sign": "Vir",
+     "from": "09-07",
+     "to": "09-26",
+     "retrograde": false
+    },
+    {
+     "planet": "venus",
+     "sign": "Vir",
+     "from": "08-01",
+     "to": "09-02",
+     "retrograde": false
+    },
+    {
+     "planet": "sun",
+     "sign": "Lib",
+     "from": "10-17",
+     "to": "11-16",
+     "retrograde": false
+    },
+    {
+     "planet": "mercury",
+     "sign": "Lib",
+     "from": "09-26",
+     "to": "12-02",
+     "retrograde": false
+    },
+    {
+     "planet": "venus",
+     "sign": "Lib",
+     "from": "09-02",
+     "to": "11-05",
+     "retrograde": false
+    },
+    {
+     "planet": "venus",
+     "sign": "Lib",
+     "from": "11-22",
+     "to": "12-31",
+     "retrograde": false
+    },
+    {
+     "planet": "sun",
+     "sign": "Sco",
+     "from": "11-16",
+     "to": "12-16",
+     "retrograde": false
+    },
+    {
+     "planet": "mercury",
+     "sign": "Sco",
+     "from": "12-02",
+     "to": "12-22",
+     "retrograde": false
+    }
+   ],
+   "kp": {
+    "lagna": {
+     "pada": 4,
+     "star": "mercury",
+     "sub": "saturn",
+     "subSub": "saturn"
+    },
+    "sun": {
+     "pada": 2,
+     "star": "mars",
+     "sub": "saturn",
+     "subSub": "moon"
+    },
+    "moon": {
+     "pada": 3,
+     "star": "ketu",
+     "sub": "saturn",
+     "subSub": "saturn"
+    },
+    "mars": {
+     "pada": 4,
+     "star": "saturn",
+     "sub": "jupiter",
+     "subSub": "rahu"
+    },
+    "mercury": {
+     "pada": 2,
+     "star": "jupiter",
+     "sub": "saturn",
+     "subSub": "jupiter"
+    },
+    "jupiter": {
+     "pada": 4,
+     "star": "mercury",
+     "sub": "saturn",
+     "subSub": "saturn"
+    },
+    "venus": {
+     "pada": 2,
+     "star": "rahu",
+     "sub": "saturn",
+     "subSub": "saturn"
+    },
+    "saturn": {
+     "pada": 4,
+     "star": "saturn",
+     "sub": "jupiter",
+     "subSub": "sun"
+    },
+    "rahu": {
+     "pada": 4,
+     "star": "mars",
+     "sub": "venus",
+     "subSub": "jupiter"
+    },
+    "ketu": {
+     "pada": 2,
+     "star": "ketu",
+     "sub": "moon",
+     "subSub": "rahu"
+    }
+   },
+   "sunrise": {
+    "pos": {
+     "lagna": {
+      "dm": "21:53",
+      "nakshatra": "Bha"
+     },
+     "sun": {
+      "dm": "21:53",
+      "nakshatra": "Bha"
+     },
+     "moon": {
+      "dm": "26:15",
+      "nakshatra": "Rev"
+     },
+     "mars": {
+      "dm": "09:47",
+      "nakshatra": "Sat"
+     },
+     "mercury": {
+      "dm": "26:57",
+      "nakshatra": "Rev"
+     },
+     "jupiter": {
+      "dm": "16:19",
+      "nakshatra": "Has"
+     },
+     "venus": {
+      "dm": "01:15",
+      "nakshatra": "Kri"
+     },
+     "saturn": {
+      "dm": "28:15",
+      "nakshatra": "Pun"
+     },
+     "rahu": {
+      "dm": "28:48",
+      "nakshatra": "Rev"
+     },
+     "ketu": {
+      "dm": "28:48",
+      "nakshatra": "Cht"
+     }
+    },
+    "dasha": [
+     {
+      "chain": "venus-rahu",
+      "weekday": "Fri",
+      "date": "12-04-2024"
+     },
+     {
+      "chain": "venus-jupiter",
+      "weekday": "Tue",
+      "date": "13-04-2027"
+     },
+     {
+      "chain": "venus-saturn",
+      "weekday": "Wed",
+      "date": "12-12-2029"
+     },
+     {
+      "chain": "venus-mercury",
+      "weekday": "Thu",
+      "date": "10-02-2033"
+     },
+     {
+      "chain": "venus-ketu",
+      "weekday": "Wed",
+      "date": "12-12-2035"
+     },
+     {
+      "chain": "sun-sun",
+      "weekday": "Tue",
+      "date": "10-02-2037"
+     },
+     {
+      "chain": "sun-moon",
+      "weekday": "Sun",
+      "date": "31-05-2037"
+     },
+     {
+      "chain": "sun-mars",
+      "weekday": "Sun",
+      "date": "29-11-2037"
+     },
+     {
+      "chain": "sun-rahu",
+      "weekday": "Tue",
+      "date": "06-04-2038"
+     },
+     {
+      "chain": "sun-jupiter",
+      "weekday": "Tue",
+      "date": "01-03-2039"
+     },
+     {
+      "chain": "sun-saturn",
+      "weekday": "Sun",
+      "date": "18-12-2039"
+     },
+     {
+      "chain": "sun-mercury",
+      "weekday": "Thu",
+      "date": "29-11-2040"
+     },
+     {
+      "chain": "sun-ketu",
+      "weekday": "Sun",
+      "date": "06-10-2041"
+     },
+     {
+      "chain": "sun-venus",
+      "weekday": "Mon",
+      "date": "10-02-2042"
+     },
+     {
+      "chain": "moon-moon",
+      "weekday": "Wed",
+      "date": "11-02-2043"
+     }
+    ]
+   },
+   "vargas": {
+    "D9": {
+     "sun": {
+      "dms": "23:19:17",
+      "sign": "Vir",
+      "dignity": "Enemy",
+      "bindus": 4,
+      "av3": "Drm.",
+      "av5": "Youth.",
+      "functional": "Malefic",
+      "houses": "7/4/1"
+     },
+     "moon": {
+      "dms": "25:02:06",
+      "sign": "Gem",
+      "dignity": "Grt.Fr.",
+      "bindus": 3,
+      "av3": "Drm.",
+      "av5": "Dead",
+      "functional": "Benefic",
+      "houses": "4/1/10"
+     },
+     "mars": {
+      "dms": "27:46:32",
+      "sign": "Sco",
+      "dignity": "Own",
+      "bindus": 5,
+      "av3": "Alr.",
+      "av5": "Infant",
+      "functional": "Benefic",
+      "houses": "9/6/3"
+     },
+     "mercury": {
+      "dms": "03:23:43",
+      "sign": "Tau",
+      "dignity": "Neutr.",
+      "bindus": 5,
+      "av3": "Drm.",
+      "av5": "Dead",
+      "functional": "Malefic",
+      "houses": "3/12/9"
+     },
+     "jupiter": {
+      "dms": "12:00:24",
+      "sign": "Pis",
+      "dignity": "Own",
+      "bindus": 5,
+      "av3": "Alr.",
+      "av5": "Adoles.",
+      "functional": "Benefic",
+      "houses": "1/10/7"
+     },
+     "venus": {
+      "dms": "06:21:16",
+      "sign": "Cap",
+      "dignity": "Grt.Fr.",
+      "bindus": 7,
+      "av3": "Drm.",
+      "av5": "Old",
+      "functional": "Malefic",
+      "houses": "11/8/5"
+     },
+     "saturn": {
+      "dms": "25:00:11",
+      "sign": "Sco",
+      "dignity": "Grt.En.",
+      "bindus": 2,
+      "av3": "Slp.",
+      "av5": "Infant",
+      "functional": "Malefic",
+      "houses": "9/6/3"
+     },
+     "rahu": {
+      "dms": "04:36:07",
+      "sign": "Sco",
+      "dignity": "Debil.",
+      "bindus": 5,
+      "av3": "Slp.",
+      "av5": "Dead",
+      "functional": "Malefic",
+      "houses": "9/6/3"
+     },
+     "ketu": {
+      "dms": "04:36:07",
+      "sign": "Tau",
+      "dignity": "Debil.",
+      "bindus": null,
+      "av3": "Slp.",
+      "av5": "Dead",
+      "functional": "Malefic",
+      "houses": "3/12/9"
+     }
+    },
+    "D10": {
+     "sun": {
+      "dms": "22:34:46",
+      "sign": "Aqu",
+      "dignity": "Neutr.",
+      "bindus": 5,
+      "av3": "Slp.",
+      "av5": "Old",
+      "functional": "Benefic",
+      "houses": "3/12/1"
+     },
+     "moon": {
+      "dms": "04:29:00",
+      "sign": "Pis",
+      "dignity": "Frnd.",
+      "bindus": 4,
+      "av3": "Drm.",
+      "av5": "Dead",
+      "functional": "Neutral",
+      "houses": "4/1/2"
+     },
+     "mars": {
+      "dms": "14:11:42",
+      "sign": "Leo",
+      "dignity": "Neutr.",
+      "bindus": 3,
+      "av3": "Drm.",
+      "av5": "Adoles.",
+      "functional": "Benefic",
+      "houses": "9/6/7"
+     },
+     "mercury": {
+      "dms": "27:06:22",
+      "sign": "Tau",
+      "dignity": "Neutr.",
+      "bindus": 6,
+      "av3": "Drm.",
+      "av5": "Infant",
+      "functional": "Malefic",
+      "houses": "6/3/4"
+     },
+     "jupiter": {
+      "dms": "10:00:27",
+      "sign": "Sag",
+      "dignity": "Own",
+      "bindus": 3,
+      "av3": "Alr.",
+      "av5": "Youth.",
+      "functional": "Neutral",
+      "houses": "1/10/11"
+     },
+     "venus": {
+      "dms": "17:03:38",
+      "sign": "Cap",
+      "dignity": "Grt.Fr.",
+      "bindus": 7,
+      "av3": "Drm.",
+      "av5": "Adoles.",
+      "functional": "Malefic",
+      "houses": "2/11/12"
+     },
+     "saturn": {
+      "dms": "11:06:52",
+      "sign": "Ari",
+      "dignity": "Debil.",
+      "bindus": 2,
+      "av3": "Slp.",
+      "av5": "Youth.",
+      "functional": "Malefic",
+      "houses": "5/2/3"
+     },
+     "rahu": {
+      "dms": "08:26:48",
+      "sign": "Pis",
+      "dignity": "Neutr.",
+      "bindus": 3,
+      "av3": "Drm.",
+      "av5": "Old",
+      "functional": "Neutral",
+      "houses": "4/1/2"
+     },
+     "ketu": {
+      "dms": "08:26:48",
+      "sign": "Vir",
+      "dignity": "Neutr.",
+      "bindus": null,
+      "av3": "Drm.",
+      "av5": "Old",
+      "functional": "Neutral",
+      "houses": "10/7/8"
+     }
+    }
+   },
+   "varsha": {
+    "years": 21,
+    "returnAt": "2026-05-06 20:04:53",
+    "planets": {
+     "lagna": {
+      "dms": "18:09:12",
+      "rc": "-",
+      "sign": "Lib",
+      "nakshatra": "Swati",
+      "kp": "4,Ra/Mo/Mo",
+      "dignity": "-",
+      "sb": "-",
+      "ints": [],
+      "avastha": "-"
+     },
+     "sun": {
+      "dms": "22:04:32",
+      "rc": "-",
+      "sign": "Ari",
+      "nakshatra": "Bharani",
+      "kp": "3,Ve/Sa/Sa",
+      "dignity": "Exalt.",
+      "sb": "1.19",
+      "ints": [
+       3,
+       15,
+       5
+      ],
+      "avastha": "-"
+     },
+     "moon": {
+      "dms": "18:07:46",
+      "rc": "-",
+      "sign": "Sag",
+      "nakshatra": "P.Shad.",
+      "kp": "2,Ve/Ra/Ra",
+      "dignity": "Enemy",
+      "sb": "1.19",
+      "ints": [
+       4,
+       12,
+       4
+      ],
+      "avastha": "-"
+     },
+     "mars": {
+      "dms": "26:36:26",
+      "rc": "-",
+      "sign": "Pis",
+      "nakshatra": "Revati",
+      "kp": "3,Me/Ju/Sa",
+      "dignity": "Grt.Fr.",
+      "sb": "1.20",
+      "ints": [
+       3,
+       15,
+       5
+      ],
+      "avastha": "-"
+     },
+     "mercury": {
+      "dms": "13:07:48",
+      "rc": "c",
+      "sign": "Ari",
+      "nakshatra": "Ashwini",
+      "kp": "4,Ke/Me/Sa",
+      "dignity": "Frnd.",
+      "sb": "0.98",
+      "ints": [
+       3,
+       12,
+       4
+      ],
+      "avastha": "-"
+     },
+     "jupiter": {
+      "dms": "25:32:04",
+      "rc": "-",
+      "sign": "Gem",
+      "nakshatra": "Punarvasu",
+      "kp": "2,Ju/Me/Sa",
+      "dignity": "Neutr.",
+      "sb": "1.03",
+      "ints": [
+       3,
+       12,
+       6
+      ],
+      "avastha": "-"
+     },
+     "venus": {
+      "dms": "21:06:51",
+      "rc": "-",
+      "sign": "Tau",
+      "nakshatra": "Rohini",
+      "kp": "4,Mo/Ve/Ma",
+      "dignity": "Own",
+      "sb": "1.51",
+      "ints": [
+       3,
+       15,
+       4
+      ],
+      "avastha": "-"
+     },
+     "saturn": {
+      "dms": "15:33:58",
+      "rc": "-",
+      "sign": "Pis",
+      "nakshatra": "U.Bhadra.",
+      "kp": "4,Sa/Ju/Me",
+      "dignity": "Frnd.",
+      "sb": "1.24",
+      "ints": [
+       4,
+       11,
+       3
+      ],
+      "avastha": "-"
+     },
+     "rahu": {
+      "dms": "11:45:06",
+      "rc": "-",
+      "sign": "Aqu",
+      "nakshatra": "Shatabh.",
+      "kp": "2,Ra/Sa/Mo",
+      "dignity": "Own",
+      "sb": "-",
+      "ints": [
+       18,
+       4
+      ],
+      "avastha": "-"
+     },
+     "ketu": {
+      "dms": "11:45:06",
+      "rc": "-",
+      "sign": "Leo",
+      "nakshatra": "Magha",
+      "kp": "4,Ke/Me/Ke",
+      "dignity": "Neutr.",
+      "sb": "-",
+      "ints": [
+       10
+      ],
+      "avastha": "-"
+     }
+    },
+    "kakshas": {
+     "sun": {
+      "sign": "Ari",
+      "bindu": 0,
+      "lord": "mercury",
+      "ash": 4,
+      "sarva": 30
+     },
+     "moon": {
+      "sign": "Sag",
+      "bindu": 0,
+      "lord": "venus",
+      "ash": 4,
+      "sarva": 27
+     },
+     "mars": {
+      "sign": "Pis",
+      "bindu": 1,
+      "lord": "lagna",
+      "ash": 4,
+      "sarva": 30
+     },
+     "mercury": {
+      "sign": "Ari",
+      "bindu": 0,
+      "lord": "sun",
+      "ash": 4,
+      "sarva": 30
+     },
+     "jupiter": {
+      "sign": "Gem",
+      "bindu": 0,
+      "lord": "moon",
+      "ash": 5,
+      "sarva": 25
+     },
+     "venus": {
+      "sign": "Tau",
+      "bindu": 1,
+      "lord": "mercury",
+      "ash": 4,
+      "sarva": 23
+     },
+     "saturn": {
+      "sign": "Pis",
+      "bindu": 1,
+      "lord": "venus",
+      "ash": 2,
+      "sarva": 30
+     }
+    },
+    "pancha": {
+     "sun": [
+      15,
+      18.7,
+      7.5,
+      5,
+      2.5,
+      12.2
+     ],
+     "moon": [
+      7.5,
+      5,
+      11.3,
+      10,
+      3.8,
+      9.4
+     ],
+     "mars": [
+      7.5,
+      13.5,
+      15,
+      10,
+      1.3,
+      11.8
+     ],
+     "mercury": [
+      15,
+      3.1,
+      15,
+      2.5,
+      3.8,
+      9.8
+     ],
+     "jupiter": [
+      22.5,
+      18.9,
+      3.8,
+      7.5,
+      2.5,
+      13.8
+     ],
+     "venus": [
+      30,
+      14,
+      7.5,
+      7.5,
+      2.5,
+      15.4
+     ],
+     "saturn": [
+      7.5,
+      3.8,
+      3.8,
+      2.5,
+      1.3,
+      4.7
+     ]
+    },
+    "offices": {
+     "munthaPati": {
+      "planet": "jupiter",
+      "strength": 13.8
+     },
+     "natalLagnaPati": {
+      "planet": "mercury",
+      "strength": 9.84
+     },
+     "annualLagnaPati": {
+      "planet": "venus",
+      "strength": 15.37
+     },
+     "trirashiPati": {
+      "planet": "mercury",
+      "strength": 9.84
+     },
+     "dinaRatriPati": {
+      "planet": "mars",
+      "strength": 11.81
+     }
+    },
+    "sahams": {
+     "natal": {
+      "Punya": {
+       "sign": "Gemini",
+       "dms": "06:01:47",
+       "lord": "mercury"
+      },
+      "Vidya": {
+       "sign": "Leo",
+       "dms": "22:43:02",
+       "lord": "sun"
+      },
+      "Yasa": {
+       "sign": "Libra",
+       "dms": "09:39:19",
+       "lord": "venus"
+      },
+      "Mitra": {
+       "sign": "Virgo",
+       "dms": "11:45:52",
+       "lord": "mercury"
+      },
+      "Mahatmya": {
+       "sign": "Scorpio",
+       "dms": "25:28:25",
+       "lord": "mars"
+      },
+      "Asha": {
+       "sign": "Virgo",
+       "dms": "26:09:38",
+       "lord": "mercury"
+      },
+      "Samartha": {
+       "sign": "Taurus",
+       "dms": "12:05:23",
+       "lord": "venus"
+      },
+      "Bhratru": {
+       "sign": "Virgo",
+       "dms": "17:24:56",
+       "lord": "mercury"
+      },
+      "Gaurava": {
+       "sign": "Scorpio",
+       "dms": "09:39:19",
+       "lord": "mars"
+      },
+      "Pitru": {
+       "sign": "Libra",
+       "dms": "05:34:03",
+       "lord": "venus"
+      },
+      "Vyapara": {
+       "sign": "Taurus",
+       "dms": "12:05:23",
+       "lord": "venus"
+      },
+      "Satru": {
+       "sign": "Aquarius",
+       "dms": "11:02:01",
+       "lord": "saturn"
+      },
+      "Jalapathana": {
+       "sign": "Cancer",
+       "dms": "16:06:15",
+       "lord": "moon"
+      },
+      "Bandhana": {
+       "sign": "Gemini",
+       "dms": "07:08:02",
+       "lord": "mercury"
+      },
+      "Apamrityu": {
+       "sign": "Gemini",
+       "dms": "12:42:38",
+       "lord": "mercury"
+      },
+      "Prasava": {
+       "sign": "Sagittarius",
+       "dms": "18:28:17",
+       "lord": "jupiter"
+      },
+      "Labha": {
+       "sign": "Libra",
+       "dms": "06:36:13",
+       "lord": "venus"
+      },
+      "Raja": {
+       "sign": "Libra",
+       "dms": "05:34:03",
+       "lord": "venus"
+      },
+      "Matru": {
+       "sign": "Taurus",
+       "dms": "26:37:21",
+       "lord": "venus"
+      },
+      "Putra": {
+       "sign": "Sagittarius",
+       "dms": "16:57:12",
+       "lord": "jupiter"
+      },
+      "Jeeva": {
+       "sign": "Taurus",
+       "dms": "11:19:54",
+       "lord": "venus"
+      },
+      "Karma": {
+       "sign": "Taurus",
+       "dms": "12:05:23",
+       "lord": "venus"
+      },
+      "Roga": {
+       "sign": "Libra",
+       "dms": "28:54:41",
+       "lord": "venus"
+      },
+      "Kali": {
+       "sign": "Aquarius",
+       "dms": "05:45:19",
+       "lord": "saturn"
+      },
+      "Sastra": {
+       "sign": "Cancer",
+       "dms": "15:15:20",
+       "lord": "moon"
+      },
+      "Bandhu": {
+       "sign": "Gemini",
+       "dms": "27:51:19",
+       "lord": "mercury"
+      },
+      "Mrityu": {
+       "sign": "Aries",
+       "dms": "22:48:16",
+       "lord": "mars"
+      },
+      "Paradesa": {
+       "sign": "Aquarius",
+       "dms": "18:15:50",
+       "lord": "saturn"
+      },
+      "Artha": {
+       "sign": "Libra",
+       "dms": "23:54:31",
+       "lord": "venus"
+      },
+      "Paradara": {
+       "sign": "Leo",
+       "dms": "08:46:51",
+       "lord": "sun"
+      },
+      "Vanik": {
+       "sign": "Leo",
+       "dms": "00:53:30",
+       "lord": "sun"
+      },
+      "Karyasiddhi": {
+       "sign": "Taurus",
+       "dms": "16:07:25",
+       "lord": "venus"
+      },
+      "Vivaha": {
+       "sign": "Taurus",
+       "dms": "02:35:12",
+       "lord": "venus"
+      },
+      "Santapa": {
+       "sign": "Pisces",
+       "dms": "22:48:16",
+       "lord": "jupiter"
+      },
+      "Sraddha": {
+       "sign": "Libra",
+       "dms": "20:55:36",
+       "lord": "venus"
+      },
+      "Preeti": {
+       "sign": "Virgo",
+       "dms": "16:03:40",
+       "lord": "mercury"
+      },
+      "Jadya": {
+       "sign": "Sagittarius",
+       "dms": "08:52:25",
+       "lord": "jupiter"
+      }
+     },
+     "annual": {
+      "Punya": {
+       "sign": "Gemini",
+       "dms": "14:12:26",
+       "lord": "mercury"
+      },
+      "Vidya": {
+       "sign": "Pisces",
+       "dms": "22:05:58",
+       "lord": "jupiter"
+      },
+      "Yasa": {
+       "sign": "Scorpio",
+       "dms": "29:28:50",
+       "lord": "mars"
+      },
+      "Mitra": {
+       "sign": "Cancer",
+       "dms": "02:26:29",
+       "lord": "moon"
+      },
+      "Mahatmya": {
+       "sign": "Aquarius",
+       "dms": "05:45:11",
+       "lord": "saturn"
+      },
+      "Asha": {
+       "sign": "Leo",
+       "dms": "12:36:20",
+       "lord": "sun"
+      },
+      "Samartha": {
+       "sign": "Leo",
+       "dms": "23:38:48",
+       "lord": "sun"
+      },
+      "Bhratru": {
+       "sign": "Aquarius",
+       "dms": "28:07:18",
+       "lord": "saturn"
+      },
+      "Gaurava": {
+       "sign": "Scorpio",
+       "dms": "29:28:50",
+       "lord": "mars"
+      },
+      "Pitru": {
+       "sign": "Virgo",
+       "dms": "11:38:39",
+       "lord": "mercury"
+      },
+      "Raja": {
+       "sign": "Virgo",
+       "dms": "11:38:39",
+       "lord": "mercury"
+      },
+      "Matru": {
+       "sign": "Taurus",
+       "dms": "15:10:07",
+       "lord": "venus"
+      },
+      "Putra": {
+       "sign": "Taurus",
+       "dms": "25:33:31",
+       "lord": "venus"
+      },
+      "Jeeva": {
+       "sign": "Cancer",
+       "dms": "08:11:06",
+       "lord": "moon"
+      },
+      "Karma": {
+       "sign": "Libra",
+       "dms": "01:37:51",
+       "lord": "venus"
+      },
+      "Roga": {
+       "sign": "Aquarius",
+       "dms": "15:35:25",
+       "lord": "saturn"
+      },
+      "Kali": {
+       "sign": "Aquarius",
+       "dms": "17:04:50",
+       "lord": "saturn"
+      },
+      "Sastra": {
+       "sign": "Cancer",
+       "dms": "23:05:54",
+       "lord": "moon"
+      },
+      "Bandhu": {
+       "sign": "Pisces",
+       "dms": "13:09:14",
+       "lord": "jupiter"
+      },
+      "Mrityu": {
+       "sign": "Leo",
+       "dms": "18:47:49",
+       "lord": "sun"
+      },
+      "Paradesa": {
+       "sign": "Capricorn",
+       "dms": "29:35:26",
+       "lord": "saturn"
+      },
+      "Artha": {
+       "sign": "Gemini",
+       "dms": "12:54:22",
+       "lord": "mercury"
+      },
+      "Paradara": {
+       "sign": "Sagittarius",
+       "dms": "17:11:31",
+       "lord": "jupiter"
+      },
+      "Vanik": {
+       "sign": "Gemini",
+       "dms": "23:09:10",
+       "lord": "mercury"
+      },
+      "Karyasiddhi": {
+       "sign": "Pisces",
+       "dms": "20:05:53",
+       "lord": "jupiter"
+      },
+      "Vivaha": {
+       "sign": "Capricorn",
+       "dms": "23:42:04",
+       "lord": "saturn"
+      },
+      "Santapa": {
+       "sign": "Cancer",
+       "dms": "18:47:49",
+       "lord": "moon"
+      },
+      "Sraddha": {
+       "sign": "Capricorn",
+       "dms": "12:39:36",
+       "lord": "saturn"
+      },
+      "Preeti": {
+       "sign": "Cancer",
+       "dms": "26:02:44",
+       "lord": "moon"
+      },
+      "Jadya": {
+       "sign": "Taurus",
+       "dms": "24:10:16",
+       "lord": "venus"
+      },
+      "Vyapara": {
+       "sign": "Libra",
+       "dms": "01:37:51",
+       "lord": "venus"
+      },
+      "Satru": {
+       "sign": "Scorpio",
+       "dms": "29:11:40",
+       "lord": "mars"
+      },
+      "Jalapathana": {
+       "sign": "Pisces",
+       "dms": "17:35:14",
+       "lord": "jupiter"
+      },
+      "Bandhana": {
+       "sign": "Aquarius",
+       "dms": "16:47:40",
+       "lord": "saturn"
+      },
+      "Apamrityu": {
+       "sign": "Capricorn",
+       "dms": "12:54:22",
+       "lord": "saturn"
+      },
+      "Prasava": {
+       "sign": "Aquarius",
+       "dms": "00:33:28",
+       "lord": "saturn"
+      },
+      "Labha": {
+       "sign": "Pisces",
+       "dms": "20:38:42",
+       "lord": "jupiter"
+      }
+     }
+    },
+    "yearLord": "jupiter",
+    "muntha": "Pis 29:22",
+    "lists": {
+     "kalidasa": [
+      {
+       "chain": "rahu-mars-venus",
+       "weekday": "Fri",
+       "date": "16-10-2026"
+      },
+      {
+       "chain": "rahu-mars-sun",
+       "weekday": "Sat",
+       "date": "17-10-2026"
+      },
+      {
+       "chain": "rahu-mars-moon",
+       "weekday": "Sat",
+       "date": "17-10-2026"
+      },
+      {
+       "chain": "jupiter-jupiter-jupiter",
+       "weekday": "Sat",
+       "date": "17-10-2026"
+      },
+      {
+       "chain": "jupiter-jupiter-saturn",
+       "weekday": "Sun",
+       "date": "18-10-2026"
+      },
+      {
+       "chain": "jupiter-jupiter-mercury",
+       "weekday": "Mon",
+       "date": "19-10-2026"
+      },
+      {
+       "chain": "jupiter-jupiter-ketu",
+       "weekday": "Tue",
+       "date": "20-10-2026"
+      },
+      {
+       "chain": "jupiter-jupiter-venus",
+       "weekday": "Tue",
+       "date": "20-10-2026"
+      },
+      {
+       "chain": "jupiter-jupiter-sun",
+       "weekday": "Wed",
+       "date": "21-10-2026"
+      },
+      {
+       "chain": "jupiter-jupiter-moon",
+       "weekday": "Thu",
+       "date": "22-10-2026"
+      },
+      {
+       "chain": "jupiter-jupiter-mars",
+       "weekday": "Thu",
+       "date": "22-10-2026"
+      },
+      {
+       "chain": "jupiter-jupiter-rahu",
+       "weekday": "Fri",
+       "date": "23-10-2026"
+      },
+      {
+       "chain": "jupiter-saturn-saturn",
+       "weekday": "Sat",
+       "date": "24-10-2026"
+      },
+      {
+       "chain": "jupiter-saturn-mercury",
+       "weekday": "Sun",
+       "date": "25-10-2026"
+      },
+      {
+       "chain": "jupiter-saturn-ketu",
+       "weekday": "Mon",
+       "date": "26-10-2026"
+      }
+     ],
+     "natal": [
+      {
+       "chain": "venus-jupiter-rahu",
+       "weekday": "Sun",
+       "date": "24-05-2026"
+      },
+      {
+       "chain": "venus-saturn-saturn",
+       "weekday": "Sun",
+       "date": "18-10-2026"
+      },
+      {
+       "chain": "venus-saturn-mercury",
+       "weekday": "Mon",
+       "date": "19-04-2027"
+      },
+      {
+       "chain": "venus-saturn-ketu",
+       "weekday": "Thu",
+       "date": "30-09-2027"
+      },
+      {
+       "chain": "venus-saturn-venus",
+       "weekday": "Mon",
+       "date": "06-12-2027"
+      },
+      {
+       "chain": "venus-saturn-sun",
+       "weekday": "Fri",
+       "date": "16-06-2028"
+      },
+      {
+       "chain": "venus-saturn-moon",
+       "weekday": "Sun",
+       "date": "13-08-2028"
+      },
+      {
+       "chain": "venus-saturn-mars",
+       "weekday": "Fri",
+       "date": "17-11-2028"
+      },
+      {
+       "chain": "venus-saturn-rahu",
+       "weekday": "Tue",
+       "date": "23-01-2029"
+      },
+      {
+       "chain": "venus-saturn-jupiter",
+       "weekday": "Mon",
+       "date": "16-07-2029"
+      },
+      {
+       "chain": "venus-mercury-mercury",
+       "weekday": "Mon",
+       "date": "17-12-2029"
+      },
+      {
+       "chain": "venus-mercury-ketu",
+       "weekday": "Mon",
+       "date": "13-05-2030"
+      },
+      {
+       "chain": "venus-mercury-venus",
+       "weekday": "Fri",
+       "date": "12-07-2030"
+      },
+      {
+       "chain": "venus-mercury-sun",
+       "weekday": "Wed",
+       "date": "01-01-2031"
+      },
+      {
+       "chain": "venus-mercury-moon",
+       "weekday": "Fri",
+       "date": "21-02-2031"
+      }
+     ],
+     "kalidasa4": [
+      {
+       "chain": "rahu-mars-venus-mercury",
+       "weekday": "Sat",
+       "date": "17-10-2026"
+      },
+      {
+       "chain": "rahu-mars-venus-ketu",
+       "weekday": "Sat",
+       "date": "17-10-2026"
+      },
+      {
+       "chain": "rahu-mars-sun-sun",
+       "weekday": "Sat",
+       "date": "17-10-2026"
+      },
+      {
+       "chain": "rahu-mars-sun-moon",
+       "weekday": "Sat",
+       "date": "17-10-2026"
+      },
+      {
+       "chain": "rahu-mars-sun-mars",
+       "weekday": "Sat",
+       "date": "17-10-2026"
+      },
+      {
+       "chain": "rahu-mars-sun-rahu",
+       "weekday": "Sat",
+       "date": "17-10-2026"
+      },
+      {
+       "chain": "rahu-mars-sun-jupiter",
+       "weekday": "Sat",
+       "date": "17-10-2026"
+      },
+      {
+       "chain": "rahu-mars-sun-saturn",
+       "weekday": "Sat",
+       "date": "17-10-2026"
+      },
+      {
+       "chain": "rahu-mars-sun-mercury",
+       "weekday": "Sat",
+       "date": "17-10-2026"
+      },
+      {
+       "chain": "rahu-mars-sun-ketu",
+       "weekday": "Sat",
+       "date": "17-10-2026"
+      },
+      {
+       "chain": "rahu-mars-sun-venus",
+       "weekday": "Sat",
+       "date": "17-10-2026"
+      },
+      {
+       "chain": "rahu-mars-moon-moon",
+       "weekday": "Sat",
+       "date": "17-10-2026"
+      },
+      {
+       "chain": "rahu-mars-moon-mars",
+       "weekday": "Sat",
+       "date": "17-10-2026"
+      },
+      {
+       "chain": "rahu-mars-moon-rahu",
+       "weekday": "Sat",
+       "date": "17-10-2026"
+      },
+      {
+       "chain": "rahu-mars-moon-jupiter",
+       "weekday": "Sat",
+       "date": "17-10-2026"
+      }
+     ],
+     "monthly": [
+      {
+       "chain": "rahu-venus-sun",
+       "weekday": "Sat",
+       "date": "17-10-2026"
+      },
+      {
+       "chain": "rahu-venus-moon",
+       "weekday": "Sat",
+       "date": "17-10-2026"
+      },
+      {
+       "chain": "rahu-venus-mars",
+       "weekday": "Sat",
+       "date": "17-10-2026"
+      },
+      {
+       "chain": "rahu-venus-rahu",
+       "weekday": "Sat",
+       "date": "17-10-2026"
+      },
+      {
+       "chain": "rahu-venus-jupiter",
+       "weekday": "Sat",
+       "date": "17-10-2026"
+      },
+      {
+       "chain": "rahu-venus-saturn",
+       "weekday": "Sat",
+       "date": "17-10-2026"
+      },
+      {
+       "chain": "rahu-venus-mercury",
+       "weekday": "Sat",
+       "date": "17-10-2026"
+      },
+      {
+       "chain": "rahu-venus-ketu",
+       "weekday": "Sat",
+       "date": "17-10-2026"
+      },
+      {
+       "chain": "rahu-sun-sun",
+       "weekday": "Sat",
+       "date": "17-10-2026"
+      },
+      {
+       "chain": "rahu-sun-moon",
+       "weekday": "Sat",
+       "date": "17-10-2026"
+      },
+      {
+       "chain": "rahu-sun-mars",
+       "weekday": "Sat",
+       "date": "17-10-2026"
+      },
+      {
+       "chain": "rahu-sun-rahu",
+       "weekday": "Sat",
+       "date": "17-10-2026"
+      },
+      {
+       "chain": "rahu-sun-jupiter",
+       "weekday": "Sat",
+       "date": "17-10-2026"
+      },
+      {
+       "chain": "rahu-sun-saturn",
+       "weekday": "Sat",
+       "date": "17-10-2026"
+      },
+      {
+       "chain": "rahu-sun-mercury",
+       "weekday": "Sat",
+       "date": "17-10-2026"
+      }
+     ],
+     "natal@75": [
+      {
+       "chain": "venus-jupiter-rahu",
+       "weekday": "Sun",
+       "date": "24-05-2026"
+      },
+      {
+       "chain": "venus-saturn-saturn",
+       "weekday": "Sun",
+       "date": "18-10-2026"
+      },
+      {
+       "chain": "venus-saturn-mercury",
+       "weekday": "Mon",
+       "date": "19-04-2027"
+      },
+      {
+       "chain": "venus-saturn-ketu",
+       "weekday": "Thu",
+       "date": "30-09-2027"
+      },
+      {
+       "chain": "venus-saturn-venus",
+       "weekday": "Mon",
+       "date": "06-12-2027"
+      },
+      {
+       "chain": "venus-saturn-sun",
+       "weekday": "Fri",
+       "date": "16-06-2028"
+      },
+      {
+       "chain": "venus-saturn-moon",
+       "weekday": "Sun",
+       "date": "13-08-2028"
+      },
+      {
+       "chain": "venus-saturn-mars",
+       "weekday": "Fri",
+       "date": "17-11-2028"
+      },
+      {
+       "chain": "venus-saturn-rahu",
+       "weekday": "Tue",
+       "date": "23-01-2029"
+      },
+      {
+       "chain": "venus-saturn-jupiter",
+       "weekday": "Mon",
+       "date": "16-07-2029"
+      },
+      {
+       "chain": "venus-mercury-mercury",
+       "weekday": "Mon",
+       "date": "17-12-2029"
+      },
+      {
+       "chain": "venus-mercury-ketu",
+       "weekday": "Mon",
+       "date": "13-05-2030"
+      },
+      {
+       "chain": "venus-mercury-venus",
+       "weekday": "Fri",
+       "date": "12-07-2030"
+      },
+      {
+       "chain": "venus-mercury-sun",
+       "weekday": "Wed",
+       "date": "01-01-2031"
+      },
+      {
+       "chain": "venus-mercury-moon",
+       "weekday": "Fri",
+       "date": "21-02-2031"
+      }
+     ],
+     "daily": [
+      {
+       "chain": "moon",
+       "weekday": "Mon",
+       "date": "19-10-2026"
+      },
+      {
+       "chain": "mars",
+       "weekday": "Mon",
+       "date": "19-10-2026"
+      },
+      {
+       "chain": "rahu",
+       "weekday": "Mon",
+       "date": "19-10-2026"
+      },
+      {
+       "chain": "jupiter",
+       "weekday": "Mon",
+       "date": "19-10-2026"
+      },
+      {
+       "chain": "saturn",
+       "weekday": "Tue",
+       "date": "20-10-2026"
+      },
+      {
+       "chain": "mercury",
+       "weekday": "Tue",
+       "date": "20-10-2026"
+      },
+      {
+       "chain": "ketu",
+       "weekday": "Tue",
+       "date": "20-10-2026"
+      },
+      {
+       "chain": "venus",
+       "weekday": "Tue",
+       "date": "20-10-2026"
+      },
+      {
+       "chain": "sun",
+       "weekday": "Tue",
+       "date": "20-10-2026"
+      },
+      {
+       "chain": "moon",
+       "weekday": "Tue",
+       "date": "20-10-2026"
+      },
+      {
+       "chain": "mars",
+       "weekday": "Tue",
+       "date": "20-10-2026"
+      },
+      {
+       "chain": "rahu",
+       "weekday": "Tue",
+       "date": "20-10-2026"
+      },
+      {
+       "chain": "jupiter",
+       "weekday": "Tue",
+       "date": "20-10-2026"
+      },
+      {
+       "chain": "saturn",
+       "weekday": "Wed",
+       "date": "21-10-2026"
+      },
+      {
+       "chain": "mercury",
+       "weekday": "Wed",
+       "date": "21-10-2026"
+      }
+     ],
+     "natal@81": [
+      {
+       "chain": "venus-jupiter-rahu",
+       "weekday": "Sun",
+       "date": "24-05-2026"
+      },
+      {
+       "chain": "venus-saturn-saturn",
+       "weekday": "Sun",
+       "date": "18-10-2026"
+      },
+      {
+       "chain": "venus-saturn-mercury",
+       "weekday": "Mon",
+       "date": "19-04-2027"
+      },
+      {
+       "chain": "venus-saturn-ketu",
+       "weekday": "Thu",
+       "date": "30-09-2027"
+      },
+      {
+       "chain": "venus-saturn-venus",
+       "weekday": "Mon",
+       "date": "06-12-2027"
+      },
+      {
+       "chain": "venus-saturn-sun",
+       "weekday": "Fri",
+       "date": "16-06-2028"
+      },
+      {
+       "chain": "venus-saturn-moon",
+       "weekday": "Sun",
+       "date": "13-08-2028"
+      },
+      {
+       "chain": "venus-saturn-mars",
+       "weekday": "Fri",
+       "date": "17-11-2028"
+      },
+      {
+       "chain": "venus-saturn-rahu",
+       "weekday": "Tue",
+       "date": "23-01-2029"
+      },
+      {
+       "chain": "venus-saturn-jupiter",
+       "weekday": "Mon",
+       "date": "16-07-2029"
+      },
+      {
+       "chain": "venus-mercury-mercury",
+       "weekday": "Mon",
+       "date": "17-12-2029"
+      },
+      {
+       "chain": "venus-mercury-ketu",
+       "weekday": "Mon",
+       "date": "13-05-2030"
+      },
+      {
+       "chain": "venus-mercury-venus",
+       "weekday": "Fri",
+       "date": "12-07-2030"
+      },
+      {
+       "chain": "venus-mercury-sun",
+       "weekday": "Wed",
+       "date": "01-01-2031"
+      },
+      {
+       "chain": "venus-mercury-moon",
+       "weekday": "Fri",
+       "date": "21-02-2031"
+      }
+     ],
+     "patyayini": [
+      {
+       "chain": "mercury-jupiter-mercury",
+       "weekday": "Wed",
+       "date": "07-10-2026"
+      },
+      {
+       "chain": "mercury-jupiter-saturn",
+       "weekday": "Sun",
+       "date": "18-10-2026"
+      },
+      {
+       "chain": "mercury-jupiter-moon",
+       "weekday": "Wed",
+       "date": "21-10-2026"
+      },
+      {
+       "chain": "mercury-jupiter-lagna",
+       "weekday": "Fri",
+       "date": "23-10-2026"
+      },
+      {
+       "chain": "mercury-jupiter-venus",
+       "weekday": "Fri",
+       "date": "23-10-2026"
+      },
+      {
+       "chain": "mercury-jupiter-sun",
+       "weekday": "Sun",
+       "date": "25-10-2026"
+      },
+      {
+       "chain": "mercury-mars-mars",
+       "weekday": "Mon",
+       "date": "26-10-2026"
+      },
+      {
+       "chain": "mercury-mars-mercury",
+       "weekday": "Tue",
+       "date": "27-10-2026"
+      },
+      {
+       "chain": "mercury-mars-saturn",
+       "weekday": "Fri",
+       "date": "30-10-2026"
+      },
+      {
+       "chain": "mercury-mars-moon",
+       "weekday": "Sat",
+       "date": "31-10-2026"
+      },
+      {
+       "chain": "mercury-mars-lagna",
+       "weekday": "Sun",
+       "date": "01-11-2026"
+      },
+      {
+       "chain": "mercury-mars-venus",
+       "weekday": "Sun",
+       "date": "01-11-2026"
+      },
+      {
+       "chain": "mercury-mars-sun",
+       "weekday": "Sun",
+       "date": "01-11-2026"
+      },
+      {
+       "chain": "mercury-mars-jupiter",
+       "weekday": "Mon",
+       "date": "02-11-2026"
+      },
+      {
+       "chain": "saturn-saturn-saturn",
+       "weekday": "Tue",
+       "date": "03-11-2026"
+      }
+     ],
+     "mudda": [
+      {
+       "chain": "saturn-saturn-mars",
+       "weekday": "Fri",
+       "date": "16-10-2026"
+      },
+      {
+       "chain": "saturn-saturn-rahu",
+       "weekday": "Sat",
+       "date": "17-10-2026"
+      },
+      {
+       "chain": "saturn-saturn-jupiter",
+       "weekday": "Sun",
+       "date": "18-10-2026"
+      },
+      {
+       "chain": "saturn-mercury-mercury",
+       "weekday": "Mon",
+       "date": "19-10-2026"
+      },
+      {
+       "chain": "saturn-mercury-ketu",
+       "weekday": "Wed",
+       "date": "21-10-2026"
+      },
+      {
+       "chain": "saturn-mercury-venus",
+       "weekday": "Wed",
+       "date": "21-10-2026"
+      },
+      {
+       "chain": "saturn-mercury-sun",
+       "weekday": "Thu",
+       "date": "22-10-2026"
+      },
+      {
+       "chain": "saturn-mercury-moon",
+       "weekday": "Fri",
+       "date": "23-10-2026"
+      },
+      {
+       "chain": "saturn-mercury-mars",
+       "weekday": "Sat",
+       "date": "24-10-2026"
+      },
+      {
+       "chain": "saturn-mercury-rahu",
+       "weekday": "Sat",
+       "date": "24-10-2026"
+      },
+      {
+       "chain": "saturn-mercury-jupiter",
+       "weekday": "Sun",
+       "date": "25-10-2026"
+      },
+      {
+       "chain": "saturn-mercury-saturn",
+       "weekday": "Mon",
+       "date": "26-10-2026"
+      },
+      {
+       "chain": "saturn-ketu-ketu",
+       "weekday": "Wed",
+       "date": "28-10-2026"
+      },
+      {
+       "chain": "saturn-ketu-venus",
+       "weekday": "Wed",
+       "date": "28-10-2026"
+      },
+      {
+       "chain": "saturn-ketu-sun",
+       "weekday": "Wed",
+       "date": "28-10-2026"
+      }
+     ],
+     "kalidasa@89": [
+      {
+       "chain": "rahu-mars-venus",
+       "weekday": "Fri",
+       "date": "16-10-2026"
+      },
+      {
+       "chain": "rahu-mars-sun",
+       "weekday": "Sat",
+       "date": "17-10-2026"
+      },
+      {
+       "chain": "rahu-mars-moon",
+       "weekday": "Sat",
+       "date": "17-10-2026"
+      },
+      {
+       "chain": "jupiter-jupiter-jupiter",
+       "weekday": "Sat",
+       "date": "17-10-2026"
+      },
+      {
+       "chain": "jupiter-jupiter-saturn",
+       "weekday": "Sun",
+       "date": "18-10-2026"
+      },
+      {
+       "chain": "jupiter-jupiter-mercury",
+       "weekday": "Mon",
+       "date": "19-10-2026"
+      },
+      {
+       "chain": "jupiter-jupiter-ketu",
+       "weekday": "Tue",
+       "date": "20-10-2026"
+      },
+      {
+       "chain": "jupiter-jupiter-venus",
+       "weekday": "Tue",
+       "date": "20-10-2026"
+      },
+      {
+       "chain": "jupiter-jupiter-sun",
+       "weekday": "Wed",
+       "date": "21-10-2026"
+      },
+      {
+       "chain": "jupiter-jupiter-moon",
+       "weekday": "Thu",
+       "date": "22-10-2026"
+      },
+      {
+       "chain": "jupiter-jupiter-mars",
+       "weekday": "Thu",
+       "date": "22-10-2026"
+      },
+      {
+       "chain": "jupiter-jupiter-rahu",
+       "weekday": "Fri",
+       "date": "23-10-2026"
+      },
+      {
+       "chain": "jupiter-saturn-saturn",
+       "weekday": "Sat",
+       "date": "24-10-2026"
+      },
+      {
+       "chain": "jupiter-saturn-mercury",
+       "weekday": "Sun",
+       "date": "25-10-2026"
+      },
+      {
+       "chain": "jupiter-saturn-ketu",
+       "weekday": "Mon",
+       "date": "26-10-2026"
+      }
+     ],
+     "muddaNone": [
+      {
+       "chain": "jupiter-moon-sun",
+       "weekday": "Fri",
+       "date": "16-10-2026"
+      },
+      {
+       "chain": "jupiter-mars-mars",
+       "weekday": "Sat",
+       "date": "17-10-2026"
+      },
+      {
+       "chain": "jupiter-mars-rahu",
+       "weekday": "Sat",
+       "date": "17-10-2026"
+      },
+      {
+       "chain": "jupiter-mars-jupiter",
+       "weekday": "Sat",
+       "date": "17-10-2026"
+      },
+      {
+       "chain": "jupiter-mars-saturn",
+       "weekday": "Sun",
+       "date": "18-10-2026"
+      },
+      {
+       "chain": "jupiter-mars-mercury",
+       "weekday": "Sun",
+       "date": "18-10-2026"
+      },
+      {
+       "chain": "jupiter-mars-ketu",
+       "weekday": "Mon",
+       "date": "19-10-2026"
+      },
+      {
+       "chain": "jupiter-mars-venus",
+       "weekday": "Mon",
+       "date": "19-10-2026"
+      },
+      {
+       "chain": "jupiter-mars-sun",
+       "weekday": "Mon",
+       "date": "19-10-2026"
+      },
+      {
+       "chain": "jupiter-mars-moon",
+       "weekday": "Mon",
+       "date": "19-10-2026"
+      },
+      {
+       "chain": "jupiter-rahu-rahu",
+       "weekday": "Tue",
+       "date": "20-10-2026"
+      },
+      {
+       "chain": "jupiter-rahu-jupiter",
+       "weekday": "Wed",
+       "date": "21-10-2026"
+      },
+      {
+       "chain": "jupiter-rahu-saturn",
+       "weekday": "Thu",
+       "date": "22-10-2026"
+      },
+      {
+       "chain": "jupiter-rahu-mercury",
+       "weekday": "Fri",
+       "date": "23-10-2026"
+      },
+      {
+       "chain": "jupiter-rahu-ketu",
+       "weekday": "Sat",
+       "date": "24-10-2026"
+      }
+     ],
+     "natal@89": [
+      {
+       "chain": "venus-jupiter-rahu",
+       "weekday": "Sun",
+       "date": "24-05-2026"
+      },
+      {
+       "chain": "venus-saturn-saturn",
+       "weekday": "Sun",
+       "date": "18-10-2026"
+      },
+      {
+       "chain": "venus-saturn-mercury",
+       "weekday": "Mon",
+       "date": "19-04-2027"
+      },
+      {
+       "chain": "venus-saturn-ketu",
+       "weekday": "Thu",
+       "date": "30-09-2027"
+      },
+      {
+       "chain": "venus-saturn-venus",
+       "weekday": "Mon",
+       "date": "06-12-2027"
+      },
+      {
+       "chain": "venus-saturn-sun",
+       "weekday": "Fri",
+       "date": "16-06-2028"
+      },
+      {
+       "chain": "venus-saturn-moon",
+       "weekday": "Sun",
+       "date": "13-08-2028"
+      },
+      {
+       "chain": "venus-saturn-mars",
+       "weekday": "Fri",
+       "date": "17-11-2028"
+      },
+      {
+       "chain": "venus-saturn-rahu",
+       "weekday": "Tue",
+       "date": "23-01-2029"
+      },
+      {
+       "chain": "venus-saturn-jupiter",
+       "weekday": "Mon",
+       "date": "16-07-2029"
+      },
+      {
+       "chain": "venus-mercury-mercury",
+       "weekday": "Mon",
+       "date": "17-12-2029"
+      },
+      {
+       "chain": "venus-mercury-ketu",
+       "weekday": "Mon",
+       "date": "13-05-2030"
+      },
+      {
+       "chain": "venus-mercury-venus",
+       "weekday": "Fri",
+       "date": "12-07-2030"
+      },
+      {
+       "chain": "venus-mercury-sun",
+       "weekday": "Wed",
+       "date": "01-01-2031"
+      },
+      {
+       "chain": "venus-mercury-moon",
+       "weekday": "Fri",
+       "date": "21-02-2031"
+      }
+     ]
+    },
+    "returns": {
+     "monthly": {
+      "years": 21,
+      "months": 5,
+      "days": 0,
+      "at": "2026-10-09 14:17:19"
+     },
+     "daily": {
+      "years": 21,
+      "months": 5,
+      "days": 10,
+      "at": "2026-10-19 16:31:52"
+     }
+    }
+   },
+   "monthCalendar": {
+    "month": "2026-10",
+    "events": [
+     {
+      "day": 1,
+      "time": "06:02",
+      "text": "b Rohini"
+     },
+     {
+      "day": 1,
+      "time": "09:30",
+      "text": "d Swati"
+     },
+     {
+      "day": 1,
+      "time": "16:38",
+      "text": "b trine e"
+     },
+     {
+      "day": 2,
+      "time": "04:27",
+      "text": "b Mrigashi"
+     },
+     {
+      "day": 2,
+      "time": "13:40",
+      "text": "b trine i"
+     },
+     {
+      "day": 2,
+      "time": "14:37",
+      "text": "b trine Cusp 4"
+     },
+     {
+      "day": 2,
+      "time": "15:40",
+      "text": "b Gem"
+     },
+     {
+      "day": 2,
+      "time": "18:17",
+      "text": "Ve-Ju-Ra-Mo-S"
+     },
+     {
+      "day": 3,
+      "time": "02:55",
+      "text": "b Ardra"
+     },
+     {
+      "day": 3,
+      "time": "08:25",
+      "text": "b trine c"
+     },
+     {
+      "day": 3,
+      "time": "12:45",
+      "text": "fM R or D As"
+     },
+     {
+      "day": 3,
+      "time": "22:02",
+      "text": "d trine c"
+     },
+     {
+      "day": 3,
+      "time": "23:31",
+      "text": "a cnj e"
+     },
+     {
+      "day": 4,
+      "time": "01:29",
+      "text": "b Punarvasu"
+     },
+     {
+      "day": 4,
+      "time": "15:34",
+      "text": "b cnj g"
+     },
+     {
+      "day": 4,
+      "time": "16:33",
+      "text": "Ve-Ju-Ra-Mo-M"
+     },
+     {
+      "day": 4,
+      "time": "17:27",
+      "text": "b cnj As"
+     },
+     {
+      "day": 4,
+      "time": "17:27",
+      "text": "b opp Cusp 7"
+     },
+     {
+      "day": 4,
+      "time": "18:31",
+      "text": "b Can"
+     },
+     {
+      "day": 5,
+      "time": "00:14",
+      "text": "b Pushya"
+     },
+     {
+      "day": 5,
+      "time": "23:09",
+      "text": "b Ashlesha"
+     },
+     {
+      "day": 6,
+      "time": "09:57",
+      "text": "Ve-Ju-Ra-Mo-K"
+     },
+     {
+      "day": 6,
+      "time": "17:26",
+      "text": "b trine d"
+     },
+     {
+      "day": 6,
+      "time": "20:05",
+      "text": "b trine b"
+     },
+     {
+      "day": 6,
+      "time": "20:13",
+      "text": "b trine h"
+     },
+     {
+      "day": 6,
+      "time": "21:12",
+      "text": "b trine Cusp 10"
+     },
+     {
+      "day": 6,
+      "time": "22:18",
+      "text": "b Magha"
+     },
+     {
+      "day": 6,
+      "time": "22:18",
+      "text": "b Leo"
+     },
+     {
+      "day": 7,
+      "time": "02:59",
+      "text": "Ve-Ju-Ra-Mo-V"
+     },
+     {
+      "day": 7,
+      "time": "15:41",
+      "text": "b opp c"
+     },
+     {
+      "day": 7,
+      "time": "21:40",
+      "text": "b P.Phalg."
+     },
+     {
+      "day": 8,
+      "time": "13:09",
+      "text": "b trine a"
+     },
+     {
+      "day": 8,
+      "time": "21:20",
+      "text": "b U.Phalg."
+     },
+     {
+      "day": 9,
+      "time": "02:11",
+      "text": "b trine Cusp 7"
+     },
+     {
+      "day": 9,
+      "time": "03:18",
+      "text": "b Vir"
+     },
+     {
+      "day": 9,
+      "time": "03:41",
+      "text": "Ve-Ju-Ra-Mo-S"
+     },
+     {
+      "day": 9,
+      "time": "05:57",
+      "text": "b trine f"
+     },
+     {
+      "day": 9,
+      "time": "18:18",
+      "text": "Ve-Ju-Ra-Ma-M"
+     },
+     {
+      "day": 9,
+      "time": "20:52",
+      "text": "gM U.Bhadra."
+     },
+     {
+      "day": 9,
+      "time": "21:20",
+      "text": "b Hasta"
+     },
+     {
+      "day": 10,
+      "time": "06:14",
+      "text": "Ve-Ju-Ra-Ma-R"
+     },
+     {
+      "day": 10,
+      "time": "08:49",
+      "text": "b cnj e"
+     },
+     {
+      "day": 10,
+      "time": "21:43",
+      "text": "b Chitra"
+     },
+     {
+      "day": 11,
+      "time": "02:19",
+      "text": "a Chitra"
+     },
+     {
+      "day": 11,
+      "time": "04:53",
+      "text": "b opp d"
+     },
+     {
+      "day": 11,
+      "time": "07:42",
+      "text": "b opp b"
+     },
+     {
+      "day": 11,
+      "time": "07:51",
+      "text": "b cnj i"
+     },
+     {
+      "day": 11,
+      "time": "07:51",
+      "text": "b opp h"
+     },
+     {
+      "day": 11,
+      "time": "08:54",
+      "text": "b opp Cusp 10"
+     },
+     {
+      "day": 11,
+      "time": "08:54",
+      "text": "b cnj Cusp 4"
+     },
+     {
+      "day": 11,
+      "time": "10:04",
+      "text": "b Lib"
+     },
+     {
+      "day": 11,
+      "time": "12:55",
+      "text": "Ve-Ju-Ra-Ma-Ju"
+     },
+     {
+      "day": 12,
+      "time": "02:04",
+      "text": "e trine d"
+     },
+     {
+      "day": 12,
+      "time": "04:41",
+      "text": "b trine c"
+     },
+     {
+      "day": 12,
+      "time": "16:11",
+      "text": "Ve-Ju-Ra-Ma-S"
+     },
+     {
+      "day": 12,
+      "time": "18:43",
+      "text": "d Vishakha"
+     },
+     {
+      "day": 12,
+      "time": "23:53",
+      "text": "b Vishakha"
+     },
+     {
+      "day": 13,
+      "time": "03:51",
+      "text": "b opp a"
+     },
+     {
+      "day": 13,
+      "time": "15:50",
+      "text": "b trine g"
+     },
+     {
+      "day": 13,
+      "time": "17:59",
+      "text": "b trine As"
+     },
+     {
+      "day": 13,
+      "time": "19:12",
+      "text": "b Sco"
+     },
+     {
+      "day": 13,
+      "time": "22:06",
+      "text": "b opp f"
+     },
+     {
+      "day": 14,
+      "time": "00:34",
+      "text": "Ve-Ju-Ra-Ma-M"
+     },
+     {
+      "day": 14,
+      "time": "01:43",
+      "text": "b Anuradha"
+     },
+     {
+      "day": 14,
+      "time": "10:51",
+      "text": "gM opp e"
+     },
+     {
+      "day": 15,
+      "time": "00:24",
+      "text": "a opp d"
+     },
+     {
+      "day": 15,
+      "time": "00:52",
+      "text": "d opp a"
+     },
+     {
+      "day": 15,
+      "time": "04:03",
+      "text": "b Jyeshtha"
+     },
+     {
+      "day": 15,
+      "time": "05:32",
+      "text": "Ve-Ju-Ra-Ma-K"
+     },
+     {
+      "day": 15,
+      "time": "17:28",
+      "text": "Ve-Ju-Ra-Ma-V"
+     },
+     {
+      "day": 16,
+      "time": "01:11",
+      "text": "b trine d"
+     },
+     {
+      "day": 16,
+      "time": "04:14",
+      "text": "b trine b"
+     },
+     {
+      "day": 16,
+      "time": "04:23",
+      "text": "b trine h"
+     },
+     {
+      "day": 16,
+      "time": "05:31",
+      "text": "b trine Cusp 10"
+     },
+     {
+      "day": 16,
+      "time": "06:47",
+      "text": "b Moola"
+     },
+     {
+      "day": 16,
+      "time": "06:47",
+      "text": "b Sag"
+     },
+     {
+      "day": 16,
+      "time": "13:10",
+      "text": "a opp b"
+     },
+     {
+      "day": 16,
+      "time": "15:00",
+      "text": "a cnj i"
+     },
+     {
+      "day": 16,
+      "time": "15:00",
+      "text": "a opp h"
+     },
+     {
+      "day": 17,
+      "time": "03:34",
+      "text": "Ve-Ju-Ra-Ma-S"
+     },
+     {
+      "day": 17,
+      "time": "04:42",
+      "text": "a cnj Cusp 4"
+     },
+     {
+      "day": 17,
+      "time": "04:42",
+      "text": "a opp Cusp 10"
+     },
+     {
+      "day": 17,
+      "time": "07:24",
+      "text": "-------"
+     },
+     {
+      "day": 17,
+      "time": "09:47",
+      "text": "b P.Shad."
+     },
+     {
+      "day": 17,
+      "time": "12:46",
+      "text": "c Ashlesha"
+     },
+     {
+      "day": 17,
+      "time": "13:47",
+      "text": "Ve-Ju-Ra-Ma-M"
+     },
+     {
+      "day": 18,
+      "time": "03:30",
+      "text": "b trine a"
+     },
+     {
+      "day": 18,
+      "time": "06:50",
+      "text": "Ve-Sa-Sa-Sa-Sa"
+     },
+     {
+      "day": 18,
+      "time": "12:48",
+      "text": "b U.Shad."
+     },
+     {
+      "day": 18,
+      "time": "13:39",
+      "text": "fM trine c"
+     },
+     {
+      "day": 18,
+      "time": "16:03",
+      "text": "b opp g"
+     },
+     {
+      "day": 18,
+      "time": "18:17",
+      "text": "b cnj Cusp 7"
+     },
+     {
+      "day": 18,
+      "time": "18:17",
+      "text": "b opp As"
+     },
+     {
+      "day": 18,
+      "time": "19:32",
+      "text": "b Cap"
+     },
+     {
+      "day": 19,
+      "time": "15:38",
+      "text": "b Shravana"
+     },
+     {
+      "day": 20,
+      "time": "04:11",
+      "text": "b trine e"
+     },
+     {
+      "day": 20,
+      "time": "18:01",
+      "text": "b Dhanish."
+     },
+     {
+      "day": 21,
+      "time": "04:41",
+      "text": "b trine i"
+     },
+     {
+      "day": 21,
+      "time": "05:47",
+      "text": "b trine Cusp 4"
+     },
+     {
+      "day": 21,
+      "time": "06:59",
+      "text": "b Aqu"
+     },
+     {
+      "day": 21,
+      "time": "19:47",
+      "text": "b Satabhi."
+     },
+     {
+      "day": 22,
+      "time": "00:09",
+      "text": "e trine b"
+     },
+     {
+      "day": 22,
+      "time": "01:58",
+      "text": "b cnj c"
+     },
+     {
+      "day": 22,
+      "time": "12:54",
+      "text": "e trine h"
+     },
+     {
+      "day": 22,
+      "time": "20:47",
+      "text": "b P.Bhadra."
+     },
+     {
+      "day": 22,
+      "time": "21:01",
+      "text": "Ve-Sa-Sa-Sa-M"
+     },
+     {
+      "day": 23,
+      "time": "11:54",
+      "text": "b trine g"
+     },
+     {
+      "day": 23,
+      "time": "13:54",
+      "text": "b trine As"
+     },
+     {
+      "day": 23,
+      "time": "15:02",
+      "text": "b Pis"
+     },
+     {
+      "day": 23,
+      "time": "21:01",
+      "text": "b U.Bhadra."
+     },
+     {
+      "day": 24,
+      "time": "03:21",
+      "text": "fM Chitra"
+     },
+     {
+      "day": 24,
+      "time": "12:42",
+      "text": "dM R or D As"
+     },
+     {
+      "day": 24,
+      "time": "12:50",
+      "text": "a Swati"
+     },
+     {
+      "day": 24,
+      "time": "19:54",
+      "text": "b opp e"
+     },
+     {
+      "day": 24,
+      "time": "20:31",
+      "text": "b Revati"
+     },
+     {
+      "day": 25,
+      "time": "14:37",
+      "text": "b cnj d"
+     },
+     {
+      "day": 25,
+      "time": "17:13",
+      "text": "b cnj b"
+     },
+     {
+      "day": 25,
+      "time": "17:20",
+      "text": "b cnj h"
+     },
+     {
+      "day": 25,
+      "time": "17:20",
+      "text": "b opp i"
+     },
+     {
+      "day": 25,
+      "time": "18:18",
+      "text": "b cnj Cusp 10"
+     },
+     {
+      "day": 25,
+      "time": "18:18",
+      "text": "b opp Cusp 4"
+     },
+     {
+      "day": 25,
+      "time": "19:21",
+      "text": "b Ari"
+     },
+     {
+      "day": 25,
+      "time": "19:21",
+      "text": "b Ashwini"
+     },
+     {
+      "day": 26,
+      "time": "15:09",
+      "text": "e trine Cusp 10"
+     },
+     {
+      "day": 26,
+      "time": "17:41",
+      "text": "b Bharani"
+     },
+     {
+      "day": 26,
+      "time": "23:36",
+      "text": "Ve-Sa-Sa-Sa-Ke"
+     },
+     {
+      "day": 27,
+      "time": "08:06",
+      "text": "b cnj a"
+     },
+     {
+      "day": 27,
+      "time": "15:38",
+      "text": "b Krittika"
+     },
+     {
+      "day": 27,
+      "time": "19:26",
+      "text": "a trine c"
+     },
+     {
+      "day": 27,
+      "time": "20:04",
+      "text": "b trine Cusp 7"
+     },
+     {
+      "day": 27,
+      "time": "21:06",
+      "text": "b Tau"
+     },
+     {
+      "day": 27,
+      "time": "23:31",
+      "text": "b cnj f"
+     },
+     {
+      "day": 28,
+      "time": "13:25",
+      "text": "b Rohini"
+     },
+     {
+      "day": 28,
+      "time": "16:12",
+      "text": "Ve-Sa-Sa-Sa-Ve"
+     },
+     {
+      "day": 28,
+      "time": "23:43",
+      "text": "b trine e"
+     },
+     {
+      "day": 29,
+      "time": "11:11",
+      "text": "b Mrigashi"
+     },
+     {
+      "day": 29,
+      "time": "20:09",
+      "text": "b trine i"
+     },
+     {
+      "day": 29,
+      "time": "21:05",
+      "text": "b trine Cusp 4"
+     },
+     {
+      "day": 29,
+      "time": "22:06",
+      "text": "b Gem"
+     },
+     {
+      "day": 30,
+      "time": "09:04",
+      "text": "b Ardra"
+     },
+     {
+      "day": 30,
+      "time": "14:28",
+      "text": "b trine c"
+     },
+     {
+      "day": 31,
+      "time": "07:12",
+      "text": "b Punarvasu"
+     },
+     {
+      "day": 31,
+      "time": "12:02",
+      "text": "e Magha"
+     },
+     {
+      "day": 31,
+      "time": "12:02",
+      "text": "e Leo"
+     },
+     {
+      "day": 31,
+      "time": "21:05",
+      "text": "b cnj g"
+     },
+     {
+      "day": 31,
+      "time": "22:57",
+      "text": "b cnj As"
+     },
+     {
+      "day": 31,
+      "time": "22:57",
+      "text": "b opp Cusp 7"
+     }
+    ]
+   },
+   "kota": {
+    "places": {
+     "mars": 9,
+     "jupiter": 10,
+     "ketu": 11,
+     "sun": 15,
+     "venus": 16,
+     "mercury": 17,
+     "moon": 20,
+     "rahu": 25,
+     "saturn": 28
+    },
+    "score": -0.3
+   },
+   "pakshi": {
+    "weekday": "Sat",
+    "half": "Bright",
+    "bird": "vulture",
+    "ruling": {
+     "day": "cock",
+     "night": "vulture"
+    },
+    "dying": "owl",
+    "yamas": {
+     "day": [
+      {
+       "start": "06:30:26",
+       "end": "08:47:07",
+       "activity": "ruling",
+       "parts": [
+        {
+         "bird": "vulture",
+         "activity": "ruling",
+         "relation": "self",
+         "time": "06:30:26"
+        },
+        {
+         "bird": "owl",
+         "activity": "sleeping",
+         "relation": "friend",
+         "time": "07:16:00"
+        },
+        {
+         "bird": "crow",
+         "activity": "dying",
+         "relation": "enemy",
+         "time": "07:33:05"
+        },
+        {
+         "bird": "cock",
+         "activity": "eating",
+         "relation": "enemy",
+         "time": "07:44:28"
+        },
+        {
+         "bird": "peacock",
+         "activity": "walking",
+         "relation": "friend",
+         "time": "08:12:57"
+        }
+       ]
+      },
+      {
+       "start": "08:47:07",
+       "end": "11:03:47",
+       "activity": "sleeping",
+       "parts": [
+        {
+         "bird": "vulture",
+         "activity": "sleeping",
+         "relation": "self",
+         "time": "08:47:07"
+        },
+        {
+         "bird": "owl",
+         "activity": "dying",
+         "relation": "friend",
+         "time": "09:04:12"
+        },
+        {
+         "bird": "crow",
+         "activity": "eating",
+         "relation": "enemy",
+         "time": "09:15:35"
+        },
+        {
+         "bird": "cock",
+         "activity": "walking",
+         "relation": "enemy",
+         "time": "09:44:04"
+        },
+        {
+         "bird": "peacock",
+         "activity": "ruling",
+         "relation": "friend",
+         "time": "10:18:14"
+        }
+       ]
+      },
+      {
+       "start": "11:03:47",
+       "end": "13:20:27",
+       "activity": "dying",
+       "parts": [
+        {
+         "bird": "vulture",
+         "activity": "dying",
+         "relation": "self",
+         "time": "11:03:47"
+        },
+        {
+         "bird": "owl",
+         "activity": "eating",
+         "relation": "friend",
+         "time": "11:15:10"
+        },
+        {
+         "bird": "crow",
+         "activity": "walking",
+         "relation": "enemy",
+         "time": "11:43:39"
+        },
+        {
+         "bird": "cock",
+         "activity": "ruling",
+         "relation": "enemy",
+         "time": "12:17:49"
+        },
+        {
+         "bird": "peacock",
+         "activity": "sleeping",
+         "relation": "friend",
+         "time": "13:03:22"
+        }
+       ]
+      },
+      {
+       "start": "13:20:27",
+       "end": "15:37:08",
+       "activity": "eating",
+       "parts": [
+        {
+         "bird": "vulture",
+         "activity": "eating",
+         "relation": "self",
+         "time": "13:20:27"
+        },
+        {
+         "bird": "owl",
+         "activity": "walking",
+         "relation": "friend",
+         "time": "13:48:56"
+        },
+        {
+         "bird": "crow",
+         "activity": "ruling",
+         "relation": "enemy",
+         "time": "14:23:06"
+        },
+        {
+         "bird": "cock",
+         "activity": "sleeping",
+         "relation": "enemy",
+         "time": "15:08:39"
+        },
+        {
+         "bird": "peacock",
+         "activity": "dying",
+         "relation": "friend",
+         "time": "15:25:44"
+        }
+       ]
+      },
+      {
+       "start": "15:37:08",
+       "end": "17:53:48",
+       "activity": "walking",
+       "parts": [
+        {
+         "bird": "vulture",
+         "activity": "walking",
+         "relation": "self",
+         "time": "15:37:08"
+        },
+        {
+         "bird": "owl",
+         "activity": "ruling",
+         "relation": "friend",
+         "time": "16:11:18"
+        },
+        {
+         "bird": "crow",
+         "activity": "sleeping",
+         "relation": "enemy",
+         "time": "16:56:51"
+        },
+        {
+         "bird": "cock",
+         "activity": "dying",
+         "relation": "enemy",
+         "time": "17:13:56"
+        },
+        {
+         "bird": "peacock",
+         "activity": "eating",
+         "relation": "friend",
+         "time": "17:25:20"
+        }
+       ]
+      }
+     ],
+     "night": [
+      {
+       "start": "17:53:48",
+       "end": "20:25:14",
+       "activity": "eating",
+       "parts": [
+        {
+         "bird": "vulture",
+         "activity": "eating",
+         "relation": "self",
+         "time": "17:53:48"
+        },
+        {
+         "bird": "peacock",
+         "activity": "ruling",
+         "relation": "friend",
+         "time": "18:25:21"
+        },
+        {
+         "bird": "cock",
+         "activity": "dying",
+         "relation": "enemy",
+         "time": "18:50:36"
+        },
+        {
+         "bird": "crow",
+         "activity": "walking",
+         "relation": "enemy",
+         "time": "19:28:27"
+        },
+        {
+         "bird": "owl",
+         "activity": "sleeping",
+         "relation": "friend",
+         "time": "20:00:00"
+        }
+       ]
+      },
+      {
+       "start": "20:25:14",
+       "end": "22:56:41",
+       "activity": "ruling",
+       "parts": [
+        {
+         "bird": "vulture",
+         "activity": "ruling",
+         "relation": "self",
+         "time": "20:25:14"
+        },
+        {
+         "bird": "peacock",
+         "activity": "dying",
+         "relation": "friend",
+         "time": "20:50:29"
+        },
+        {
+         "bird": "cock",
+         "activity": "walking",
+         "relation": "enemy",
+         "time": "21:28:20"
+        },
+        {
+         "bird": "crow",
+         "activity": "sleeping",
+         "relation": "enemy",
+         "time": "21:59:53"
+        },
+        {
+         "bird": "owl",
+         "activity": "eating",
+         "relation": "friend",
+         "time": "22:25:08"
+        }
+       ]
+      },
+      {
+       "start": "22:56:41",
+       "end": "01:28:07",
+       "activity": "dying",
+       "parts": [
+        {
+         "bird": "vulture",
+         "activity": "dying",
+         "relation": "self",
+         "time": "22:56:41"
+        },
+        {
+         "bird": "peacock",
+         "activity": "walking",
+         "relation": "friend",
+         "time": "23:34:32"
+        },
+        {
+         "bird": "cock",
+         "activity": "sleeping",
+         "relation": "enemy",
+         "time": "00:06:05"
+        },
+        {
+         "bird": "crow",
+         "activity": "eating",
+         "relation": "enemy",
+         "time": "00:31:20"
+        },
+        {
+         "bird": "owl",
+         "activity": "ruling",
+         "relation": "friend",
+         "time": "01:02:53"
+        }
+       ]
+      },
+      {
+       "start": "01:28:07",
+       "end": "03:59:34",
+       "activity": "walking",
+       "parts": [
+        {
+         "bird": "vulture",
+         "activity": "walking",
+         "relation": "self",
+         "time": "01:28:07"
+        },
+        {
+         "bird": "peacock",
+         "activity": "sleeping",
+         "relation": "friend",
+         "time": "01:59:40"
+        },
+        {
+         "bird": "cock",
+         "activity": "eating",
+         "relation": "enemy",
+         "time": "02:24:55"
+        },
+        {
+         "bird": "crow",
+         "activity": "ruling",
+         "relation": "enemy",
+         "time": "02:56:28"
+        },
+        {
+         "bird": "owl",
+         "activity": "dying",
+         "relation": "friend",
+         "time": "03:21:42"
+        }
+       ]
+      },
+      {
+       "start": "03:59:34",
+       "end": "06:31:00",
+       "activity": "sleeping",
+       "parts": [
+        {
+         "bird": "vulture",
+         "activity": "sleeping",
+         "relation": "self",
+         "time": "03:59:34"
+        },
+        {
+         "bird": "peacock",
+         "activity": "eating",
+         "relation": "friend",
+         "time": "04:24:48"
+        },
+        {
+         "bird": "cock",
+         "activity": "ruling",
+         "relation": "enemy",
+         "time": "04:56:21"
+        },
+        {
+         "bird": "crow",
+         "activity": "dying",
+         "relation": "enemy",
+         "time": "05:21:35"
+        },
+        {
+         "bird": "owl",
+         "activity": "walking",
+         "relation": "friend",
+         "time": "05:59:27"
+        }
+       ]
+      }
+     ]
+    }
+   },
+   "sbvb": {
+    "sun": {
+     "strong": 0,
+     "vb": 15
+    },
+    "moon": {
+     "strong": 2,
+     "vb": 11
+    },
+    "mars": {
+     "strong": 5,
+     "vb": 15
+    },
+    "mercury": {
+     "strong": 4,
+     "vb": 13
+    },
+    "jupiter": {
+     "strong": 4,
+     "vb": 15
+    },
+    "venus": {
+     "strong": 4,
+     "vb": 13
+    },
+    "saturn": {
+     "strong": 4,
+     "vb": 7
+    },
+    "rahu": {
+     "strong": null,
+     "vb": 13
+    },
+    "ketu": {
+     "strong": null,
+     "vb": 13
+    }
+   },
+   "calendar": {
+    "month": "2026-10",
+    "marks": [
+     {
+      "planet": "sun",
+      "day": 1.314,
+      "lord": "sun",
+      "ash": null
+     },
+     {
+      "planet": "sun",
+      "day": 3.445,
+      "lord": "venus",
+      "ash": 3
+     },
+     {
+      "planet": "sun",
+      "day": 7.254,
+      "lord": "mercury",
+      "ash": 3
+     },
+     {
+      "planet": "sun",
+      "day": 11.071,
+      "lord": "moon",
+      "ash": 3
+     },
+     {
+      "planet": "sun",
+      "day": 14.821,
+      "lord": "lagna",
+      "ash": 3
+     },
+     {
+      "planet": "sun",
+      "day": 18.572,
+      "lord": "saturn",
+      "ash": 3
+     },
+     {
+      "planet": "sun",
+      "day": 22.323,
+      "lord": "jupiter",
+      "ash": 3
+     },
+     {
+      "planet": "sun",
+      "day": 26.14,
+      "lord": "mars",
+      "ash": 3
+     },
+     {
+      "planet": "sun",
+      "day": 29.453,
+      "lord": "sun",
+      "ash": 3
+     },
+     {
+      "planet": "mars",
+      "day": 3.445,
+      "lord": "mars",
+      "ash": 2
+     },
+     {
+      "planet": "mars",
+      "day": 10.012,
+      "lord": "sun",
+      "ash": 2
+     },
+     {
+      "planet": "mars",
+      "day": 16.821,
+      "lord": "venus",
+      "ash": 2
+     },
+     {
+      "planet": "mars",
+      "day": 23.885,
+      "lord": "mercury",
+      "ash": 2
+     },
+     {
+      "planet": "mars",
+      "day": 29.139,
+      "lord": "moon",
+      "ash": 2
+     },
+     {
+      "planet": "mercury",
+      "day": 2.387,
+      "lord": "mars",
+      "ash": 2
+     },
+     {
+      "planet": "mercury",
+      "day": 5.386,
+      "lord": "sun",
+      "ash": 2
+     },
+     {
+      "planet": "mercury",
+      "day": 8.699,
+      "lord": "venus",
+      "ash": 2
+     },
+     {
+      "planet": "mercury",
+      "day": 12.45,
+      "lord": "mercury",
+      "ash": 2
+     },
+     {
+      "planet": "mercury",
+      "day": 17.514,
+      "lord": "moon",
+      "ash": 2
+     },
+     {
+      "planet": "mercury",
+      "day": 23.323,
+      "lord": "lagna",
+      "ash": 2
+     },
+     {
+      "planet": "mercury",
+      "day": 28.446,
+      "lord": "moon",
+      "ash": 2
+     },
+     {
+      "planet": "jupiter",
+      "day": 2.511,
+      "lord": "moon",
+      "ash": 5
+     },
+     {
+      "planet": "jupiter",
+      "day": 17.821,
+      "lord": "lagna",
+      "ash": 3
+     },
+     {
+      "planet": "venus",
+      "day": 7.32,
+      "lord": "sun",
+      "ash": 4
+     },
+     {
+      "planet": "venus",
+      "day": 18.259,
+      "lord": "mars",
+      "ash": 4
+     },
+     {
+      "planet": "venus",
+      "day": 24.761,
+      "lord": "jupiter",
+      "ash": 4
+     },
+     {
+      "planet": "venus",
+      "day": 29.322,
+      "lord": "saturn",
+      "ash": 4
+     },
+     {
+      "planet": "saturn",
+      "day": 15.325,
+      "lord": "venus",
+      "ash": 2
+     }
+    ]
+   }
+  },
+  "muhurta": {
+   "pos": {
+    "lagna": {
+     "dms": "11:07:02",
+     "sign": "Pis",
+     "nakshatra": "U.Bhadra.",
+     "retrograde": false
+    },
+    "sun": {
+     "dms": "16:16:56",
+     "sign": "Sag",
+     "nakshatra": "P.Shad.",
+     "retrograde": false
+    },
+    "moon": {
+     "dms": "16:42:42",
+     "sign": "Lib",
+     "nakshatra": "Swati",
+     "retrograde": false
+    },
+    "mars": {
+     "dms": "03:55:57",
+     "sign": "Aqu",
+     "nakshatra": "Dhanish.",
+     "retrograde": false
+    },
+    "mercury": {
+     "dms": "07:40:47",
+     "sign": "Sag",
+     "nakshatra": "Moola",
+     "retrograde": false
+    },
+    "jupiter": {
+     "dms": "01:23:26",
+     "sign": "Ari",
+     "nakshatra": "Ashwini",
+     "retrograde": false
+    },
+    "venus": {
+     "dms": "07:26:08",
+     "sign": "Sco",
+     "nakshatra": "Anuradha",
+     "retrograde": false
+    },
+    "saturn": {
+     "dms": "16:32:50",
+     "sign": "Ari",
+     "nakshatra": "Bharani",
+     "retrograde": true
+    },
+    "rahu": {
+     "dms": "10:06:47",
+     "sign": "Can",
+     "nakshatra": "Pushya",
+     "retrograde": false
+    },
+    "ketu": {
+     "dms": "10:06:47",
+     "sign": "Cap",
+     "nakshatra": "Shravana",
+     "retrograde": false
+    }
+   },
+   "sb": {
+    "sun": 1.42,
+    "moon": 0.85,
+    "mars": 1.26,
+    "mercury": 1.12,
+    "jupiter": 1.31,
+    "venus": 1.32,
+    "saturn": 0.73
+   },
+   "kaksha": {
+    "sun": {
+     "sign": "Sag",
+     "bindu": 0,
+     "lord": "venus",
+     "ash": 5,
+     "sarva": 27
+    },
+    "moon": {
+     "sign": "Lib",
+     "bindu": 0,
+     "lord": "venus",
+     "ash": 4,
+     "sarva": 23
+    },
+    "mars": {
+     "sign": "Aqu",
+     "bindu": 1,
+     "lord": "jupiter",
+     "ash": 4,
+     "sarva": 28
+    },
+    "mercury": {
+     "sign": "Sag",
+     "bindu": 1,
+     "lord": "mars",
+     "ash": 6,
+     "sarva": 27
+    },
+    "jupiter": {
+     "sign": "Ari",
+     "bindu": 0,
+     "lord": "saturn",
+     "ash": 5,
+     "sarva": 30
+    },
+    "venus": {
+     "sign": "Sco",
+     "bindu": 0,
+     "lord": "jupiter",
+     "ash": 3,
+     "sarva": 30
+    },
+    "saturn": {
+     "sign": "Ari",
+     "bindu": 1,
+     "lord": "venus",
+     "ash": 5,
+     "sarva": 30
+    }
+   },
+   "gochara": {
+    "tarabala": "Vadha: Dangers",
+    "chandrabala": "8 Inauspicious",
+    "tithi": "Krishna Ekadashi",
+    "karana": "Bava (lion)",
+    "yoga": "Sukarma: Doing good and",
+    "vimshottari": "Me-Ra-Ju-Ke-Sa",
+    "narayana": "Ge-Ge-Ge-Ge-Ge",
+    "yogini": "Sa-Sa-Sa-Ra-Sa",
+    "ashtottari": "Ra-Ra-Ve-Ju-Me"
+   },
+   "events": {
+    "date": [
+     "1 Jan 2000",
+     "1 Jan 2000"
+    ],
+    "chains": {
+     "vimshottari": [
+      "Me-Ra-Ju-Ke-Me",
+      "Me-Ra-Ju-Ke-Me"
+     ],
+     "yogini": [
+      "Sa-Sa-Sa-Ra-Sa",
+      "Sa-Sa-Sa-Ra-Sa"
+     ],
+     "chara": [
+      "Ge-Ta-Ar-Ta-Ar",
+      "Ge-Ta-Ar-Ta-Ar"
+     ],
+     "ashtottari": [
+      "Ra-Ra-Ve-Ju-Me",
+      "Ra-Ra-Ve-Ju-Me"
+     ]
+    }
+   },
+   "at": "2000-01-01 12:00:00"
+  }
+ },
+ "provenance": {
+  "program": "Parashara's Light 9.0",
+  "method": "TEMPO print model, PDF read by read-tempo.py",
+  "charts": "refset/xml-tempo (birth rounded to the second, place manual)",
+  "extractedOn": "2026-10-17"
+ }
+}

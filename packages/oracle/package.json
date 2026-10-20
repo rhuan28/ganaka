@@ -1,0 +1,25 @@
+{
+  "name": "@reverse/oracle",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "license": "AGPL-3.0-or-later",
+  "scripts": {
+    "make-refset": "tsx src/cli/make-refset.ts",
+    "import-birthdat": "tsx src/cli/import-birthdat.ts",
+    "measure": "tsx src/cli/measure.ts",
+    "verify": "tsx src/cli/verify.ts",
+    "import-tables": "tsx src/cli/import-tables.ts",
+    "compare-modes": "tsx src/cli/compare-modes.ts",
+    "import-dashas": "tsx src/cli/import-dashas.ts",
+    "import-strengths": "tsx src/cli/import-strengths.ts",
+    "import-transits": "tsx src/cli/import-transits.ts",
+    "import-panchanga": "tsx src/cli/import-panchanga.ts",
+    "import-varshaphala": "tsx src/cli/import-varshaphala.ts",
+    "import-muhurta": "tsx src/cli/import-muhurta.ts"
+  },
+  "dependencies": {
+    "@reverse/core": "workspace:*",
+    "@reverse/ephemeris": "workspace:*"
+  }
+}
