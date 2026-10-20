@@ -24,7 +24,9 @@ describe('the IANA time zone database, compiled with backzone', () => {
     expect(tz.version).toBe('2026b');
     expect(tz.zones()).toContain('America/Sao_Paulo');
   });
-  it('gives every zone of zone1970.tab the offsets Node gives, twice a month from 1970 to 2037', () => {
+  // Node's copy of the database is the reference only when it is the same version (CI runners may carry another).
+  const sameAsNode = (process.versions as Record<string, string | undefined>).tz === tz.version;
+  it.skipIf(!sameAsNode)('gives every zone of zone1970.tab the offsets Node gives, twice a month from 1970 to 2037', () => {
     const wrong: string[] = [];
     for (const zone of zones1970) {
       for (let y = 1970; y <= 2037; y++) for (let m = 0; m < 12; m++) for (const d of [1, 15]) {
@@ -62,7 +64,7 @@ describe('the IANA time zone database, compiled with backzone', () => {
     expect(tz.offsetAtUt('Europe/Moscow', jd('1991-03-30T23:30:00Z')).utcOffsetSeconds).toBe(3 * 3600);
     expect(tz.offsetAtUt('America/Indiana/Vincennes', jd('2006-04-02T07:30:00Z')).utcOffsetSeconds).toBe(-5 * 3600);
   });
-  it('agrees with Node a minute either side of every transition it compiles from 1970 on', () => {
+  it.skipIf(!sameAsNode)('agrees with Node a minute either side of every transition it compiles from 1970 on', () => {
     const wrong: string[] = [];
     for (const zone of zones1970) {
       for (const t of tz.transitions(zone)) {
