@@ -24,6 +24,10 @@ docker run -p 8080:8080 -e API_KEYS=dev:<key> -e SOURCE_URL=https://example.org/
 | `SOURCE_URL` | yes | where the service's source code is (the AGPL requires that whoever uses the service can obtain it) |
 | `PORT` | no | the port, 8080 by default |
 | `RATE_LIMIT_PER_MINUTE` | no | requests per minute per key, 120 by default |
+| `RATE_LIMITS` | no | a limit of its own for some clients, `client:n,client:n`, with the client names of `API_KEYS` (for example `app:600` for an app that serves many people through one key) |
+
+The engine's version is the `version` of the repository's root `package.json`. It goes up with every deployment that
+can change a number, so that a client that keeps results can tell old ones from new ones.
 
 ## Requests
 
@@ -35,6 +39,8 @@ docker run -p 8080:8080 -e API_KEYS=dev:<key> -e SOURCE_URL=https://example.org/
   - strengths: `/v1/strengths/shadbala`, `/v1/strengths/bhava-bala`, `/v1/strengths/ashtakavarga`,
     `/v1/strengths/vimshopaka`;
   - time: `/v1/transits`, `/v1/panchanga`, `/v1/varshaphala`, `/v1/muhurta`.
+  - several of the above at once: `/v1/batch` (below);
+  - chart files saved by Parashara's Light 9: `/v1/import/pl9` (below);
   - atlas: `GET /v1/atlas/cities?q=<name>&country=<ISO code>&limit=<1 to 50>` (GeoNames cities,
     CC BY 4.0 license, by the start of the name, accent- and case-insensitive) and `POST /v1/atlas/local` with
     `{ "timeZone": "America/Sao_Paulo", "local": "2019-02-16T23:30:00" }`. The latter returns the
@@ -49,7 +55,42 @@ docker run -p 8080:8080 -e API_KEYS=dev:<key> -e SOURCE_URL=https://example.org/
   etc. The mode is `corrected` by default; `fidelity: "pl9"` reproduces PL9.
 - The options of each area have their own object: `dasha`, `shadbala` and `ashtakavarga`.
 - Unknown fields are rejected, so that a wrong name is never silently ignored.
-- Every response carries the `X-Source-Code` header with the address of the source code.
+- Every response carries the `X-Source-Code` header with the address of the source code, and the
+  `X-Engine-Version` header with the engine's version (`GET /health` answers it too). A client that caches results
+  should put this version in its cache key.
+
+### Several calculations at once
+
+`POST /v1/batch` takes `{ "requests": [{ "id", "path", "body" }] }`, from 1 to 20 requests, and answers
+`{ "results": [{ "id", "status", "body" }] }` in the same order.
+
+- `path` is one of the calculation endpoints above (`/v1/chart`, `/v1/dashas`, …), and `body` is what that endpoint
+  takes. Each `body` in the answer is exactly what the endpoint alone answers, an error included: a failing request
+  does not stop the others.
+- The ids must differ. A batch inside a batch, a path outside `/v1` or an unknown path refuses the whole batch (400).
+- The whole batch counts as one request against the key's limit.
+
+### Chart files from Parashara's Light 9
+
+`POST /v1/import/pl9` takes `{ "files": [{ "name", "text" }] }`, from 1 to 1000 files, each text up to 200 000
+characters, and answers `{ "results": [...] }` in the same order. Each result is either
+`{ "name", "ok": true, "chart" }` or `{ "name", "ok": false, "error" }`, so one broken file does not stop the others.
+
+The chart holds:
+- `firstName`, `lastName`, `gender` and `rodden`, as the file has them;
+- `birth`: `jdUt`, `latitude`, `longitudeEast`, `utcOffsetHours` (the clock's offset from UT, east positive,
+  daylight saving included), `dstHours` (the daylight saving part) and `place` (`city`, `state`, `country`);
+- `events`: the same fields as the birth, plus `name`, `description`, `classification`, `notes` and `rodden`;
+- `notes`, `tags` (the file's tags, split at commas and semicolons) and `family` (the family and contact fields that
+  are filled).
+
+How the file is read:
+- The file keeps local time as a Julian day. It keeps the zone in hours, west positive like its longitude, and the
+  daylight saving in hours ahead of the zone. The answer turns them into UT and east-positive values.
+- PL9 keeps two events of its own in every file, "Today" (the first) and "Muhurta" (the second), and rewrites them
+  itself. They are left out.
+- The time zone stays as the file has it. Nothing goes through the atlas again, so an imported chart gives the result
+  it gave in PL9.
 
 ## Errors
 

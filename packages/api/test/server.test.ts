@@ -48,4 +48,18 @@ describe('the calculation service', () => {
     const extra = await post(app, '/v1/chart', { birth, color: 'red' });
     expect([extra.statusCode, extra.json().error.code]).toEqual([400, 'invalid-request']);
   });
+  it('tells the engine version', async () => {
+    const app = buildServer({ eph: fakeSky, keys: { k1: 'tester' }, rateLimitPerMinute: 100, sourceUrl: 'x', engineVersion: '9.9.9' });
+    const health = await app.inject({ method: 'GET', url: '/health' });
+    expect(health.headers['x-engine-version']).toBe('9.9.9');
+    expect(health.json()).toEqual({ ok: true, version: '9.9.9' });
+    expect((await app.inject({ method: 'GET', url: '/openapi.json' })).json().info.version).toBe('9.9.9');
+    expect((await post(app as ReturnType<typeof make>, '/v1/chart', { birth })).headers['x-engine-version']).toBe('9.9.9');
+  });
+  it('limits each client by its own number', async () => {
+    const app = buildServer({ eph: fakeSky, keys: { k1: 'tester', k2: 'other' }, rateLimitPerMinute: 1, rateLimits: { tester: 3 }, sourceUrl: 'x' });
+    const codes = async (key: string, n: number) => { const out = []; for (let i = 0; i < n; i++) out.push((await post(app as ReturnType<typeof make>, '/v1/chart', { birth }, key)).statusCode); return out; };
+    expect(await codes('k1', 4)).toEqual([200, 200, 200, 429]);
+    expect(await codes('k2', 2)).toEqual([200, 429]);
+  });
 });

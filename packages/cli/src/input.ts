@@ -1,4 +1,4 @@
-import { chartInputOf, InvalidInputError, parseChartInput, type ChartInput } from '@reverse/core';
+import { chartInputOf, InvalidInputError, parseChartInput, Pl9FileError, readPl9Chart, type ChartInput } from '@reverse/core';
 
 export class ChartFileError extends Error {
   constructor(message: string) {
@@ -28,20 +28,16 @@ function wrapped(read: () => ChartInput): ChartInput {
   }
 }
 
-/** Reads the BirthInfo block of a chart file saved by Parashara's Light 9. */
+/** Reads the birth of a chart file saved by Parashara's Light 9 (the core reads the whole file). */
 function readPl9Xml(text: string): ChartInput {
-  const info = /<BirthInfo>([\s\S]*?)<\/BirthInfo>/.exec(text)?.[1];
-  if (info === undefined) throw new ChartFileError('the file has no BirthInfo block');
-  const field = (name: string): number => {
-    const raw = new RegExp(`<${name}>([^<]*)</${name}>`).exec(info)?.[1]?.trim();
-    if (raw === undefined || !/^[+-]?(\d+\.?\d*|\.\d+)$/.test(raw)) throw new ChartFileError(`field ${name} is missing or not a plain decimal number`);
-    return Number(raw);
-  };
-  const [jd, west, latitude, timeZone, dst] = [field('BirthDate'), field('Longitude'), field('Latitude'), field('TimeZone'), field('DST')];
-  // The file holds local time. The zone is in hours, west positive like the longitude; daylight saving is hours ahead
-  // (checked on PL9's saved charts against the times its screens show).
-  const hoursBehindUt = timeZone - dst;
-  return wrapped(() => chartInputOf(jd + hoursBehindUt / 24, latitude, -west, -hoursBehindUt));
+  let b;
+  try {
+    b = readPl9Chart(text).birth;
+  } catch (e) {
+    if (e instanceof Pl9FileError) throw new ChartFileError(e.message);
+    throw e;
+  }
+  return wrapped(() => chartInputOf(b.jdUt, b.latitude, b.longitudeEast, b.utcOffsetHours));
 }
 
 export function readChartFile(text: string, fileName: string): ChartInput {

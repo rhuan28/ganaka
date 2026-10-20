@@ -3,12 +3,15 @@ export interface Config {
   /** API key → the client's name. */
   keys: Record<string, string>;
   rateLimitPerMinute: number;
+  /** Client name → requests per minute, for the clients that do not take the default. */
+  rateLimits: Record<string, number>;
   sourceUrl: string;
 }
 
 /**
  * The service's configuration from the environment: `API_KEYS` ("client:key,client:key", required), `SOURCE_URL`
- * (where the source code is, required by the AGPL), `PORT` (8080) and `RATE_LIMIT_PER_MINUTE` (120, per key).
+ * (where the source code is, required by the AGPL), `PORT` (8080), `RATE_LIMIT_PER_MINUTE` (120, per key) and
+ * `RATE_LIMITS` ("client:n,client:n": a limit of its own for some clients, named as in `API_KEYS`).
  */
 export function readConfig(env: Record<string, string | undefined>): Config {
   const keysText = env.API_KEYS?.trim();
@@ -29,5 +32,13 @@ export function readConfig(env: Record<string, string | undefined>): Config {
     if (!Number.isInteger(n) || n <= 0) throw new Error(`${name} must be a whole number above 0`);
     return n;
   };
-  return { port: whole('PORT', 8080), keys, rateLimitPerMinute: whole('RATE_LIMIT_PER_MINUTE', 120), sourceUrl };
+  const clients = new Set(Object.values(keys));
+  const rateLimits: Record<string, number> = {};
+  for (const entry of (env.RATE_LIMITS ?? '').split(',').map((e) => e.trim()).filter(Boolean)) {
+    const [client, n] = entry.split(':').map((p) => p.trim());
+    if (!client || !n || !/^\d+$/.test(n) || Number(n) <= 0) throw new Error(`RATE_LIMITS: "${entry}" is not "client:n" with n above 0`);
+    if (!clients.has(client)) throw new Error(`RATE_LIMITS: no client "${client}" in API_KEYS`);
+    rateLimits[client] = Number(n);
+  }
+  return { port: whole('PORT', 8080), keys, rateLimitPerMinute: whole('RATE_LIMIT_PER_MINUTE', 120), rateLimits, sourceUrl };
 }
