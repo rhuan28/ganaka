@@ -72,7 +72,7 @@ function elementsAt(eph: Ephemeris, jdUt: number, searchFrom: number, coreOption
 /**
  * The panchanga of an instant and place: the sunrise before it, the sunset and the next sunrise (PL9's panchanga
  * search), the tithi, karana, yoga and nakshatra at the instant and at the sunrise with their ends, the Vedic weekday
- * and the fortnight. The ends are searched from the sunrise of the Shadbala, as PL9 does. See docs/spec/tempo/panchanga.md.
+ * and the fortnight. The ends are searched from the sunrise of the Shadbala, as PL9 does. See docs/spec/time/panchanga.md.
  */
 export function computePanchanga(eph: Ephemeris, at: ChartInput, coreOptions?: Partial<CoreOptions>): Panchanga {
   const core = resolveOptions(coreOptions);
@@ -91,7 +91,7 @@ export function computePanchanga(eph: Ephemeris, at: ChartInput, coreOptions?: P
   const atSunrise = elementsAt(eph, searchFrom, searchFrom, coreOptions);
   // The Vedic weekday: the day of the instant in the local mean time of the place (its longitude), the day before
   // when the instant is before that day's sunrise. From the data: it gives 118 of PL9's 135 birth weekdays; PL9's
-  // own rule was not found (docs/spec/tempo/panchanga.md).
+  // own rule was not found (docs/spec/time/panchanga.md).
   const lmt = at.longitudeEast / 360;
   const sameDay = Math.floor(at.jdUt + lmt + 0.5) === Math.floor(day.sunrise + lmt + 0.5);
   const vara = ((Math.floor(at.jdUt + lmt + 0.5) - (sameDay ? 0 : 1) + 1) % 7 + 7) % 7;
@@ -128,7 +128,7 @@ export interface BirthPanchanga extends Panchanga {
 
 /**
  * The panchanga PL9 prints for a birth ("Panchanga Details", "Basic Calculations"). The names of the tables come from
- * PL9's printouts; see docs/spec/tempo/panchanga.md.
+ * PL9's printouts; see docs/spec/time/panchanga.md.
  */
 export function computeBirthPanchanga(eph: Ephemeris, natal: ChartInput, coreOptions?: Partial<CoreOptions>): BirthPanchanga {
   const p = computePanchanga(eph, natal, coreOptions);

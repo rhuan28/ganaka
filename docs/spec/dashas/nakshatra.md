@@ -1,77 +1,77 @@
-# Dashas de nakshatra e de planeta
+# Nakshatra and planet dashas
 
-Os 13 sistemas do PL9 que partem do nakshatra da Lua (ou de outro ponto, pela
-opção "Dashas based on"): Vimshottari, Ashtottari, Yogini, Shodashottari,
+The 13 PL9 systems that start from the Moon's nakshatra (or from another point, through
+the "Dashas based on" option): Vimshottari, Ashtottari, Yogini, Shodashottari,
 Dwadashottari, Panchottari, Shatabdika, Chaturshitisama, Dwisaptatisama,
-Shastihayani, Shattrimshatsama, Tribhagi e Tribhagi 40.
+Shastihayani, Shattrimshatsama, Tribhagi and Tribhagi 40.
 
-## Regras
+## Rules
 
-Notação: `k` = nakshatra da Lua (0 = Ashwini … 26 = Revati); `f` = fração de `k` já percorrida; `A` = ano do dasha.
+Notation: `k` = the Moon's nakshatra (0 = Ashwini … 26 = Revati); `f` = fraction of `k` already traversed; `A` = dasha year.
 
-**Duração do ano (`A`).** Opção do PL9 "Dasha year": 360 → 360 dias; 327,85 → 327,85 dias; **"365.25" → 365,2421875 dias** (o PL9 usa 365,2422 em precisão simples, apesar do rótulo). Medido: com 365,2421875, as 108 trocas de Sookshma de cada um de 10 mapas caem entre 0 e 1 minuto das exibidas; com 365,25 erram por horas.
+**Length of the year (`A`).** PL9 option "Dasha year": 360 → 360 days; 327.85 → 327.85 days; **"365.25" → 365.2421875 days** (PL9 uses 365.2422 in single precision, despite the label). Measured: with 365.2421875, the 108 Sookshma changes of each of 10 charts fall between 0 and 1 minute of the ones displayed; with 365.25 they are off by hours.
 
-**Sistemas** (sequência a partir do primeiro regente da contagem; anos):
+**Systems** (sequence from the first lord of the count; years):
 
-| Sistema | Sequência e anos | Partida |
+| System | Sequence and years | Start |
 |---|---|---|
-| Vimshottari | Ketu 7, Vênus 20, Sol 6, Lua 10, Marte 7, Rahu 18, Júpiter 16, Saturno 19, Mercúrio 17 | contagem a partir de Ashwini |
-| Ashtottari | Sol 6, Lua 15, Marte 8, Mercúrio 17, Saturno 10, Júpiter 19, Rahu 12, Vênus 21 | por grupos (abaixo) |
-| Yogini | Mangala 1, Pingala 2, Dhanya 3, Bhramari 4, Bhadrika 5, Ulka 6, Siddha 7, Sankata 8 | Ashwini dá Bhramari; segue a sequência |
-| Shodashottari | Sol 11, Marte 12, Júpiter 13, Saturno 14, Ketu 15, Lua 16, Mercúrio 17, Vênus 18 | contagem a partir de Pushya (Pushya dá Sol) |
-| Dwadashottari | Sol 7, Júpiter 9, Ketu 11, Mercúrio 13, Rahu 15, Marte 17, Saturno 19, Lua 21 | contagem para trás a partir de Revati (Revati dá Sol) |
-| Panchottari | Sol 12, Mercúrio 13, Saturno 14, Marte 15, Vênus 16, Lua 17, Júpiter 18 | contagem a partir de Anuradha (Anuradha dá Sol) |
-| Shatabdika | Sol 5, Lua 5, Vênus 10, Mercúrio 10, Júpiter 20, Marte 20, Saturno 30 | contagem a partir de Revati (Revati dá Sol) |
-| Chaturshitisama | Sol, Lua, Marte, Mercúrio, Júpiter, Vênus, Saturno, 12 cada | contagem a partir de Swati (Swati dá Sol) |
-| Dwisaptatisama | Sol, Lua, Marte, Mercúrio, Júpiter, Vênus, Saturno, Rahu, 9 cada | contagem a partir de Mula (Mula dá Sol) |
-| Shastihayani | Júpiter 10, Sol 10, Marte 10, Lua 6, Mercúrio 6, Vênus 6, Saturno 6, Rahu 6 | por grupos (abaixo) |
-| Shattrimshatsama | Lua 1, Sol 2, Júpiter 3, Marte 4, Mercúrio 5, Saturno 6, Vênus 7, Rahu 8 | contagem a partir de Shravana (Shravana dá Lua) |
-| Tribhagi | Vimshottari com todos os anos × 2/3 | como o Vimshottari |
-| Tribhagi 40 | Vimshottari com todos os anos × 1/3 | como o Vimshottari |
+| Vimshottari | Ketu 7, Venus 20, Sun 6, Moon 10, Mars 7, Rahu 18, Jupiter 16, Saturn 19, Mercury 17 | count from Ashwini |
+| Ashtottari | Sun 6, Moon 15, Mars 8, Mercury 17, Saturn 10, Jupiter 19, Rahu 12, Venus 21 | by groups (below) |
+| Yogini | Mangala 1, Pingala 2, Dhanya 3, Bhramari 4, Bhadrika 5, Ulka 6, Siddha 7, Sankata 8 | Ashwini gives Bhramari; follows the sequence |
+| Shodashottari | Sun 11, Mars 12, Jupiter 13, Saturn 14, Ketu 15, Moon 16, Mercury 17, Venus 18 | count from Pushya (Pushya gives the Sun) |
+| Dwadashottari | Sun 7, Jupiter 9, Ketu 11, Mercury 13, Rahu 15, Mars 17, Saturn 19, Moon 21 | backward count from Revati (Revati gives the Sun) |
+| Panchottari | Sun 12, Mercury 13, Saturn 14, Mars 15, Venus 16, Moon 17, Jupiter 18 | count from Anuradha (Anuradha gives the Sun) |
+| Shatabdika | Sun 5, Moon 5, Venus 10, Mercury 10, Jupiter 20, Mars 20, Saturn 30 | count from Revati (Revati gives the Sun) |
+| Chaturshitisama | Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, 12 each | count from Swati (Swati gives the Sun) |
+| Dwisaptatisama | Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, 9 each | count from Mula (Mula gives the Sun) |
+| Shastihayani | Jupiter 10, Sun 10, Mars 10, Moon 6, Mercury 6, Venus 6, Saturn 6, Rahu 6 | by groups (below) |
+| Shattrimshatsama | Moon 1, Sun 2, Jupiter 3, Mars 4, Mercury 5, Saturn 6, Venus 7, Rahu 8 | count from Shravana (Shravana gives the Moon) |
+| Tribhagi | Vimshottari with all years × 2/3 | like Vimshottari |
+| Tribhagi 40 | Vimshottari with all years × 1/3 | like Vimshottari |
 
-"Contagem a partir de X": conta-se de X até `k` (X é o 1º), dando a volta nos 27; o resto pela quantidade de regentes escolhe o regente, X dando o primeiro da tabela. Medido em 22 dos 27 nakshatras; os outros 5 seguem da regra. Dwisaptatisama: os dados também admitem P. Ashadha no lugar de Mula, porque Mula não apareceu nos mapas; adota-se Mula, a regra clássica (risco na seção de revisão).
+"Count from X": count from X to `k` (X is the 1st), wrapping around the 27; the remainder by the number of lords picks the lord, X giving the first in the table. Measured in 22 of the 27 nakshatras; the other 5 follow from the rule. Dwisaptatisama: the data also allow P. Ashadha in place of Mula, because Mula did not appear in the charts; Mula, the classical rule, is adopted (risk in the review section).
 
-**Saldo no nascimento ("By degree").** O primeiro período já decorreu na fração `f` (fração do nakshatra da Lua), exceto no Ashtottari e no Shastihayani, em que a fração é a do **grupo**: `(posição no grupo + fração dentro do nakshatra) / tamanho do grupo`, numa lista de 28 nakshatras com **Abhijit** de 276°40' a 280°53'20" (Uttara Ashadha encurtado até 276°40').
+**Balance at birth ("By degree").** The first period has already elapsed by the fraction `f` (fraction of the Moon's nakshatra), except in Ashtottari and Shastihayani, where the fraction is that of the **group**: `(position in the group + fraction within the nakshatra) / size of the group`, in a list of 28 nakshatras with **Abhijit** from 276°40' to 280°53'20" (Uttara Ashadha shortened to 276°40').
 
-- Ashtottari: Sol — Ardra, Punarvasu, Pushya, Ashlesha; Lua — Magha, P. e U. Phalguni; Marte — Hasta, Chitra, Swati, Vishakha; Mercúrio — Anuradha, Jyeshtha, Mula; Saturno — P. Ashadha, U. Ashadha, Abhijit, Shravana; Júpiter — Dhanishta, Shatabhisha, P. Bhadrapada; Rahu — U. Bhadrapada, Revati, Ashwini, Bharani; Vênus — Krittika, Rohini, Mrigashira.
-- Shastihayani: Júpiter — Ashwini, Bharani, Krittika; Sol — Rohini, Mrigashira, Ardra, Punarvasu; Marte — Pushya, Ashlesha, Magha; Lua — P. e U. Phalguni, Hasta, Chitra; Mercúrio — Swati, Vishakha, Anuradha; Vênus — Jyeshtha, Mula, P. Ashadha, U. Ashadha; Saturno — Abhijit, Shravana, Dhanishta; Rahu — Shatabhisha, P. e U. Bhadrapada, Revati.
-- **Shravana** (as duas): a fração dentro dele é medida de **280°04'** a 293°20', embora Abhijit ocupe o começo. O ponto de partida foi medido nas datas impressas de seis mapas com a Lua em Shravana, nos dois sistemas: todas cabem entre 280,065° e 280,067°; 280° erra por cerca de dois dias. No Ashtottari, o PL9 dá a Shravana a **posição 0** do grupo de Saturno (pela ordem seria 3).
+- Ashtottari: Sun — Ardra, Punarvasu, Pushya, Ashlesha; Moon — Magha, P. and U. Phalguni; Mars — Hasta, Chitra, Swati, Vishakha; Mercury — Anuradha, Jyeshtha, Mula; Saturn — P. Ashadha, U. Ashadha, Abhijit, Shravana; Jupiter — Dhanishta, Shatabhisha, P. Bhadrapada; Rahu — U. Bhadrapada, Revati, Ashwini, Bharani; Venus — Krittika, Rohini, Mrigashira.
+- Shastihayani: Jupiter — Ashwini, Bharani, Krittika; Sun — Rohini, Mrigashira, Ardra, Punarvasu; Mars — Pushya, Ashlesha, Magha; Moon — P. and U. Phalguni, Hasta, Chitra; Mercury — Swati, Vishakha, Anuradha; Venus — Jyeshtha, Mula, P. Ashadha, U. Ashadha; Saturn — Abhijit, Shravana, Dhanishta; Rahu — Shatabhisha, P. and U. Bhadrapada, Revati.
+- **Shravana** (both): the fraction within it is measured from **280°04'** to 293°20', although Abhijit occupies its beginning. The starting point was measured on the printed dates of six charts with the Moon in Shravana, in both systems: all fit between 280.065° and 280.067°; 280° is off by about two days. In Ashtottari, PL9 gives Shravana **position 0** of Saturn's group (by the order it would be 3).
 
-**Subdivisão.** Cada período se divide entre todos os regentes da sequência, começando pelo próprio regente, na proporção dos anos: `duração do subperíodo = duração do período × anos do sub-regente / soma dos anos`. Vale em todos os níveis (medido até o Sookshma no Vimshottari e até o 4º nível em todos, pela worksheet de dashas).
+**Subdivision.** Each period is divided among all the lords of the sequence, starting with its own lord, in proportion to the years: `length of the subperiod = length of the period × years of the sub-lord / sum of the years`. Holds at all levels (measured down to Sookshma in Vimshottari and down to the 4th level in all of them, through the dashas worksheet).
 
-**Saldo "By time".** A fração percorrida passa a ser a do tempo: (nascimento − entrada) / (saída − entrada), onde entrada e saída são os instantes em que o ponto de partida cruza o início e o fim do seu nakshatra. Vale para os onze sistemas que contam nakshatras; no Ashtottari e no Shastihayani o PL9 continua pelo grau, mesmo com "By time" escolhido. Medido em 30 mapas impressos com a opção: 0 falhas nos treze sistemas; a fração deduzida das datas dos sistemas de grupo bate com a do grau, e não com a do tempo, nem no nakshatra nem no grupo. Com outros pontos de partida não foi medido.
+**"By time" balance.** The fraction traversed becomes that of time: (birth − entry) / (exit − entry), where entry and exit are the instants at which the starting point crosses the beginning and the end of its nakshatra. Holds for the eleven systems that count nakshatras; in Ashtottari and Shastihayani PL9 keeps going by degree, even with "By time" chosen. Measured in 30 charts printed with the option: 0 failures in the thirteen systems; the fraction deduced from the dates of the group systems matches the one by degree, and not the one by time, neither in the nakshatra nor in the group. With other starting points it was not measured.
 
-**Duração do ano, outras opções.** Com 360 e 327,85 dias, só `A` muda: 30 mapas cada, 0 falhas.
+**Length of the year, other options.** With 360 and 327.85 days, only `A` changes: 30 charts each, 0 failures.
 
-**Ciclos seguintes.** Depois do ciclo que começa no período em curso no nascimento, a sequência se repete inteira, a partir do mesmo regente, como o PL9 imprime (nos sistemas curtos, como Yogini e Shattrimshatsama, o segundo ciclo começa antes dos 40 anos). O `computeDashas` dá, por padrão, os ciclos que cobrem 120 anos depois do nascimento; a opção `cycles` fixa o número. A bancada confere cada data impressa contra o período do mesmo caminho que começa mais perto dela, em todos os ciclos.
+**Following cycles.** After the cycle that begins with the period running at birth, the sequence repeats in full, from the same lord, as PL9 prints it (in the short systems, such as Yogini and Shattrimshatsama, the second cycle begins before 40 years). `computeDashas` gives, by default, the cycles that cover 120 years after birth; the `cycles` option fixes the number. The bench checks each printed date against the period of the same path that begins closest to it, in all cycles.
 
-**Base e varga.** No PL9, a escolha do ponto de partida (Sol, Lua, Lagna, os planetas, Rahu, Ketu) e da varga fica na janela "Dasha system selection" de uma **célula de dasha** de worksheet, e vale só para essa célula: os relatórios de dashas impressos partem sempre da Lua, no mapa natal (conferido: com a célula na base Lagna, o relatório do REF 0010 sai idêntico). Com outra base, só muda a longitude de partida, a do ponto escolhido. Na varga D9, a longitude de partida é a do ponto multiplicada por nove, mod 360. Medido em 30 mapas, numa worksheet com três células (base Lagna, base Sol, D9 com a Lua), 15 datas cada: 0 falhas. As outras vargas e o saldo por tempo com outra base que não a Lua não foram medidos.
+**Base and varga.** In PL9, the choice of starting point (Sun, Moon, Lagna, the planets, Rahu, Ketu) and of varga is in the "Dasha system selection" window of a worksheet **dasha cell**, and applies only to that cell: the printed dasha reports always start from the Moon, in the natal chart (checked: with the cell on the Lagna base, the report of REF 0010 comes out identical). With another base, only the starting longitude changes, to that of the chosen point. In the D9 varga, the starting longitude is the point's longitude multiplied by nine, mod 360. Measured in 30 charts, in a worksheet with three cells (Lagna base, Sun base, D9 with the Moon), 15 dates each: 0 failures. The other vargas and the balance by time with a base other than the Moon were not measured.
 
-**Limite medido.** Na bancada (71 mapas, cerca de 92 mil datas), 6 datas só com o dia caem no dia vizinho, com o instante do `core` a menos de 1 h da meia-noite. As 7 600 trocas de sookshma, com hora, concordam ao minuto a menos de um deslocamento constante por mapa, entre −0,7 e +0,8 minuto: nesse nível, um minuto equivale a uns 0,005" da Lua, abaixo do que o `core` e o PL9 concordam; dentro de cada mapa, todas cabem num minuto depois do deslocamento. As duas folgas estão em `packages/oracle/src/verifyDashas.ts`.
+**Measured limit.** On the bench (71 charts, about 92 thousand dates), 6 date-only dates fall on the neighbouring day, with the `core` instant less than 1 h from midnight. The 7,600 sookshma changes, with time, agree to the minute up to a constant offset per chart, between −0.7 and +0.8 minute: at that level, one minute amounts to about 0.005" of the Moon, below what `core` and PL9 agree on; within each chart, all fit within one minute after the offset. Both tolerances are in `packages/oracle/src/verifyDashas.ts`.
 
-## Origem
+## Origin
 
-- Sequências e anos: clássicos, de domínio comum, e confirmados nos
-  relatórios impressos pelo PL9.
-- Duração do ano: **lida no executável** (a rotina que lê a opção "Dasha
-  year") e **confirmada por medição** nas datas.
-- Partida, saldo, grupos com Abhijit e subdivisão: **medidos** nos 72 mapas
-  de referência impressos com os relatórios de dashas; as hipóteses clássicas
-  serviram de ponto de partida, e as particularidades do PL9 (Shravana nos
-  sistemas de grupo) vieram dos números.
+- Sequences and years: classical, common knowledge, and confirmed in the
+  reports printed by PL9.
+- Length of the year: **read in the executable** (the routine that reads the "Dasha
+  year" option) and **confirmed by measurement** on the dates.
+- Start, balance, groups with Abhijit and subdivision: **measured** on the 72 reference
+  charts printed with the dasha reports; the classical hypotheses
+  served as a starting point, and PL9's particularities (Shravana in the
+  group systems) came from the numbers.
 
-## Modo `corrected`
+## `corrected` mode
 
-Difere do `pl9` em quatro pontos, aprovados pelo mantenedor e descritos em
-`docs/spec/correcoes.md`: a opção "365.25" vale 365,25 dias (e 365,2422 fica
-disponível como valor próprio); no Ashtottari, Shravana ocupa a quarta
-posição do grupo de Saturno; nos dois sistemas de grupo, a fração dentro de
-Shravana é medida a partir do fim de Abhijit; e o saldo "By time" vale
-também nos sistemas de grupo.
+Differs from `pl9` in four points, approved by the maintainer and described in
+`docs/spec/corrections.md`: the "365.25" option is 365.25 days (and 365.2422 remains
+available as a value of its own); in Ashtottari, Shravana takes the fourth
+position of Saturn's group; in both group systems, the fraction within
+Shravana is measured from the end of Abhijit; and the "By time" balance also holds
+in the group systems.
 
-## O que não foi verificado
+## What was not verified
 
-- As vargas além da D1 e da D9, e o saldo por tempo com outra base que não a Lua (o `core` o calcula pela mesma regra para o Sol e o Lagna, sem conferência; com Rahu, Ketu e os planetas de Marte a Saturno, que andam para trás ou ficam retrógrados, recusa).
-- A explicação das 6 trocas que, nos relatórios só com data, aparecem no dia
-  vizinho perto da meia-noite, e do deslocamento de até 0,8 minuto nas
-  sookshmas de cada mapa (ver "Limite medido").
+- The vargas beyond D1 and D9, and the balance by time with a base other than the Moon (`core` computes it by the same rule for the Sun and the Lagna, without a check; with Rahu, Ketu and the planets from Mars to Saturn, which move backward or turn retrograde, it refuses).
+- The explanation of the 6 changes that, in the date-only reports, appear on the
+  neighbouring day near midnight, and of the offset of up to 0.8 minute in the
+  sookshmas of each chart (see "Measured limit").

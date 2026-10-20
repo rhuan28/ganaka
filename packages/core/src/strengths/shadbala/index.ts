@@ -9,7 +9,7 @@ export * from './types';
 export { DEBILITY, temporal } from './sthana';
 export type { CheshtaPlanet } from './cheshta';
 
-/** The Shadbala as PL9 computes it, from its inputs. See docs/spec/forcas/shadbala.md. */
+/** The Shadbala as PL9 computes it, from its inputs. See docs/spec/strengths/shadbala.md. */
 
 const distance = (a: number, b: number) => { const d = norm360(a - b); return d > 180 ? 360 - d : d; };
 const fold = (a: number) => { const d = norm360(a); return d > 180 ? 360 - d : d; };

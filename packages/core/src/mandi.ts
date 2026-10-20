@@ -7,7 +7,7 @@ import { dayFrame, type DayFrame } from './sunrise';
 /** Thirtieths of the day, and of the night, at which Mandi rises, from Sunday to Saturday. See docs/spec/mandi.md. */
 const DAY = [26, 22, 18, 14, 10, 6, 2] as const;
 const NIGHT = [10, 6, 2, 26, 22, 18, 14] as const;
-/** PL9's night: from Wednesday on, two thirtieths later than the table it follows. See docs/spec/correcoes.md. */
+/** PL9's night: from Wednesday on, two thirtieths later than the table it follows. See docs/spec/corrections.md. */
 const NIGHT_PL9 = [10, 6, 2, 28, 24, 20, 16] as const;
 
 /** Sidereal longitude of Mandi as PL9 gives it: the Lagna at the thirtieth of the day or night set by the weekday. */

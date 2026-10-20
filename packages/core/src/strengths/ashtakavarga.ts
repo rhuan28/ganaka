@@ -1,7 +1,7 @@
 import type { Fidelity } from '../fidelity';
 
 /**
- * The Ashtakavarga as PL9 computes it. See docs/spec/forcas/ashtakavarga.md.
+ * The Ashtakavarga as PL9 computes it. See docs/spec/strengths/ashtakavarga.md.
  */
 
 export const AV_PLANETS = ['sun', 'moon', 'mars', 'mercury', 'jupiter', 'venus', 'saturn'] as const;
@@ -40,7 +40,7 @@ const PLACES: Record<AvContributor, Record<AvContributor, number[]>> = {
 /**
  * Parashara's places differ in two: Jupiter in the Moon's chart (12 for 2), Mars in Venus's (5 for 4). PL9 gives
  * Parashara's places with its option "Varamihira" and Varahamihira's with "Parashara"; corrected, each gives its own.
- * See docs/spec/correcoes.md.
+ * See docs/spec/corrections.md.
  */
 function places(owner: AvContributor, contributor: AvContributor, method: AshtakavargaOptions['method'], fidelity: Fidelity): number[] {
   const p = PLACES[owner][contributor];

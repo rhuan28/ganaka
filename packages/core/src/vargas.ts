@@ -144,7 +144,7 @@ export function vargaSign(longitude: number, varga: VargaName, fidelity: Fidelit
       return odd ? (sign + part) % 12 : mod12(sign + 4 - f);
     case 'D11-iyer':
       // At exactly 0 degrees PL9's formula gives Taurus, which no part of this varga gives. Reproduced in the 'pl9'
-      // mode only; the corrected mode takes the part that begins there. See docs/spec/correcoes.md.
+      // mode only; the corrected mode takes the part that begins there. See docs/spec/corrections.md.
       if (fidelity !== 'pl9' && f === 0) return 0;
       return mod12(1 - f);
     case 'D24-parasiddhamsha':

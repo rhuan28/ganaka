@@ -88,7 +88,7 @@ const NAKSHATRA_PREFIX = ['ashw', 'bhar', 'krit', 'rohi', 'mrig', 'ardr', 'puna'
 
 /**
  * The differences known in every printout: the VB of the nodes (the core's Shadvarga Vimshopaka is within the unit for
- * the seven planets, not for Rahu and Ketu; docs/spec/tempo/muhurta.md).
+ * the seven planets, not for Rahu and Ketu; docs/spec/time/muhurta.md).
  */
 export const KNOWN_MUHURTA_PENDING: readonly string[] = ['vb rahu', 'vb ketu'];
 

@@ -4,7 +4,7 @@ import { aspectsOn, withDefaults, type Shadbala, type ShadbalaInputs, type Shadb
 
 /**
  * The Bhava Bala as PL9 computes it: for each house, the Shadbala of its lord, its Dig Bala, the aspects on it, the
- * planets in it and the strength of its sign by day or night. See docs/spec/forcas/bhava-bala.md.
+ * planets in it and the strength of its sign by day or night. See docs/spec/strengths/bhava-bala.md.
  */
 
 export interface BhavaRow {

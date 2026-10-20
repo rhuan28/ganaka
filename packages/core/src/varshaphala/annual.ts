@@ -30,7 +30,7 @@ export interface Varshaphala {
   fidelity: Fidelity;
 }
 
-/** The annual chart of a year of age and what PL9 reads from it first (docs/spec/tempo/varshaphala.md). */
+/** The annual chart of a year of age and what PL9 reads from it first (docs/spec/time/varshaphala.md). */
 export function computeVarshaphala(eph: Ephemeris, natal: ChartInput, years: number, options: VarshaphalaOptions = {}): Varshaphala {
   const { solarReturn: mode = 'true', place: at, returnJdUt, ...coreOptions } = options;
   const core = resolveOptions(coreOptions);

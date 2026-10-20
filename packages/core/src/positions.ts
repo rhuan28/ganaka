@@ -70,7 +70,7 @@ export interface Positions {
   /**
    * True when the instant and the latitude are inside the ranges in which the 'pl9' mode was checked against PL9,
    * and nothing is missing. It says where the chart lies, not that these numbers equal PL9's: in the 'corrected'
-   * mode they differ from PL9 on purpose, by what docs/spec/correcoes.md lists.
+   * mode they differ from PL9 on purpose, by what docs/spec/corrections.md lists.
    */
   verified: boolean;
   /** The mode the numbers were computed in. */

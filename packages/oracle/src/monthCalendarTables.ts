@@ -2,7 +2,7 @@ import type { MonthEvent } from '@reverse/core';
 import type { TransitSnapshot } from './transitTables';
 
 // The "Calendar" worksheet (104) of the TEMPO model against the core's month events (stage 5G). See
-// docs/spec/tempo/transitos.md.
+// docs/spec/time/transits.md.
 
 const GLYPH: Record<string, string> = { sun: 'a', moon: 'b', mars: 'c', mercury: 'd', jupiter: 'e', venus: 'f', saturn: 'g', rahu: 'h', ketu: 'i' };
 const TWO: Record<string, string> = { sun: 'Su', moon: 'Mo', mars: 'Ma', mercury: 'Me', jupiter: 'Ju', venus: 'Ve', saturn: 'Sa', rahu: 'Ra', ketu: 'Ke' };

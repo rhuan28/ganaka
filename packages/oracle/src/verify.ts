@@ -53,7 +53,7 @@ export function verifyChart(fx: Fixture, computed: Positions, toleranceArcsec: n
 
 /** Why a set does not pass the gate, or null when it passes. */
 export function setProblem(s: { charts: number; minCharts: number; longitudeFailures: number; categoricalFailures: number }): string | null {
-  if (s.charts < s.minCharts) return `${s.charts} mapas, exigidos ${s.minCharts}`;
-  if (s.longitudeFailures || s.categoricalFailures) return 'reprovado';
+  if (s.charts < s.minCharts) return `${s.charts} charts, ${s.minCharts} required`;
+  if (s.longitudeFailures || s.categoricalFailures) return 'failed';
   return null;
 }

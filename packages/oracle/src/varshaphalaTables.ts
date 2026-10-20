@@ -84,7 +84,7 @@ export function loadVarshaphalaFixtures(dir: string): VarshaphalaFixture[] {
 
 /**
  * The differences known for each report ("ref-nnnn 2030"), kept apart in the bench: pairs some yogas' lists leave out,
- * the Patyayini of three reports its print rule does not explain, and a few Sahams (docs/spec/tempo/varshaphala.md).
+ * the Patyayini of three reports its print rule does not explain, and a few Sahams (docs/spec/time/varshaphala.md).
  */
 export const KNOWN_VARSHAPHALA_PENDING: Readonly<Record<string, readonly string[]>> = {
   'ref-0018 2030': ['yoga Manua planets'],
@@ -225,7 +225,7 @@ const hms = (x: string) => x.split(':').map(Number).reduce((t, v) => t * 60 + v,
  * the second or minute shown, the Lagna (and what is counted from it) within its motion in 1.5 seconds of time; the
  * Muntha to 1″. `known` lists the differences already known for this report (keys "part" or "part name"); with
  * `returnsOnly`, only the 72 returns.
- * Not compared: Kutta and Tambira, and the annual chart's Shadbala (SB) (docs/spec/tempo/varshaphala.md).
+ * Not compared: Kutta and Tambira, and the annual chart's Shadbala (SB) (docs/spec/time/varshaphala.md).
  * The Tripataki: each cell the chakra prints, and each vedha list as a set.
  */
 export function verifyVarshaphala(pl9: VarshaphalaShown['parts'], c: VarshaphalaComputed, known: readonly string[], opts: { returnsOnly?: boolean } = {}): { values: number; failures: string[]; pending: string[]; stale: string[] } {

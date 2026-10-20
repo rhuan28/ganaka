@@ -1,90 +1,90 @@
 # Gulika
 
-Vale para as duas alternativas da opção "Gulik method" do PL9: "Ending of
-portion", a observada na instalação examinada e o padrão do `core`, e
-"Beginning of portion" (`gulika: 'beginning'`).
+Applies to both alternatives of PL9's "Gulik method" option: "Ending of
+portion", the one observed in the installation examined and the `core`
+default, and "Beginning of portion" (`gulika: 'beginning'`).
 
-## Regra
+## Rule
 
-1. Determina-se se o instante é **de dia ou de noite**: é dia quando o Sol
-   está acima do horizonte, pelo critério de `nascer-do-sol.md`.
-2. De dia, o intervalo é do nascer ao pôr do sol. De noite, do pôr do sol ao
-   nascer do sol seguinte. Os três instantes são os de `nascer-do-sol.md`,
-   com os desvios próprios da busca do PL9.
-3. O intervalo é dividido em **oito partes iguais**.
-4. As partes pertencem aos regentes dos dias da semana, na ordem Sol, Lua,
-   Marte, Mercúrio, Júpiter, Vênus, Saturno. De dia, a primeira parte é do
-   regente do dia da semana. De noite, a primeira é do regente do quinto dia
-   a contar dele. A oitava parte fica sem regente.
-5. O Gulika é o **Lagna no instante em que termina a parte de Saturno**. Com
-   "Beginning of portion", é o Lagna no instante em que ela **começa**.
+1. Determine whether the instant is **by day or by night**: it is day when the Sun
+   is above the horizon, by the criterion of `sunrise.md`.
+2. By day, the interval runs from sunrise to sunset. By night, from sunset to
+   the next sunrise. The three instants are those of `sunrise.md`,
+   with the deviations inherent in PL9's search.
+3. The interval is divided into **eight equal parts**.
+4. The parts belong to the lords of the weekdays, in the order Sun, Moon,
+   Mars, Mercury, Jupiter, Venus, Saturn. By day, the first part belongs to the
+   lord of the weekday. By night, the first belongs to the lord of the fifth day
+   counting from it. The eighth part has no lord.
+5. Gulika is the **Lagna at the instant Saturn's part ends**. With
+   "Beginning of portion", it is the Lagna at the instant that part **begins**.
 
-Número da parte de Saturno:
+Number of Saturn's part:
 
-| Dia da semana | De dia | De noite |
+| Weekday | By day | By night |
 |---|---|---|
-| Domingo | 7 | 3 |
-| Segunda | 6 | 2 |
-| Terça | 5 | 1 |
-| Quarta | 4 | 7 |
-| Quinta | 3 | 6 |
-| Sexta | 2 | 5 |
-| Sábado | 1 | 4 |
+| Sunday | 7 | 3 |
+| Monday | 6 | 2 |
+| Tuesday | 5 | 1 |
+| Wednesday | 4 | 7 |
+| Thursday | 3 | 6 |
+| Friday | 2 | 5 |
+| Saturday | 1 | 4 |
 
-## Dia da semana
+## Weekday
 
-- **De dia:** o dia da semana da data do instante.
-- **De noite:** o dia da semana da data de doze horas antes do instante.
-  Assim a noite inteira pertence ao dia em que começou, se ela começa depois
-  do meio-dia e termina antes do meio-dia seguinte.
+- **By day:** the weekday of the instant's date.
+- **By night:** the weekday of the date twelve hours before the instant.
+  This way the whole night belongs to the day on which it began, if it begins after
+  noon and ends before the next noon.
 
-"Data" aqui é a do relógio em que o mapa está escrito: a hora local, com o
-fuso e o horário de verão do mapa. O `core` recebe a diferença entre esse
-relógio e o tempo universal (`utcOffsetHours`) e, sem ela, usa o tempo
-universal. Essa diferença não altera nenhum outro ponto.
+"Date" here is that of the clock the chart is written in: local time, with the
+chart's time zone and daylight saving time. The `core` receives the difference between that
+clock and universal time (`utcOffsetHours`) and, without it, uses universal
+time. That difference changes nothing else.
 
-O dia da semana **não** é o do nascer do sol, nem o da data em tempo local
-médio: as duas hipóteses foram testadas e falham em dezenas de mapas.
+The weekday is **not** that of sunrise, nor that of the date in local mean
+time: both hypotheses were tested and fail in dozens of charts.
 
-## Origem
+## Origin
 
-- A alternativa "Beginning of portion": descrita no manual, e **conferida**
-  contra a página "Sub-Planets" dos mapas impressos pelo PL9, que mostra o
-  Gulika pelos dois métodos lado a lado, arredondado ao segundo, sem que a
-  opção precise ser trocada. A página chama o início de "Parashara Method"
-  e o fim de "Kalidasa method".
+- The "Beginning of portion" alternative: described in the manual, and **checked**
+  against the "Sub-Planets" page of the charts printed by PL9, which shows
+  Gulika by both methods side by side, rounded to the second, without the
+  option needing to be changed. The page calls the beginning "Parashara Method"
+  and the end "Kalidasa method".
 
-- Divisão em oito partes e uso do fim da parte: descritos no manual do PL9
-  e clássicos. **Confirmados por medição:** invertendo o Gulika exportado
-  para o instante em que o Lagna tem aquele valor, a fração do dia ou da
-  noite cai num múltiplo exato de um oitavo (dentro de um bilionésimo) nos
-  290 mapas iniciais.
-- Os instantes de nascer, pôr e nascer seguinte: **lidos na rotina do PL9**
-  (ver `nascer-do-sol.md`). Com instantes calculados de outra forma a fração
-  não fecha.
-- Tabela da parte de Saturno: **medida**; coincide com a regra clássica.
-- Regra do dia da semana: **medida** — a única, entre as testadas, sem
-  nenhuma exceção nos 290 mapas, todos gravados sem fuso. Que o relógio é o
-  do mapa, e não o tempo universal, vem da **leitura da rotina** que monta o
-  quadro do dia: ela guarda a hora local do mapa e a converte em tempo
-  universal somando o fuso. A rotina que escolhe a parte de Saturno não foi
-  lida.
+- Division into eight parts and use of the end of the part: described in the PL9 manual
+  and classical. **Confirmed by measurement:** inverting the exported Gulika
+  to the instant at which the Lagna has that value, the fraction of the day or
+  night falls on an exact multiple of one eighth (within one billionth) in the
+  initial 290 charts.
+- The instants of sunrise, sunset and next sunrise: **read in PL9's routine**
+  (see `sunrise.md`). With instants calculated any other way the fraction
+  does not close.
+- Table of Saturn's part: **measured**; it matches the classical rule.
+- Weekday rule: **measured** — the only one, among those tested, without
+  a single exception in the 290 charts, all recorded without a time zone. That the clock is
+  the chart's, and not universal time, comes from **reading the routine** that builds
+  the day's table: it stores the chart's local time and converts it to universal
+  time by adding the offset. The routine that chooses Saturn's part was not
+  read.
 
-## Conferência do relógio local
+## Check of the local clock
 
-Cinco mapas foram gravados com fuso ou horário de verão (5,5 h e 10 h a
-oeste, 3 h e 10 h a leste, uma hora de horário de verão) e exportados do
-PL9. Com a diferença de relógio informada, os vinte pontos coincidem com a
-exportação. Sem ela, o Gulika de um dos cinco sai com o dia da semana
-errado, a mais de 20° de distância. Cinco mapas confirmam o sentido da
-regra; não cobrem todas as combinações de dia, noite e mudança de data.
+Five charts were recorded with a time zone or daylight saving time (5.5 h and 10 h
+west, 3 h and 10 h east, one hour of daylight saving time) and exported from
+PL9. With the clock difference supplied, the twenty points match the
+export. Without it, the Gulika of one of the five comes out with the wrong weekday,
+more than 20° away. Five charts confirm the direction of the
+rule; they do not cover every combination of day, night and date change.
 
-## Conformidade
+## Conformance
 
-Diferença máxima de 0,004" nos mapas de referência com Lahiri. Os números
-atuais, por conjunto, estão em `docs/relatorios/conformidade-posicoes.md`.
+Maximum difference of 0.004" in the reference charts with Lahiri. The current
+numbers, by set, are in `docs/reports/conformance.md`.
 
-## O que não foi verificado
+## What was not verified
 
-- A opção "Beginning of portion".
-- Mandi, que o PL9 também calcula.
+- The "Beginning of portion" option.
+- Mandi, which PL9 also calculates.

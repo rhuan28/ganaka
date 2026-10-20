@@ -22,7 +22,7 @@ export interface SpecialLagnas {
 }
 
 /**
- * Bhava, Hora and Ghatika Lagna, and the Jaimini Hora Lagna, as PL9 gives them. See docs/spec/lagnas-especiais.md.
+ * Bhava, Hora and Ghatika Lagna, and the Jaimini Hora Lagna, as PL9 gives them. See docs/spec/special-lagnas.md.
  * `day` is the day frame of the instant, when the caller already has it.
  */
 export function specialLagnas(eph: Ephemeris, jdUt: number, latitude: number, longitudeEast: number, frame: AyanamshaFrame, day?: DayFrame): SpecialLagnas {
@@ -45,7 +45,7 @@ const KALAS: Record<Planet7, number> = { sun: 30, moon: 16, mars: 6, mercury: 8,
 
 /**
  * Sign, 0 to 11, of the Indu Lagna: the kalas of the lords of the ninth from the Lagna and from the Moon, added,
- * counted from the Moon. See docs/spec/lagnas-especiais.md.
+ * counted from the Moon. See docs/spec/special-lagnas.md.
  */
 export function induLagna(lagnaSign: number, moonSign: number): number {
   const ninth = (sign: number) => SIGN_LORDS[(sign + 8) % 12]!;

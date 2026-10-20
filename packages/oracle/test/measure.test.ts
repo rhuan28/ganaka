@@ -113,7 +113,7 @@ describe('worstPlanetaryResidual', () => {
 
 describe('mergeReport', () => {
   it('keeps the hand-written section of the existing report', () => {
-    expect(mergeReport('# T\n\ntable v2\n', '# T\n\ntable v1\n\n## Leitura\n\nnotes\n')).toBe('# T\n\ntable v2\n\n## Leitura\n\nnotes\n');
+    expect(mergeReport('# T\n\ntable v2\n', '# T\n\ntable v1\n\n## Reading\n\nnotes\n')).toBe('# T\n\ntable v2\n\n## Reading\n\nnotes\n');
   });
   it('returns the generated text when there is no existing report or no hand-written section', () => {
     expect(mergeReport('gen\n', null)).toBe('gen\n');

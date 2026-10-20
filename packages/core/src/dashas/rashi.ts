@@ -175,7 +175,7 @@ function drigOrder(lagnaSign: number, fidelity: Fidelity): number[] {
     for (let k = 1; k <= 3; k++) {
       const off = forward ? 3 * k : -3 * k;
       let x = sign1 % 3 === 1 ? sign1 + off + 1 : sign1 + off - (sign1 % 3 === 2 ? 1 : 0);
-      // Corrected: the count brought back to 1..12 as it is. See docs/spec/correcoes.md.
+      // Corrected: the count brought back to 1..12 as it is. See docs/spec/corrections.md.
       if (x < 0 && fidelity === 'pl9') x &= 0xff;
       out.push(norm1(x) - 1);
     }
@@ -380,7 +380,7 @@ export function rashiDashas(system: RashiDashaSystem, chart: RashiChart, jdUt: n
  * mahadasha's years of the first run for the first twelve of a level, of the second run for the next twelve, and so on
  * (PL9 counts the run by the parts of the level it is in): in a second run they do not fill the mahadasha, or run
  * past it. The corrected mode divides each period in twelve equal parts. An instant before birth takes the first sign
- * at every level. See docs/spec/tempo/transitos.md.
+ * at every level. See docs/spec/time/transits.md.
  */
 export function rashiChainAt(system: 'narayana' | 'chara', chart: RashiChart, birthJdUt: number, jdUt: number, yearDays: number, fidelity: Fidelity): number[] {
   if (!Number.isFinite(jdUt) || !Number.isFinite(birthJdUt)) throw new InvalidInputError('the instant and the birth must be numbers');

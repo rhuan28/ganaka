@@ -1,64 +1,72 @@
-# O serviço de cálculo (API)
+# The calculation service (API)
 
-O pacote `packages/api` põe o motor no ar por HTTP. O serviço só recebe pedidos e devolve, em JSON e
-sem arredondar, o que o `core` calcula. Não refaz cálculo e não resolve fusos horários.
+The `packages/api` package serves the engine over HTTP. The service only receives requests and returns, in JSON and
+without rounding, what the `core` calculates. It does not redo any calculation and does not resolve time zones.
 
-## Rodar
+## Running
 
-Sem contêiner:
+Without a container:
 
 ```bash
-API_KEYS=dev:chave SOURCE_URL=https://exemplo.org/codigo pnpm --filter @reverse/api start
+API_KEYS=dev:<key> SOURCE_URL=https://example.org/source pnpm --filter @reverse/api start
 ```
 
-Com contêiner, a partir da raiz do repositório:
+With a container, from the repository root:
 
 ```bash
 docker build -f packages/api/Dockerfile -t calc-service .
-docker run -p 8080:8080 -e API_KEYS=dev:chave -e SOURCE_URL=https://exemplo.org/codigo calc-service
+docker run -p 8080:8080 -e API_KEYS=dev:<key> -e SOURCE_URL=https://example.org/source calc-service
 ```
 
-| Variável | Obrigatória | O que é |
+| Variable | Required | What it is |
 |---|---|---|
-| `API_KEYS` | sim | as chaves aceitas, `cliente:chave,cliente:chave` |
-| `SOURCE_URL` | sim | onde está o código-fonte do serviço (a AGPL pede que quem usa o serviço possa obtê-lo) |
-| `PORT` | não | a porta, 8080 por padrão |
-| `RATE_LIMIT_PER_MINUTE` | não | requisições por minuto por chave, 120 por padrão |
+| `API_KEYS` | yes | the accepted keys, `client:key,client:key` |
+| `SOURCE_URL` | yes | where the service's source code is (the AGPL requires that whoever uses the service can obtain it) |
+| `PORT` | no | the port, 8080 by default |
+| `RATE_LIMIT_PER_MINUTE` | no | requests per minute per key, 120 by default |
 
-## Pedidos
+## Requests
 
-- Cada pedido leva a chave no cabeçalho `x-api-key`. Ficam abertos sem chave `GET /health`,
-  `GET /openapi.json` (a descrição completa da API) e `GET /docs` (a mesma descrição, navegável).
-- Os endpoints aceitam `POST` com corpo JSON:
-  - mapa: `/v1/chart`;
+- Each request carries the key in the `x-api-key` header. Open without a key are `GET /health`,
+  `GET /openapi.json` (the full API description) and `GET /docs` (the same description, browsable).
+- The endpoints accept `POST` with a JSON body:
+  - chart: `/v1/chart`;
   - dashas: `/v1/dashas`;
-  - forças: `/v1/strengths/shadbala`, `/v1/strengths/bhava-bala`, `/v1/strengths/ashtakavarga`,
+  - strengths: `/v1/strengths/shadbala`, `/v1/strengths/bhava-bala`, `/v1/strengths/ashtakavarga`,
     `/v1/strengths/vimshopaka`;
-  - tempo: `/v1/transits`, `/v1/panchanga`, `/v1/varshaphala`, `/v1/muhurta`.
-- O nascimento (`birth`), e o instante `at` onde houver, é um objeto com `jdUt` (dia juliano UT) ou
-  `utc` (`2000-01-01T12:00:00Z`), mais `latitude`, `longitudeEast` e, se for o caso, `utcOffsetHours`
-  (o deslocamento do relógio já resolvido).
-- As opções do motor vão em `options`, com os nomes do `core`: `ayanamsha`, `fidelity`, `gulika`
-  etc. O modo é `corrected` por padrão; `fidelity: "pl9"` reproduz o PL9.
-- As opções de cada área têm o seu próprio objeto: `dasha`, `shadbala` e `ashtakavarga`.
-- Campos desconhecidos são recusados, para que um nome errado nunca seja ignorado em silêncio.
-- Toda resposta traz o cabeçalho `X-Source-Code` com o endereço do código-fonte.
+  - time: `/v1/transits`, `/v1/panchanga`, `/v1/varshaphala`, `/v1/muhurta`.
+  - atlas: `GET /v1/atlas/cities?q=<name>&country=<ISO code>&limit=<1 to 50>` (GeoNames cities,
+    CC BY 4.0 license, by the start of the name, accent- and case-insensitive) and `POST /v1/atlas/local` with
+    `{ "timeZone": "America/Sao_Paulo", "local": "2019-02-16T23:30:00" }`. The latter returns the
+    `status` (`ok`, `ambiguous` for the repeated hour at the end of daylight saving time, `nonexistent` for the
+    skipped hour at its start), the readings (instant, offset, daylight saving time, abbreviation), the canonical
+    zone and the IANA database version. It is this endpoint that resolves the time zone; the calculation endpoints
+    receive the offset already resolved.
+- The birth (`birth`), and the instant `at` where there is one, is an object with `jdUt` (Julian day UT) or
+  `utc` (`2000-01-01T12:00:00Z`), plus `latitude`, `longitudeEast` and, if applicable, `utcOffsetHours`
+  (the clock offset, already resolved).
+- The engine options go in `options`, with the `core` names: `ayanamsha`, `fidelity`, `gulika`
+  etc. The mode is `corrected` by default; `fidelity: "pl9"` reproduces PL9.
+- The options of each area have their own object: `dasha`, `shadbala` and `ashtakavarga`.
+- Unknown fields are rejected, so that a wrong name is never silently ignored.
+- Every response carries the `X-Source-Code` header with the address of the source code.
 
-## Erros
+## Errors
 
-O corpo é sempre `{ "error": { "code", "message", "option"? } }`.
+The body is always `{ "error": { "code", "message", "option"? } }`.
 
-| Situação | Status | `code` |
+| Situation | Status | `code` |
 |---|---|---|
-| nascimento ou pedido malformado | 400 | `invalid-input`, `invalid-request` |
-| opção com nome ou valor errado | 400 | `invalid-option` (com `option`) |
-| opção que o motor ainda não implementa | 400 | `option-not-implemented` |
-| sem chave válida | 401 | `unauthorized` |
-| sem Lagna (além do círculo polar) | 422 | `lagna-undefined` |
-| sem nascer do sol | 422 | `sunrise-undefined` |
-| uma busca que não encontrou o cruzamento | 422 | `crossing-not-found` |
-| acima do limite de requisições | 429 | `rate-limited` |
-| falha interna | 500 | `internal` |
+| malformed birth or request | 400 | `invalid-input`, `invalid-request` |
+| option with a wrong name or value | 400 | `invalid-option` (with `option`) |
+| option the engine does not implement yet | 400 | `option-not-implemented` |
+| unknown time zone | 400 | `invalid-input` |
+| no valid key | 401 | `unauthorized` |
+| no Lagna (beyond the polar circle) | 422 | `lagna-undefined` |
+| no sunrise | 422 | `sunrise-undefined` |
+| a search that did not find the crossing | 422 | `crossing-not-found` |
+| over the request limit | 429 | `rate-limited` |
+| internal failure | 500 | `internal` |
 
-Onde o resultado do `core` traz uma lista `missing` (por exemplo, o mapa sem casas além do círculo
-polar), a resposta é 200 e a lista vai no corpo.
+Where the `core` result carries a `missing` list (for example, the chart without houses beyond the polar
+circle), the response is 200 and the list goes in the body.

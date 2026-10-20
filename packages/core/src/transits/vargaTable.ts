@@ -36,7 +36,7 @@ const FUNCTIONAL = ['BNBMBMM', 'BMNBMMB', 'MNMNMBB', 'NBBMBMN', 'BNBMBMM', 'NMMB
  * none); the Jagradadi Avastha (awake in exaltation, moolatrikona or own sign, asleep in debility or in the sign of a
  * natural enemy, dreaming else, the nodes by dignity alone); the Baladi Avastha on the varga's degree; the functional
  * nature by the varga's Lagna; and the houses from the varga's Lagna, Moon and Sun. All from the printouts:
- * see docs/spec/tempo/transitos.md. Null without the Lagna.
+ * see docs/spec/time/transits.md. Null without the Lagna.
  */
 export function vargaTable(longitudes: Partial<Record<'lagna' | Planet9, number>>, varga: VargaName, fidelity: Fidelity): Record<Planet9, VargaRow> | null {
   if (longitudes.lagna === undefined) return null;

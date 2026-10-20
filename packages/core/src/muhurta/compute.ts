@@ -73,7 +73,7 @@ export interface MuhurtaOptions extends Partial<CoreOptions> {
 
 /**
  * PL9's evaluation of an instant ("Muhurta", "Muhurta - dashas and balas", "Muhurta vargas") for a native: see
- * docs/spec/tempo/muhurta.md. `at.utcOffsetHours` is the clock of the place, which gives the weekday.
+ * docs/spec/time/muhurta.md. `at.utcOffsetHours` is the clock of the place, which gives the weekday.
  */
 export function computeMuhurta(eph: Ephemeris, natal: ChartInput, at: ChartInput, options: MuhurtaOptions = {}): Muhurta {
   const { activity = MUHURTA_ACTIVITIES[0], ...coreOptions } = options;

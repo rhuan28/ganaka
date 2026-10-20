@@ -6,7 +6,7 @@ import { norm360 } from '../../zodiac';
 /**
  * Cheshta Bala of Mars to Saturn as PL9 computes it: the part of its arc of motion the planet has gone, between the
  * moments PL9's own series give for each cycle and the station it finds a day at a time. See
- * docs/spec/forcas/shadbala.md, "Cheshta".
+ * docs/spec/strengths/shadbala.md, "Cheshta".
  */
 
 export type CheshtaPlanet = 'mars' | 'mercury' | 'jupiter' | 'venus' | 'saturn';
@@ -60,7 +60,7 @@ const least = (a: number, b: number) => { const d = norm360(a - b); return d > 1
 function cycle(planet: CheshtaPlanet, jd: number, fidelity: Fidelity = 'pl9'): { zero: number; top: number; direction: 1 | -1; index: number } {
   const s = SERIES[planet];
   if (fidelity !== 'pl9') {
-    // Corrected: the same series carried on past their ends (docs/spec/correcoes.md, 21).
+    // Corrected: the same series carried on past their ends (docs/spec/corrections.md, 21).
     let i = Math.floor((jd - s.zero(0)) / ((s.zero(10) - s.zero(0)) / 10)) - 2;
     while (s.zero(i) < jd) i++;
     while (s.zero(i - 1) >= jd) i--;

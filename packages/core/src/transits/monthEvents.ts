@@ -27,7 +27,7 @@ const STATIONARY: readonly Planet9[] = ['mars', 'mercury', 'jupiter', 'venus', '
  * from `dashasFromJdUt` (PL9 lists them from the month's first day at 0h UT: from the printouts).
  * Positions every half day of universal time, each crossing placed by a straight line between the two samples, as
  * PL9's search of transits does (`crossings`); a station at the instant the speed is nought. Null without the natal
- * Lagna. See docs/spec/tempo/transitos.md.
+ * Lagna. See docs/spec/time/transits.md.
  */
 export function monthEvents(eph: Ephemeris, natal: ChartInput, fromJdUt: number, toJdUt: number, coreOptions?: Partial<CoreOptions>, o: { dashasFromJdUt?: number } = {}): MonthEvent[] | null {
   const natalPoints = computePositions(eph, natal, coreOptions).points;

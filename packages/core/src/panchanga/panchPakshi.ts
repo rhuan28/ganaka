@@ -67,7 +67,7 @@ function relation(bright: boolean, a: number, b: number): PakshiPart['relation']
  * sunset and next sunrise: each of the day and the night in five equal yamas; in the first, the native's bird does
  * what it comes to walking the birds and the activities from the weekday's first bird ruling; each later yama the next
  * activity; each yama in five parts, from the native's bird and the yama's activity, by the activities' shares, the
- * birds and the activities in turn. Read in PL9 (docs/spec/tempo/panchanga.md).
+ * birds and the activities in turn. Read in PL9 (docs/spec/time/panchanga.md).
  */
 export function panchPakshiDay(bird: Bird, bright: boolean, vara: number, sunrise: number, sunset: number, nextSunrise: number): PakshiDay {
   const own = BIRDS.indexOf(bird) + 1;

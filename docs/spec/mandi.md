@@ -1,66 +1,66 @@
 # Mandi
 
-## Regra
+## Rule
 
-1. Determina-se se o instante é **de dia ou de noite**, e os instantes de
-   nascer do sol, pôr do sol e nascer do sol seguinte, como em
-   `nascer-do-sol.md`.
-2. O intervalo (de dia, do nascer ao pôr do sol; de noite, do pôr do sol ao
-   nascer seguinte) é dividido em **trinta partes iguais**.
-3. Mandi é o **Lagna no instante em que termina a parte de número `g`**, a
-   contar do início do intervalo, com `g` dado pelo dia da semana:
+1. Determine whether the instant is **by day or by night**, and the instants of
+   sunrise, sunset and next sunrise, as in
+   `sunrise.md`.
+2. The interval (by day, from sunrise to sunset; by night, from sunset to the
+   next sunrise) is divided into **thirty equal parts**.
+3. Mandi is the **Lagna at the instant part number `g` ends**,
+   counting from the start of the interval, with `g` given by the weekday:
 
-   | | Domingo | Segunda | Terça | Quarta | Quinta | Sexta | Sábado |
+   | | Sunday | Monday | Tuesday | Wednesday | Thursday | Friday | Saturday |
    |---|---|---|---|---|---|---|---|
-   | De dia | 26 | 22 | 18 | 14 | 10 | 6 | 2 |
-   | De noite, modo `pl9` | 10 | 6 | 2 | 28 | 24 | 20 | 16 |
-   | De noite, modo `corrected` | 10 | 6 | 2 | 26 | 22 | 18 | 14 |
+   | By day | 26 | 22 | 18 | 14 | 10 | 6 | 2 |
+   | By night, `pl9` mode | 10 | 6 | 2 | 28 | 24 | 20 | 16 |
+   | By night, `corrected` mode | 10 | 6 | 2 | 26 | 22 | 18 | 14 |
 
-   A linha do modo `corrected` é a tabela clássica. O PL9 se afasta dela nas
-   noites de quarta a sábado; ver a correção 6 de `correcoes.md`.
+   The `corrected` mode row is the classical table. PL9 departs from it on the
+   nights from Wednesday to Saturday; see correction 6 of `corrections.md`.
 
-O dia da semana é contado como no Gulika (ver `gulika.md`): de dia, o da
-data do instante; de noite, o da data de doze horas antes; a data é a do
-relógio em que o mapa está escrito.
+The weekday is counted as for Gulika (see `gulika.md`): by day, that of the
+instant's date; by night, that of the date twelve hours before; the date is that of the
+clock the chart is written in.
 
-Num dia de trinta ghatis, `g` é o número de ghatis depois do nascer do sol
-em que Mandi nasce, pela regra clássica.
+In a day of thirty ghatis, `g` is the number of ghatis after sunrise
+at which Mandi rises, by the classical rule.
 
-## Relação com o Gulika
+## Relation to Gulika
 
-No PL9, Gulika e Mandi são pontos diferentes: o Gulika vem da divisão do
-intervalo em oito partes, Mandi da divisão em trinta. Num sábado de dia, o
-Gulika é o Lagna a 1/8 do dia, e Mandi o Lagna a 2/30 do dia.
+In PL9, Gulika and Mandi are different points: Gulika comes from dividing the
+interval into eight parts, Mandi from dividing it into thirty. On a Saturday by day,
+Gulika is the Lagna at 1/8 of the day, and Mandi the Lagna at 2/30 of the day.
 
-## Origem
+## Origin
 
-- A regra é a clássica, de domínio comum, e serviu de hipótese; o manual do
-  PL9 só diz que Mandi usa uma divisão em trinta partes.
-- **Confirmada por medição** contra os mapas impressos pelo PL9, em que
-  Mandi aparece no desenho do mapa em graus e minutos. Invertendo o valor
-  exibido para o instante em que o Lagna o tem, a fração do dia ou da noite
-  cai num número inteiro de trigésimos, dentro de 0,01. De dia e nas noites
-  de domingo a terça, é o da tabela clássica; nas noites de quarta e de
-  sexta, dois a mais. Os valores do PL9 para as noites de quinta e de sábado
-  (24 e 16) seguem o mesmo padrão e são conferidos pela bancada.
-- A rotina do PL9 que calcula Mandi **não foi lida**.
+- The rule is the classical one, common knowledge, and served as the hypothesis; the PL9
+  manual only says that Mandi uses a division into thirty parts.
+- **Confirmed by measurement** against the charts printed by PL9, in which
+  Mandi appears in the chart drawing in degrees and minutes. Inverting the displayed
+  value to the instant at which the Lagna has it, the fraction of the day or night
+  falls on a whole number of thirtieths, within 0.01. By day and on the nights
+  from Sunday to Tuesday, it is that of the classical table; on Wednesday and
+  Friday nights, two more. PL9's values for Thursday and Saturday nights
+  (24 and 16) follow the same pattern and are checked by the bench.
+- PL9's routine that calculates Mandi **was not read**.
 
-## Conformidade
+## Conformance
 
-Os números atuais estão em `docs/relatorios/conformidade-posicoes.md`. A
-conferência é ao minuto de arco: o valor do `core`, truncado ao minuto, tem
-de ser o que o PL9 exibe.
+The current numbers are in `docs/reports/conformance.md`. The
+check is to the arcminute: the `core` value, truncated to the minute, must
+be what PL9 displays.
 
-## A opção "Gulik method"
+## The "Gulik method" option
 
-Não altera Mandi. Em 14 de outubro de 2026 a opção foi posta em "Beginning
-of portion" e três mapas foram impressos de novo (um de dia, uma noite de
-sexta, uma de terça): Mandi em graus, o signo de Mandi nas 45 vargas e o
-resto do que a bancada lê saíram idênticos aos impressos com "Ending of
-portion". A opção foi restaurada e conferida por exportação.
+It does not change Mandi. On 14 October 2026 the option was set to "Beginning
+of portion" and three charts were printed again (one by day, one Friday night,
+one Tuesday night): Mandi in degrees, Mandi's sign in the 45 vargas and the
+rest of what the bench reads came out identical to those printed with "Ending of
+portion". The option was restored and checked by export.
 
-## O que não foi verificado
+## What was not verified
 
-- A precisão abaixo de um minuto de arco: o PL9 não mostra nem exporta
-  Mandi com segundos.
-- Com a opção "Sunrise: Edge of Sun".
+- Precision below one arcminute: PL9 neither shows nor exports
+  Mandi with seconds.
+- With the "Sunrise: Edge of Sun" option.

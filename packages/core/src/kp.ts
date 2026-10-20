@@ -34,7 +34,7 @@ function part(degrees: number, first: Planet9): { lord: Planet9; into: number } 
  * The KP lords of a sidereal longitude, as PL9 prints them ("3,Su/Sa/Ve"): the pada, the lord of the nakshatra, the
  * sub (the part of the nakshatra, from its lord) and the sub-sub (the same division of the sub, from the sub's lord).
  * PL9 lays the sub over a nakshatra again as its share times 13.33333333 plus 13.33333 less that, a difference of a
- * thousandth of a second of arc kept in both modes. See docs/spec/tempo/transitos.md.
+ * thousandth of a second of arc kept in both modes. See docs/spec/time/transits.md.
  */
 export function kpLords(longitude: number): KpLords {
   const l = norm360(longitude);

@@ -4,7 +4,7 @@ import { norm360 } from '../zodiac';
 
 /**
  * PL9's dignity of a planet in nine steps, which the strengths and the Chara of Parashara use. See
- * docs/spec/dashas/forca-signos.md, "Pontos".
+ * docs/spec/dashas/sign-strength.md, "Pontos".
  */
 
 const signOf = (longitude: number) => Math.floor(norm360(longitude) / 30);

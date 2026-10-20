@@ -8,7 +8,7 @@ import { computeVarshaphalaReport } from './report';
 import { ageAt, dailyReturn, monthlyReturn } from './solarReturn';
 
 // The dasha lists of PL9's Varshaphala worksheets: deeper levels of the annual dashas, the Mudda of a return chart's
-// Moon over a month or a day, and the fifteen rows they print. See docs/spec/tempo/varshaphala.md.
+// Moon over a month or a day, and the fifteen rows they print. See docs/spec/time/varshaphala.md.
 
 const ORDER: readonly Planet9[] = ['ketu', 'venus', 'sun', 'moon', 'mars', 'rahu', 'jupiter', 'saturn', 'mercury'];
 const YEARS: Record<string, number> = { ketu: 7, venus: 20, sun: 6, moon: 10, mars: 7, rahu: 18, jupiter: 16, saturn: 19, mercury: 17 };

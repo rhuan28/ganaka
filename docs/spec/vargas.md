@@ -1,85 +1,85 @@
-# As vargas
+# The vargas
 
-## Convenções
+## Conventions
 
-- Entrada: longitude sideral. Saída: o signo (0 = Áries … 11 = Peixes) que o
-  ponto ocupa na varga.
-- "Signo ímpar" e "signo par" contam os signos a partir de Áries = 1: Áries,
-  Gêmeos, Leão… são ímpares.
-- Cada signo é dividido em `N` partes iguais de `30°/N`, numeradas de 0 a
-  `N − 1`, exceto no D30, cujas partes são desiguais.
-- Numa fronteira entre partes iguais, o ponto pertence à parte que começa.
+- Input: sidereal longitude. Output: the sign (0 = Aries … 11 = Pisces) that the
+  point occupies in the varga.
+- "Odd sign" and "even sign" count the signs from Aries = 1: Aries,
+  Gemini, Leo… are odd.
+- Each sign is divided into `N` equal parts of `30°/N`, numbered from 0 to
+  `N − 1`, except in D30, whose parts are unequal.
+- On a boundary between equal parts, the point belongs to the part that begins.
 
-## Regras das dezesseis vargas clássicas
+## Rules of the sixteen classical vargas
 
-| Varga | Partes | Signo da parte `p` (de 0 a N − 1) no signo `s` (de 0 a 11) |
+| Varga | Parts | Sign of part `p` (from 0 to N − 1) in sign `s` (from 0 to 11) |
 |---|---|---|
 | D1 | 1 | `s` |
-| D2 | 2 | Signo ímpar: primeira metade Leão, segunda Câncer. Signo par: primeira Câncer, segunda Leão. |
-| D3 | 3 | `s + 4p`: o próprio signo, o quinto e o nono |
-| D4 | 4 | `s + 3p`: o próprio signo, o quarto, o sétimo e o décimo |
-| D7 | 7 | contagem contínua: `7s + p` |
-| D9 | 9 | contagem contínua: `9s + p` |
-| D10 | 10 | Signo ímpar: `s + p`. Signo par: `s + 8 + p` (a partir do nono signo). |
+| D2 | 2 | Odd sign: first half Leo, second Cancer. Even sign: first Cancer, second Leo. |
+| D3 | 3 | `s + 4p`: the sign itself, the fifth and the ninth |
+| D4 | 4 | `s + 3p`: the sign itself, the fourth, the seventh and the tenth |
+| D7 | 7 | continuous count: `7s + p` |
+| D9 | 9 | continuous count: `9s + p` |
+| D10 | 10 | Odd sign: `s + p`. Even sign: `s + 8 + p` (from the ninth sign). |
 | D12 | 12 | `s + p` |
-| D16 | 16 | contagem contínua: `16s + p` |
-| D20 | 20 | contagem contínua: `20s + p` |
-| D24 | 24 | Signo ímpar: a partir de Leão (`4 + p`). Signo par: a partir de Câncer (`3 + p`). |
-| D27 | 27 | contagem contínua: `27s + p` |
-| D30 | — | ver abaixo |
-| D40 | 40 | Signo ímpar: a partir de Áries (`p`). Signo par: a partir de Libra (`6 + p`). |
-| D45 | 45 | Signo móvel: a partir de Áries (`p`). Fixo: de Leão (`4 + p`). Dual: de Sagitário (`8 + p`). |
+| D16 | 16 | continuous count: `16s + p` |
+| D20 | 20 | continuous count: `20s + p` |
+| D24 | 24 | Odd sign: from Leo (`4 + p`). Even sign: from Cancer (`3 + p`). |
+| D27 | 27 | continuous count: `27s + p` |
+| D30 | — | see below |
+| D40 | 40 | Odd sign: from Aries (`p`). Even sign: from Libra (`6 + p`). |
+| D45 | 45 | Movable sign: from Aries (`p`). Fixed: from Leo (`4 + p`). Dual: from Sagittarius (`8 + p`). |
 | D60 | 60 | `s + p` |
 
-Todos os resultados são tomados módulo 12.
+All results are taken modulo 12.
 
-"Contagem contínua" quer dizer que a varga é a longitude multiplicada por
-`N`: as partes seguem a ordem dos signos sem recomeçar a cada signo. Para
-D7, D9, D16, D20 e D27 isso coincide com as regras usuais ("signos pares
-começam do sétimo", "móveis de Áries, fixos de Leão, duais de Sagitário" e
-assim por diante).
+"Continuous count" means that the varga is the longitude multiplied by
+`N`: the parts follow the order of the signs without restarting at each sign. For
+D7, D9, D16, D20 and D27 this coincides with the usual rules ("even signs
+start from the seventh", "movable from Aries, fixed from Leo, dual from Sagittarius" and
+so on).
 
 ### D30
 
-| Signo | Graus dentro do signo | Signo no D30 |
+| Sign | Degrees within the sign | Sign in D30 |
 |---|---|---|
-| Ímpar | até 5° | Áries |
-| | de 5° a 10° | Aquário |
-| | de 10° a 18° | Sagitário |
-| | de 18° a 25° | Gêmeos |
-| | de 25° a 30° | Libra |
-| Par | até 5° | Touro |
-| | de 5° a 12° | Virgem |
-| | de 12° a 20° | Peixes |
-| | de 20° a 25° | Capricórnio |
-| | de 25° a 30° | Escorpião |
+| Odd | up to 5° | Aries |
+| | from 5° to 10° | Aquarius |
+| | from 10° to 18° | Sagittarius |
+| | from 18° to 25° | Gemini |
+| | from 25° to 30° | Libra |
+| Even | up to 5° | Taurus |
+| | from 5° to 12° | Virgo |
+| | from 12° to 20° | Pisces |
+| | from 20° to 25° | Capricorn |
+| | from 25° to 30° | Scorpio |
 
-No D30 o limite pertence à parte que **termina**: 5° exatos de um signo
-ímpar ainda são Áries. É como o PL9 faz.
+In D30 the boundary belongs to the part that **ends**: exactly 5° of an odd
+sign is still Aries. This is how PL9 does it.
 
-## D2 a exatos 15° de um signo ímpar
+## D2 at exactly 15° of an odd sign
 
-O PL9 trata os 15° exatos de um signo ímpar como fim da primeira metade, e a
-conta que faz nesse único ponto resulta em Virgem, que não é um signo de
-hora. O modo `pl9` reproduz isso. O modo `corrected` dá Câncer, tratando os
-15° exatos como início da segunda metade, como nas outras vargas. A
-diferença só existe para uma longitude exatamente igual a 15° de um signo
-ímpar. Ver `correcoes.md`.
+PL9 treats exactly 15° of an odd sign as the end of the first half, and the
+computation it performs at that single point yields Virgo, which is not a
+hora sign. The `pl9` mode reproduces this. The `corrected` mode gives Cancer, treating
+exactly 15° as the start of the second half, as in the other vargas. The
+difference only exists for a longitude exactly equal to 15° of an odd
+sign. See `corrections.md`.
 
-## Exemplos
+## Examples
 
 | Longitude | D2 | D3 | D4 | D7 | D9 | D10 | D12 | D16 | D20 | D24 | D27 | D30 | D40 | D45 | D60 |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 15° de Áries (15°), modo `pl9` | Vir | Leo | Lib | Can | Leo | Vir | Lib | Sag | Aqu | Leo | Tau | Sag | Sag | Aqu | Lib |
-| 25° de Touro (55°) | Leo | Cap | Aqu | Ari | Leo | Vir | Pis | Vir | Ari | Pis | Tau | Cap | Can | Vir | Can |
-| 29°30' de Peixes (359,5°) | Leo | Sco | Sag | Pis | Pis | Leo | Aqu | Pis | Pis | Gem | Pis | Sco | Cap | Leo | Aqu |
+| 15° Aries (15°), `pl9` mode | Vir | Leo | Lib | Can | Leo | Vir | Lib | Sag | Aqu | Leo | Tau | Sag | Sag | Aqu | Lib |
+| 25° Taurus (55°) | Leo | Cap | Aqu | Ari | Leo | Vir | Pis | Vir | Ari | Pis | Tau | Cap | Can | Vir | Can |
+| 29°30' Pisces (359.5°) | Leo | Sco | Sag | Pis | Pis | Leo | Aqu | Pis | Pis | Gem | Pis | Sco | Cap | Leo | Aqu |
 
-## As outras 29 vargas do PL9
+## The other 29 vargas of PL9
 
-O PL9 oferece 45 vargas. Além das dezesseis clássicas, o `core` calcula as
-29 abaixo, com estes nomes:
+PL9 offers 45 vargas. Besides the sixteen classical ones, the `core` computes
+the 29 below, with these names:
 
-| Nome no `core` | Nome no PL9 | Partes |
+| Name in `core` | Name in PL9 | Parts |
 |---|---|---|
 | `D5` | Panchamsha 1/5 | 5 |
 | `D6` | Shashtamsha 1/6 | 6 |
@@ -111,78 +111,78 @@ O PL9 oferece 45 vargas. Além das dezesseis clássicas, o `core` calcula as
 | `D24-siddhamsha` | Siddhamsha (alt) | 24 |
 | `D30-venkatesha` | Venkatesha Trimshamsha | 30 |
 
-O PL9 chama de "Iyer", nas suas telas de mapas, as vargas aqui nomeadas
+PL9 calls "Iyer", in its chart screens, the vargas named here
 `-parivritti`.
 
-### Regras
+### Rules
 
-`s` = signo de 0 a 11; `d` = graus dentro do signo; `p` = parte de 0 a N − 1 (`p = ⌊d·N/30⌋`); `f = d·N/30` sem truncar; "ímpar" = Áries, Gêmeos… (`s` par). Tudo módulo 12.
+`s` = sign from 0 to 11; `d` = degrees within the sign; `p` = part from 0 to N − 1 (`p = ⌊d·N/30⌋`); `f = d·N/30` without truncation; "odd" = Aries, Gemini… (`s` even). Everything modulo 12.
 
-- **Contagem contínua** (a longitude multiplicada por N): `D150`, `D2-parivritti`, `D3-parivritti`, `D4-parivritti`, `D10-parivritti`, `D12-parivritti`, `D30-parivritti`, `D5-parivritti`, `D6-kaulaka`. Signo = `(N·s + p) mod 12`.
-- **D5:** signo ímpar: Áries, Aquário, Sagitário, Gêmeos, Libra; signo par: Touro, Virgem, Peixes, Capricórnio, Escorpião (as partes, na ordem).
-- **D6:** ímpar: a partir de Áries (`p`); par: a partir de Libra (`6 + p`).
-- **D8:** móvel: a partir de Áries (`p`); fixo: de Sagitário (`8 + p`); dual: de Leão (`4 + p`).
+- **Continuous count** (the longitude multiplied by N): `D150`, `D2-parivritti`, `D3-parivritti`, `D4-parivritti`, `D10-parivritti`, `D12-parivritti`, `D30-parivritti`, `D5-parivritti`, `D6-kaulaka`. Sign = `(N·s + p) mod 12`.
+- **D5:** odd sign: Aries, Aquarius, Sagittarius, Gemini, Libra; even sign: Taurus, Virgo, Pisces, Capricorn, Scorpio (the parts, in order).
+- **D6:** odd: from Aries (`p`); even: from Libra (`6 + p`).
+- **D8:** movable: from Aries (`p`); fixed: from Sagittarius (`8 + p`); dual: from Leo (`4 + p`).
 - **D11:** `p − s`.
-- **D2-samasaptaka:** as duas metades de um signo vão para os dois signos do
-  seu eixo (o signo e o sétimo), e a primeira metade vai, para os dois signos
-  do eixo, sempre ao mesmo: Libra no eixo Áries–Libra, Touro no eixo
-  Touro–Escorpião, Sagitário em Gêmeos–Sagitário, Capricórnio em
-  Câncer–Capricórnio, Leão em Leão–Aquário e Peixes em Virgem–Peixes.
-- **D2-kashinatha:** as duas metades vão para os dois signos do regente do signo. Nos signos de Marte, Mercúrio e Júpiter: primeira metade no outro signo do regente, segunda no próprio. Nos de Vênus e Saturno, e em Câncer e Leão (que fazem par entre si): primeira no próprio, segunda no outro.
-- **D2-somanatha:** ímpar: o próprio signo, depois o seguinte; par: o próprio, depois o anterior.
-- **D3-jagannatha:** os três signos do elemento do signo, começando pelo móvel: fogo de Áries, terra de Capricórnio, ar de Libra, água de Câncer; passo de quatro signos.
-- **D3-somanatha:** `k = ⌊s/2⌋`. Ímpar: `3k + p`. Par: `11 − 3k − p`.
-- **D4-vedamsha:** móvel: de Áries; fixo: de Leão; dual: de Sagitário; passo de três signos (`início + 3p`).
-- **D9-pada:** início como no Navamsha (fogo de Áries, terra de Capricórnio, ar de Libra, água de Câncer). Para a frente nos signos de Áries a Gêmeos e de Libra a Sagitário; para trás nos demais.
-- **D9-nadi:** mesmo início; para a frente nos signos ímpares, para trás nos pares.
-- **D9-somanatha:** `k = ⌊s/2⌋`. Ímpar: `9k + p`. Par: `2 − 3k − p`.
-- **D16-iyer:** ímpar: `s + p`. Par: `⌊s + 4 − f⌋`.
+- **D2-samasaptaka:** the two halves of a sign go to the two signs of
+  its axis (the sign and the seventh), and the first half goes, for both signs
+  of the axis, always to the same one: Libra on the Aries–Libra axis, Taurus on the
+  Taurus–Scorpio axis, Sagittarius on Gemini–Sagittarius, Capricorn on
+  Cancer–Capricorn, Leo on Leo–Aquarius and Pisces on Virgo–Pisces.
+- **D2-kashinatha:** the two halves go to the two signs of the sign's lord. In the signs of Mars, Mercury and Jupiter: first half in the lord's other sign, second in the sign itself. In those of Venus and Saturn, and in Cancer and Leo (which pair with each other): first in the sign itself, second in the other.
+- **D2-somanatha:** odd: the sign itself, then the next; even: the sign itself, then the previous.
+- **D3-jagannatha:** the three signs of the sign's element, starting with the movable one: fire from Aries, earth from Capricorn, air from Libra, water from Cancer; step of four signs.
+- **D3-somanatha:** `k = ⌊s/2⌋`. Odd: `3k + p`. Even: `11 − 3k − p`.
+- **D4-vedamsha:** movable: from Aries; fixed: from Leo; dual: from Sagittarius; step of three signs (`start + 3p`).
+- **D9-pada:** start as in the Navamsha (fire from Aries, earth from Capricorn, air from Libra, water from Cancer). Forward in the signs from Aries to Gemini and from Libra to Sagittarius; backward in the others.
+- **D9-nadi:** same start; forward in odd signs, backward in even ones.
+- **D9-somanatha:** `k = ⌊s/2⌋`. Odd: `9k + p`. Even: `2 − 3k − p`.
+- **D16-iyer:** odd: `s + p`. Even: `⌊s + 4 − f⌋`.
 - **D11-iyer:** `⌊1 − f⌋`.
-- **D24-parasiddhamsha:** ímpar: `4 + p`. Par: `⌊4 − f⌋`.
-- **D24-siddhamsha:** ímpar: `⌊5 − f⌋`. Par: `⌊4 − f⌋`.
-- **D30-venkatesha:** `s + p` (cada grau, um signo, a partir do próprio signo).
-- **D108-nd:** toma-se a longitude no Navamsha (`9·L mod 360`) e aplica-se a ela o D12.
-- **D108-dn:** toma-se a longitude no D12 (`(s + d/2,5)·30`) e aplica-se a ela o Navamsha.
+- **D24-parasiddhamsha:** odd: `4 + p`. Even: `⌊4 − f⌋`.
+- **D24-siddhamsha:** odd: `⌊5 − f⌋`. Even: `⌊4 − f⌋`.
+- **D30-venkatesha:** `s + p` (each degree, one sign, starting from the sign itself).
+- **D108-nd:** take the longitude in the Navamsha (`9·L mod 360`) and apply D12 to it.
+- **D108-dn:** take the longitude in D12 (`(s + d/2.5)·30`) and apply the Navamsha to it.
 
-Nas contagens invertidas (`⌊base − f⌋`), uma fronteira exata **dentro** do
-signo pertence à parte que termina; é o que a fórmula dá e o que o PL9 faz.
-No início do signo (`f = 0`) a fórmula dá o valor que viria antes da
-primeira parte. No D11-iyer esse valor é Touro, que essa varga não dá em
-nenhum outro ponto: o modo `pl9` o reproduz, e o modo `corrected` dá Áries,
-a primeira parte (correção 7 de `correcoes.md`). O `core` faz essas contas
-em precisão dupla, sem tratar como exatos os limites que não são
-representáveis; a menos de um bilionésimo de grau de um desses limites, o
-resultado pode ser o da parte vizinha.
+In the reversed counts (`⌊base − f⌋`), an exact boundary **within** the
+sign belongs to the part that ends; this is what the formula gives and what PL9 does.
+At the start of the sign (`f = 0`) the formula gives the value that would come before the
+first part. In D11-iyer that value is Taurus, which this varga gives at
+no other point: the `pl9` mode reproduces it, and the `corrected` mode gives Aries,
+the first part (correction 7 of `corrections.md`). The `core` does these computations
+in double precision, without treating as exact the boundaries that are not
+representable; within one billionth of a degree of one of these boundaries, the
+result may be that of the neighbouring part.
 
-Sete dessas vargas (Samasaptaka Hora, Kashinatha Hora, Somanatha Hora,
-Somanatha Drekkana, Pada Navamsha, Nadi Navamsha e Somanatha Navamsha) estão
-descritas aqui pelo signo de partida e pelo sentido da contagem em cada
-signo, ou em cada eixo, que é a forma
-como a regra se enuncia; o resultado é o mesmo que o do programa.
+Seven of these vargas (Samasaptaka Hora, Kashinatha Hora, Somanatha Hora,
+Somanatha Drekkana, Pada Navamsha, Nadi Navamsha and Somanatha Navamsha) are
+described here by the starting sign and the direction of the count in each
+sign, or in each axis, which is the form
+in which the rule is stated; the result is the same as the program's.
 
-## Origem
+## Origin
 
-**Lidas no PL9.** As regras acima descrevem o que o programa calcula para
-cada uma das dezesseis vargas de Parashara, e foram obtidas pela leitura das
-suas rotinas. Todas coincidem com as regras clássicas publicadas.
+**Read in PL9.** The rules above describe what the program computes for
+each of the sixteen vargas of Parashara, and were obtained by reading its
+routines. All coincide with the published classical rules.
 
-As regras das outras 29 vargas também foram lidas na rotina de vargas do
-programa, e conferidas contra os mapas que o PL9 imprime (ver
-`docs/relatorios/conformidade-posicoes.md`). São regras de escola: o `core` as
-reproduz como o PL9 as aplica, nos dois modos.
+The rules of the other 29 vargas were also read in the program's varga
+routine, and checked against the charts that PL9 prints (see
+`docs/reports/conformance.md`). They are school rules: the `core`
+reproduces them as PL9 applies them, in both modes.
 
-## Conferência contra o PL9
+## Check against PL9
 
-Em 72 mapas, o signo do Lagna e dos nove grahas em cada varga foi lido do
-relatório "Shodashvarga Summary" do programa: 10 800 células de D2 a D60,
-todas iguais às do `core`. Nenhuma dessas células está a menos de 0,5" de um
-limite de divisão, de modo que as regras de fronteira (em particular a do
-D30 e a do D2 a 15°) vêm só da leitura das rotinas.
+In 72 charts, the sign of the Lagna and of the nine grahas in each varga was read from the
+program's "Shodashvarga Summary" report: 10,800 cells from D2 to D60,
+all equal to those of the `core`. None of these cells is within 0.5" of a
+division boundary, so the boundary rules (in particular that of
+D30 and that of D2 at 15°) come only from reading the routines.
 
-## O que não foi verificado
+## What was not verified
 
-- Em algumas das 29 vargas o PL9 faz a conta em precisão simples. O `core`
-  usa precisão dupla; a diferença só aparece a menos de 0,1" de um limite de
-  parte.
-- O comportamento exato numa fronteira de parte das 29 vargas vem só da
-  leitura das rotinas.
+- In some of the 29 vargas PL9 does the computation in single precision. The `core`
+  uses double precision; the difference only appears within 0.1" of a part
+  boundary.
+- The exact behaviour at a part boundary of the 29 vargas comes only from
+  reading the routines.

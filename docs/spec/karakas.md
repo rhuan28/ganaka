@@ -1,36 +1,36 @@
-# Chara karakas e Karakamsha
+# Chara karakas and Karakamsha
 
-## Regra
+## Rule
 
-1. Toma-se a longitude de cada planeta **dentro do seu signo** (0° a 30°).
-2. Com **oito karakas** (opção "Karakas: Rahu too" do PL9), Rahu entra
-   contado para trás: `30° − graus de Rahu no signo`.
-3. Os planetas são ordenados do maior para o menor valor e recebem, nessa
-   ordem, os nomes:
-   - com oito: AK, AmK, BK, MK, PiK, PuK, GK, DK;
-   - com sete (opção "Karakas: No Rahu", a observada): AK, AmK, BK, MK, PiK,
-     GK, DK — o MK faz também o papel do PuK, como o PL9 anota.
-4. Empate de graus: fica a ordem Sol, Lua, Marte, Mercúrio, Júpiter, Vênus,
-   Saturno, Rahu.
+1. Take each planet's longitude **within its sign** (0° to 30°).
+2. With **eight karakas** (PL9's "Karakas: Rahu too" option), Rahu enters
+   counted backwards: `30° − Rahu's degrees in the sign`.
+3. The planets are sorted from the largest to the smallest value and receive, in that
+   order, the names:
+   - with eight: AK, AmK, BK, MK, PiK, PuK, GK, DK;
+   - with seven (the "Karakas: No Rahu" option, the one observed): AK, AmK, BK, MK, PiK,
+     GK, DK — the MK also plays the role of the PuK, as PL9 notes.
+4. Tie in degrees: the order Sun, Moon, Mars, Mercury, Jupiter, Venus,
+   Saturn, Rahu stands.
 
-**Karakamsha:** o signo do AK no Navamsha.
+**Karakamsha:** the sign of the AK in the Navamsha.
 
-## Origem
+## Origin
 
-Regras clássicas, **confirmadas por medição** contra os 72 mapas impressos
-pelo PL9: as tabelas "Jaimini Karakas and aspects (7)" e "(8)" e o
-Karakamsha coincidem em todos. O PL9 mostra as duas tabelas qualquer que
-seja a opção; a opção decide o AK usado no Karakamsha.
+Classical rules, **confirmed by measurement** against the 72 charts printed
+by PL9: the tables "Jaimini Karakas and aspects (7)" and "(8)" and the
+Karakamsha match in all of them. PL9 shows both tables whatever
+the option; the option decides the AK used in the Karakamsha.
 
-## A opção "Karakas"
+## The "Karakas" option
 
-Com "Rahu too", o Karakamsha é o signo no Navamsha do AK dos oito karakas;
-com "No Rahu", do AK dos sete. Só muda quando Rahu é o AK com oito. Em 40
-mapas impressos com "Rahu too", os dois em que isso acontece (REF 0027 e
-REF 0156) deram o Navamsha de Rahu, e nos outros 38 nada mudou. A opção não
-altera as duas tabelas de karakas.
+With "Rahu too", the Karakamsha is the Navamsha sign of the AK of the eight karakas;
+with "No Rahu", of the AK of the seven. It only changes when Rahu is the AK with eight. In 40
+charts printed with "Rahu too", the two in which this happens (REF 0027 and
+REF 0156) gave Rahu's Navamsha, and in the other 38 nothing changed. The option does not
+alter the two karaka tables.
 
-## O que não foi verificado
+## What was not verified
 
-- O empate de graus: não ocorreu nos mapas de referência, e a ordem adotada
-  é uma escolha do `core`.
+- The tie in degrees: it did not occur in the reference charts, and the adopted order
+  is a choice of the `core`.

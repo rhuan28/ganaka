@@ -27,7 +27,7 @@ export function formatJson(chart: Chart): string {
 
 export function formatTable(chart: Chart): string {
   const out: string[] = [`mode: ${chart.fidelity}`];
-  if (chart.fidelity === 'corrected') out.push('note: PL9 with its known defects repaired — differs from PL9 where docs/spec/correcoes.md says');
+  if (chart.fidelity === 'corrected') out.push('note: PL9 with its known defects repaired — differs from PL9 where docs/spec/corrections.md says');
   if (!chart.verified) out.push('note: outside the dates and latitudes in which the pl9 mode was checked against PL9');
   out.push('', `ayanamsha ${chart.ayanamshaDegrees.toFixed(6)}`, '');
   out.push(`${'point'.padEnd(11)} ${'longitude'.padEnd(15)} R nak pada  ${CLASSICAL_VARGAS.map((v) => v.padStart(3)).join(' ')}`);
@@ -84,7 +84,7 @@ export function calendarText(jdUt: number, utcOffsetHours: number): string {
 export function formatDashas(dashas: Dashas, utcOffsetHours: number): string {
   const o = dashas.options;
   const out: string[] = [`mode: ${dashas.fidelity}`];
-  if (dashas.fidelity === 'corrected') out.push('note: PL9 with its known defects repaired — differs from PL9 where docs/spec/correcoes.md says');
+  if (dashas.fidelity === 'corrected') out.push('note: PL9 with its known defects repaired — differs from PL9 where docs/spec/corrections.md says');
   out.push(`system: ${dashas.system} (base ${o.base}, year ${o.yearDays}, ${o.levels} levels)`);
   if (dashas.kalachakra) {
     const k = dashas.kalachakra;

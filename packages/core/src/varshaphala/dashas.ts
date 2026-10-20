@@ -87,7 +87,7 @@ const SHORTEST_PRINTED = 5 / 1440;
  * The Patyayini as PL9 prints it: the parts of the periods one after another, cycle after cycle, without those shorter
  * than five minutes, eight to a period; each period by the lord of the period its first row belongs to, from the start
  * of that row to the end of its last. When the first part of the year is so left out, the whole first period is. So a
- * short part moves the later rows one period back. See docs/spec/tempo/varshaphala.md and docs/spec/correcoes.md, 27.
+ * short part moves the later rows one period back. See docs/spec/time/varshaphala.md and docs/spec/corrections.md, 27.
  */
 function patyayiniAsPrinted(periods: AnnualPeriod[]): AnnualPeriod[] {
   if (!periods.length) return periods;

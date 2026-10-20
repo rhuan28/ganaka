@@ -17,7 +17,7 @@ for (const fx of loadFixtures()) {
 }
 eph.close();
 const at = (v: number[], q: number) => v[Math.min(v.length - 1, Math.floor(v.length * q))]!;
-console.log('| Ponto | Mapas | Mediana | Percentil 95 | Máxima |');
+console.log('| Point | Charts | Median | 95th percentile | Maximum |');
 console.log('|---|---|---|---|---|');
 for (const p of POINTS) {
   const v = (byPoint[p] ?? []).sort((m, n) => m - n);

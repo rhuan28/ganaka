@@ -37,7 +37,7 @@ const SIGN_SHORT = ['Ar', 'Ta', 'Ge', 'Ca', 'Le', 'Vi', 'Li', 'Sc', 'Sa', 'Cp', 
 /**
  * The dashas PL9 prints at a transit instant ("Gochara data"), five levels each: Vimshottari, Yogini and Ashtottari,
  * and the Narayana by sign (`rashiChainAt`), null where the birth has no Lagna; and the Chara the Events page prints,
- * the same way. See docs/spec/tempo/transitos.md.
+ * the same way. See docs/spec/time/transits.md.
  */
 export function dashasAt(eph: Ephemeris, natal: ChartInput, jdUt: number, coreOptions?: Partial<CoreOptions>): { vimshottari: string; yogini: string; ashtottari: string; narayana: string | null; chara: string | null } {
   const at = (system: keyof typeof CYCLES) =>

@@ -4,7 +4,7 @@ import type { VarshaClockShown } from './transitTables';
 import { lagnaSpeedAt } from './varshaphalaTables';
 
 // The Varshaphala worksheets of the year the print job's clock is in (TEMPO model, worksheets 64-66 and 74; stage 5G).
-// See docs/spec/tempo/varshaphala.md.
+// See docs/spec/time/varshaphala.md.
 
 const SIGNS = ['Ari', 'Tau', 'Gem', 'Can', 'Leo', 'Vir', 'Lib', 'Sco', 'Sag', 'Cap', 'Aqu', 'Pis'];
 const SIGNS_FULL = ['Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'];
@@ -30,12 +30,12 @@ export interface VarshaClockComputed {
 }
 
 /** The differences known for each chart's worksheets (both printouts show the same year), kept apart in the bench. */
-/** The nodes' VB, pending as on the Muhurta page (docs/spec/tempo/muhurta.md). */
+/** The nodes' VB, pending as on the Muhurta page (docs/spec/time/muhurta.md). */
 export const VARSHA_CLOCK_ALWAYS_PENDING = ['planet rahu vb', 'planet ketu vb'] as const;
 
 /**
  * The differences known for each chart's worksheets (both printouts show the same year), kept apart in the bench: the
- * Sahams the Varshaphala reports already keep apart (docs/spec/tempo/varshaphala.md), here in the natal and annual sets.
+ * Sahams the Varshaphala reports already keep apart (docs/spec/time/varshaphala.md), here in the natal and annual sets.
  */
 export const KNOWN_VARSHA_CLOCK_PENDING: Readonly<Record<string, readonly string[]>> = {
   'ref-0003': ['saham natal Karyasiddhi', 'saham natal Karyasiddhi lord'],

@@ -104,7 +104,7 @@ export function worstPlanetaryResidual(rows: ChartMeasure[]): number {
   return worst;
 }
 
-export const HANDWRITTEN_MARKER = '## Leitura';
+export const HANDWRITTEN_MARKER = '## Reading';
 
 /** Puts a regenerated report in front of the hand-written section of the existing one, if any. */
 export function mergeReport(generated: string, existing: string | null): string {

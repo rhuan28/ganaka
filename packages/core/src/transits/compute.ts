@@ -45,7 +45,7 @@ export interface TransitOptions {
 /**
  * The transits over a natal chart at an instant and place: the transit chart, the kakshas read in the natal
  * Ashtakavarga, Tarabala and Chandrabala from the natal Moon, and the Shadbala of the transit chart.
- * See docs/spec/tempo/transitos.md.
+ * See docs/spec/time/transits.md.
  */
 export function computeTransits(eph: Ephemeris, natal: ChartInput, at: TransitInstant, coreOptions?: Partial<CoreOptions>, options: Partial<TransitOptions> = {}): Transits {
   const fidelity = resolveOptions(coreOptions).fidelity;

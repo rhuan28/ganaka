@@ -8,7 +8,7 @@ import { dashasAt } from './dashasAt';
 import { monthEvents, type MonthEvent } from './monthEvents';
 
 // How PL9's pages of the print's clock place their lists in time, from the printouts. Several of them read the
-// clock's local time as if it were UT. See docs/spec/tempo/panchanga.md and docs/spec/tempo/transitos.md.
+// clock's local time as if it were UT. See docs/spec/time/panchanga.md and docs/spec/time/transits.md.
 
 /**
  * The Vimshottari of the sunrise chart (worksheet 8), two levels: `count` antardashas (16 by default: the 15 printed

@@ -110,7 +110,7 @@ export function verifyAshtakavarga(shown: string[], av: Ashtakavarga): { values:
  * Each Shadbala value PL9 printed against the core's: to half a hundredth (and the core's own error, a hundred-
  * thousandth, measured against PL9's memory), the counts exactly. PL9's page ranks the ratio rounded to two decimals
  * and breaks a tie by a rule not found yet, so a rank that differs where the printed ratio ties another is set apart
- * as pending; anywhere else it fails (docs/spec/forcas/shadbala.md).
+ * as pending; anywhere else it fails (docs/spec/strengths/shadbala.md).
  */
 export function verifyShadbala(shown: string[], sb: Shadbala): { values: number; failures: string[]; pending: string[] } {
   const failures: string[] = [];

@@ -7,11 +7,15 @@ RUN corepack enable && corepack prepare pnpm@11.4.0 --activate
 # The workspace manifests first, so the install layer is reused while only sources change.
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml tsconfig.json ./
 COPY packages/api/package.json packages/api/
+COPY packages/atlas/package.json packages/atlas/
 COPY packages/core/package.json packages/core/
 COPY packages/ephemeris/package.json packages/ephemeris/
 RUN pnpm install --frozen-lockfile --prod --filter "@reverse/api..."
 
 COPY packages/api/src packages/api/src
+COPY packages/atlas/src packages/atlas/src
+COPY packages/atlas/data packages/atlas/data
+COPY packages/atlas/tzdata packages/atlas/tzdata
 COPY packages/core/src packages/core/src
 COPY packages/ephemeris/src packages/ephemeris/src
 

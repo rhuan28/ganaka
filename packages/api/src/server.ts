@@ -4,6 +4,7 @@ import swaggerUi from '@fastify/swagger-ui';
 import type { Ephemeris } from '@reverse/ephemeris';
 import Fastify, { type FastifyInstance, type FastifyServerOptions } from 'fastify';
 import { sendError } from './errors';
+import { atlas } from './routes/atlas';
 import { chart } from './routes/chart';
 import { dashas } from './routes/dashas';
 import { strengths } from './routes/strengths';
@@ -21,7 +22,7 @@ export interface ServerOptions {
 }
 
 export type Route = (app: FastifyInstance, o: ServerOptions) => void;
-const ROUTES: Route[] = [chart, dashas, strengths, time];
+const ROUTES: Route[] = [chart, dashas, strengths, time, atlas];
 const PUBLIC = new Set(['/health', '/openapi.json']);
 
 /** The calculation service: the core's results over HTTP, as JSON, never rounded. */

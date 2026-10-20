@@ -1,42 +1,41 @@
 # Ganaka
 
-Um motor de astrologia védica (Jyotish) de código aberto, em TypeScript: mapa e vargas, dashas,
-forças (Shadbala, Bhava Bala, Ashtakavarga, Vimshopaka), trânsitos, panchanga, Varshaphala e
-Muhurta. Também roda como serviço de cálculo HTTP, para outros apps e sites integrarem.
+An open-source Vedic astrology (Jyotish) engine in TypeScript: chart and vargas, dashas, strengths
+(Shadbala, Bhava Bala, Ashtakavarga, Vimshopaka), transits, panchanga, Varshaphala and Muhurta, plus
+an atlas of cities and historical time zones. It also runs as an HTTP calculation service, for other
+astrology apps and sites to integrate.
 
-*An open-source Vedic astrology (Jyotish) engine in TypeScript, also available as an HTTP
-calculation service. The documentation is in Portuguese.*
+## Checked against Parashara's Light 9
 
-## Conferido contra o Parashara's Light 9
+Every area was reproduced and checked against the printouts of Parashara's Light 9 (PL9) for 135
+reference charts (generated, not real people), on several dates. The bench that runs this check is in
+this repository (`packages/oracle`), with the values read from the printouts (the fixtures), and
+anyone can run it. What matches, what differs and why is written in `docs/spec/`; the bench's latest
+results are in `docs/reports/`.
 
-Cada área foi reproduzida e conferida contra as impressões do Parashara's Light 9 (PL9) em 135
-mapas de referência (gerados, não de pessoas reais), em várias datas. A bancada que faz essa
-conferência está neste repositório (`packages/oracle`), com os valores lidos das impressões
-(as fixtures), e qualquer um pode rodá-la. O que coincide, o que difere e por quê está em
-`docs/spec/`.
+The engine has two modes:
 
-O motor tem dois modos:
+- **`corrected`** (the default): PL9's calculation with its proven defects corrected, each one
+  described and justified in `docs/spec/corrections.md`;
+- **`pl9`**: reproduces PL9, defects included, for those who need the same numbers.
 
-- **`corrected`** (o padrão): o cálculo do PL9 com as correções de defeitos comprovados, cada
-  uma descrita e justificada em `docs/spec/correcoes.md`;
-- **`pl9`**: reproduz o PL9, inclusive esses defeitos, para quem precisa dos mesmos números.
+The project is not affiliated with PL9 or its authors. The name PL9 appears here only as the
+reference of the check.
 
-O projeto não é afiliado ao PL9 nem aos seus autores. O nome PL9 aparece aqui só como a referência
-da conferência.
+## Packages
 
-## Pacotes
-
-| Pacote | O que faz |
+| Package | What it does |
 |---|---|
-| `packages/ephemeris` | A astronomia, sobre a Swiss Ephemeris |
-| `packages/core` | O cálculo védico, em funções puras |
-| `packages/api` | O serviço de cálculo HTTP (veja `docs/spec/api.md`) |
-| `packages/cli` | A linha de comando |
-| `packages/oracle` | A bancada de conferência e as fixtures |
+| `packages/ephemeris` | The astronomy, on the Swiss Ephemeris |
+| `packages/core` | The Vedic calculation, in pure functions |
+| `packages/atlas` | Cities and time zones with the world's history (see `docs/spec/atlas.md`) |
+| `packages/api` | The HTTP calculation service (see `docs/spec/api.md`) |
+| `packages/cli` | The command line |
+| `packages/oracle` | The bench and its fixtures |
 
-## Começar
+## Getting started
 
-Requisitos: Node 22 e pnpm.
+Requirements: Node 22 and pnpm.
 
 ```bash
 pnpm install
@@ -44,20 +43,22 @@ pnpm test
 pnpm typecheck
 ```
 
-O mapa de um nascimento, pela linha de comando (`nascimento.json` com `utc`, `latitude` e
-`longitudeEast`):
+A birth chart from the command line (`birth.json` with `utc`, `latitude` and `longitudeEast`):
 
 ```bash
-pnpm --silent --filter @reverse/cli chart nascimento.json --format json
+pnpm --silent --filter @reverse/cli chart birth.json --format json
 ```
 
-O serviço de cálculo: `docs/spec/api.md`.
+The calculation service: `docs/spec/api.md`.
 
-## Licença
+## License
 
-AGPL-3.0-or-later (arquivo `LICENSE`). Quem oferecer este motor, ou uma versão modificada dele, como
-serviço em rede precisa oferecer o código-fonte aos usuários desse serviço.
+AGPL-3.0-or-later (file `LICENSE`). Whoever offers this engine, or a modified version of it, as a
+network service must offer its source code to the users of that service.
 
-A astronomia usa a Swiss Ephemeris, da Astrodienst AG, que tem licença dupla: AGPL ou uma licença
-profissional paga. Usar este motor sob a AGPL está coberto pela AGPL da Swiss Ephemeris; outros usos
-podem exigir a licença profissional da Astrodienst.
+The atlas's cities come from [GeoNames](https://www.geonames.org), under the CC BY 4.0 license; the
+time zones from the IANA time zone database, in the public domain.
+
+The astronomy uses the Swiss Ephemeris, by Astrodienst AG, which is dual-licensed: AGPL or a paid
+professional license. Using this engine under the AGPL is covered by the Swiss Ephemeris's AGPL; other
+uses may require Astrodienst's professional license.

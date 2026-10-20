@@ -16,7 +16,7 @@ export type DashaYearOption = '365.25' | '360' | '327.85' | '365.2422';
 
 /**
  * Days in a dasha year. PL9's option "365.25" uses 365.2422 kept in single precision, 365.2421875; the corrected mode
- * takes the option at its word. See docs/spec/dashas/nakshatra.md and docs/spec/correcoes.md.
+ * takes the option at its word. See docs/spec/dashas/nakshatra.md and docs/spec/corrections.md.
  */
 export function dashaYearDays(option: DashaYearOption, fidelity: Fidelity): number {
   if (option === '360') return 360;
@@ -73,7 +73,7 @@ export function startingPoint(
   // PL9 gives Shravana the first place of Saturn's group in Ashtottari, where it is the fourth.
   const position = system === 'ashtottari' && index === 22 && fidelity === 'pl9' ? 0 : members.indexOf(index);
   // PL9 keeps the balance by degree in the groups, even with "By time" chosen: measured on its printed dates.
-  // Corrected, the option applies here too. See docs/spec/correcoes.md.
+  // Corrected, the option applies here too. See docs/spec/corrections.md.
   const part = fidelity === 'pl9' ? byDegree : fraction;
   return { lord: def.lords[g]!, elapsed: (position + part(lon, from, to)) / members.length };
 }

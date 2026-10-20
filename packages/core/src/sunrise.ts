@@ -28,7 +28,7 @@ export interface DayFrame {
   isDay: boolean;
 }
 
-// Constants of the search, as PL9 has them. See docs/spec/nascer-do-sol.md.
+// Constants of the search, as PL9 has them. See docs/spec/sunrise.md.
 const MEAN_SOLAR_MOTION = 0.985653; // degrees per day
 const SUNRISE_TOLERANCE = 0.0005; // degrees
 const SUNSET_TOLERANCE = 0.001; // degrees
@@ -53,7 +53,7 @@ interface Search {
 
 /**
  * Sunrise, and optionally the following sunset, for an instant, by the secant search that
- * docs/spec/nascer-do-sol.md describes as PL9's:
+ * docs/spec/sunrise.md describes as PL9's:
  * the Sun rises when the Lagna equals its longitude and sets when the point opposite the Lagna does.
  * The steps reproduce PL9's so that the result is the same to a fraction of a millisecond.
  */
@@ -229,7 +229,7 @@ function exactCrossings(eph: Ephemeris, latitude: number, longitudeEast: number,
 
 /**
  * The day frame with exact instants: the corrected mode. The definition of sunrise is PL9's;
- * the instants are the true roots, which PL9's search only approaches. See docs/spec/correcoes.md.
+ * the instants are the true roots, which PL9's search only approaches. See docs/spec/corrections.md.
  */
 function exactDayFrame(eph: Ephemeris, jdUt: number, latitude: number, longitudeEast: number, frame: AyanamshaFrame): DayFrame {
   const sunrise = exactCrossings(eph, latitude, longitudeEast, frame, 0, jdUt).lastAtOrBefore(jdUt);
@@ -246,7 +246,7 @@ const outsideEphemeris = (e: unknown): boolean => e instanceof Error && e.name =
 
 /**
  * The sunrise, sunset and next sunrise for an instant and a place: PL9's own in the 'pl9' mode of the frame,
- * the exact ones in the 'corrected' mode. See docs/spec/nascer-do-sol.md.
+ * the exact ones in the 'corrected' mode. See docs/spec/sunrise.md.
  */
 export function dayFrame(eph: Ephemeris, jdUt: number, latitude: number, longitudeEast: number, frame: AyanamshaFrame): DayFrame {
   try {
@@ -270,7 +270,7 @@ function dayFrameUnguarded(eph: Ephemeris, jdUt: number, latitude: number, longi
   // PL9 has no check here: its search stops after a fixed number of steps and it uses whatever came out.
   // That result is returned as it is, even when it is not on the horizon: for instance, when the sunset search
   // settles on its first pass, PL9 takes its last step with the slope left over from the sunrise search and its
-  // sunset lands most of a degree away (checked against PL9; see docs/spec/nascer-do-sol.md).
+  // sunset lands most of a degree away (checked against PL9; see docs/spec/sunrise.md).
   // Only a result that cannot be used at all is refused: one that is not a number, or three instants out of order.
   const ordered = sunrise < sunset && sunset < nextSunrise && nextSunrise - sunrise > 0.5 && nextSunrise - sunrise < 1.5;
   if (!Number.isFinite(nextSunrise) || !ordered) throw new SunriseUndefinedError(jdUt, latitude);

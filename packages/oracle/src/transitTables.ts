@@ -354,7 +354,7 @@ const BALADI_SHOWN: Record<string, string> = { infant: 'Infant', youth: 'Youth.'
 /**
  * The transit's vargas against the core (`vargaTable`): the degree as truncated, within the ephemeris's 1.5" times the
  * varga's parts; sign, dignity, bindus, the two avasthas, functional nature and houses exactly. The nodes' functional
- * nature is not compared: its rule was not found (docs/spec/tempo/transitos.md).
+ * nature is not compared: its rule was not found (docs/spec/time/transits.md).
  */
 export function verifyVargas(shown: NonNullable<TransitSnapshot['vargas']>, core: Partial<Record<'D9' | 'D10', Record<string, {
   degree: number; sign: number; dignity: number; bindus: number | null; jagradadi: string; baladi: string; functional: string | null; houses: number[];

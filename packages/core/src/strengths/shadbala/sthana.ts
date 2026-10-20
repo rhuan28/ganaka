@@ -6,7 +6,7 @@ import { NATURAL, SEVEN, type Planet7 } from '../dignity';
 import type { Fidelity } from '../../fidelity';
 import type { ShadbalaOptions } from './types';
 
-/** Sthana Bala, the strength of place, and its five parts. See docs/spec/forcas/shadbala.md. */
+/** Sthana Bala, the strength of place, and its five parts. See docs/spec/strengths/shadbala.md. */
 
 const signOf = (longitude: number) => Math.floor(norm360(longitude) / 30);
 const distance = (a: number, b: number) => { const d = norm360(a - b); return d > 180 ? 360 - d : d; };
@@ -44,7 +44,7 @@ function vargaPoints(p: Planet7, varga: VargaName, longitudes: Record<Planet9, n
     return 30;
   }
   // The Moon in Taurus in the birth chart: moolatrikona past 3 degrees; in its first three, PL9 gives nothing
-  // (corrected: the relationship with Venus, below). See docs/spec/correcoes.md, 19.
+  // (corrected: the relationship with Venus, below). See docs/spec/corrections.md, 19.
   if (varga === 'D1' && p === 'moon' && sign === 1 && (degree > 3 || fidelity === 'pl9')) return degree > 3 ? 45 : 0;
   const natural = NATURAL[p][SEVEN.indexOf(lord)]! - 1;
   return COMPOUND[natural + temporal(signOf(lon), signOf(longitudes[lord]))]!;

@@ -87,7 +87,7 @@ export function buildReferenceSet(
     add('station', t0 - 0.05, `${body} just before a station`);
     add('station', t0 + 0.05, `${body} just after a station`);
   }
-  // Charts for sunrise-dependent points. See docs/spec/nascer-do-sol.md.
+  // Charts for sunrise-dependent points. See docs/spec/sunrise.md.
   const EDGE_MINUTES = 15;
   const place = () => ({ latitude: round4(between(-50, 50)), longitudeEast: round4(between(-180, 180)) });
   const addAt = (kind: ChartKind, jdUt: number, p: { latitude: number; longitudeEast: number }, note: string) => {

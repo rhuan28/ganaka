@@ -1,46 +1,46 @@
 # Prana Pada
 
-## Regra
+## Rule
 
-1. Toma-se o **nascer do sol** que vale para o instante (ver
-   `nascer-do-sol.md`) e o tempo decorrido desde ele.
-2. Esse tempo é convertido em arco à razão de **um signo a cada seis
-   minutos** (7200° por dia).
-3. O arco é somado a um ponto de partida que depende do signo sideral em que
-   o Sol está **no instante dado**:
+1. Take the **sunrise** that applies to the instant (see
+   `sunrise.md`) and the time elapsed since it.
+2. That time is converted into arc at the rate of **one sign every six
+   minutes** (7200° per day).
+3. The arc is added to a starting point that depends on the sidereal sign the
+   Sun is in **at the given instant**:
 
-   | Signo do Sol | Ponto de partida |
+   | Sun's sign | Starting point |
    |---|---|
-   | Móvel (Áries, Câncer, Libra, Capricórnio) | Sol |
-   | Fixo (Touro, Leão, Escorpião, Aquário) | Sol + 240° |
-   | Dual (Gêmeos, Virgem, Sagitário, Peixes) | Sol + 120° |
+   | Movable (Aries, Cancer, Libra, Capricorn) | Sun |
+   | Fixed (Taurus, Leo, Scorpio, Aquarius) | Sun + 240° |
+   | Dual (Gemini, Virgo, Sagittarius, Pisces) | Sun + 120° |
 
-4. O resultado é reduzido a [0°, 360°).
+4. The result is reduced to [0°, 360°).
 
-A longitude do Sol é a do instante dado, não a do nascer do sol.
+The Sun's longitude is that of the given instant, not that of sunrise.
 
-## Sensibilidade
+## Sensitivity
 
-Um segundo de tempo no nascer do sol desloca o Prana Pada em 5 minutos de
-arco. Meio segundo de arco de Prana Pada equivale a 2 milésimos de segundo
-no nascer do sol.
+One second of time in the sunrise shifts the Prana Pada by 5 minutes of
+arc. Half a second of arc of Prana Pada corresponds to 2 thousandths of a second
+in the sunrise.
 
-## Origem
+## Origin
 
-A regra é a clássica, de domínio comum, e serviu de hipótese. **Confirmada
-por medição** contra a exportação do PL9: com o nascer do sol do PL9, ela
-reproduz o Prana Pada exportado. A variante com o Sol tomado no instante do
-nascer do sol foi testada e descartada (diferença de vários segundos de
-tempo).
+The rule is the classical one, common knowledge, and served as a hypothesis. **Confirmed
+by measurement** against PL9's export: with PL9's sunrise, it
+reproduces the exported Prana Pada. The variant with the Sun taken at the instant of
+sunrise was tested and discarded (a difference of several seconds of
+time).
 
-A rotina do PL9 que calcula o Prana Pada não foi lida; a do nascer do sol
-foi.
+PL9's routine that computes the Prana Pada was not read; the sunrise one
+was.
 
-## Conformidade
+## Conformance
 
-Diferença máxima de 0,012" nos mapas de referência com Lahiri. Os números
-atuais, por conjunto, estão em `docs/relatorios/conformidade-posicoes.md`.
+Maximum difference of 0.012" in the reference charts with Lahiri. The current
+numbers, per set, are in `docs/reports/conformance.md`.
 
-## O que não foi verificado
+## What was not verified
 
-- Com a opção "Sunrise: Edge of Sun".
+- With the "Sunrise: Edge of Sun" option.

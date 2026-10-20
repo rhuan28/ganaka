@@ -6,7 +6,7 @@ import { dignity9, NATURAL, SEVEN, type Planet7 } from './dignity';
 
 /**
  * The Vimshopaka as PL9 computes it: in each group of vargas, the points of the planet's sign in each varga, weighted,
- * up to 20; and the dignity of each planet in each of the 16 vargas. See docs/spec/forcas/vimshopaka.md.
+ * up to 20; and the dignity of each planet in each of the 16 vargas. See docs/spec/strengths/vimshopaka.md.
  */
 
 export const VIMSHOPAKA_GROUPS = ['shadvarga', 'saptavarga', 'dashavarga', 'shodashavarga'] as const;
@@ -34,7 +34,7 @@ export const VIMSHOPAKA_WEIGHTS: Record<VimshopakaGroup, Partial<Record<Classica
   shodashavarga: { D1: 35, D2: 10, D3: 10, D9: 30, D12: 5, D30: 10, D7: 5, D10: 5, D16: 20, D60: 40, D20: 5, D4: 5, D24: 5, D27: 5, D40: 5, D45: 5 },
 };
 
-/** The weights in a mode: the corrected one gives the Saptavarga the weights of the books (docs/spec/correcoes.md, 22). */
+/** The weights in a mode: the corrected one gives the Saptavarga the weights of the books (docs/spec/corrections.md, 22). */
 export function vimshopakaWeights(fidelity: Fidelity): typeof VIMSHOPAKA_WEIGHTS {
   if (fidelity === 'pl9') return VIMSHOPAKA_WEIGHTS;
   return { ...VIMSHOPAKA_WEIGHTS, saptavarga: { D1: 50, D2: 20, D3: 30, D7: 25, D9: 45, D12: 20, D30: 10 } };
@@ -49,7 +49,7 @@ const OWN: Record<Planet9, number[]> = {
 /**
  * Natural relationship of the nodes to Sun … Saturn, as PL9's printed Vimshopaka counts it (2 friend, 1 neutral,
  * 0 enemy): Rahu befriends Venus, Jupiter and Saturn, Ketu Mars and Venus. Read from 135 printed charts; the table in
- * PL9's executable gives the nodes other values, which its reports do not show. See docs/spec/forcas/vimshopaka.md.
+ * PL9's executable gives the nodes other values, which its reports do not show. See docs/spec/strengths/vimshopaka.md.
  */
 const NODES: Record<'rahu' | 'ketu', number[]> = {
   rahu: [0, 0, 0, 1, 2, 2, 2],

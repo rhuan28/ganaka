@@ -62,7 +62,7 @@ export function strengthLord(sign: number, longitudes: Record<Planet9, number>):
  * The stronger of two signs, as PL9 decides it (for the Kalachakra's sub-periods; its "strongest of the first and the
  * seventh"): more planets in it; then more aspects or conjunctions of Jupiter, Mercury and its lord; then more exalted
  * planets in it; then dual over fixed over movable; then its lord in a sign of the other parity; then its lord (for
- * Scorpio and Aquarius, `strengthLord`) further on in its sign; a full tie gives `b`. See docs/spec/dashas/forca-signos.md.
+ * Scorpio and Aquarius, `strengthLord`) further on in its sign; a full tie gives `b`. See docs/spec/dashas/sign-strength.md.
  */
 export function strongerSign(a: number, b: number, longitudes: Record<Planet9, number>): number {
   const s = (p: Planet9) => signOf(longitudes[p]);

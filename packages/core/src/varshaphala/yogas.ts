@@ -102,7 +102,7 @@ export function tajikaRules(c: TajikaChart): Record<number, (...p: Planet7[]) =>
 /** Which of PL9's rules make each printed yoga (the rules' numbers). */
 const OF_YOGA: Record<TajikaYogaName, readonly number[]> = {
   // Nakata and Yamaya: PL9's rules (8 to 12) form them in many charts, but its report never shows either (0 in 600
-  // printed reports); what leaves them out is not in its code (docs/spec/correcoes.md, not corrected).
+  // printed reports); what leaves them out is not in its code (docs/spec/corrections.md, not corrected).
   Iqabala: [1], Induvara: [2], Ithasala: [3, 4, 5, 6], Esharpha: [7], Nakata: [], Yamaya: [], Manua: [13], Kamboola: [14],
   'Gairi-Kamboola': [15], Khallsara: [16], Rudda: [17], 'Duphali-Kutta': [18], 'Dutthotta-Daivira': [19], Tambira: [20], Kutta: [21], Durupha: [22],
 };
@@ -116,7 +116,7 @@ export interface TajikaYoga {
 
 /**
  * The sixteen Tajika yogas of a chart: the rules read in PL9, over every ordered pair (or triple) of the seven
- * planets; Tambira and Kutta over the Lagna lord and the Karyesh given. See docs/spec/tempo/varshaphala.md.
+ * planets; Tambira and Kutta over the Lagna lord and the Karyesh given. See docs/spec/time/varshaphala.md.
  */
 export function tajikaYogas(c: TajikaChart, lords: { lagnesh?: Planet7; karyesh?: Planet7 } = {}): TajikaYoga[] {
   const r = rules(c) as Record<number, (...a: Planet7[]) => boolean>;

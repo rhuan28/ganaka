@@ -54,7 +54,7 @@ const palas = (g: string) => { const [a, b, c] = g.split(':').map(Number); retur
 /**
  * The birth values known to differ from PL9's, by chart: the Vedic weekday (PL9's rule not found; the core's gives 118
  * of 135), the Chaitradi month next to a full Moon or a sign change (PL9's new and full Moons are approximate), and
- * the sunsets and next sunrise where PL9's search lands on another crossing (docs/spec/tempo/panchanga.md).
+ * the sunsets and next sunrise where PL9's search lands on another crossing (docs/spec/time/panchanga.md).
  */
 const WEEKDAY: readonly BirthField[] = ['hinduWeekday', 'astrologicalWeekday'];
 export const KNOWN_BIRTH_PENDING: Readonly<Record<string, readonly BirthField[]>> = {
@@ -184,7 +184,7 @@ export interface PanchangTableLike {
  * fortnight, printed only where it changes); the sunrise to the second; the sunset, the ends and the length of the day
  * to a second either way; an end past the next sunrise is printed "..."; the header's month, fortnight and years
  * exactly and the ayanamsha to a second of arc. Not compared: the Moon's rising and setting, the transits and the
- * auspicious mark, the length of the night and the Lagna table (docs/spec/tempo/panchanga.md).
+ * auspicious mark, the length of the night and the Lagna table (docs/spec/time/panchanga.md).
  */
 export function verifyPanchangPrintout(shown: PanchangPrintout, t: PanchangTableLike, utcOffsetHours: number): { values: number; failures: string[]; pending: string[] } {
   const failures: string[] = [];

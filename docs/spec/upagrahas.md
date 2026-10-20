@@ -1,46 +1,46 @@
-# Upagrahas derivados do Sol
+# Upagrahas derived from the Sun
 
-## Regra
+## Rule
 
-A partir da longitude sideral do Sol, todas as contas reduzidas a [0°, 360°):
+From the Sun's sidereal longitude, all computations reduced to [0°, 360°):
 
-| Ponto | Regra |
+| Point | Rule |
 |---|---|
-| Dhuma | Sol + 133°20' |
+| Dhuma | Sun + 133°20' |
 | Vyatipata | 360° − Dhuma |
 | Parivesha | Vyatipata + 180° |
 | Indrachapa | 360° − Parivesha |
 | Upaketu | Indrachapa + 16°40' |
 
-Consequência: Upaketu fica 30° antes do Sol.
+Consequence: Upaketu lies 30° behind the Sun.
 
-## Origem
+## Origin
 
-Regra clássica, de domínio comum. Confirmada contra a exportação do PL9 nos
-290 mapas de referência: aplicada ao Sol exportado pelo próprio PL9,
-reproduz os cinco pontos com erro abaixo de 0,0001".
+Classical rule, common knowledge. Confirmed against PL9's export in the
+290 reference charts: applied to the Sun exported by PL9 itself, it
+reproduces the five points with an error below 0.0001".
 
-## Conformidade
+## Conformance
 
-Calculados a partir do Sol do `core`, os cinco pontos herdam a diferença do
-Sol, que é inferior a 0,0001".
+Computed from the `core`'s Sun, the five points inherit the Sun's
+difference, which is below 0.0001".
 
 ## Bhrigu point
 
-O PL9 mostra, quando ligado em "Special Points", o ponto "BP":
+PL9 shows, when enabled in "Special Points", the point "BP":
 
-`Bhrigu point = Rahu + ((Lua − Rahu) mod 360°) / 2`
+`Bhrigu point = Rahu + ((Moon − Rahu) mod 360°) / 2`
 
-É o ponto médio do arco que vai de Rahu à Lua **no sentido dos signos**. O
-outro ponto médio, a 180° deste, não é o que o PL9 mostra.
+It is the midpoint of the arc running from Rahu to the Moon **in the direction of the signs**. The
+other midpoint, 180° from this one, is not the one PL9 shows.
 
-Origem: o manual do PL9 diz que é o ponto médio entre a Lua e Rahu; qual dos
-dois pontos médios, **por medição** nos mapas impressos pelo programa, em que
-o ponto aparece em graus e minutos. O PL9 não o exporta: a conferência é ao
-minuto de arco, e o ponto herda a precisão da Lua e de Rahu, já conferidos a
-0,5".
+Origin: PL9's manual says it is the midpoint between the Moon and Rahu; which of the
+two midpoints, **by measurement** in the charts printed by the program, in which
+the point appears in degrees and minutes. PL9 does not export it: the check is to the
+minute of arc, and the point inherits the precision of the Moon and Rahu, already checked to
+0.5".
 
-## Fora deste documento
+## Outside this document
 
-Gulika e Prana Pada, que a exportação do PL9 também traz: ver `gulika.md`,
-`prana-pada.md` e `nascer-do-sol.md`. Mandi: ver `mandi.md`.
+Gulika and Prana Pada, which PL9's export also carries: see `gulika.md`,
+`prana-pada.md` and `sunrise.md`. Mandi: see `mandi.md`.

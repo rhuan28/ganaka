@@ -15,7 +15,7 @@ export interface TajikaChart {
   house: Partial<Record<Planet9, number>>;
   /** The Sun above the horizon; null where there is no Lagna. */
   isDay: boolean | null;
-  /** Which rules apply where PL9 is wrong (docs/spec/correcoes.md); 'pl9' when not given. */
+  /** Which rules apply where PL9 is wrong (docs/spec/corrections.md); 'pl9' when not given. */
   fidelity?: Fidelity;
 }
 

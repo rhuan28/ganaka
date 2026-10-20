@@ -4,7 +4,7 @@ import { fakeSky } from './fakeSky';
 
 const norm = (v: number) => ((v % 360) + 360) % 360;
 
-/** Worked example of docs/spec/casas.md: Lagna 100°, midheaven 5°. */
+/** Worked example of docs/spec/houses.md: Lagna 100°, midheaven 5°. */
 const EXAMPLE_STARTS = [84.1666667, 114.1666667, 142.5, 170.8333333, 200.8333333, 232.5, 264.1666667, 294.1666667, 322.5, 350.8333333, 20.8333333, 52.5];
 
 describe.each(HOUSE_SYSTEMS)('houseCusps, %s', (system) => {
@@ -45,7 +45,7 @@ describe('houseCusps', () => {
     expect(h.middles[9]).toBeCloseTo(5, 9);
     for (let k = 0; k < 6; k++) expect(norm(h.middles[k + 6]! - h.middles[k]!)).toBeCloseTo(180, 9);
   });
-  it('reproduces the worked example of docs/spec/casas.md', () => {
+  it('reproduces the worked example of docs/spec/houses.md', () => {
     const starts = houseCusps(100, 5, 'sripati').starts;
     starts.forEach((v, k) => expect(v, `house ${k + 1}`).toBeCloseTo(EXAMPLE_STARTS[k]!, 6));
   });

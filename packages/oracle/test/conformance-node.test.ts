@@ -13,7 +13,7 @@ describe('lunar nodes against PL9, Lahiri, reference set', () => {
     eph.close();
     expect(Math.abs(worst.rahu!.arcsec), `rahu worst in ${worst.rahu!.chartId}`).toBeLessThan(0.5);
     expect(Math.abs(worst.ketu!.arcsec), `ketu worst in ${worst.ketu!.chartId}`).toBeLessThan(0.5);
-    // Measured: 0.015". A looser bound here would hide a regression in the plane term (docs/spec/nodo.md).
+    // Measured: 0.015". A looser bound here would hide a regression in the plane term (docs/spec/node.md).
     expect(Math.abs(worst.rahu!.arcsec)).toBeLessThan(0.03);
   });
 });

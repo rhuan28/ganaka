@@ -20,7 +20,7 @@ const AV_OPTION_VALUES: Record<keyof AshtakavargaOptions, readonly unknown[]> = 
   method: ['varahamihira', 'parashara'], ekadhipatya: ['parashara', 'other'], virgoMultiplier: [6, 5],
 };
 
-/** The Ashtakavarga of a chart, with the options it was computed with. See docs/spec/forcas/ashtakavarga.md. */
+/** The Ashtakavarga of a chart, with the options it was computed with. See docs/spec/strengths/ashtakavarga.md. */
 export function computeAshtakavarga(eph: Ephemeris, input: ChartInput, options: Partial<AshtakavargaOptions> = {}, coreOptions?: Partial<CoreOptions>): Ashtakavarga & { options: AshtakavargaOptions; fidelity: Fidelity } {
   for (const [k, v] of Object.entries(options)) {
     if (!Object.hasOwn(AV_OPTION_VALUES, k)) throw new InvalidOptionError(k, 'unknown option');
@@ -56,7 +56,7 @@ function shadbalaOptions(options: Partial<ShadbalaOptions>): ShadbalaOptions {
 /**
  * The Shadbala of a chart, with the options it was computed with. `cheshtaOutsideSeries` names the planets whose
  * birth falls outside PL9's series of cycles: their Cheshta, and the totals and ranks that take it, are not PL9's.
- * See docs/spec/forcas/shadbala.md.
+ * See docs/spec/strengths/shadbala.md.
  */
 export function computeShadbala(eph: Ephemeris, input: ChartInput, options: Partial<ShadbalaOptions> = {}, coreOptions?: Partial<CoreOptions>): Shadbala & { options: ShadbalaOptions; fidelity: Fidelity; cheshtaOutsideSeries: CheshtaPlanet[] } {
   const o = shadbalaOptions(options);
@@ -65,7 +65,7 @@ export function computeShadbala(eph: Ephemeris, input: ChartInput, options: Part
   return { ...shadbala(shadbalaInputs(eph, input, core), o), options: o, fidelity: core.fidelity, cheshtaOutsideSeries };
 }
 
-/** The Bhava Bala of a chart, with the options of the Shadbala it was computed with. See docs/spec/forcas/bhava-bala.md. */
+/** The Bhava Bala of a chart, with the options of the Shadbala it was computed with. See docs/spec/strengths/bhava-bala.md. */
 export function computeBhavaBala(eph: Ephemeris, input: ChartInput, options: Partial<ShadbalaOptions> = {}, coreOptions?: Partial<CoreOptions>): BhavaBala & { options: ShadbalaOptions; fidelity: Fidelity; cheshtaOutsideSeries: CheshtaPlanet[] } {
   const o = shadbalaOptions(options);
   const core = resolveOptions(coreOptions);
@@ -98,7 +98,7 @@ export function shadbalaInputs(eph: Ephemeris, input: ChartInput, coreOptions?: 
   };
 }
 
-/** The Vimshopaka of a chart: the four groups of points and the dignities in the 16 vargas. See docs/spec/forcas/vimshopaka.md. */
+/** The Vimshopaka of a chart: the four groups of points and the dignities in the 16 vargas. See docs/spec/strengths/vimshopaka.md. */
 export function computeVimshopaka(eph: Ephemeris, input: ChartInput, coreOptions?: Partial<CoreOptions>): Vimshopaka & { fidelity: Fidelity } {
   const core = resolveOptions(coreOptions);
   const positions = computePositions(eph, input, core);

@@ -24,7 +24,7 @@ export interface PanchangaDay {
  * sunrise and 0.001 for the sunset, in at most nine steps; then one more secant step on the true Sun, without a check.
  * The next sunrise is searched the same way from 1.1 days after the sunrise, without the last step. Read in PL9.
  * The search never checks that it arrived, and near 65 degrees of latitude it can stop hours away; the 'corrected'
- * mode takes the exact instants instead (docs/spec/correcoes.md, corrections 1 and 2).
+ * mode takes the exact instants instead (docs/spec/corrections.md, corrections 1 and 2).
  */
 export function panchangaDay(eph: Ephemeris, jdUt: number, latitude: number, longitudeEast: number, coreOptions?: Partial<CoreOptions>): PanchangaDay {
   const core = resolveOptions(coreOptions);

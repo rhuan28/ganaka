@@ -16,7 +16,7 @@ type Point = Planet9 | 'lagna' | 'punya' | 'vidya' | 'cancer15' | `middle${numbe
 
 /**
  * The Sahams as PL9 counts them (from the printouts: each formula checked in 161 annual charts, see
- * docs/spec/tempo/varshaphala.md): A - B + C, with 30 degrees added when C is not between B and A (counting from B
+ * docs/spec/time/varshaphala.md): A - B + C, with 30 degrees added when C is not between B and A (counting from B
  * forwards); where `swap`, A and B change places by night. Middles are the houses' middles; lords, the place of the
  * lord of the house's sign counted from the Lagna's.
  */

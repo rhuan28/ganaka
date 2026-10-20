@@ -22,7 +22,7 @@ export interface CoreOptions {
   karakas: 'seven' | 'eight';
   /** PL9's "Bhavapada calculation". */
   bhavapada: 'parashara' | 'knrao';
-  /** 'corrected' repairs PL9's proven defects; 'pl9' reproduces them. See docs/spec/correcoes.md. */
+  /** 'corrected' repairs PL9's proven defects; 'pl9' reproduces them. See docs/spec/corrections.md. */
   fidelity: Fidelity;
 }
 

@@ -5,7 +5,7 @@ import { norm360 } from './zodiac';
 
 /**
  * Amplitude, in arcseconds, of the term that takes the library's true node to PL9's.
- * Measured; see docs/spec/nodo.md.
+ * Measured; see docs/spec/node.md.
  */
 export const NODE_PLANE_TERM_ARCSEC = 0.4653;
 
@@ -21,7 +21,7 @@ export interface NodePosition {
   retrograde: boolean;
 }
 
-/** Rahu (true node) and Ketu as PL9 gives them. See docs/spec/nodo.md. */
+/** Rahu (true node) and Ketu as PL9 gives them. See docs/spec/node.md. */
 export function nodeLongitudes(eph: Ephemeris, jdUt: number, ayanamshaDegrees: number, fidelity: Fidelity = 'pl9'): { rahu: NodePosition; ketu: NodePosition } {
   const t = ephemerisInstant(eph, jdUt, fidelity);
   const node = eph.meanEquinoxLongitude(t, 'trueNode');

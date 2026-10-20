@@ -6,7 +6,7 @@ import { norm360 } from '../zodiac';
 
 /**
  * The points PL9 gives a sign and a planet when it compares two signs in the Chara dasha of Parashara: the sign's own
- * points with those of its lord. See docs/spec/dashas/forca-signos.md.
+ * points with those of its lord. See docs/spec/dashas/sign-strength.md.
  */
 
 const signOf = (longitude: number) => Math.floor(norm360(longitude) / 30);

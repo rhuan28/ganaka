@@ -8,7 +8,7 @@ import { norm360 } from '../../zodiac';
  * The sunrise and sunset the Shadbala counts from, PL9's own: the moments the Lagna reaches the Sun, and the point
  * opposite the Lagna reaches it, the Sun taken to move a degree a day from its place at birth. Found by secants
  * from a first slope of 360 degrees a day, to a thousandth of a degree, in at most nine steps; beyond 65 degrees of
- * latitude the place is taken at 60. See docs/spec/forcas/shadbala.md, "Kala".
+ * latitude the place is taken at 60. See docs/spec/strengths/shadbala.md, "Kala".
  */
 
 /** Signed arc from `a` to `b`, in (-180, 180]. */
@@ -23,7 +23,7 @@ export interface ShadbalaDay {
 }
 
 export function shadbalaDay(eph: Ephemeris, jdUt: number, latitude: number, longitudeEast: number, frame: AyanamshaFrame, sun: number): ShadbalaDay {
-  // PL9 takes 60 degrees north past 65; the corrected mode keeps the place's latitude (docs/spec/correcoes.md, 20).
+  // PL9 takes 60 degrees north past 65; the corrected mode keeps the place's latitude (docs/spec/corrections.md, 20).
   const pl9 = frame.fidelity === 'pl9';
   const lat = pl9 && (latitude > 65 || latitude < -65) ? 60 : latitude;
   const steep = lat > 60 || lat < -60;

@@ -3,7 +3,7 @@ import { norm360 } from '../zodiac';
 
 /**
  * The graded aspects PL9 uses in the Drik Bala and the Bhava Bala, in virupas from 0 to 60. See
- * docs/spec/forcas/aspectos.md.
+ * docs/spec/strengths/aspects.md.
  */
 
 /**

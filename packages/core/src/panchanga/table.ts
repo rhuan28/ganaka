@@ -47,7 +47,7 @@ export interface PanchangTable {
  * elements at the sunrise with their ends and a tithi that falls wholly inside the day; and a header with the month
  * of the first sunrise in the calendar mode (Krishnadi and Krishnadi 1/2 count the Vikram year the Chaitradi way,
  * Shukladi the Kartikadi way) and the true ayanamsha. Where the Sun does not rise there is no table: it throws
- * SunriseUndefinedError. See docs/spec/tempo/panchanga.md.
+ * SunriseUndefinedError. See docs/spec/time/panchanga.md.
  */
 export function computePanchangTable(eph: Ephemeris, first: { year: number; month: number; day: number }, days: number, place: PanchangPlace, mode: CalendarMode = 'krishnadi', coreOptions?: Partial<CoreOptions>): PanchangTable {
   const core = resolveOptions(coreOptions);
@@ -69,7 +69,7 @@ export function computePanchangTable(eph: Ephemeris, first: { year: number; mont
       if (end < p.nextSunrise) extraTithi = { index, name: TITHIS[index - 1]!, endJdUt: end };
     }
     // PL9 repeats the weekday of the row above on the day after a tithi that runs past the next sunrise (from the
-    // printouts); the 'corrected' mode gives the date's (docs/spec/correcoes.md, correction 23).
+    // printouts); the 'corrected' mode gives the date's (docs/spec/corrections.md, correction 23).
     const above = rows[rows.length - 1];
     const repeated = core.fidelity === 'pl9' && above !== undefined && above.atSunrise.tithi.endJdUt >= above.nextSunrise;
     rows.push({ year: civil.getUTCFullYear(), month: civil.getUTCMonth() + 1, day: civil.getUTCDate(), sunrise: p.sunrise, sunset: p.sunset, nextSunrise: p.nextSunrise, vara: repeated ? above.vara : civil.getUTCDay(), atSunrise, extraTithi });

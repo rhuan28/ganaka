@@ -33,7 +33,7 @@ export interface VarshaphalaReport {
   missing: { what: string; reason: string }[];
 }
 
-/** What PL9's Varshaphala reports show for a year of age (docs/spec/tempo/varshaphala.md). */
+/** What PL9's Varshaphala reports show for a year of age (docs/spec/time/varshaphala.md). */
 export function computeVarshaphalaReport(eph: Ephemeris, natal: ChartInput, years: number, options: VarshaphalaOptions = {}): VarshaphalaReport {
   const { solarReturn: mode = 'true', place, returnJdUt, ...coreOptions } = options;
   const v = computeVarshaphala(eph, natal, years, options);

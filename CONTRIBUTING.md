@@ -1,30 +1,30 @@
-# Como contribuir com o Ganaka
+# Contributing to Ganaka
 
-Obrigado pelo interesse. Algumas regras mantêm o motor confiável.
+Thank you for your interest. A few rules keep the engine trustworthy.
 
-## O princípio
+## The principle
 
-Todo número que o motor dá precisa ter procedência: uma regra escrita em `docs/spec/` e, no modo
-`pl9`, a conferência contra as impressões do PL9 na bancada (`packages/oracle`). Uma mudança que
-altere um número traz a regra e o teste que a prova.
+Every number the engine gives needs a provenance: a rule written in `docs/spec/` and, in the `pl9`
+mode, the check against PL9's printouts on the bench (`packages/oracle`). A change that alters a
+number comes with the rule and the test that proves it.
 
-## O modo `corrected`
+## The `corrected` mode
 
-O modo `corrected` só difere do `pl9` por correções descritas em `docs/spec/correcoes.md`, cada uma
-com o defeito, a prova e a decisão. Para propor uma correção, abra uma issue com o defeito e a prova
-antes do código.
+The `corrected` mode differs from `pl9` only by the corrections described in
+`docs/spec/corrections.md`, each with the defect, the proof and the decision. To propose a
+correction, open an issue with the defect and the proof before any code.
 
-## Antes de enviar
+## Before sending
 
 ```bash
 pnpm typecheck
 pnpm test
 ```
 
-- Testes primeiro: o teste que falha antes da mudança e passa depois.
-- Código e comentários em inglês; documentação em português.
-- Nada de material proprietário de terceiros (código, dados ou textos de programas fechados).
+- Tests first: the test that fails before the change and passes after it.
+- Code, comments and documentation in English.
+- No proprietary third-party material (code, data or text from closed programs).
 
-## Licença
+## License
 
-Contribuições entram sob a AGPL-3.0-or-later, a licença do projeto.
+Contributions are made under the AGPL-3.0-or-later, the project's license.

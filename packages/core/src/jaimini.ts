@@ -3,7 +3,7 @@ export const PLANETS_9: readonly Planet9[] = ['sun', 'moon', 'mars', 'mercury', 
 
 /**
  * Signs a sign aspects, by Jaimini: a movable sign the fixed signs but the next one; a fixed sign the movable signs
- * but the one before; a dual sign the other dual signs. See docs/spec/aspectos-jaimini.md.
+ * but the one before; a dual sign the other dual signs. See docs/spec/jaimini-aspects.md.
  */
 export function rashiAspects(sign: number): number[] {
   const kind = sign % 3;

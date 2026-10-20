@@ -1,4 +1,5 @@
 import { CrossingNotFoundError, InvalidInputError, InvalidOptionError, LagnaUndefinedError, NotImplementedOptionError, SunriseUndefinedError } from '@reverse/core';
+import { UnknownZoneError } from '@reverse/atlas';
 import { EphemerisRangeError } from '@reverse/ephemeris';
 import type { FastifyError, FastifyReply, FastifyRequest } from 'fastify';
 
@@ -17,7 +18,7 @@ export function errorReply(e: unknown): { status: number; body: ErrorPayload } {
     const option = /^\/options\/([^/]+)/.exec(path)?.[1] ?? (path === '/options' ? String(v?.params?.additionalProperty ?? '') || undefined : undefined);
     return option ? err(400, 'invalid-option', fe.message, option) : err(400, 'invalid-request', fe.message);
   }
-  if (e instanceof InvalidInputError) return err(400, 'invalid-input', e.message);
+  if (e instanceof InvalidInputError || e instanceof UnknownZoneError) return err(400, 'invalid-input', e.message);
   if (e instanceof InvalidOptionError) return err(400, 'invalid-option', e.message, e.option);
   if (e instanceof NotImplementedOptionError) return err(400, 'option-not-implemented', e.message);
   if (e instanceof LagnaUndefinedError) return err(422, 'lagna-undefined', e.message);

@@ -31,7 +31,7 @@ export function midheavenLongitude(_eph: Ephemeris, jdUt: number, longitudeEast:
 /** Arc from a to b going forward through the zodiac, in [0, 360). */
 const forward = (a: number, b: number): number => norm360(b - a);
 
-/** The houses of a chart from its Lagna and midheaven. See docs/spec/casas.md. */
+/** The houses of a chart from its Lagna and midheaven. See docs/spec/houses.md. */
 export function houseCusps(lagna: number, midheaven: number, system: HouseSystem): Houses {
   if (!Number.isFinite(lagna) || !Number.isFinite(midheaven)) throw new InvalidInputError('lagna and midheaven must be finite numbers');
   const asc = norm360(lagna);

@@ -3,7 +3,7 @@ import { norm360 } from '../../zodiac';
 import type { Planet7 } from '../dignity';
 import type { ShadbalaInputs, ShadbalaOptions } from './types';
 
-/** Kala Bala, the strength of time, and its parts. See docs/spec/forcas/shadbala.md. */
+/** Kala Bala, the strength of time, and its parts. See docs/spec/strengths/shadbala.md. */
 
 const signOf = (longitude: number) => Math.floor(norm360(longitude) / 30);
 const distance = (a: number, b: number) => { const d = norm360(a - b); return d > 180 ? 360 - d : d; };
