@@ -31,3 +31,4 @@ export * from './panchanga/index';
 export * from './varshaphala/index';
 export * from './muhurta/index';
 export * from './kp';
+export * from './natalTables';

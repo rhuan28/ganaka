@@ -38,7 +38,9 @@ can change a number, so that a client that keeps results can tell old ones from 
   - dashas: `/v1/dashas`;
   - strengths: `/v1/strengths/shadbala`, `/v1/strengths/bhava-bala`, `/v1/strengths/ashtakavarga`,
     `/v1/strengths/vimshopaka`;
-  - time: `/v1/transits`, `/v1/panchanga`, `/v1/varshaphala`, `/v1/muhurta`.
+  - time: `/v1/transits`, `/v1/panchanga`, `/v1/varshaphala`, `/v1/muhurta`, `/v1/panch-pakshi` (with `at`);
+  - natal tables (see [natal-tables.md](natal-tables.md)): `/v1/sunrise-chart`, `/v1/aspects`, `/v1/tarabala`,
+    `/v1/lordships` (with `varga`, one of the sixteen classical vargas), `/v1/dispositors`;
   - several of the above at once: `/v1/batch` (below);
   - chart files saved by Parashara's Light 9: `/v1/import/pl9` (below);
   - atlas: `GET /v1/atlas/cities?q=<name>&country=<ISO code>&limit=<1 to 50>` (GeoNames cities,
