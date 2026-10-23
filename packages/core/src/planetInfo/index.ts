@@ -8,13 +8,17 @@ import { dayFrame, SunriseUndefinedError } from '../sunrise';
 import { bodyAstronomy, PLANET_INFO_BODIES, type BodyAstronomy, type PlanetInfoBody } from './astronomy';
 import { combustion, deeptadi, DEFAULT_ANKA, shayanadi, type DeeptadiState, type Shayanadi } from './avasthas';
 import { finalDispositor, hemmed, NATURAL_RELATIONS_9 } from './relations';
-import { argala, dominance, goodVargas, houseEffect, pushkaraNavamsa, housesRuled, mrityuBhaga, navamsaFromRashi, rays, SHADVARGA, shadvargaSignLords, shadvargaElements, type SignQuality } from './columns';
+import { shashtiamsha, vargaDegree, vargaDeity } from './deities';
+import { CLASSICAL_VARGAS, type ClassicalVargaName } from '../vargas';
+import { norm360 } from '../zodiac';
+import { argala, navamshaAge, navamshaNumber, dominance, goodVargas, houseEffect, pushkaraNavamsa, housesRuled, mrityuBhaga, navamsaFromRashi, rays, SHADVARGA, shadvargaSignLords, shadvargaElements, type SignQuality } from './columns';
 
 /** PL9's planet data tables, by body (docs/spec/planet-info.md). */
 
 export { MEAN_SPEED, PLANET_INFO_BODIES, declinationOf, krantiOf, speedPercentOf, type BodyAstronomy, type PlanetInfoBody } from './astronomy';
 export { NATURAL_RELATIONS_9, finalDispositor, hemmed } from './relations';
-export { DASHAVARGA, SHADVARGA, argala, houseEffect, pushkaraNavamsa, dominance, goodVargas, housesRuled, mrityuBhaga, navamsaFromRashi, rays, shadvargaSignLords, shadvargaElements, type SignQuality } from './columns';
+export { SHASHTIAMSHA_DEITIES, shashtiamsha, vargaDegree, vargaDeity } from './deities';
+export { DASHAVARGA, SHADVARGA, navamshaAge, navamshaNumber, argala, houseEffect, pushkaraNavamsa, dominance, goodVargas, housesRuled, mrityuBhaga, navamsaFromRashi, rays, shadvargaSignLords, shadvargaElements, type SignQuality } from './columns';
 export { COMBUSTION_ORB, DEEPTADI, DEFAULT_ANKA, SHAYANADI, combustion, deeptadi, shayanadi, type Combustion, type DeeptadiState, type Shayanadi, type ShayanadiState } from './avasthas';
 
 export interface PlanetInfoOptions {
@@ -53,7 +57,15 @@ export interface PointInfo extends BodyAstronomy {
   housesRuled?: number[];
   /** Rays, Sun to Saturn. */
   rays?: number;
+  /** The navamsha's number from the Lagna's, 1 to 108, and PL9's "age" (the number less one, round); need the Lagna. */
+  navamshaNumber?: number;
+  navamshaAge?: number;
+  /** The Shashtiamsha's number, 1 to 60, and nature; its name is the D60 deity. */
+  shashtiamsha?: { number: number; nature: 'benefic' | 'malefic' };
 }
+
+/** The points of the deities and the degrees in the vargas: the Lagna (when defined), the nine, Mandi and Bhrigu Bindu. */
+export type VargaPoint = 'lagna' | Planet9 | 'mandi' | 'bhrigu';
 
 export interface PlanetInfo {
   fidelity: Fidelity;
@@ -62,6 +74,16 @@ export interface PlanetInfo {
   points: Record<PlanetInfoBody, PointInfo>;
   /** The Lagna's Mrityu Bhaga, when the Lagna is defined and inside the orb. */
   lagnaMrityuBhaga: { distance: number; severity: number } | null;
+  /** The deity of each point in each of the sixteen classical vargas (PL9's "Planetary deities"). */
+  deities: Partial<Record<VargaPoint, Record<ClassicalVargaName, string>>>;
+  /** The degree of each point within each varga of equal parts (the Trimshamsha left out). */
+  vargaDegrees: Partial<Record<VargaPoint, Partial<Record<ClassicalVargaName, number>>>>;
+  /**
+   * The 108 navamshas in the order of the zodiac (from 0° Aries): each one's sign, 0 to 11, and its number from the
+   * Lagna's (null without the Lagna); and which navamsha, 0 to 107, each point is in (PL9's "Navamsha ages").
+   */
+  navamshas: { sign: number; number: number | null }[];
+  navamshaOf: Partial<Record<VargaPoint, number>>;
   /** PL9's natural relations of the nine, Rahu and Ketu included: 1 friend, 0 neutral, -1 enemy. */
   naturalRelations: Record<Planet9, Record<Planet9, -1 | 0 | 1>>;
   /** What a chart cannot give (houses without a Lagna, the sunrise beyond the polar circle), by field. */
@@ -97,7 +119,7 @@ export function computePlanetInfo(eph: Ephemeris, input: ChartInput, options: Pl
   }
   if (!lagna) missing.push({ field: 'shayanadi', reason: 'needs the Lagna' });
   else if (ghatis === null) missing.push({ field: 'shayanadi', reason: 'needs the sunrise' });
-  if (!lagna) missing.push({ field: 'dominance', reason: 'needs the Lagna' }, { field: 'housesRuled', reason: 'needs the Lagna' }, { field: 'houseEffect', reason: 'needs the Lagna' });
+  if (!lagna) missing.push({ field: 'dominance', reason: 'needs the Lagna' }, { field: 'housesRuled', reason: 'needs the Lagna' }, { field: 'houseEffect', reason: 'needs the Lagna' }, { field: 'navamshaNumber', reason: 'needs the Lagna' });
   const f = core.fidelity;
 
   const points = {} as Record<PlanetInfoBody, PointInfo>;
@@ -110,17 +132,32 @@ export function computePlanetInfo(eph: Ephemeris, input: ChartInput, options: Pl
       });
       if (lagna && ghatis !== null) info.shayanadi = shayanadi(p, longitudes, lagna.sign + 1, ghatis, anka);
       const lon = longitudes[p];
+      info.shashtiamsha = shashtiamsha(lon);
       Object.assign(info, {
         ownOrExaltedShadvarga: goodVargas(p, lon, SHADVARGA, f), navamsaFromRashi: navamsaFromRashi(lon, f), pushkaraNavamsa: pushkaraNavamsa(lon, f),
         argala: argala(p, longitudes), mrityuBhaga: mrityuBhaga(p, lon),
         shadvargaDispositors: shadvargaSignLords(lon, f), shadvargaElements: shadvargaElements(lon, f),
       });
-      if (lagna) Object.assign(info, { dominance: dominance(p, longitudes, lagna.longitude), houseEffect: houseEffect(lon, lagna.longitude) });
+      if (lagna) Object.assign(info, {
+        dominance: dominance(p, longitudes, lagna.longitude), houseEffect: houseEffect(lon, lagna.longitude),
+        navamshaNumber: navamshaNumber(lon, lagna.longitude), navamshaAge: navamshaAge(lon, lagna.longitude),
+      });
       const r = rays(p, longitudes);
       if (r !== null) info.rays = r;
       if (lagna && r !== null) info.housesRuled = housesRuled(p, lagna.sign);
     }
     points[body] = info;
   }
-  return { fidelity: core.fidelity, anka, points, lagnaMrityuBhaga: lagna ? mrityuBhaga('lagna', lagna.longitude) : null, naturalRelations: NATURAL_RELATIONS_9, missing };
+  const deities: PlanetInfo['deities'] = {};
+  const vargaDegrees: PlanetInfo['vargaDegrees'] = {};
+  const at: Partial<Record<VargaPoint, number>> = { ...longitudes };
+  for (const extra of ['lagna', 'mandi', 'bhrigu'] as const) { const pt = positions.points[extra]; if (pt) at[extra] = pt.longitude; }
+  for (const [point, lon] of Object.entries(at) as [VargaPoint, number][]) {
+    deities[point] = Object.fromEntries(CLASSICAL_VARGAS.map((v) => [v, vargaDeity(lon, v)])) as Record<ClassicalVargaName, string>;
+    vargaDegrees[point] = Object.fromEntries(CLASSICAL_VARGAS.flatMap((v) => { const d = vargaDegree(lon, v); return d === null ? [] : [[v, d]]; }));
+  }
+  const g0 = lagna ? Math.floor(norm360(lagna.longitude) / (360 / 108)) : null;
+  const navamshas = Array.from({ length: 108 }, (_, g) => ({ sign: g % 12, number: g0 === null ? null : ((g - g0 + 108) % 108) + 1 }));
+  const navamshaOf = Object.fromEntries(Object.entries(at).map(([pt, lon]) => [pt, Math.floor(norm360(lon) / (360 / 108))])) as PlanetInfo['navamshaOf'];
+  return { fidelity: core.fidelity, anka, points, deities, vargaDegrees, navamshas, navamshaOf, lagnaMrityuBhaga: lagna ? mrityuBhaga('lagna', lagna.longitude) : null, naturalRelations: NATURAL_RELATIONS_9, missing };
 }

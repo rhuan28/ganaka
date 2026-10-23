@@ -52,7 +52,9 @@ can change a number, so that a client that keeps results can tell old ones from 
     rule of any yoga, and takes only `birth` and `options`;
   - planet data (see [planet-info.md](planet-info.md)): `/v1/planet-info`, the columns of PL9's planet tables per
     body (declination, Kranti, speed against the mean, combustion, the Deeptadi and Shayanadi avasthas, Hemmed, final
-    dispositor, argala, and the others the spec lists), the natural relations of the nine, and `missing` for what a
+    dispositor, argala, the navamsha number and age, the Shashtiamsha, and the others the spec lists), the deity of
+    each point in the sixteen classical vargas, the degrees within the equal vargas, the 108 navamshas numbered from the
+    Lagna's (see [natal-tables.md](natal-tables.md)), the natural relations of the nine, and `missing` for what a
     chart cannot give. Its own options go in `planetInfo`: `anka`, PL9's Anka value, an integer from 1 to 5 (1 when
     absent; the answer says which was used);
   - several of the above at once: `/v1/batch` (below);

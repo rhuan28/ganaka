@@ -169,3 +169,12 @@ export function houseEffect(longitude: number, lagna: number): number {
   const room = d < a ? a : 30 - a;
   return 100 - Math.round((100 * Math.abs(d - a)) / room);
 }
+
+/** The 108 navamshas of the zodiac, numbered 1 to 108 from the Lagna's (PL9's "Navamsha ages" page). */
+export function navamshaNumber(longitude: number, lagna: number): number {
+  const index = (lon: number) => Math.floor(norm360(lon) / (360 / 108));
+  return ((index(longitude) - index(lagna)) % 108 + 108) % 108 + 1;
+}
+
+/** PL9's "age" column: the navamsha's number less one, counted round 1 to 108 (the Lagna's own navamsha gives 108). */
+export const navamshaAge = (longitude: number, lagna: number): number => ((navamshaNumber(longitude, lagna) + 106) % 108) + 1;

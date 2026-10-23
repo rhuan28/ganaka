@@ -66,6 +66,7 @@ for (const [chart, cells] of Object.entries(read)) {
     check('SVdisp', chart, body, p.shadvargaDispositors!.map((d) => `${abbr(d.lord)}(${d.count})`).join(' '), c.SVdisp);
     check('SVelem', chart, body, p.shadvargaElements!.map((e) => `${ELEMENT[e.quality]} (${e.count})`).join(' '), c.SVelem);
     // PL9 cuts the minutes of the Mrityu Bhaga distance.
+    if (p.navamshaAge !== undefined) check('age', chart, body, String(p.navamshaAge), c.age);
     check('MB', chart, body, p.mrityuBhaga ? `00:${pad(Math.floor(p.mrityuBhaga.distance * 60))}` : '', c.MB);
     learn(words.av9, p.deeptadi, c.Av9);
     learn(words.av12, p.shayanadi?.state, c.Av12);

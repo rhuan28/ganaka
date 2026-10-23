@@ -27,3 +27,15 @@ describe('the other columns of the planet tables', () => {
     expect(info.lagnaMrityuBhaga).toBeNull();
   });
 });
+
+describe('the navamsha numbers', () => {
+  it("count the 108 navamshas from the Lagna's, and give PL9's age as the number less one, round", async () => {
+    const { navamshaAge, navamshaNumber } = await import('../src');
+    // REF 0010: the Lagna at 16°30' Cancer (Pushya's 4th pada, navamsha 33 of the zodiac); the Sun at 12°24' Taurus.
+    expect(navamshaNumber(106.515, 106.515)).toBe(1);
+    expect(navamshaNumber(42.4, 106.515)).toBe(90);
+    expect(navamshaAge(42.4, 106.515)).toBe(89);
+    expect(navamshaAge(106.515, 106.515)).toBe(108);
+    expect(navamshaNumber(103.2, 106.515)).toBe(108); // the navamsha before the Lagna's
+  });
+});
