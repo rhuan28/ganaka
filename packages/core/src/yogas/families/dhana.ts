@@ -21,15 +21,16 @@ const FIRST: [Planet9, Planet9[]][] = [
   ['sun', ['mars', 'jupiter']], ['moon', ['mercury', 'jupiter']], ['mars', ['mercury', 'venus', 'saturn']], ['mercury', ['jupiter', 'saturn']],
   ['jupiter', ['mercury', 'mars']], ['venus', ['mercury', 'saturn']], ['saturn', ['mars', 'jupiter']],
 ];
-const BY_STATE = ['danNinthLordState', 'danNinthLordTenthLordState', 'svaveeryaddhanaStrongLagnaLord', 'bhratrumulaladdhanaState',
-  'matrumulaladdhana', 'putramulaladdhana', 'satrumuladdhana'];
+/** The yogas of a varga dignity, and the one that also needs the Shadbala to name the strongest planet. */
+const BY_DIGNITY = ['danNinthLordState', 'danNinthLordTenthLordState', 'bhratrumulaladdhanaState', 'matrumulaladdhana', 'putramulaladdhana', 'satrumuladdhana'];
+const BY_STRONGEST = ['svaveeryaddhanaStrongLagnaLord'];
 
 export function dhana(ch: YogaChart): YogaResult {
   const ids = ['dhanaGemini', ...FIFTH.map(([p]) => `dhanaFifth${NAME[p]}`), ...FIRST.map(([p]) => `dhanaLagna${NAME[p]}`), 'dhanaFifthNinthLords',
     'dhanaLagnaLord', 'dhanaSecondLord', 'dhanaFifthLord', 'dhanaNinthEleventhLords', 'danExaltedNinthLord', 'danNinthLordInLagna', 'danPlacements',
     'danMercuryExalted', 'bahudravyarjanaDhana', 'svaveeryaddhana', 'anthyaVayasiDhana', 'balyaDhana', 'bhratrumulaladdhana', 'kalatramuladdhana',
     'ayatnadhanalabha'];
-  if (ch.lagnaSign === null) return { yogas: [], missing: [...ids, ...BY_STATE].map((id): MissingYoga => ({ id, reason: 'needs the Lagna' })) };
+  if (ch.lagnaSign === null) return { yogas: [], missing: [...ids, ...BY_DIGNITY, ...BY_STRONGEST].map((id): MissingYoga => ({ id, reason: 'needs the Lagna' })) };
   const lagna = ch.lagnaSign;
   const yogas: Yoga[] = [];
   const add = (id: string, present: boolean, planets: Planet9[] = []) => {
@@ -80,6 +81,20 @@ export function dhana(ch: YogaChart): YogaResult {
   add('bhratrumulaladdhana', Y(L(1), L(2)) && house(L(1)) === 3 && benefics.some((b) => D(L(1), b)), [L(1), L(2)]);
   add('kalatramuladdhana', strong(L(1)) && strong(L(2)) && R(L(2), L(7)) && R(L(2), 'venus'), [L(1), L(2), L(7)]);
   add('ayatnadhanalabha', L(1) !== L(2) && lordOf(ch.signs[L(1)]) === L(2) && lordOf(ch.signs[L(2)]) === L(1), [L(1), L(2)]);
-  const missing = BY_STATE.map((id): MissingYoga => ({ id, reason: 'needs a planetary state PL9 computes and the engine does not yet' }));
+  // The varga dignities (docs/spec/planet-info.md): Simhasana is 5 of the Dashavarga, Paravata 6, Vaisheshika 10.
+  const dignityIs = (p: Planet9, n: number) => ch.vargaDignity[p] === n;
+  add('danNinthLordState', dignityIs(L(9), 6) && R(L(9), 'jupiter') && R(L(1), 'venus'), [L(9), L(1)]);
+  add('danNinthLordTenthLordState', R(L(9), L(1)) && R(L(9), L(10)) && dignityIs(L(9), 5), [L(9), L(1), L(10)]);
+  add('bhratrumulaladdhanaState', dignityIs(L(1), 10) && Y(L(3), 'jupiter') && house(L(3)) === 2 && D(L(3), L(1)), [L(1), L(3)]);
+  add('matrumulaladdhana', strong(L(2)) && R(L(2), L(4)) && dignityIs(L(4), 10), [L(2), L(4)]);
+  add('putramulaladdhana', dignityIs(L(1), 10) && strong(L(2)) && (Y(L(2), L(5)) || Y(L(2), 'jupiter')), [L(1), L(2)]);
+  add('satrumuladdhana', dignityIs(L(1), 10) && strong(L(2)) && (R(L(2), L(6)) || R(L(2), 'mars')), [L(1), L(2)]);
+  // The strongest planet, as PL9 picks it: the highest Shadbala over its minimum among the seven, the later on a tie.
+  const missing: MissingYoga[] = [];
+  if (ch.shadbalaRatio) {
+    const ratio = ch.shadbalaRatio;
+    const strongest = (SEVEN as Planet7[]).reduce((a, b) => (ratio[b] >= ratio[a] ? b : a)) as Planet9;
+    add('svaveeryaddhanaStrongLagnaLord', L(1) === strongest && inGroup(house(L(1)), 'kendra') && Y(L(1), 'jupiter') && dignityIs(L(2), 10), [L(1), L(2)]);
+  } else missing.push(...BY_STRONGEST.map((id): MissingYoga => ({ id, reason: 'needs the Shadbala' })));
   return { yogas, missing };
 }

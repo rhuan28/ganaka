@@ -5,8 +5,10 @@ import type { Planet9 } from '../jaimini';
 import { resolveOptions, type CoreOptions } from '../options';
 import { computeBirthPanchanga } from '../panchanga/compute';
 import type { ChartInput } from '../positions';
+import { computePlanetInfo } from '../planetInfo';
 import { aspectValue } from '../strengths/aspects';
 import { dignity9, type Planet7 } from '../strengths/dignity';
+import { vimshopaka } from '../strengths/vimshopaka';
 import { CLASSICAL_VARGAS } from '../vargas';
 import { nakshatraOf, norm360 } from '../zodiac';
 import { dayBirth } from './chart';
@@ -33,8 +35,15 @@ export interface YogaContextVarga {
 export interface YogaContext {
   fidelity: Fidelity;
   lagna: { longitude: number; sign: number } | null;
-  /** Per planet: sidereal longitude, speed (degrees a day), sign 0 to 11, nakshatra 0 (Ashwini) to 26, dignity, combust. */
-  planets: Record<Planet9, { longitude: number; speed: number; sign: number; nakshatra: number; dignity: number; combust: boolean }>;
+  /**
+   * Per planet: sidereal longitude, speed (degrees a day), sign 0 to 11, nakshatra 0 (Ashwini) to 26, dignity, combust;
+   * the varga dignity (own or exaltation signs over the Dashavarga), the Shayanadi state (1 to 12; null without the
+   * Lagna or the sunrise) and the Shadvarga Vimshopaka (up to 20), as docs/spec/planet-info.md gives them.
+   */
+  planets: Record<Planet9, {
+    longitude: number; speed: number; sign: number; nakshatra: number; dignity: number; combust: boolean;
+    vargaDignity: number; shayanadi: number | null; vimshopakaShadvarga: number;
+  }>;
   /** The sixteen classical vargas, the D1 included. */
   vargas: Record<YogaContextVargaName, YogaContextVarga>;
   /** Natural, and functional for the ascendant (null without a Lagna). */
@@ -58,6 +67,8 @@ export function computeYogaContext(eph: Ephemeris, input: ChartInput, coreOption
   const ych = computeYogaChart(eph, input, {}, o);
   const lon = ych.longitudes;
   const lagna = chart.points.lagna;
+  const info = computePlanetInfo(eph, input, {}, o);
+  const vim = vimshopaka(lon, o.fidelity);
   const vargas = {} as Record<YogaContextVargaName, YogaContextVarga>;
   for (const v of CLASSICAL_VARGAS) {
     const parts = Number(v.slice(1));
@@ -94,6 +105,7 @@ export function computeYogaContext(eph: Ephemeris, input: ChartInput, coreOption
     planets: Object.fromEntries(NINE.map((p) => [p, {
       longitude: lon[p], speed: chart.points[p].longitudeSpeed ?? 0, sign: ych.signs[p], nakshatra: nakshatraOf(lon[p]),
       dignity: ych.dignity[p], combust: ych.combust[p],
+      vargaDignity: ych.vargaDignity[p], shayanadi: info.points[p].shayanadi?.number ?? null, vimshopakaShadvarga: vim.planets[p].scores.shadvarga,
     }])) as YogaContext['planets'],
     vargas,
     natures: { natural: naturalNatures(lon), functional: lagna ? functionalNatures({ ...lon, lagna: lagna.longitude }) : null },

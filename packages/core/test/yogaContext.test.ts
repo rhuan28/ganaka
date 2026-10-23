@@ -45,5 +45,17 @@ describe('the yoga context', () => {
     expect(p.natures.functional).toBeNull();
     expect(p.dayBirth).toBeNull();
     expect(p.vargas.D9.lagnaSign).toBeNull();
+    expect(p.planets.sun.shayanadi).toBeNull();
+  });
+
+  it('gives each planet its varga dignity, its Shayanadi state and its Shadvarga Vimshopaka', () => {
+    const x = computeYogaContext(fakeSky, birth, c);
+    for (const pl of ['sun', 'moon', 'rahu'] as const) {
+      expect(x.planets[pl].vargaDignity).toBeGreaterThanOrEqual(0);
+      expect(x.planets[pl].vargaDignity).toBeLessThanOrEqual(10);
+      expect(x.planets[pl].shayanadi).toBeGreaterThanOrEqual(1);
+      expect(x.planets[pl].shayanadi).toBeLessThanOrEqual(12);
+      expect(x.planets[pl].vimshopakaShadvarga).toBeLessThanOrEqual(20);
+    }
   });
 });

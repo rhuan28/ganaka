@@ -161,10 +161,13 @@ aspect on them.
 texts, PL9's Jaimini Raja yogas and the Raja-Bhanga are each stated with their conditions as the family is
 written.
 
-**6. Dhana.** *Checked: 31 of the 38 yogas in the 135 reference charts.* Association between the lords of the 1st, 2nd, 5th, 9th and 11th, and the planet-specific
-combinations of the 1st, 5th and 11th houses, and the named Dhana yogas. Seven of them test a planetary state
-(an avastha in twelve steps) that PL9 computes and the engine does not yet. Until that state is read, they are
-reported missing, not absent. None of them appears in the reference charts.
+**6. Dhana.** *Checked: the 38 yogas in the 135 reference charts.* Association between the lords of the 1st, 2nd, 5th, 9th and 11th, and the planet-specific
+combinations of the 1st, 5th and 11th houses, and the named Dhana yogas. Six of them ask a lord for a varga
+dignity: in how many of the Dashavarga it is in its own or its exaltation sign ([planet-info.md](planet-info.md)),
+5 for Simhasana, 6 for Paravata, 10 for Vaisheshika, exactly that number and not more, as PL9 tests it. One of
+them, Svaveeryaddhana with the Lagna lord the strongest planet, also asks for the strongest planet, which PL9 takes
+as the highest Shadbala over its required minimum among the seven, the later planet on a tie; without the Shadbala
+it is missing. None of the seven appears in the reference charts, so they are checked by hand-built charts.
 
 **7. Viparita.** *Checked: the 3 yogas in the 135 reference charts.* The lord of the 6th (Harsha), the 8th (Sarala) or the 12th (Vimala) in a dusthana.
 

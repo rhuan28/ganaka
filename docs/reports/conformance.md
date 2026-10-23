@@ -1643,6 +1643,6 @@ The Muhurta chart and its vargas (D9, D10, D16, D24, D60), positions, nakshatras
 
 | Charts | Yogas present (PL9) | Checked | Failures | Pending |
 |---|---|---|---|---|
-| 135 | 3272 | 46035 | 0 | 7 |
+| 135 | 3272 | 46980 | 0 | 0 |
 
 PL9's yogas 1 to 348 (the classical families), compared yoga by yoga for every family of docs/spec/yogas.md, less the yogas the engine reports missing, which stay pending.

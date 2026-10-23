@@ -34,4 +34,5 @@ export * from './kp';
 export * from './natalTables';
 export * from './yogas/natures';
 export { computeYogaContext, type YogaContext, type YogaContextVarga, type YogaContextVargaName } from './yogas/context';
+export { computePlanetInfo, AnkaRangeError, DASHAVARGA, SHADVARGA, argala, houseEffect, pushkaraNavamsa, dominance, goodVargas, housesRuled, mrityuBhaga, navamsaFromRashi, rays, shadvargaSignLords, shadvargaElements, type SignQuality, NATURAL_RELATIONS_9, finalDispositor, hemmed, COMBUSTION_ORB, DEEPTADI, DEFAULT_ANKA, MEAN_SPEED, PLANET_INFO_BODIES, SHAYANADI, combustion, declinationOf, deeptadi, krantiOf, shayanadi, speedPercentOf, type BodyAstronomy, type Combustion, type DeeptadiState, type PlanetInfo, type PlanetInfoBody, type PlanetInfoOptions, type PointInfo, type Shayanadi, type ShayanadiState } from './planetInfo';
 export { computeYogas, computeYogaChart, type YogaOptions, type Yoga, type YogaChart, type YogaResult, type MissingYoga } from './yogas/index';

@@ -48,7 +48,13 @@ can change a number, so that a client that keeps results can tell old ones from 
     planets (longitude, speed, sign, nakshatra, dignity, combustion), the sixteen classical vargas (the Lagna's sign,
     each planet's sign, longitude and dignity there, and the graded aspects between planets), the natural and
     functional natures, the Shadbala ratio, the chara karakas, the signs of the special points, day or night birth
-    and the weekday. It holds no rule of any yoga, and takes only `birth` and `options`;
+    and the weekday; and per planet its varga dignity, its Shayanadi state and its Shadvarga Vimshopaka. It holds no
+    rule of any yoga, and takes only `birth` and `options`;
+  - planet data (see [planet-info.md](planet-info.md)): `/v1/planet-info`, the columns of PL9's planet tables per
+    body (declination, Kranti, speed against the mean, combustion, the Deeptadi and Shayanadi avasthas, Hemmed, final
+    dispositor, argala, and the others the spec lists), the natural relations of the nine, and `missing` for what a
+    chart cannot give. Its own options go in `planetInfo`: `anka`, PL9's Anka value, an integer from 1 to 5 (1 when
+    absent; the answer says which was used);
   - several of the above at once: `/v1/batch` (below);
   - chart files saved by Parashara's Light 9: `/v1/import/pl9` (below);
   - atlas: `GET /v1/atlas/cities?q=<name>&country=<ISO code>&limit=<1 to 50>` (GeoNames cities,
@@ -63,7 +69,7 @@ can change a number, so that a client that keeps results can tell old ones from 
   (the clock offset, already resolved).
 - The engine options go in `options`, with the `core` names: `ayanamsha`, `fidelity`, `gulika`
   etc. The mode is `corrected` by default; `fidelity: "pl9"` reproduces PL9.
-- The options of each area have their own object: `dasha`, `shadbala`, `ashtakavarga` and `yogas`
+- The options of each area have their own object: `dasha`, `shadbala`, `ashtakavarga`, `yogas` and `planetInfo`
   (`functionalNature`, PL9's "Use functional mal/ben", and `sex`, `male` by default).
 - Unknown fields are rejected, so that a wrong name is never silently ignored.
 - Every response carries the `X-Source-Code` header with the address of the source code, and the

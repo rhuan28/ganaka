@@ -1,6 +1,7 @@
 import type { Fidelity } from '../fidelity';
 import type { Planet9 } from '../jaimini';
 import { dignity9, type Planet7 } from '../strengths/dignity';
+import { DASHAVARGA, goodVargas } from '../planetInfo/columns';
 import { vargaSign } from '../vargas';
 import { combustInTable } from '../varshaphala/tajika';
 import { charaKarakas, type KarakaPlanet } from '../karakas';
@@ -44,6 +45,11 @@ export interface YogaChart extends YogaVarga {
   karakas: Planet9[];
   /** Gulika's sign; null where it is not defined. */
   gulikaSign: number | null;
+  /**
+   * The varga dignity: in how many of the Dashavarga each planet is in its own or its exaltation sign (5 Simhasana,
+   * 6 Paravata ... 10 Vaisheshika), as docs/spec/planet-info.md counts it.
+   */
+  vargaDignity: Record<Planet9, number>;
 }
 
 export interface Yoga {
@@ -82,6 +88,7 @@ export function yogaChartFrom(longitudes: Record<Planet9, number> & { lagna?: nu
     combust: Object.fromEntries(NINE.map((p) => [p, combustInTable(p, planets[p], planets.sun, speeds[p] ?? 0)])) as Record<Planet9, boolean>,
     d4: { longitudes: d4, signs: Object.fromEntries(NINE.map((p) => [p, signOf(d4[p])])) as Record<Planet9, number> },
     atmakaraka, karakamsha: signOf(nav[atmakaraka]), karakas, gulikaSign: gulika === null ? null : signOf(gulika),
+    vargaDignity: Object.fromEntries(NINE.map((p) => [p, goodVargas(p, planets[p], DASHAVARGA, fidelity)])) as Record<Planet9, number>,
   };
 }
 
