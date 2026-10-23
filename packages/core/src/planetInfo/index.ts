@@ -82,7 +82,7 @@ export function computePlanetInfo(eph: Ephemeris, input: ChartInput, options: Pl
   if (!Number.isInteger(anka) || anka < 1 || anka > 5) throw new AnkaRangeError(anka);
   const core = resolveOptions(coreOptions);
   const positions = computePositions(eph, input, core);
-  const astronomy = bodyAstronomy(eph, input.jdUt, positions, core.node);
+  const astronomy = bodyAstronomy(eph, input.jdUt, positions);
   const longitudes = Object.fromEntries(NINE.map((p) => [p, positions.points[p].longitude])) as Record<Planet9, number>;
   const missing: PlanetInfo['missing'] = [];
 

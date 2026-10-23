@@ -1,5 +1,6 @@
 import type { Ephemeris } from '@reverse/ephemeris';
 import type { Planet9 } from '../jaimini';
+import { ephemerisInstant } from '../planets';
 import type { Positions } from '../positions';
 import { norm360 } from '../zodiac';
 
@@ -48,19 +49,21 @@ export function speedPercentOf(body: Planet9, speed: number): number | null {
   return speed === 0 ? null : Math.trunc((100 * MEAN_SPEED[body]) / speed);
 }
 
-export function bodyAstronomy(eph: Ephemeris, jdUt: number, positions: Positions, node: 'true' | 'mean'): Record<PlanetInfoBody, BodyAstronomy> {
-  // PL9 takes these from the ephemeris at the birth instant itself, not at the instant its positions use.
-  const { trueObliquity } = eph.obliquityAndNutation(jdUt);
+export function bodyAstronomy(eph: Ephemeris, jdUt: number, positions: Positions): Record<PlanetInfoBody, BodyAstronomy> {
+  // At the instant PL9's positions use (docs/spec/planet-info.md).
+  const instant = ephemerisInstant(eph, jdUt, positions.fidelity);
+  const { trueObliquity, nutationLongitude } = eph.obliquityAndNutation(instant);
   const out = {} as Record<PlanetInfoBody, BodyAstronomy>;
   for (const body of PLANET_INFO_BODIES) {
-    const point = positions.points[body];
-    const speed = point.longitudeSpeed ?? 0;
     const isNode = body === 'rahu' || body === 'ketu';
-    // The nodes have no latitude; PL9 takes Rahu from the ephemeris as it is (the true or the mean node, by the
-    // chart's option), not its own corrected node, and Ketu opposite.
-    const tropical = eph.tropical(jdUt, isNode ? (node === 'mean' ? 'meanNode' : 'trueNode') : body);
-    const latitude = isNode ? 0 : tropical.latitude;
-    const tropicalLongitude = body === 'ketu' ? norm360(tropical.longitude + 180) : tropical.longitude;
+    // The nodes have no latitude; their longitude is PL9's own node (positions.ts) put back on the true equinox:
+    // the ayanamsha and the nutation in longitude added. Ketu is opposite.
+    const point = positions.points[body];
+    const tropical = isNode ? null : eph.tropical(instant, body);
+    // The nodes' speed is the ephemeris' true node's, as PL9's tables print it.
+    const speed = (tropical ?? eph.tropical(instant, 'trueNode')).longitudeSpeed;
+    const latitude = tropical ? tropical.latitude : 0;
+    const tropicalLongitude = tropical ? tropical.longitude : norm360(point.longitude + positions.ayanamshaDegrees + nutationLongitude);
     const outer = (OUTER as readonly string[]).includes(body);
     out[body] = {
       tropicalLongitude,

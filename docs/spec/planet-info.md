@@ -11,12 +11,14 @@ for some bodies only says so.
 ## Astronomy
 
 - **Declination:** the true declination, degrees, from the body's ecliptic longitude and latitude and the true
-  obliquity of the date, taken from the ephemeris at the birth instant itself (not at the instant PL9's positions use). Rahu is the node of the chart's option (the true node, the only one the engine has) from the ephemeris as it is, with no latitude; Ketu is
-  its opposite, so its declination is Rahu's with the sign changed. PL9's Declination page lists Sun to Rahu and the
-  three outer planets, not Ketu.
+  obliquity of the date, all at the instant PL9's positions use ([corrections.md](corrections.md)). The nodes have no
+  latitude: Rahu is PL9's own node ([node.md](node.md)) put back on the true equinox, its sidereal longitude plus the
+  ayanamsha and the nutation in longitude; Ketu is its opposite, so its declination is Rahu's with the sign changed.
+  PL9's Declination page lists Sun to Rahu and the three outer planets, not Ketu.
 - **Kranti:** PL9's approximation of the declination, 23.45° times the sine of the tropical longitude, the latitude
   left out. It is the declination PL9's Shadbala uses ([strengths/shadbala.md](strengths/shadbala.md)).
-- **Speed:** degrees a day, negative when retrograde. **Speed against the mean:** 100 times PL9's mean daily motion
+- **Speed:** degrees a day, negative when retrograde, from the ephemeris at the same instant (for the nodes, the
+  ephemeris' true node). **Speed against the mean:** 100 times PL9's mean daily motion
   over the actual speed, truncated, so a slow planet shows more than 100 and a retrograde one a negative number.
   PL9's mean motions: Sun, Mercury and Venus 0.985556; Moon 13.176667; Mars 0.616667; Jupiter 0.081111; Saturn
   0.033611; Rahu and Ketu 0.052993. None for the outer planets.
@@ -70,7 +72,8 @@ only, so a combust Moon shows 0.
   3rd. The planets of each sign are put by quarter of the sign, 7°30′ each; a pair gives, over the four quarters, how
   many more planets the argala sign has in a quarter than the obstructing sign in the mirror quarter (never less than
   none). The count is the sum of the pairs, and three more when the 3rd from the planet holds more than two natural
-  malefics (the Sun, Mars, Saturn and the nodes).
+  malefics, taken as the yogas take the natural natures ([yogas.md](yogas.md)): the Sun, Mars, Saturn and the nodes,
+  the waning Moon, and Mercury with malefics.
 - **House effect:** with whole-sign houses, full at the Lagna's degree within the sign and nothing at the sign's edges:
   100 minus 100 times the planet's distance from that degree over the room on its side (the Lagna's degree before it,
   30° less that degree after it), rounded. Needs the Lagna.
@@ -80,7 +83,7 @@ only, so a combust Moon shows 0.
 - **Houses ruled:** the houses from the Lagna whose signs the planet rules, Sun to Saturn. Needs the Lagna.
 - **Mrityu Bhaga:** each body has a degree of death in each sign (PL9's table, in the code, the Lagna too). Inside the
   orb (40′ for the Sun, the Moon, Mercury and Venus, 30′ for the others, 1° for the Lagna) the column gives the
-  distance and a severity, 1 − distance / orb; outside it, nothing.
+  distance and a severity, 1 − distance / orb; outside it, nothing. PL9 prints the distance in whole minutes, cut.
 - **Shadvarga lords:** the planets ruling the planet's sign in two or more of the Shadvarga, the most first.
 - **Shadvarga elements:** the three most frequent elements and modes of the planet's signs over the Shadvarga, with
   their counts; ties go in the order water, fire, earth, air, dual, movable, fixed.
@@ -91,6 +94,15 @@ only, so a combust Moon shows 0.
   Lagna × 1, the Lagna lord × 0.75, the Moon × 0.75, the Sun × 0.5, the lord of the Moon's sign × 0.5 and the lord of
   the Sun's sign × 0.3, none on itself. A node's aspects count for nothing on a target whose sign holds the other node,
   and the rest are divided by 1.25. Needs the Lagna.
+
+## Checked
+
+Against PL9's printed "Declination" and "Interpreting Grahas" pages for the 135 reference charts
+(`check-planet-info`): every column the engine gives matches, with these border cases. Four declinations off by one
+second, at the rounding of a half second. Eleven speeds against the mean of bodies almost stationary, where a speed
+near zero makes the share run to thousands of percent and PL9's narrow column cuts it. The houses ruled, RN and the
+house effect do not fit PL9's printed page and are checked on its screen for one chart. PL9 writes the sign of a value
+even where it rounds to zero ("-00:00").
 
 ## Not covered yet
 

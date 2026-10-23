@@ -5,6 +5,7 @@ import { aspectValue } from '../strengths/aspects';
 import { dignity9 } from '../strengths/dignity';
 import { vargaSign, type VargaName } from '../vargas';
 import { norm360 } from '../zodiac';
+import { naturalNatures } from '../yogas/natures';
 import { finalDispositor } from './relations';
 
 /** The other columns of PL9's planet tables (docs/spec/planet-info.md). */
@@ -132,13 +133,13 @@ export function dominance(planet: Planet9, longitudes: Record<Planet9, number>, 
   return score + aspects;
 }
 
-const NATURAL_MALEFICS: Planet9[] = ['sun', 'mars', 'saturn', 'rahu', 'ketu'];
 
 /**
  * Argala, PL9's count: for each pair of signs counted from the planet's (2nd against 12th, 4th against 10th, 5th
  * against 9th, 11th against 3rd; backwards for the nodes), the planets of each sign by quarter of the sign (7.5° each),
  * and the excess, never negative, of the argala sign's planets in a quarter over the obstructing sign's in the mirror
- * quarter, summed. Three more when the 3rd from the planet holds more than two natural malefics.
+ * quarter, summed. Three more when the 3rd from the planet holds more than two natural malefics (the Moon waning and
+ * Mercury with malefics among them, as the yogas take the natural natures).
  */
 export function argala(planet: Planet9, longitudes: Record<Planet9, number>): number {
   const nine = Object.keys(longitudes) as Planet9[];
@@ -154,7 +155,8 @@ export function argala(planet: Planet9, longitudes: Record<Planet9, number>): nu
     const qa = quarters(from(a)), qb = quarters(from(b));
     for (let k = 0; k < 4; k++) total += Math.max(0, qa[k]! - qb[3 - k]!);
   }
-  if (nine.filter((p) => NATURAL_MALEFICS.includes(p) && signOf(longitudes[p]) === from(3)).length > 2) total += 3;
+  const natures = naturalNatures(longitudes);
+  if (nine.filter((p) => natures[p] === 'malefic' && signOf(longitudes[p]) === from(3)).length > 2) total += 3;
   return total;
 }
 
