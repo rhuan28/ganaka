@@ -1,7 +1,7 @@
 import { existsSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { computeAshtakavarga, computeBhavaBala, computeShadbala, computeBirthPanchanga, computePanchangTable, computePositions, computeTransits, clockTime, ghatis, karanaName, karanaOf, tithiOf, yogaOf, tithiPravesh, TITHIS, YOGAS, computeVimshopaka, computeSunriseChart, dashasAt, eventDashas, kotaChakra, monthCalendar, panchPakshi, sunriseDashaRows, worksheetDashaLists, monthEvents, vargaTable, kakshaCalendar, signIngresses, timeOfTransit, type TransitEvent, DASHA_SYSTEMS, HOUSE_SYSTEMS, KALACHAKRA_YEARS, RASHI_DASHA_SYSTEMS, SIGN_NAMES, divisionIndex, NAKSHATRA_DASHA_SYSTEMS, POINTS, VARGAS, computeChart, computeDashas, type AshtakavargaOptions, type AyanamshaName, type BhavaRow, type ShadbalaOptions, type DashaSystem, type Chart, type CoreOptions } from '@reverse/core';
+import { computeAshtakavarga, computeBhavaBala, computeShadbala, computeBirthPanchanga, computePanchangTable, computePositions, computeTransits, clockTime, ghatis, karanaName, karanaOf, tithiOf, yogaOf, tithiPravesh, TITHIS, YOGAS, computeVimshopaka, computeYogas, computeSunriseChart, dashasAt, eventDashas, kotaChakra, monthCalendar, panchPakshi, sunriseDashaRows, worksheetDashaLists, monthEvents, vargaTable, kakshaCalendar, signIngresses, timeOfTransit, type TransitEvent, DASHA_SYSTEMS, HOUSE_SYSTEMS, KALACHAKRA_YEARS, RASHI_DASHA_SYSTEMS, SIGN_NAMES, divisionIndex, NAKSHATRA_DASHA_SYSTEMS, POINTS, VARGAS, computeChart, computeDashas, type AshtakavargaOptions, type AyanamshaName, type BhavaRow, type ShadbalaOptions, type DashaSystem, type Chart, type CoreOptions } from '@reverse/core';
 import { createSwissEphemeris } from '@reverse/ephemeris';
 import { loadFixtures } from '../conformance';
 import type { Fixture } from '../fixtures';
@@ -16,6 +16,7 @@ import { KNOWN_BIRTH_PENDING, loadPanchangaFixtures, loadPanchangPrintouts, veri
 import { verifyMonthCalendar } from '../monthCalendarTables';
 import { computeVarshaClockInputs, KNOWN_VARSHA_CLOCK_PENDING, VARSHA_CLOCK_ALWAYS_PENDING, verifyVarshaAge, verifyVarshaClock, verifyVarshaLists, KNOWN_VARSHA_LISTS_PENDING } from '../varshaClockTables';
 import { loadTransitFixtures, verifyCalendar, verifyEvents, verifyKota, verifyIngress, verifyPakshi, verifySbVb, verifySunrise, verifyVargas, verifyTransitSnapshot, type TransitFixture } from '../transitTables';
+import { ENGINE_YOGAS, loadYogaFixtures, verifyYogas, YOGA_NUMBERS, type YogaFixture } from '../yogaTables';
 import { loadStrengthFixtures, verifyAshtakavarga, verifyBhavaBala, verifyShadbala, verifyShadbalaMemory, verifyVimshopaka, type ShadbalaMemoryFixture, type StrengthFixture } from '../strengthTables';
 
 const TOLERANCE = 0.5;
@@ -708,7 +709,7 @@ try {
 } catch (e) { trFailures.push(`| time-of-transits.json | ${(e as Error).message} | |`); }
 if (trCharts < 2 * MIN_TABLE_CHARTS) trFailures.push(`| fixtures-transits | ${trCharts} charts and dates checked, fewer than ${2 * MIN_TABLE_CHARTS} | |`);
 lines.push('| Charts × dates | Values | Failures | Border cases | Pending |', '|---|---|---|---|---|', `| ${trCharts} | ${trValues} | ${trFailures.length} | ${trBorders.length} | ${trPending.length} |`, '',
-  `Per chart and reference date: the positions, R marks, kakshas, Shadbala, Tarabala, Chandrabala and the Vimshottari, Narayana, Yogini and Ashtottari dashas at the reference instant (the Muhurta page) and at the instant printed on the transit pages, with the KP lords of the ten points at the latter; the sunrise chart of the birth and the 15 rows of its Vimshottari; the four dashas (with the Chara) of the two events of the Events page; the D9 and D10 tables of the transit (without the functional nature of the nodes); the Varshaphala of the clock's year (worksheets 64 to 66 and 74: return, table of the annual chart, kakshas, strengths, offices, Muntha and the natal and annual Sahams; the 12 dasha lists of 64, 65, 75, 81 and 89 and the monthly and daily returns, docs/spec/time/varshaphala.md); the events of the month's calendar (worksheet 104); the Kota Chakra positions (without the score); the SB# and VB of the transit table (worksheet 106; the VB of the nodes pending where it differs); the Panch Pakshi (worksheet 39: the bird, the fortnight, the ruling and dying birds, the ten yamas with their five parts, the times to two seconds); the year's sign entries and the month's kaksha calendar. And ${totQueries} "Time of transits" queries on REF 0010, to the second.`);
+  `Per chart and reference date: the positions, R marks, kakshas, Shadbala, Tarabala, Chandrabala and the Vimshottari, Narayana, Yogini and Ashtottari dashas at the reference instant (the Muhurta page) and at the instant printed on the transit pages, with the KP lords of the ten points at the latter; the sunrise chart of the birth and the 15 rows of its Vimshottari; the four dashas (with the Chara) of the two events of the Events page; the D9 and D10 tables of the transit; the Varshaphala of the clock's year (worksheets 64 to 66 and 74: return, table of the annual chart, kakshas, strengths, offices, Muntha and the natal and annual Sahams; the 12 dasha lists of 64, 65, 75, 81 and 89 and the monthly and daily returns, docs/spec/time/varshaphala.md); the events of the month's calendar (worksheet 104); the Kota Chakra positions (without the score); the SB# and VB of the transit table (worksheet 106; the VB of the nodes pending where it differs); the Panch Pakshi (worksheet 39: the bird, the fortnight, the ruling and dying birds, the ten yamas with their five parts, the times to two seconds); the year's sign entries and the month's kaksha calendar. And ${totQueries} "Time of transits" queries on REF 0010, to the second.`);
 if (trFailures.length) lines.push('', '| Chart | Failures | First |', '|---|---|---|', ...trFailures);
 if (trBorders.length) lines.push('', '| Chart | Border case |', '|---|---|', ...trBorders);
 if (trPending.length) lines.push('', '| Chart | Pending |', '|---|---|', ...trPending);
@@ -858,9 +859,38 @@ if (muPending.length) lines.push('', '| Printout | Pending |', '|---|---|', ...m
 if (muFailures.length) failed = true;
 lines.push('');
 
+// The yogas PL9 printed on the YOG model (Motor 2A): per chart, the numbers present among the classical families. A
+// family is compared yoga by yoga once it is written (docs/spec/yogas.md); until then its yogas are pending.
+lines.push('## Yogas', '');
+const yoFailures: string[] = [];
+let yoSet: YogaFixture[] = [];
+try { yoSet = loadYogaFixtures(join(root, 'fixtures-yogas')); } catch { yoFailures.push('| fixtures-yogas | no fixture |'); }
+if (yoSet.length && yoSet.length < MIN_TABLE_CHARTS) yoFailures.push(`| fixtures-yogas | ${yoSet.length} charts, fewer than ${MIN_TABLE_CHARTS} |`);
+const yoPresent = yoSet.reduce((n, fx) => n + fx.pl9.present.length, 0);
+const yoChecked = Object.values(YOGA_NUMBERS);
+let yoValues = 0, yoCharts = 0;
+const yoDecided = new Set<number>();
+for (const fx of yoSet) {
+  const i = fixtureById.get(fx.id);
+  if (i === undefined) { yoFailures.push(`| ${fx.id} | no birth in the reference set |`); continue; }
+  const r = computeYogas(eph, lahiri.fixtures![i]!.input, {}, { fidelity: 'pl9' });
+  const found = new Set(r.yogas.filter((y) => y.present).map((y) => YOGA_NUMBERS[y.id]!).filter((n) => n !== undefined));
+  const decided = yoChecked.filter((n) => !r.missing.some((m) => YOGA_NUMBERS[m.id] === n));
+  yoCharts++; yoValues += decided.length;
+  for (const n of decided) yoDecided.add(n);
+  for (const f of verifyYogas(fx.pl9.present, found, decided)) yoFailures.push(`| ${fx.id} | ${f} |`);
+}
+const yoPending = ENGINE_YOGAS.last - ENGINE_YOGAS.first + 1 - yoDecided.size;
+lines.push('| Charts | Yogas present (PL9) | Checked | Failures | Pending |', '|---|---|---|---|---|',
+  `| ${yoCharts} | ${yoPresent} | ${yoValues} | ${yoFailures.length} | ${yoPending} |`, '',
+  `PL9's yogas ${ENGINE_YOGAS.first} to ${ENGINE_YOGAS.last} (the classical families), compared yoga by yoga for every family of docs/spec/yogas.md, less the yogas the engine reports missing, which stay pending.`);
+if (yoFailures.length) lines.push('', '| Fixture | Problem |', '|---|---|', ...yoFailures);
+if (yoFailures.length) failed = true;
+lines.push('');
+
 eph.close();
 const out = resolve(root, '../../docs/reports/conformance.md');
 writeFileSync(out, lines.join('\n'));
 const unverified = results.filter((r) => r.error).map((r) => r.name);
-console.log(`${results.filter((r) => !r.error).length} sets verified, ${failures.length} failures, ${borders.length} border cases${unverified.length ? `; not verified: ${unverified.join(', ')}` : ''}; tables: ${tables.length} charts, ${tableFailures.length} failures, ${tableBorders} border cases${missing.length ? `, not verified: ${missing.join(', ')}` : ''}; dashas: ${dashaFixtures.length} charts, ${dashaFailures.length} failures; kalachakra: ${kcFailures.length} problems; rashi: ${rashiSet.length} charts, ${rashiFailures.length} failures; ashtakavarga: ${avCharts} charts, ${avFailures.length} problems; shadbala: ${sbSet.length - sbOutside.length} charts, ${sbFailures.length} problems, ${sbPending.length} ranks pending; bhava bala: ${bbCharts} charts, ${bbFailures.length} problems; vimshopaka: ${vimCharts} charts, ${vimFailures.length} problems; transits: ${trCharts} chart-dates, ${trFailures.length} problems, ${trBorders.length} border cases, ${trPending.length} pending; panchanga: ${pcCharts} charts, ${pcFailures.length} problems, ${pcPending.length} pending; varshaphala: ${vsReports} reports, ${vsFailures.length} problems, ${vsPending.length} pending; muhurta: ${muCharts} printouts, ${muFailures.length} problems, ${muPending.length} pending${dashaMissing.length ? `, not verified: ${dashaMissing.join(', ')}` : ''}; report: ${out}`);
+console.log(`${results.filter((r) => !r.error).length} sets verified, ${failures.length} failures, ${borders.length} border cases${unverified.length ? `; not verified: ${unverified.join(', ')}` : ''}; tables: ${tables.length} charts, ${tableFailures.length} failures, ${tableBorders} border cases${missing.length ? `, not verified: ${missing.join(', ')}` : ''}; dashas: ${dashaFixtures.length} charts, ${dashaFailures.length} failures; kalachakra: ${kcFailures.length} problems; rashi: ${rashiSet.length} charts, ${rashiFailures.length} failures; ashtakavarga: ${avCharts} charts, ${avFailures.length} problems; shadbala: ${sbSet.length - sbOutside.length} charts, ${sbFailures.length} problems, ${sbPending.length} ranks pending; bhava bala: ${bbCharts} charts, ${bbFailures.length} problems; vimshopaka: ${vimCharts} charts, ${vimFailures.length} problems; transits: ${trCharts} chart-dates, ${trFailures.length} problems, ${trBorders.length} border cases, ${trPending.length} pending; panchanga: ${pcCharts} charts, ${pcFailures.length} problems, ${pcPending.length} pending; varshaphala: ${vsReports} reports, ${vsFailures.length} problems, ${vsPending.length} pending; muhurta: ${muCharts} printouts, ${muFailures.length} problems, ${muPending.length} pending; yogas: ${yoSet.length} charts, ${yoFailures.length} problems, ${yoPending} pending${dashaMissing.length ? `, not verified: ${dashaMissing.join(', ')}` : ''}; report: ${out}`);
 process.exit(failed ? 1 : 0);

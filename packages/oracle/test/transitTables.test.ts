@@ -157,10 +157,10 @@ describe('the check of the transit vargas', () => {
   const shown = { D9: { sun: { dms: '24:19:32', sign: 'Vir', dignity: 'Enemy', bindus: 5, av3: 'Drm.', av5: 'Infant', functional: 'Neutral', houses: '8/3/1' },
     rahu: { dms: '04:32:49', sign: 'Sco', dignity: 'Debil.', bindus: 5, av3: 'Slp.', av5: 'Dead', functional: 'Benefic', houses: '10/5/3' } } };
   const row = (o: object) => ({ degree: 24 + 19 / 60 + 32.4 / 3600, sign: 5, dignity: 7, bindus: 5, jagradadi: 'dreaming', baladi: 'infant', functional: 'neutral', houses: [8, 3, 1], ...o });
-  const core = { D9: { sun: row({}), rahu: row({ degree: 4 + 32 / 60 + 49.2 / 3600, sign: 7, dignity: 9, jagradadi: 'sleeping', baladi: 'dead', functional: null, houses: [10, 5, 3] }) } };
-  it('compares every column, the nodes\' functional nature apart (not found)', async () => {
+  const core = { D9: { sun: row({}), rahu: row({ degree: 4 + 32 / 60 + 49.2 / 3600, sign: 7, dignity: 9, jagradadi: 'sleeping', baladi: 'dead', functional: 'benefic', houses: [10, 5, 3] }) } };
+  it('compares every column, the nodes\' functional nature included', async () => {
     const { verifyVargas } = await import('../src/transitTables');
-    expect(verifyVargas(shown as never, core as never)).toEqual({ values: 15, failures: [] });
+    expect(verifyVargas(shown as never, core as never)).toEqual({ values: 16, failures: [] });
     const off = { D9: { ...core.D9, sun: row({ bindus: 4, houses: [8, 3, 2] }) } };
     expect(verifyVargas(shown as never, off as never).failures.map((f) => f.split(':')[0])).toEqual(['D9 sun bindus', 'D9 sun houses']);
   });

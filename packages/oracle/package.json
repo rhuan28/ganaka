@@ -16,7 +16,10 @@
     "import-transits": "tsx src/cli/import-transits.ts",
     "import-panchanga": "tsx src/cli/import-panchanga.ts",
     "import-varshaphala": "tsx src/cli/import-varshaphala.ts",
-    "import-muhurta": "tsx src/cli/import-muhurta.ts"
+    "import-muhurta": "tsx src/cli/import-muhurta.ts",
+    "import-yogas": "tsx src/cli/import-yogas.ts",
+    "check-yogas": "tsx src/cli/check-yogas.ts",
+    "dump-yoga-contexts": "tsx src/cli/dump-yoga-contexts.ts"
   },
   "dependencies": {
     "@reverse/core": "workspace:*",

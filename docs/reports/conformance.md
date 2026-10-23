@@ -303,9 +303,9 @@ The four groups of each of the nine planets, rounded (an exact half accepted eit
 
 | Charts × dates | Values | Failures | Border cases | Pending |
 |---|---|---|---|---|
-| 270 | 327066 | 0 | 9 | 532 |
+| 270 | 328146 | 0 | 9 | 532 |
 
-Per chart and reference date: the positions, R marks, kakshas, Shadbala, Tarabala, Chandrabala and the Vimshottari, Narayana, Yogini and Ashtottari dashas at the reference instant (the Muhurta page) and at the instant printed on the transit pages, with the KP lords of the ten points at the latter; the sunrise chart of the birth and the 15 rows of its Vimshottari; the four dashas (with the Chara) of the two events of the Events page; the D9 and D10 tables of the transit (without the functional nature of the nodes); the Varshaphala of the clock's year (worksheets 64 to 66 and 74: return, table of the annual chart, kakshas, strengths, offices, Muntha and the natal and annual Sahams; the 12 dasha lists of 64, 65, 75, 81 and 89 and the monthly and daily returns, docs/spec/time/varshaphala.md); the events of the month's calendar (worksheet 104); the Kota Chakra positions (without the score); the SB# and VB of the transit table (worksheet 106; the VB of the nodes pending where it differs); the Panch Pakshi (worksheet 39: the bird, the fortnight, the ruling and dying birds, the ten yamas with their five parts, the times to two seconds); the year's sign entries and the month's kaksha calendar. And 17 "Time of transits" queries on REF 0010, to the second.
+Per chart and reference date: the positions, R marks, kakshas, Shadbala, Tarabala, Chandrabala and the Vimshottari, Narayana, Yogini and Ashtottari dashas at the reference instant (the Muhurta page) and at the instant printed on the transit pages, with the KP lords of the ten points at the latter; the sunrise chart of the birth and the 15 rows of its Vimshottari; the four dashas (with the Chara) of the two events of the Events page; the D9 and D10 tables of the transit; the Varshaphala of the clock's year (worksheets 64 to 66 and 74: return, table of the annual chart, kakshas, strengths, offices, Muntha and the natal and annual Sahams; the 12 dasha lists of 64, 65, 75, 81 and 89 and the monthly and daily returns, docs/spec/time/varshaphala.md); the events of the month's calendar (worksheet 104); the Kota Chakra positions (without the score); the SB# and VB of the transit table (worksheet 106; the VB of the nodes pending where it differs); the Panch Pakshi (worksheet 39: the bird, the fortnight, the ruling and dying birds, the ten yamas with their five parts, the times to two seconds); the year's sign entries and the month's kaksha calendar. And 17 "Time of transits" queries on REF 0010, to the second.
 
 | Chart | Border case |
 |---|---|
@@ -1638,3 +1638,11 @@ The Muhurta chart and its vargas (D9, D10, D16, D24, D60), positions, nakshatras
 | ref-0076 marriage | vb ketu: PL9 10, core 8.25 |
 | ref-0079 marriage | vb ketu: PL9 10, core 8.25 |
 | ref-0083 marriage | vb ketu: PL9 10, core 8.25 |
+
+## Yogas
+
+| Charts | Yogas present (PL9) | Checked | Failures | Pending |
+|---|---|---|---|---|
+| 135 | 3272 | 46035 | 0 | 7 |
+
+PL9's yogas 1 to 348 (the classical families), compared yoga by yoga for every family of docs/spec/yogas.md, less the yogas the engine reports missing, which stay pending.

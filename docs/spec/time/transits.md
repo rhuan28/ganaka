@@ -42,12 +42,11 @@ table per planet (`vargaTable`). All from the data, at 270 instants:
 - "Av3": awake (Alr.) in exaltation, moolatrikona or own sign; asleep (Slp.) in debilitation
   or in the sign of a natural enemy; dreaming (Drm.) in the other cases, and the nodes by dignity only;
 - "Av5": the Baladi over the degree in the varga (as in the Muhurta);
-- "Func.": the functional nature by the sign of the varga's Lagna, Parashara's list per Ascendant
-  (the seven planets, in a fixed table that the data show without conflict in the twelve signs);
+- "Func.": the functional nature by the sign of the varga's Lagna: Parashara's list per Ascendant for the
+  seven planets, and the nodes by their place in the varga ([yogas.md](../yogas.md), "Benefics and malefics");
 - "In": the houses counted from the Lagna, the Moon and the Sun of the varga.
 
-The functional nature of the nodes was not found: it follows neither the sign's owner nor a rule of the house alone,
-and the table is not in the executable in the forms searched for. It is shown and not checked.
+The nodes' functional nature, read in PL9's executable in stage Motor 2A, is checked like the rest.
 
 ## Kakshas
 

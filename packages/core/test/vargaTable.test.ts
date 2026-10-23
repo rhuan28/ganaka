@@ -14,9 +14,10 @@ describe('the table of a varga', () => {
     expect(t.sun).toMatchObject({ sign: 5, dignity: 7, bindus: 5, jagradadi: 'dreaming', baladi: 'infant', functional: 'neutral', houses: [8, 3, 1] });
     expect(Math.floor(t.sun.degree * 60)).toBe(24 * 60 + 19);
     expect(t.saturn).toMatchObject({ sign: 7, dignity: 8, bindus: 2, jagradadi: 'sleeping', functional: 'benefic', houses: [10, 5, 3] });
-    // Rahu takes the Lagna's bindus; Ketu has none. The nodes' functional nature was not found.
-    expect(t.rahu).toMatchObject({ sign: 7, dignity: 9, bindus: 5, jagradadi: 'sleeping', functional: null });
-    expect(t.ketu).toMatchObject({ bindus: null, functional: null });
+    // Rahu takes the Lagna's bindus; Ketu has none. The nodes' functional nature by their place: Rahu alone in the
+    // 9th from the D9's Lagna, Ketu alone in the 3rd.
+    expect(t.rahu).toMatchObject({ sign: 7, dignity: 9, bindus: 5, jagradadi: 'sleeping', functional: 'benefic' });
+    expect(t.ketu).toMatchObject({ bindus: null, functional: 'neutral' });
   });
   it('and its D10', () => {
     const t = vargaTable(points, 'D10', 'pl9')!;

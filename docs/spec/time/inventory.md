@@ -231,7 +231,7 @@ dates, what each page prints as text; the drawings are left to stage 6.
 | (339)–(344) Varshaphala Charts #1–#6 | the 72 returns of each chart | varshaphala.md |
 | (401)–(425) Varshaphala reports | return, chart, strengths, year lord, yogas, Tripataki, Sahams, the four dashas, the months (Kutta and Tambira not) | varshaphala.md |
 | 101, 102. Animated transits I, II | positions, R, kakshas, Shadbala, Tarabala, Chandrabala, Gochara data, the instant and the place | transits.md |
-| 103. Animated Transits - Vargas | the D9 and D10 tables (without the functional nature of the nodes) | transits.md |
+| 103. Animated Transits - Vargas | the D9 and D10 tables | transits.md |
 | 104. Calendar | the events of the month | transits.md |
 | 105. Graphical Ephemeris, 108. Dasha and Transit timelines | no: graphs and timelines without dates in text; the table of 108 repeats that of 106 | — |
 | 106. Graphical ephemeris - 3 month overview | the KP lords, the SB# and the VB of the transits (the VB of the nodes pending where it differs); the graph not | transits.md |

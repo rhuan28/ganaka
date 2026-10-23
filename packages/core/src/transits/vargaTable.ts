@@ -5,6 +5,7 @@ import { ashtakavarga, type AvSigns } from '../strengths/ashtakavarga';
 import { dignity9, NATURAL, SEVEN, type Planet7 } from '../strengths/dignity';
 import { SIGN_LORDS } from '../specialLagnas';
 import { vargaSign, type VargaName } from '../vargas';
+import { functionalNatures } from '../yogas/natures';
 
 export type Jagradadi = 'awake' | 'dreaming' | 'sleeping';
 export type FunctionalNature = 'benefic' | 'malefic' | 'neutral';
@@ -19,16 +20,13 @@ export interface VargaRow {
   bindus: number | null;
   jagradadi: Jagradadi;
   baladi: Avastha;
-  /** By the varga's Lagna; null for the nodes (PL9's rule for them was not found). */
-  functional: FunctionalNature | null;
+  /** By the varga's Lagna, the nodes by their place in the varga (docs/spec/yogas.md). */
+  functional: FunctionalNature;
   /** The house from the varga's Lagna, Moon and Sun. */
   houses: [number, number, number];
 }
 
 const PLANETS: readonly Planet9[] = ['sun', 'moon', 'mars', 'mercury', 'jupiter', 'venus', 'saturn', 'rahu', 'ketu'];
-const NATURE: Record<string, FunctionalNature> = { B: 'benefic', M: 'malefic', N: 'neutral' };
-/** By the Lagna's sign from Aries, the Sun to Saturn: the lists of Parashara, as PL9 prints them (from the printouts). */
-const FUNCTIONAL = ['BNBMBMM', 'BMNBMMB', 'MNMNMBB', 'NBBMBMN', 'BNBMBMM', 'NMMBMBM', 'MNMBMNB', 'NBNMBMM', 'BNBMNMM', 'NMMBMBN', 'NMMNMBB', 'MBBMBMM'];
 
 /**
  * The table PL9 prints under a varga of a chart ("Animated Transits - Vargas"): for each planet its degree, sign and
@@ -45,6 +43,7 @@ export function vargaTable(longitudes: Partial<Record<'lagna' | Planet9, number>
   const v = Object.fromEntries((['lagna', ...PLANETS] as const).map((k) => [k, inVarga(longitudes[k]!)])) as Record<'lagna' | Planet9, number>;
   const sign = (k: 'lagna' | Planet9) => Math.floor(v[k] / 30);
   const av = ashtakavarga(Object.fromEntries((['lagna', ...SEVEN] as const).map((k) => [k, sign(k)])) as AvSigns, {}, fidelity);
+  const functional = functionalNatures(v)!;
   const house = (from: number, to: number) => ((to - from + 12) % 12) + 1;
   return Object.fromEntries(PLANETS.map((p) => {
     const s = sign(p);
@@ -56,7 +55,7 @@ export function vargaTable(longitudes: Partial<Record<'lagna' | Planet9, number>
       bindus: p === 'ketu' ? null : av.bhinna[p === 'rahu' ? 'lagna' : (p as Planet7)][s]!,
       jagradadi: dignity <= 3 ? 'awake' : dignity === 9 || natural === 0 ? 'sleeping' : 'dreaming',
       baladi: baladiAvastha(v[p]),
-      functional: p === 'rahu' || p === 'ketu' ? null : NATURE[FUNCTIONAL[sign('lagna')]![SEVEN.indexOf(p as Planet7)]!]!,
+      functional: functional[p],
       houses: [house(sign('lagna'), s), house(sign('moon'), s), house(sign('sun'), s)],
     };
     return [p, row];

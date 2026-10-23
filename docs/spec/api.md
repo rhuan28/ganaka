@@ -41,6 +41,14 @@ can change a number, so that a client that keeps results can tell old ones from 
   - time: `/v1/transits`, `/v1/panchanga`, `/v1/varshaphala`, `/v1/muhurta`, `/v1/panch-pakshi` (with `at`);
   - natal tables (see [natal-tables.md](natal-tables.md)): `/v1/sunrise-chart`, `/v1/aspects`, `/v1/tarabala`,
     `/v1/lordships` (with `varga`, one of the sixteen classical vargas), `/v1/dispositors`;
+  - natal yogas (see [yogas.md](yogas.md)): `/v1/yogas`, answering `{ yogas, missing }`. `yogas` lists every
+    yoga the engine knows with `id`, `family`, `present` and, when present, the `planets` that form it and their
+    `houses` from the Lagna. `missing` lists those it cannot decide for this chart, with the `reason`.
+    `/v1/yoga-context` answers instead the facts the yogas read, for a client that evaluates yogas of its own: the
+    planets (longitude, speed, sign, nakshatra, dignity, combustion), the sixteen classical vargas (the Lagna's sign,
+    each planet's sign, longitude and dignity there, and the graded aspects between planets), the natural and
+    functional natures, the Shadbala ratio, the chara karakas, the signs of the special points, day or night birth
+    and the weekday. It holds no rule of any yoga, and takes only `birth` and `options`;
   - several of the above at once: `/v1/batch` (below);
   - chart files saved by Parashara's Light 9: `/v1/import/pl9` (below);
   - atlas: `GET /v1/atlas/cities?q=<name>&country=<ISO code>&limit=<1 to 50>` (GeoNames cities,
@@ -55,7 +63,8 @@ can change a number, so that a client that keeps results can tell old ones from 
   (the clock offset, already resolved).
 - The engine options go in `options`, with the `core` names: `ayanamsha`, `fidelity`, `gulika`
   etc. The mode is `corrected` by default; `fidelity: "pl9"` reproduces PL9.
-- The options of each area have their own object: `dasha`, `shadbala` and `ashtakavarga`.
+- The options of each area have their own object: `dasha`, `shadbala`, `ashtakavarga` and `yogas`
+  (`functionalNature`, PL9's "Use functional mal/ben", and `sex`, `male` by default).
 - Unknown fields are rejected, so that a wrong name is never silently ignored.
 - Every response carries the `X-Source-Code` header with the address of the source code, and the
   `X-Engine-Version` header with the engine's version (`GET /health` answers it too). A client that caches results

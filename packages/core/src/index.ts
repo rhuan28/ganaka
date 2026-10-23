@@ -32,3 +32,6 @@ export * from './varshaphala/index';
 export * from './muhurta/index';
 export * from './kp';
 export * from './natalTables';
+export * from './yogas/natures';
+export { computeYogaContext, type YogaContext, type YogaContextVarga, type YogaContextVargaName } from './yogas/context';
+export { computeYogas, computeYogaChart, type YogaOptions, type Yoga, type YogaChart, type YogaResult, type MissingYoga } from './yogas/index';

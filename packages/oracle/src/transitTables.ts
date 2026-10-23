@@ -353,8 +353,7 @@ const BALADI_SHOWN: Record<string, string> = { infant: 'Infant', youth: 'Youth.'
 
 /**
  * The transit's vargas against the core (`vargaTable`): the degree as truncated, within the ephemeris's 1.5" times the
- * varga's parts; sign, dignity, bindus, the two avasthas, functional nature and houses exactly. The nodes' functional
- * nature is not compared: its rule was not found (docs/spec/time/transits.md).
+ * varga's parts; sign, dignity, bindus, the two avasthas, functional nature (the nodes' too) and houses exactly.
  */
 export function verifyVargas(shown: NonNullable<TransitSnapshot['vargas']>, core: Partial<Record<'D9' | 'D10', Record<string, {
   degree: number; sign: number; dignity: number; bindus: number | null; jagradadi: string; baladi: string; functional: string | null; houses: number[];
@@ -376,7 +375,7 @@ export function verifyVargas(shown: NonNullable<TransitSnapshot['vargas']>, core
       check('bindus', !!c && c.bindus === r!.bindus, r!.bindus, c?.bindus);
       check('av3', !!c && JAGRADADI_SHOWN[c.jagradadi] === r!.av3, r!.av3, c?.jagradadi);
       check('av5', !!c && BALADI_SHOWN[c.baladi] === r!.av5, r!.av5, c?.baladi);
-      if (p !== 'rahu' && p !== 'ketu') check('functional', !!c && c.functional === r!.functional.toLowerCase(), r!.functional, c?.functional);
+      check('functional', !!c && c.functional === r!.functional.toLowerCase(), r!.functional, c?.functional);
       check('houses', !!c && c.houses.join('/') === r!.houses, r!.houses, c?.houses.join('/'));
     }
   }
