@@ -1,5 +1,5 @@
 import SwissEph from 'swisseph-wasm';
-import { julianDayUt } from './time';
+import { DATA_RANGE, julianDayUt } from './time';
 
 export { julianDayUt };
 
@@ -60,11 +60,7 @@ export interface Ephemeris {
   close(): void;
 }
 
-/** The bundled data files run from 1800 to 2400; a margin is kept at both ends. */
-export const DATA_RANGE = {
-  minJdUt: julianDayUt(1800, 1, 10),
-  maxJdUt: julianDayUt(2399, 12, 20),
-};
+export { DATA_RANGE };
 
 export class EphemerisRangeError extends Error {
   readonly jdUt: number;

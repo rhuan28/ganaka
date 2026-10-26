@@ -60,6 +60,9 @@ can change a number, so that a client that keeps results can tell old ones from 
   - compatibility (see [compatibility.md](compatibility.md)): `/v1/compatibility`, with `native` and `partner`, each
     `{ birth, sex }` (`male` or `female`), answering the Ashtakoota, the Dashkoota, the distances between the two charts'
     points and each chart's Mangala Dosha; its own options go in `compatibility`: `point`, `moon` (default) or `lagna`;
+  - remedies (see [remedies.md](remedies.md)): `/v1/remedies`, with `birth`, answering the Sade Sati and the Laghu
+    Kalyani Dhayya and Kantaka Saturn (three cycles each, every stay with its Julian days and span), the Mangala Dosha
+    and the lords whose gems PL9 recommends;
   - several of the above at once: `/v1/batch` (below);
   - chart files saved by Parashara's Light 9: `/v1/import/pl9` (below);
   - atlas: `GET /v1/atlas/cities?q=<name>&country=<ISO code>&limit=<1 to 50>` (GeoNames cities,

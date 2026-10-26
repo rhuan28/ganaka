@@ -34,6 +34,7 @@ export * from './kp';
 export * from './natalTables';
 export * from './yogas/natures';
 export { computeYogaContext, type YogaContext, type YogaContextVarga, type YogaContextVargaName } from './yogas/context';
-export { ashtakoota, computeCompatibility, dashkoota, type Compatibility, type CompatibilityOptions, type KootaRow, type MangalaDosha, type Person } from './compatibility';
+export { computeRemedies, calendarSpan, saturnIngresses, searchOffset, type GemPlanet, type Remedies, type SaturnHouse, type SaturnStay } from './remedies';
+export { ashtakoota, computeCompatibility, mangalaOf, dashkoota, type Compatibility, type CompatibilityOptions, type KootaRow, type MangalaDosha, type Person } from './compatibility';
 export { computePlanetInfo, AnkaRangeError, SHASHTIAMSHA_DEITIES, shashtiamsha, vargaDegree, vargaDeity, type VargaPoint, DASHAVARGA, SHADVARGA, navamshaAge, navamshaNumber, argala, houseEffect, pushkaraNavamsa, dominance, goodVargas, housesRuled, mrityuBhaga, navamsaFromRashi, rays, shadvargaSignLords, shadvargaElements, type SignQuality, NATURAL_RELATIONS_9, finalDispositor, hemmed, COMBUSTION_ORB, DEEPTADI, DEFAULT_ANKA, MEAN_SPEED, PLANET_INFO_BODIES, SHAYANADI, combustion, declinationOf, deeptadi, krantiOf, shayanadi, speedPercentOf, type BodyAstronomy, type Combustion, type DeeptadiState, type PlanetInfo, type PlanetInfoBody, type PlanetInfoOptions, type PointInfo, type Shayanadi, type ShayanadiState } from './planetInfo';
 export { computeYogas, computeYogaChart, type YogaOptions, type Yoga, type YogaChart, type YogaResult, type MissingYoga } from './yogas/index';

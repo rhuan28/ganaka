@@ -1,7 +1,7 @@
 import type { Ephemeris } from '@reverse/ephemeris';
 import type { Planet9 } from '../jaimini';
 import { resolveOptions, type CoreOptions } from '../options';
-import { computePositions, type ChartInput } from '../positions';
+import { computePositions, type ChartInput, type Positions } from '../positions';
 import { norm360 } from '../zodiac';
 import {
   ganaOf, ganaScore, maitri, mutualFriends, nadiOf, signGap, signLord, taraCount, varna, vashya, vashyaScore, yoniOf, yoniScore,
@@ -128,6 +128,15 @@ export function dashkoota(bride: At, groom: At): Compatibility['dashkoota'] {
   return { rows, total, cancelled, verdict: band(total, [19, 27, 37]) };
 }
 
+/** Mars in the 1st, 2nd, 4th, 7th, 8th or 12th from the Lagna and from the Moon, in one chart. */
+export function mangalaOf(pos: Positions): MangalaDosha {
+  const mars = Math.floor(pos.points.mars.longitude / 30), moon = Math.floor(pos.points.moon.longitude / 30);
+  const lagna = pos.points.lagna;
+  const fromLagna = lagna ? houseFrom(Math.floor(lagna.longitude / 30), mars) : null;
+  const fromMoon = houseFrom(moon, mars);
+  return { fromLagna: fromLagna === null ? null : DOSHA_HOUSES.includes(fromLagna), fromMoon: DOSHA_HOUSES.includes(fromMoon), marsHouseFromLagna: fromLagna, marsHouseFromMoon: fromMoon };
+}
+
 export function computeCompatibility(eph: Ephemeris, native: Person, partner: Person, options: CompatibilityOptions = {}, coreOptions?: Partial<CoreOptions>): Compatibility {
   const core = resolveOptions(coreOptions);
   const pos = [computePositions(eph, native.input, core), computePositions(eph, partner.input, core)] as const;
@@ -151,19 +160,12 @@ export function computeCompatibility(eph: Ephemeris, native: Person, partner: Pe
       native: { sign: x.sign, nakshatra: x.nakshatra }, partner: { sign: y.sign, nakshatra: y.nakshatra },
     };
   }
-  const mangala = (i: 0 | 1): MangalaDosha => {
-    const mars = Math.floor(pos[i].points.mars.longitude / 30), moon = Math.floor(pos[i].points.moon.longitude / 30);
-    const lagna = pos[i].points.lagna;
-    const fromLagna = lagna ? houseFrom(Math.floor(lagna.longitude / 30), mars) : null;
-    const fromMoon = houseFrom(moon, mars);
-    return { fromLagna: fromLagna === null ? null : DOSHA_HOUSES.includes(fromLagna), fromMoon: DOSHA_HOUSES.includes(fromMoon), marsHouseFromLagna: fromLagna, marsHouseFromMoon: fromMoon };
-  };
   return {
     bride: brideIsNative ? 'native' : 'partner',
     ashtakoota: bl === undefined || gl === undefined ? empty : ashtakoota(at(bl), at(gl)),
     dashkoota: bl === undefined || gl === undefined ? { ...empty, cancelled: false } : dashkoota(at(bl), at(gl)),
     distances,
-    mangala: { native: mangala(0), partner: mangala(1) },
+    mangala: { native: mangalaOf(pos[0]), partner: mangalaOf(pos[1]) },
     missing,
   };
 }
