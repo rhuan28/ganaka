@@ -20,10 +20,9 @@ does not yet match PL9 and is refused (`NotImplementedOptionError`).
   (`docs/spec/dashas/sign-strength.md`), and they move forward if the
   mahadasha sign is odd, backward if it is even — as in Kalachakra.
 - **Cycles:** the sequence repeats with the same years — except in Narayana,
-  Lagna Kendradi and Drig. In these, in `pl9` mode, `core` only gives the
-  first cycle and refuses (`NotImplementedOptionError`) a request for more than one,
-  because PL9's comes out scrambled; in `corrected` mode, the second cycle gives
-  each sign 12 years minus those of the first (`docs/spec/corrections.md`, 16).
+  Lagna Kendradi and Drig (below, "Cycles of the Narayana, Lagna Kendradi and
+  Drig"). In `corrected` mode the second cycle of these gives each sign 12
+  years minus those of the first (`docs/spec/corrections.md`, 16).
 - **Modes:** in the sign dashas, `corrected` mode differs from `pl9` in the
   Drig order (the eight-bit truncation, below) and in the second cycle
   (`docs/spec/corrections.md`, 15 to 17).
@@ -91,6 +90,73 @@ even one; 12 with the lord in its own sign, 10 with it in the 7th.
   parity. The antardashas follow the same order from the
   mahadasha sign.
 
+## Cycles of the Narayana, Lagna Kendradi and Drig
+
+Read in the executable and checked on every page PL9 printed (below). PL9
+counts the periods of each level. The mahadashas are counted from birth, run
+after run; the antardashas from the start of their mahadasha.
+
+- **Years.** A sign takes its years (above) when the count of the level being
+  timed, divided by 12, is even, and 12 minus them when it is odd. A
+  mahadasha of the second run thus has 12 years less, of the third the years
+  again. An antardasha lasts a twelfth of its mahadasha sign's years at the
+  antardasha's own count: the first twelve keep the years of the first run
+  even in a mahadasha of the second, the next twelve take 12 less, and so on.
+- **Order.** The Narayana repeats its order. The Lagna Kendradi steps on as in
+  the first run (three signs, four after every fourth), so that each run starts
+  three signs further on. The Drig takes its groups by the count brought back
+  to 1..12 and divided by four: the 13th mahadasha, the first of each run after
+  the first, is the 12th from the Lagna, followed by the three signs the 9th
+  aspects, in the direction taken from that 12th; then the 10th and the 11th
+  as in the first run. The antardashas as in the first run, the twelfth
+  followed by the first again.
+- **Rows.** Each row PL9 prints is the antardasha running at an instant: the
+  first at birth, each next one five minutes after the end of the one before.
+  An antardasha can run past the end of its mahadasha, and the next row then
+  falls in the middle of an antardasha of the next mahadasha; or the twelve
+  fall short and the count goes on past the twelfth. A mahadasha no row falls
+  in is not printed. In `pl9` mode `core` gives these rows, each under its
+  own mahadasha (`DashaPeriod.sub`), as many cycles as asked.
+- **Report.** The report pages print the rows in boxes of twelve, each headed
+  by the mahadasha of its first row and the years of its first run: 13 boxes
+  on #1, 12 on #2. A box can hold rows of the next mahadashas under the first
+  one's name; this is what made the #2 pages look scrambled. The worksheet
+  cells print the 15 rows from the print instant on, each with its own
+  mahadasha.
+
+Checked on the printouts of the eight option sets (351 charts): every box
+of the #1 and #2 pages of the three systems (label, first and last date, the
+twelve rows), every row of their worksheet cells, and every date of the
+fixtures, the second cycle included: 0 failures.
+
+`rashiChainAt` gives the Narayana, the Lagna Kendradi and the Drig at an
+instant by the same counts, to five levels.
+
+## Sree Lagna Kendradi (not given)
+
+Read in the executable; refused (`NotImplementedOptionError`) because its
+balance does not match PL9 in a quarter of the charts.
+
+- **First sign:** the sign of the Sree Lagna, the Moon's arc in its nakshatra
+  (the span taken as 13.3333°) times 27, added to the Lagna (`sreeLagna()`).
+- **Balance:** its degrees in the sign over 30 times the years of the first
+  sign.
+- **Direction of the mahadashas:** forward from an odd sign, backward from an
+  even one; forward with Saturn in it; Ketu in it reverses the direction. The
+  order is the kendradi one, stepping on from run to run as the Lagna
+  Kendradi.
+- **Antardashas:** from the mahadasha sign itself, the kendras first, in its
+  direction: forward from an odd sign, backward from an even one; forward with
+  Saturn in it; backward whenever Ketu is in it (not a reversal).
+- **Years and rows:** as the Narayana, Lagna Kendradi and Drig (above).
+
+Checked on the worksheet cells (135 charts with the observed options): 79 match
+with the balance above; in 32 the rows are right but all shifted, as if PL9's
+Sree Lagna were up to 18° behind or 41° ahead of `sreeLagna()` in the same
+sign; in 24, among them the charts born after the print, the first mahadasha
+has fewer years than the count gives. The balance PL9 uses there was not found,
+nor how it computes the Sree Lagna it shows as a point.
+
 ## Options
 
 - **Chara dasha method: Parashara** (`charaMethod: 'parashara'`). Mahadashas
@@ -141,24 +207,21 @@ the bench: `docs/reports/conformance.md`.
 
 - The "Niryaana Shoola Dasha" report prints Drig. Niryaana Shoola was
   measured in the worksheet cell.
-- The second cycle of Narayana, Lagna Kendradi and Drig: on the #2 pages
-  of the reports it comes out scrambled (periods out of order, lengths that
-  do not add up); in the worksheet cells it looks ordered, most
-  mahadashas with the years of the first cycle, some with 12 minus those years
-  (the classical second-cycle rule) and some with neither. It was not
-  reproduced; `corrected` mode gives the classical rule.
+- The second cycle of Narayana, Lagna Kendradi and Drig: antardashas timed by
+  the years of their own count, which do not fill their mahadasha or run past
+  it, and an order of signs that steps on from run to run in the Lagna
+  Kendradi and the Drig ("Cycles of the Narayana, Lagna Kendradi and Drig").
+  `pl9` mode reproduces it; `corrected` mode gives the classical rule.
 - The eight-bit truncation in the Drig order, corrected in `corrected` mode.
 
 ## What was not verified
 
-- Sree Lagna Kendradi: read in the executable (sign of the Sree Lagna, balance by its
-  degree in the sign, kendras, following cycles by the same step), but the
-  antardashas of the following cycles do not yet match the worksheet
-  cells.
-- The second cycle of Narayana, Lagna Kendradi and Drig: `pl9` mode
-  does not give it in the tables, and the `corrected` one has no reference in them. The
-  Narayana chain at the instant (`docs/spec/time/transits.md`) has the second
-  cycle with 12 years minus those of the first, checked at 296 instants.
+- Sree Lagna Kendradi: the balance of a quarter of the charts ("Sree Lagna
+  Kendradi (not given)").
+- The `corrected` mode's second cycle has no reference: PL9 has no such
+  rule. The Lagna Kendradi and Drig chains at an instant follow the table's
+  counts but were not compared with a printed chain (the Narayana's was, at
+  296 instants, `docs/spec/time/transits.md`).
 - In Niryaana Shoola, only the 15 lines of the worksheet cell: the first
   mahadasha printed there, its antardashas and the beginning of the next.
 - More than two levels in the tables (the Narayana chain at the instant has

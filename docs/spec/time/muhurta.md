@@ -78,5 +78,5 @@ nakshatra and tithi the texts refer to. Mandi, "BP" and "eM" in the drawings.
 
 On the bench (`pnpm --filter @reverse/oracle verify`, section "Muhurta"): the 270 printouts of the TEMPO model
 (the 135 charts at both dates) and the 30 of each of the general and marriage activities
-(`packages/oracle/fixtures-muhurta-options/`), 0 failures. Pending: the VB of Rahu and Ketu, which is not the
-Shadvarga Vimshopaka of the `core` (which checks out on the seven planets).
+(`packages/oracle/fixtures-muhurta-options/`), 0 failures. The VB of Rahu and Ketu is the Shadvarga Vimshopaka
+with the nodes rated as PL9's time pages rate them ([vimshopaka.md](../strengths/vimshopaka.md)).

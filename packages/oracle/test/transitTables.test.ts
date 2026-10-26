@@ -197,11 +197,11 @@ describe('the Panch Pakshi (worksheet 39)', () => {
 });
 
 describe('the SB# and VB of the transit table (worksheet 106)', () => {
-  it('are read, and compared with the core\'s; the nodes\' VB is pending where it differs', async () => {
+  it('are read, and compared with the core\'s; the nodes\' VB as any other', async () => {
     const { verifySbVb } = await import('../src/transitTables');
     const k = parseTransits('chart\tREF 0010\ntrsbvb\tnow\tmercury\t5\t13\ntrsbvb\tnow\trahu\t-\t13\ntrsbvb\tnow\tketu\t-\t-\n').snaps.now!.sbvb!;
     expect(k).toEqual({ mercury: { strong: 5, vb: 13 }, rahu: { strong: null, vb: 13 }, ketu: { strong: null, vb: null } });
-    expect(verifySbVb(k, { mercury: 5 } as never, { mercury: 12.5, rahu: 12 } as never)).toEqual({ values: 3, failures: [], pending: ['vb rahu: PL9 13, core 12.00'] });
+    expect(verifySbVb(k, { mercury: 5 } as never, { mercury: 12.5, rahu: 12 } as never)).toEqual({ values: 3, failures: ['vb rahu: PL9 13, core 12.00'], pending: [] });
     expect(verifySbVb(k, { mercury: 4 } as never, { mercury: 12.4, rahu: 13 } as never).failures).toEqual(['sb# mercury: PL9 5, core 4', 'vb mercury: PL9 13, core 12.40']);
   });
 });

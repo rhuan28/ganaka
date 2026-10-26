@@ -44,7 +44,7 @@ export interface Panchanga {
   /** The elements at the instant, and at the sunrise with when each ends. */
   now: Omit<PanchangaAt, never>;
   atSunrise: PanchangaAt | null;
-  /** The day of the week of the sunrise before the instant, 0 = Sunday (the Vedic day runs from sunrise). */
+  /** The Vedic day of the week, 0 = Sunday: the civil date, the day before at night between midnight and noon. */
   vara: number | null;
   paksha: 'shukla' | 'krishna';
   /** What could not be found here; the fields that need it are null. */
@@ -70,6 +70,23 @@ function elementsAt(eph: Ephemeris, jdUt: number, searchFrom: number, coreOption
 }
 
 /**
+ * The Vedic weekday as PL9 counts it (read in PL9; docs/spec/time/panchanga.md): the civil date on the chart's clock,
+ * the day before when the birth is at night and the clock is between midnight and noon. Night is PL9's own test, the
+ * Sun below the horizon by the Lagna (the Lagna 180° or more ahead of the Sun). 0 = Sunday; null without a Lagna.
+ */
+export function vedicWeekday(eph: Ephemeris, at: ChartInput, coreOptions?: Partial<CoreOptions>): number | null {
+  const p = computePositions(eph, at, coreOptions).points;
+  if (!p.lagna) return null;
+  const d = (((p.lagna.longitude - p.sun.longitude) % 360) + 360) % 360;
+  // After sunrise the Lagna runs ahead of the Sun: by day it is less than 180° ahead.
+  const night = d >= 180;
+  const local = at.jdUt + (at.utcOffsetHours ?? 0) / 24;
+  // Days from a Saturday (Julian day 2380557.5 at midnight), floored.
+  const n = Math.floor(local - 2380557.5) - (night && local - Math.floor(local) >= 0.5 ? 1 : 0);
+  return (((n + 6) % 7) + 7) % 7;
+}
+
+/**
  * The panchanga of an instant and place: the sunrise before it, the sunset and the next sunrise (PL9's panchanga
  * search), the tithi, karana, yoga and nakshatra at the instant and at the sunrise with their ends, the Vedic weekday
  * and the fortnight. The ends are searched from the sunrise of the Shadbala, as PL9 does. See docs/spec/time/panchanga.md.
@@ -86,15 +103,11 @@ export function computePanchanga(eph: Ephemeris, at: ChartInput, coreOptions?: P
   } catch (e) {
     if (!(e instanceof SunriseUndefinedError || e instanceof LagnaUndefinedError)) throw e;
     const missing: PanchangaMissing[] = [{ what: 'sunrise', reason: e instanceof LagnaUndefinedError ? 'beyondPolarCircle' : 'sunriseNotFound' }];
-    return { at, sunrise: null, sunset: null, nextSunrise: null, now, atSunrise: null, vara: null, paksha, missing, fidelity: core.fidelity };
+    // The weekday needs no sunrise, only the Lagna.
+    return { at, sunrise: null, sunset: null, nextSunrise: null, now, atSunrise: null, vara: vedicWeekday(eph, at, coreOptions), paksha, missing, fidelity: core.fidelity };
   }
   const atSunrise = elementsAt(eph, searchFrom, searchFrom, coreOptions);
-  // The Vedic weekday: the day of the instant in the local mean time of the place (its longitude), the day before
-  // when the instant is before that day's sunrise. From the data: it gives 118 of PL9's 135 birth weekdays; PL9's
-  // own rule was not found (docs/spec/time/panchanga.md).
-  const lmt = at.longitudeEast / 360;
-  const sameDay = Math.floor(at.jdUt + lmt + 0.5) === Math.floor(day.sunrise + lmt + 0.5);
-  const vara = ((Math.floor(at.jdUt + lmt + 0.5) - (sameDay ? 0 : 1) + 1) % 7 + 7) % 7;
+  const vara = vedicWeekday(eph, at, coreOptions);
   return { at, sunrise: day.sunrise, sunset: day.sunset, nextSunrise: day.nextSunrise, now, atSunrise, vara, paksha, missing: [], fidelity: core.fidelity };
 }
 

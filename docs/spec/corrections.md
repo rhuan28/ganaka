@@ -369,23 +369,34 @@ Test: "correction: the Drig order cut to eight bits".
 
 ### 16. Second run of the Narayana, the Lagna Kendradi and the Drig
 
-**What PL9 does.** On the #2 pages of the reports the second run comes out
-scrambled: periods out of order and durations that do not add up. In the
-worksheet cells it looks ordered, but most mahadashas have the years of the
-first run, some 12 minus those years, and some neither of the two.
+**What PL9 does.** The mahadashas of the second run take 12 years less than
+those of the first, but each antardasha is timed by the years of its count: the
+first twelve antardashas of a mahadasha take a twelfth of the first run's years
+of its sign, the next twelve a twelfth of the second's. In a mahadasha of the
+second run they therefore run past its end (the next row PL9 prints falls in
+the middle of the next mahadasha) or fall short of it (the antardashas go on
+past the twelfth). The Lagna Kendradi and the Drig also count their signs on
+from run to run: the Lagna Kendradi's second run starts three signs further on,
+the Drig's with the 12th from the Lagna. On the #2 pages of the reports, whose
+boxes hold twelve rows each under the mahadasha of the first, this looks
+scrambled (`docs/spec/dashas/rashi.md`, "Cycles").
 
-**Why it is a defect.** Periods out of order and subperiods that do not
-fill the period are results outside what is possible, and the years follow
-no rule.
+**Why it is a defect.** Antardashas that do not fill their mahadasha, or run
+past it, are results outside what is possible; the order of the signs changes
+from run to run with no rule behind it.
 
 **What `corrected` mode does.** The classical rule: in the second run each
 sign has 12 years minus those of the first (a sign left with 0 is skipped);
-the third repeats the first, and so on. By default, as many runs
-as cover 120 years. In `pl9` mode, only the first run, and asking for more than
-one is rejected (`NotImplementedOptionError`).
+the third repeats the first, and so on; the same order every run; each
+mahadasha divided in twelve equal antardashas. By default, as many runs as
+cover 120 years. In `pl9` mode, PL9's table, every run asked.
+
+**Effect.** The antardashas of every run after the first; in the Lagna Kendradi
+and the Drig, also the mahadashas from the second run on.
 
 Test: "correction: the second run of the Narayana, Kendradi and Drig, 12
-years less those of the first"; "the second run in the corrected mode".
+years less those of the first"; "PL9's table of the Narayana, Lagna Kendradi
+and Drig past the first run"; "the second run".
 
 ### 17. "Niryaana Shoola Dasha" report
 

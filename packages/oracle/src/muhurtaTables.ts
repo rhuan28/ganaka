@@ -86,11 +86,8 @@ const ACTIVITY: Record<string, MuhurtaActivity> = { 'General Auspicious Events':
 const PLANETS9 = ['sun', 'moon', 'mars', 'mercury', 'jupiter', 'venus', 'saturn', 'rahu', 'ketu'] as const;
 const NAKSHATRA_PREFIX = ['ashw', 'bhar', 'krit', 'rohi', 'mrig', 'ardr', 'puna', 'push', 'ashl', 'magh', 'p.ph', 'u.ph', 'hast', 'chit', 'swat', 'vish', 'anur', 'jyes', 'mool', 'p.sh', 'u.sh', 'shra', 'dhan', 'shat', 'p.bh', 'u.bh', 'reva'];
 
-/**
- * The differences known in every printout: the VB of the nodes (the core's Shadvarga Vimshopaka is within the unit for
- * the seven planets, not for Rahu and Ketu; docs/spec/time/muhurta.md).
- */
-export const KNOWN_MUHURTA_PENDING: readonly string[] = ['vb rahu', 'vb ketu'];
+/** The differences known in every printout: none since the nodes' VB is rated as PL9's time pages rate it. */
+export const KNOWN_MUHURTA_PENDING: readonly string[] = [];
 
 /**
  * The Muhurta event of the print jobs, at Jaipur: the TEMPO jobs at the reference dates, 12:00 (2000) or 06:00 (2030)

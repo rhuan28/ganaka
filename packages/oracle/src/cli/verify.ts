@@ -9,7 +9,7 @@ import { loadDashaFixtures, type DashaFixture } from '../dashaTables';
 import { loadTableFixtures, type TableFixture } from '../tables';
 import { SHOWN_LONGITUDES, missingKinds, optionCoverage, vargaCoverage, verifyChartTables, type TableVerdict } from '../verifyTables';
 import { setProblem, verifyChart, type ChartVerdict } from '../verify';
-import { DAY_EDGE_SLACK, cyclesToCover, shownJd, verifyDashas, type DashaVerdict } from '../verifyDashas';
+import { DAY_EDGE_SLACK, cyclesToCover, reportBoxes, verifyDashas, type DashaVerdict } from '../verifyDashas';
 import { computeVarshaphalaInputs, loadVarshaphalaFixtures, pendingWithoutReport, verifyVarshaphala, KNOWN_VARSHAPHALA_PENDING } from '../varshaphalaTables';
 import { computeMuhurtaInputs, KNOWN_MUHURTA_PENDING, loadMuhurtaFixtures, verifyMuhurta, type MuhurtaInstant } from '../muhurtaTables';
 import { KNOWN_BIRTH_PENDING, loadPanchangaFixtures, loadPanchangPrintouts, verifyBirthPanchanga, verifyPanchangPrintout, type BirthPanchangaLike } from '../panchangaTables';
@@ -198,10 +198,13 @@ const dashasOf = (d: DashaFixture, input: Fixture['input']) => (system: DashaSys
     : 12;
   const length = years * 327;
   const levels = (RASHI_DASHA_SYSTEMS as readonly string[]).includes(system) ? 2 : 4;
-  // The Narayana, Kendradi and Drig are given for their first run only.
-  const cycles = ['narayana', 'lagnaKendradi', 'drig'].includes(system) ? 1 : cyclesToCover(d, system, input.jdUt, length);
-  return computeDashas(eph, input, { ...d.options, system, levels, cycles }, { fidelity: 'pl9' }).periods;
+  const cycles = cyclesToCover(d, system, input.jdUt, length);
+  const periods = computeDashas(eph, input, { ...d.options, system, levels, cycles }, { fidelity: 'pl9' }).periods;
+  // The Narayana, Kendradi and Drig also as the report lays them out (the worksheet cells name each row's own mahadasha).
+  return REPORT_BOXES.has(system) ? [...periods, ...reportBoxes(periods)] : periods;
 };
+/** The rashi dashas whose report boxes can hold rows of other mahadashas than the one heading them. */
+const REPORT_BOXES = new Set<string>(['narayana', 'lagnaKendradi', 'drig']);
 lines.push('## Dashas', '');
 let dashaFixtures: DashaFixture[] = [];
 let dashaError = '';
@@ -291,8 +294,7 @@ lines.push('', 'The Kalachakra reports have the date only: each start passes if 
 if (kcFailures.length) lines.push('', '| Chart | Period | PL9 | Off by / core |', '|---|---|---|---|', ...kcFailures.map((f) => (f.startsWith('|') ? f : `| ${f} | | | |`)));
 if (kcFailures.length) failed = true;
 
-// The rashi dashas. PL9's second run of the Narayana, Lagna Kendradi and Drig comes out scrambled: only the first is
-// checked for them, and the starts after it are counted apart.
+// The rashi dashas, every cycle of them, PL9's table of the Narayana, Lagna Kendradi and Drig included.
 lines.push('', '## Rashi dashas', '');
 let rashiSet: DashaFixture[] = [];
 try {
@@ -301,7 +303,6 @@ try {
   lines.push('No fixture extracted.');
   failed = true;
 }
-const FIRST_RUN_ONLY = new Set(['narayana', 'lagnaKendradi', 'drig']);
 /** Known and unexplained differences, set apart from a date on: none now (REF 0090's was the nodes' dignity). */
 const RASHI_KNOWN: Record<string, { systems: string[]; from: string; why: string }> = {};
 const rashiKnown: string[] = [];
@@ -324,13 +325,6 @@ for (const d of set) {
     t.charts++;
     if (NOT_MEASURED.has(system)) { t.apart += own.length; continue; }
     let kept = own;
-    if (FIRST_RUN_ONLY.has(system)) {
-      const first = computeDashas(eph, input, { ...d.options, system, levels: 1, cycles: 1 }, { fidelity: 'pl9' }).periods;
-      const end = first.at(-1)!.end;
-      // A start on the last day of the first run is the second's.
-      kept = own.filter((x) => shownJd(x.split(' ')[2]!) < end - 1);
-      t.apart += own.length - kept.length;
-    }
     const known = RASHI_KNOWN[d.id];
     if (known && known.systems.includes(system)) {
       const apart = kept.filter((x) => x.split(' ')[2]! >= known.from);
@@ -347,7 +341,7 @@ for (const d of set) {
 }
 checkRashi(rashiSet, rashiTally, '');
 if (rashiSet.length) {
-  lines.push(`Charts: ${rashiSet.length}. Dates with the day only, with the same tolerance as the Kalachakra. "Not checked": the dates of the second run of the Narayana, the Lagna Kendradi and the Drig (PL9 gives it scrambled, and the core's pl9 mode gives the first only), and those of the systems not measured yet. "Exception": the dates set apart below.`, '',
+  lines.push(`Charts: ${rashiSet.length}. Dates with the day only, with the same tolerance as the Kalachakra. "Not checked": the dates of the systems not measured yet. "Exception": the dates set apart below.`, '',
     '| System | Charts | Dates | Failures | At the limit | Not checked | Exception |', '|---|---|---|---|---|---|---|');
   for (const system of RASHI_DASHA_SYSTEMS) {
     const t = rashiTally.get(system);
@@ -709,7 +703,7 @@ try {
 } catch (e) { trFailures.push(`| time-of-transits.json | ${(e as Error).message} | |`); }
 if (trCharts < 2 * MIN_TABLE_CHARTS) trFailures.push(`| fixtures-transits | ${trCharts} charts and dates checked, fewer than ${2 * MIN_TABLE_CHARTS} | |`);
 lines.push('| Charts × dates | Values | Failures | Border cases | Pending |', '|---|---|---|---|---|', `| ${trCharts} | ${trValues} | ${trFailures.length} | ${trBorders.length} | ${trPending.length} |`, '',
-  `Per chart and reference date: the positions, R marks, kakshas, Shadbala, Tarabala, Chandrabala and the Vimshottari, Narayana, Yogini and Ashtottari dashas at the reference instant (the Muhurta page) and at the instant printed on the transit pages, with the KP lords of the ten points at the latter; the sunrise chart of the birth and the 15 rows of its Vimshottari; the four dashas (with the Chara) of the two events of the Events page; the D9 and D10 tables of the transit; the Varshaphala of the clock's year (worksheets 64 to 66 and 74: return, table of the annual chart, kakshas, strengths, offices, Muntha and the natal and annual Sahams; the 12 dasha lists of 64, 65, 75, 81 and 89 and the monthly and daily returns, docs/spec/time/varshaphala.md); the events of the month's calendar (worksheet 104); the Kota Chakra positions (without the score); the SB# and VB of the transit table (worksheet 106; the VB of the nodes pending where it differs); the Panch Pakshi (worksheet 39: the bird, the fortnight, the ruling and dying birds, the ten yamas with their five parts, the times to two seconds); the year's sign entries and the month's kaksha calendar. And ${totQueries} "Time of transits" queries on REF 0010, to the second.`);
+  `Per chart and reference date: the positions, R marks, kakshas, Shadbala, Tarabala, Chandrabala and the Vimshottari, Narayana, Yogini and Ashtottari dashas at the reference instant (the Muhurta page) and at the instant printed on the transit pages, with the KP lords of the ten points at the latter; the sunrise chart of the birth and the 15 rows of its Vimshottari; the four dashas (with the Chara) of the two events of the Events page; the D9 and D10 tables of the transit; the Varshaphala of the clock's year (worksheets 64 to 66 and 74: return, table of the annual chart, kakshas, strengths, offices, Muntha and the natal and annual Sahams; the 12 dasha lists of 64, 65, 75, 81 and 89 and the monthly and daily returns, docs/spec/time/varshaphala.md); the events of the month's calendar (worksheet 104); the Kota Chakra positions (without the score); the SB# and VB of the transit table (worksheet 106); the Panch Pakshi (worksheet 39: the bird, the fortnight, the ruling and dying birds, the ten yamas with their five parts, the times to two seconds); the year's sign entries and the month's kaksha calendar. And ${totQueries} "Time of transits" queries on REF 0010, to the second.`);
 if (trFailures.length) lines.push('', '| Chart | Failures | First |', '|---|---|---|', ...trFailures);
 if (trBorders.length) lines.push('', '| Chart | Border case |', '|---|---|', ...trBorders);
 if (trPending.length) lines.push('', '| Chart | Pending |', '|---|---|', ...trPending);
@@ -821,7 +815,7 @@ for (const k of pendingWithoutReport(KNOWN_VARSHAPHALA_PENDING, vsSeen)) vsFailu
 if (vsReturnCharts < 135) vsFailures.push(`| fixtures-varshaphala/2030 | the 72 returns of ${vsReturnCharts} charts, fewer than 135 | |`);
 if (vsReports < 150) vsFailures.push(`| fixtures-varshaphala | ${vsReports} reports checked, fewer than 150 | |`);
 lines.push('| Reports | Values | Failures | Pending | Above 120 years |', '|---|---|---|---|---|', `| ${vsReports} | ${vsValues} | ${vsFailures.length} | ${vsPending.length} | ${vsOver120} |`, '',
-  'The 72 returns (date, time, degrees, lord of the year, Muntha), the year\'s chart (signs, degrees, nakshatras, lords, dignities, R/C), Harsha and Panchavargeeya, the offices and the lord of the year, the Tajika yogas, the Sahams, the four annual dashas, the 12 months and the Tripataki Chakra (houses and vedhas). Not compared: the Kutta and the Tambira, the SB of the annual chart and, in the reports above 120 years, everything but the 72 returns (docs/spec/time/varshaphala.md).');
+  'The 72 returns (date, time, degrees, lord of the year, Muntha), the year\'s chart (signs, degrees, nakshatras, lords, dignities, R/C), Harsha and Panchavargeeya, the offices and the lord of the year, the Tajika yogas, the Sahams, the four annual dashas, the 12 months and the Tripataki Chakra (houses and vedhas). Not compared: the Kutta, the SB of the annual chart and, in the reports above 120 years, everything but the 72 returns (docs/spec/time/varshaphala.md).');
 if (vsFailures.length) lines.push('', '| Report | Failures | First |', '|---|---|---|', ...vsFailures);
 if (vsPending.length) lines.push('', '| Report | Pending |', '|---|---|', ...vsPending);
 if (vsFailures.length) failed = true;

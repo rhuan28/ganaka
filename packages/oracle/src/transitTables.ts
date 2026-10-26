@@ -563,7 +563,7 @@ export function verifySbVb(shown: NonNullable<TransitSnapshot['sbvb']>, strong: 
     if (row!.vb === null) continue;
     values++;
     const c = vb[p];
-    if (c === undefined || Math.abs(c - row!.vb) > 0.5001) (p === 'rahu' || p === 'ketu' ? pending : failures).push(`vb ${p}: PL9 ${row!.vb}, core ${c?.toFixed(2)}`);
+    if (c === undefined || Math.abs(c - row!.vb) > 0.5001) failures.push(`vb ${p}: PL9 ${row!.vb}, core ${c?.toFixed(2)}`);
   }
   return { values, failures, pending };
 }

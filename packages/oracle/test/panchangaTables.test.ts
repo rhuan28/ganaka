@@ -97,14 +97,14 @@ describe('the birth panchanga check', () => {
     const weekday = (Math.floor(natal.jdUt + 0.5) + 1) % 7;
     const v = verifyBirthPanchanga(fx.pl9.birth, p, fmt, natal.jdUt, weekday, KNOWN_BIRTH_PENDING['ref-0010']);
     expect(v.failures).toEqual([]);
-    expect(v.pending.map((x) => x.split(':')[0]).sort()).toEqual(['astrologicalWeekday', 'hinduWeekday']);
+    expect(v.pending).toEqual([]);
     expect(v.values).toBeGreaterThan(60);
   });
 
   it('names each value that differs, and fails a known kind of difference in a chart not listed for it', async () => {
     const { fx, p, natal, fmt } = await load();
     const weekday = (Math.floor(natal.jdUt + 0.5) + 1) % 7;
-    const shifted = { ...p, sunset: p.sunset + 5 / 86400, saka: p.saka + 1 };
+    const shifted = { ...p, sunset: p.sunset + 5 / 86400, saka: p.saka + 1, vara: ((p.vara ?? 0) + 1) % 7 };
     const v = verifyBirthPanchanga(fx.pl9.birth, shifted, fmt, natal.jdUt, weekday, []);
     expect(v.failures.map((x) => x.split(':')[0])).toEqual(expect.arrayContaining(['sunset', 'saka', 'hinduWeekday']));
     expect(v.pending).toEqual([]);
@@ -113,9 +113,9 @@ describe('the birth panchanga check', () => {
   it('names a known difference that no longer happens (a stale pending)', async () => {
     const { fx, p, natal, fmt } = await load();
     const weekday = (Math.floor(natal.jdUt + 0.5) + 1) % 7;
-    const v = verifyBirthPanchanga(fx.pl9.birth, p, fmt, natal.jdUt, weekday, [...KNOWN_BIRTH_PENDING['ref-0010']!, 'saka']);
+    const v = verifyBirthPanchanga(fx.pl9.birth, p, fmt, natal.jdUt, weekday, ['saka']);
     expect(v.stale).toEqual(['saka']);
-    expect(verifyBirthPanchanga(fx.pl9.birth, p, fmt, natal.jdUt, weekday, KNOWN_BIRTH_PENDING['ref-0010']).stale).toEqual([]);
+    expect(verifyBirthPanchanga(fx.pl9.birth, p, fmt, natal.jdUt, weekday, []).stale).toEqual([]);
   });
 });
 

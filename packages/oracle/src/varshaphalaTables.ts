@@ -87,6 +87,9 @@ export function loadVarshaphalaFixtures(dir: string): VarshaphalaFixture[] {
  * the Patyayini of three reports its print rule does not explain, and a few Sahams (docs/spec/time/varshaphala.md).
  */
 export const KNOWN_VARSHAPHALA_PENDING: Readonly<Record<string, readonly string[]>> = {
+  'ref-0129 2000': ['yoga Tambira'],
+  'ref-0267 2000': ['yoga Tambira'],
+  'ref-0075 2000': ['yoga Tambira'],
   'ref-0018 2030': ['yoga Manua planets'],
   'ref-0039 2030': ['yoga Manua planets', 'saham Mahatmya', 'saham Paradesa', 'saham Artha', 'saham Bandhana', 'saham Apamrityu', 'saham Labha'],
   'ref-0044 2030': ['yoga Kamboola planets'],
@@ -98,7 +101,7 @@ export const KNOWN_VARSHAPHALA_PENDING: Readonly<Record<string, readonly string[
   'ref-0096 2030': ['yoga Manua planets'],
   'ref-0126 2030': ['saham Karyasiddhi', 'saham Karyasiddhi lord'],
   'ref-0165 2030': ['yoga Manua planets'],
-  'ref-0182 2030': ['yoga Manua planets'],
+  'ref-0182 2030': ['yoga Manua planets', 'yoga Tambira'],
   'ref-0225 2030': ['yoga Manua planets'],
   'ref-0263 2030': ['yoga Manua planets', 'saham Mahatmya', 'saham Paradesa', 'saham Artha', 'saham Bandhana', 'saham Apamrityu', 'saham Labha'],
   'ref-0264 2030': ['yoga Manua planets', 'saham Paradesa', 'saham Artha', 'saham Labha'],
@@ -225,7 +228,7 @@ const hms = (x: string) => x.split(':').map(Number).reduce((t, v) => t * 60 + v,
  * the second or minute shown, the Lagna (and what is counted from it) within its motion in 1.5 seconds of time; the
  * Muntha to 1″. `known` lists the differences already known for this report (keys "part" or "part name"); with
  * `returnsOnly`, only the 72 returns.
- * Not compared: Kutta and Tambira, and the annual chart's Shadbala (SB) (docs/spec/time/varshaphala.md).
+ * Not compared: the Kutta, and the annual chart's Shadbala (SB) (docs/spec/time/varshaphala.md).
  * The Tripataki: each cell the chakra prints, and each vedha list as a set.
  */
 export function verifyVarshaphala(pl9: VarshaphalaShown['parts'], c: VarshaphalaComputed, known: readonly string[], opts: { returnsOnly?: boolean } = {}): { values: number; failures: string[]; pending: string[]; stale: string[] } {
@@ -320,9 +323,9 @@ export function verifyVarshaphala(pl9: VarshaphalaShown['parts'], c: Varshaphala
     check('muntha lord', L.munthaLord === SIGN_LORDS[Math.floor(c.lords.munthaLongitude / 30)], L.munthaLord, SIGN_LORDS[Math.floor(c.lords.munthaLongitude / 30)]);
     check('muntha lord house', Number(L.munthaLordHouse) === c.lords.munthaLordHouse, L.munthaLordHouse, c.lords.munthaLordHouse);
   } else check('year lord', false, L.yearLord, 'none');
-  // The yogas (not Kutta or Tambira).
+  // The yogas (not the Kutta, which PL9 forms in fewer charts than its rule gives; the Tambira by its presence).
   c.yogas.forEach((y, i) => {
-    if (y.name === 'Kutta' || y.name === 'Tambira') return;
+    if (y.name === 'Kutta') return;
     const present = pl9.vsyoga[`${i + 1}.present`] === '1';
     check(`yoga ${y.name}`, present === y.present, present, y.present);
     const shown = new Set((pl9.vsyoga[`${i + 1}.planets`] ?? '').split(',').filter(Boolean));

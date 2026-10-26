@@ -114,9 +114,23 @@ export interface TajikaYoga {
   planets: Planet7[][];
 }
 
+const SIGN_LORD: Planet7[] = ['mars', 'venus', 'mercury', 'moon', 'sun', 'mercury', 'venus', 'mars', 'jupiter', 'saturn', 'saturn', 'jupiter'];
+
+/**
+ * Whether PL9's report leaves a planet out as the second of Tambira and Kutta: the Lagna lord itself. Its report skips
+ * Jupiter with the Lagna in Sagittarius or Capricorn (not Pisces) and Venus in Taurus or Scorpio (not Libra); the
+ * corrected mode skips the Lagna lord only.
+ */
+function skippedWith(x: Planet7, lagnesh: Planet7, lagnaSign: number, fidelity: string): boolean {
+  if (fidelity === 'pl9' && x === 'jupiter') return lagnaSign === 8 || lagnaSign === 9;
+  if (fidelity === 'pl9' && x === 'venus') return lagnaSign === 1 || lagnaSign === 7;
+  return x === lagnesh;
+}
+
 /**
  * The sixteen Tajika yogas of a chart: the rules read in PL9, over every ordered pair (or triple) of the seven
- * planets; Tambira and Kutta over the Lagna lord and the Karyesh given. See docs/spec/time/varshaphala.md.
+ * planets; Tambira and Kutta over the annual Lagna lord and the Karyesh given, or each other planet. See
+ * docs/spec/time/varshaphala.md.
  */
 export function tajikaYogas(c: TajikaChart, lords: { lagnesh?: Planet7; karyesh?: Planet7 } = {}): TajikaYoga[] {
   const r = rules(c) as Record<number, (...a: Planet7[]) => boolean>;
@@ -127,7 +141,11 @@ export function tajikaYogas(c: TajikaChart, lords: { lagnesh?: Planet7; karyesh?
       const rule = r[id]!;
       if (rule.length === 0) { if (rule()) present = true; continue; }
       if (id === 20 || id === 21) {
-        if (lords.lagnesh && lords.karyesh && rule(lords.lagnesh, lords.karyesh)) present = true;
+        // The annual Lagna lord with the Karyesh given or, without one, with each other planet (PL9's report).
+        const lagnesh = lords.lagnesh ?? (Number.isFinite(c.lagna) ? SIGN_LORD[Math.floor(c.lagna / 30) % 12] : undefined);
+        if (!lagnesh) continue;
+        const others = lords.karyesh ? [lords.karyesh] : SEVEN.filter((x) => !skippedWith(x, lagnesh, Math.floor(c.lagna / 30) % 12, c.fidelity ?? 'pl9'));
+        if (others.some((x) => x !== lagnesh && rule(lagnesh, x))) present = true;
         continue;
       }
       // But for the Ithasala, PL9 never takes Jupiter as the first planet of a pair (from the printouts: Jupiter and

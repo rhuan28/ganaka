@@ -55,6 +55,16 @@ const NODES: Record<'rahu' | 'ketu', number[]> = {
   rahu: [0, 0, 0, 1, 2, 2, 2],
   ketu: [0, 0, 2, 1, 1, 2, 0],
 };
+/**
+ * The nodes as PL9's executable rates them, which its Muhurta and transit pages use (read in PL9): own signs (Rahu
+ * Gemini, Virgo and Aquarius; Ketu Scorpio, Sagittarius and Pisces), and Ketu a friend of Saturn.
+ */
+const NODES_IN_TIME = {
+  own: { rahu: [2, 5, 10], ketu: [7, 8, 11] } as Record<'rahu' | 'ketu', number[]>,
+  natural: { rahu: [0, 0, 0, 1, 2, 2, 2], ketu: [0, 0, 2, 1, 1, 2, 2] } as Record<'rahu' | 'ketu', number[]>,
+};
+/** Which rating of the nodes: PL9's printed Vimshopaka ('report'), or its Muhurta and transit pages ('time'). */
+export type NodeRating = 'report' | 'time';
 /** Points by relationship with the lord of the sign: own, great friend, friend, neutral, enemy, great enemy. */
 const POINTS = { own: 20, compound: [5, 7, 10, 15, 18] };
 
@@ -63,11 +73,13 @@ const signOf = (longitude: number) => Math.floor(norm360(longitude) / 30);
 const temporal = (sign: number, other: number) => { const apart = Math.abs(other - sign); return apart !== 0 && [1, 2, 3, 9, 10, 11].includes(apart) ? 1 : -1; };
 
 /** The points of a planet in one varga: its own sign 20; otherwise by its compound relationship with the sign's lord. */
-function points(p: Planet9, varga: ClassicalVargaName, longitudes: Record<Planet9, number>, fidelity: Fidelity): number {
+function points(p: Planet9, varga: ClassicalVargaName, longitudes: Record<Planet9, number>, fidelity: Fidelity, nodes: NodeRating): number {
   const sign = vargaSign(longitudes[p], varga, fidelity);
-  if (OWN[p].includes(sign)) return POINTS.own;
+  const node = p === 'rahu' || p === 'ketu' ? p : null;
+  const own = node && nodes === 'time' ? NODES_IN_TIME.own[node] : OWN[p];
+  if (own.includes(sign)) return POINTS.own;
   const lord = LORD[sign]!;
-  const natural = p === 'rahu' || p === 'ketu' ? NODES[p][SEVEN.indexOf(lord)]! : NATURAL[p][SEVEN.indexOf(lord)]!;
+  const natural = node ? (nodes === 'time' ? NODES_IN_TIME.natural : NODES)[node][SEVEN.indexOf(lord)]! : NATURAL[p as Planet7][SEVEN.indexOf(lord)]!;
   // The temporal relationship stays that of the birth chart, in every varga.
   return POINTS.compound[natural + temporal(signOf(longitudes[p]), signOf(longitudes[lord])) + 1]!;
 }
@@ -97,13 +109,13 @@ function inVarga(longitudes: Record<Planet9, number>, varga: ClassicalVargaName,
   return Object.fromEntries(NINE.map((p) => [p, vargaSign(longitudes[p], varga, fidelity) * 30 + vargaDegree(longitudes[p], varga)])) as Record<Planet9, number>;
 }
 
-export function vimshopaka(longitudes: Record<Planet9, number>, fidelity: Fidelity = 'pl9'): Vimshopaka {
+export function vimshopaka(longitudes: Record<Planet9, number>, fidelity: Fidelity = 'pl9', nodes: NodeRating = 'report'): Vimshopaka {
   const charts = Object.fromEntries(CLASSICAL_VARGAS.map((v) => [v, inVarga(longitudes, v, fidelity)])) as Record<ClassicalVargaName, Record<Planet9, number>>;
   const planets = {} as Record<Planet9, VimshopakaRow>;
   const weights = vimshopakaWeights(fidelity);
   for (const p of NINE) {
     const scores = Object.fromEntries(VIMSHOPAKA_GROUPS.map((g) => [g,
-      Object.entries(weights[g]).reduce((s, [v, w]) => s + points(p, v as ClassicalVargaName, longitudes, fidelity) * w!, 0) / 200,
+      Object.entries(weights[g]).reduce((s, [v, w]) => s + points(p, v as ClassicalVargaName, longitudes, fidelity, nodes) * w!, 0) / 200,
     ])) as Record<VimshopakaGroup, number>;
     // The dignity in each varga, the relationships taken from the varga's own positions.
     const dignities = Object.fromEntries(CLASSICAL_VARGAS.map((v) => [v, dignity9(p, charts[v])])) as Record<ClassicalVargaName, number>;

@@ -67,7 +67,7 @@ export function computeTransits(eph: Ephemeris, natal: ChartInput, at: TransitIn
     kakshas: natalSigns ? transitKakshas(natalSigns, transit, options.ashtakavarga ?? {}, fidelity) : null,
     shadbalaRatio: sb ? Object.fromEntries(AV_PLANETS.map((p) => [p, sb.planets[p].ratio])) as Record<AvPlanet, number> : null,
     shadbalaStrong: sb ? Object.fromEntries(AV_PLANETS.map((p) => [p, sb.planets[p].strong])) as Record<AvPlanet, number> : null,
-    vimshopaka: Object.fromEntries(Object.entries(vimshopaka(Object.fromEntries(PLANETS_9.map((p) => [p, now.points[p].longitude])) as Record<Planet9, number>, fidelity).planets).map(([p, x]) => [p, x.scores.shadvarga])) as Record<Planet9, number>,
+    vimshopaka: Object.fromEntries(Object.entries(vimshopaka(Object.fromEntries(PLANETS_9.map((p) => [p, now.points[p].longitude])) as Record<Planet9, number>, fidelity, 'time').planets).map(([p, x]) => [p, x.scores.shadvarga])) as Record<Planet9, number>,
     tarabala: tarabala(birth.points.moon.longitude, now.points.moon.longitude),
     chandrabala: chandrabala(birth.points.moon.longitude, now.points.moon.longitude),
     missing,

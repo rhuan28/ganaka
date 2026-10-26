@@ -179,6 +179,47 @@ describe('the Chara of Parashara', () => {
   });
 });
 
+describe("PL9's table of the Narayana, Lagna Kendradi and Drig past the first run", () => {
+  // Rows as PL9 printed them for REF 0010 (Drig #2, first box; Lagna Kendradi #2, second box): sign and start.
+  const rowsFrom = (system: 'drig' | 'lagnaKendradi', d: number, m: number, y: number, n: number) => {
+    const rows = rashiDashas(system, REF10, JD10, { yearDays: A, levels: 2, cycles: 3 }, 'pl9').flatMap((p) => p.sub!.map((s) => ({ md: p.lord, s })));
+    const i = rows.findIndex((r) => inDay(r.s.start, d, m, y));
+    return rows.slice(i, i + n);
+  };
+  it('the Drig: the second run from the 12th, parts of the first run years running past their mahadasha', () => {
+    const shown: [string, number, number, number][] = [['gemini', 26, 5, 2072], ['cancer', 26, 4, 2073], ['gemini', 26, 5, 2073], ['cancer', 26, 4, 2074],
+      ['cancer', 25, 1, 2075], ['gemini', 27, 5, 2075], ['taurus', 26, 9, 2075], ['aries', 25, 1, 2076], ['pisces', 26, 5, 2076], ['aquarius', 25, 9, 2076],
+      ['capricorn', 25, 1, 2077], ['sagittarius', 26, 5, 2077]];
+    const rows = rowsFrom('drig', 26, 5, 2072, 12);
+    expect(rows[0]!.md).toBe('gemini');
+    rows.forEach((r, k) => {
+      expect(r.s.lord, `row ${k}`).toBe(shown[k]![0]);
+      expect(inDay(r.s.start, shown[k]![1], shown[k]![2], shown[k]![3]), `row ${k}`).toBe(true);
+    });
+  });
+  it('the Lagna Kendradi: each run three signs on, the first twelve parts of a run of 12 years less with the first years', () => {
+    const rows = rowsFrom('lagnaKendradi', 27, 5, 2078, 12);
+    expect(rows[0]!.md).toBe('cancer');
+    expect(rows.map((r) => r.s.lord.slice(0, 3)).join(' ')).toBe('cap sag sco lib vir leo can gem tau ari pis aqu');
+    expect(inDay(rows[11]!.s.start, 24, 2, 2081)).toBe(true);
+  });
+  it('the first run as before, and the chain at an instant agreeing with the table', () => {
+    for (const system of ['narayana', 'lagnaKendradi', 'drig'] as const) {
+      const one = rashiDashas(system, REF10, JD10, { yearDays: A, levels: 2, cycles: 1 }, 'pl9');
+      for (const p of one) {
+        expect(p.sub, system).toHaveLength(12);
+        p.sub!.forEach((s, j) => expect(s.start).toBeCloseTo(p.start + (j * (p.end - p.start)) / 12, 6));
+      }
+      const table = rashiDashas(system, REF10, JD10, { yearDays: A, levels: 2, cycles: 3 }, 'pl9');
+      for (const p of table) for (const s of p.sub!) {
+        const chain = rashiChainAt(system, REF10, JD10, s.start + 0.01, A, 'pl9');
+        expect(SIGNS[chain[0]!], system).toBe(p.lord);
+        expect(SIGNS[chain[1]!], system).toBe(s.lord);
+      }
+    }
+  });
+});
+
 describe('the Narayana chain at an instant ("Gochara data")', () => {
   // REF 0010: Capricorn 11 years, Sagittarius 11, Scorpio 5, ... ; the first run ends at 77 years.
   const at = (years: number) => JD10 + years * A;

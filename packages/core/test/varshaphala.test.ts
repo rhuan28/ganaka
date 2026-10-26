@@ -225,10 +225,12 @@ describe('the Tajika yogas', () => {
     const y = tajikaYogas(at({ mercury: 65, jupiter: 95, moon: 61 }));
     expect([y.find((x) => x.name === 'Nakata')!.present, y.find((x) => x.name === 'Yamaya')!.present]).toEqual([false, false]);
   });
-  it('tests Tambira and Kutta on the Lagna lord and the Karyesh given, and not without them', async () => {
+  it('tests Tambira and Kutta on the annual Lagna lord with the Karyesh given, or with each other planet', async () => {
     const { tajikaYogas } = await import('../src/index');
     const kendras = { sun: 1, moon: 4, mars: 7, mercury: 10, jupiter: 1, venus: 4, saturn: 7 };
-    expect(tajikaYogas(at({}, { house: kendras })).find((x) => x.name === 'Kutta')!.present).toBe(false);
+    const kutta = () => tajikaYogas(at({}, { house: kendras })).find((x) => x.name === 'Kutta')!.present;
+    // All in kendras: some pair with the Lagna lord makes it, as PL9's report tests them all.
+    expect(kutta()).toBe(true);
   });
   it('names the sixteen yogas in the order PL9 prints them', async () => {
     const { TAJIKA_YOGAS } = await import('../src/index');

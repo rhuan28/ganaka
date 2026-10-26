@@ -88,6 +88,20 @@ export function verifyDashas(fixture: DashaFixture, periodsOf: (system: DashaSys
   return verdict;
 }
 
+/**
+ * The rows of a rashi dasha laid out as PL9's report prints them: boxes of twelve rows one after another, each headed by
+ * the mahadasha of its first row and starting with it, whatever mahadasha the rows after it belong to.
+ */
+export function reportBoxes(periods: readonly DashaPeriod[]): DashaPeriod[] {
+  const rows = periods.flatMap((p) => (p.sub ?? []).map((s) => ({ md: p.lord, row: s })));
+  const boxes: DashaPeriod[] = [];
+  for (let i = 0; i < rows.length; i += 12) {
+    const chunk = rows.slice(i, i + 12);
+    boxes.push({ lord: chunk[0]!.md, start: chunk[0]!.row.start, end: chunk.at(-1)!.row.end, level: 1, sub: chunk.map((c) => c.row) });
+  }
+  return boxes;
+}
+
 /** How many whole cycles from birth reach the latest start of a fixture, with one to spare. */
 export function cyclesToCover(fixture: DashaFixture, system: DashaSystem, jdUt: number, cycleDays: number): number {
   const latest = Math.max(jdUt, ...fixture.pl9.dashas.map(decodeDasha).filter((d) => d.system === system).map((d) => shownJd(d.start)));

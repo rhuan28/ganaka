@@ -171,17 +171,17 @@ The Kalachakra reports have the date only: each start passes if the core's insta
 
 ## Rashi dashas
 
-Charts: 135. Dates with the day only, with the same tolerance as the Kalachakra. "Not checked": the dates of the second run of the Narayana, the Lagna Kendradi and the Drig (PL9 gives it scrambled, and the core's pl9 mode gives the first only), and those of the systems not measured yet. "Exception": the dates set apart below.
+Charts: 135. Dates with the day only, with the same tolerance as the Kalachakra. "Not checked": the dates of the systems not measured yet. "Exception": the dates set apart below.
 
 | System | Charts | Dates | Failures | At the limit | Not checked | Exception |
 |---|---|---|---|---|---|---|
 | chara | 135 | 63281 | 0 | 0 | 0 | 0 |
 | sthira | 135 | 22098 | 0 | 0 | 0 | 0 |
 | niryaanaShoola | 135 | 2025 | 0 | 0 | 0 | 0 |
-| drig | 135 | 20943 | 0 | 0 | 1267 | 0 |
+| drig | 135 | 22210 | 0 | 0 | 0 | 0 |
 | navamsha | 135 | 42120 | 0 | 0 | 0 | 0 |
-| narayana | 135 | 20904 | 0 | 0 | 1317 | 0 |
-| lagnaKendradi | 135 | 20904 | 0 | 0 | 1317 | 0 |
+| narayana | 135 | 22221 | 0 | 0 | 0 | 0 |
+| lagnaKendradi | 135 | 22221 | 0 | 0 | 0 | 0 |
 | sreeLagnaKendradi (not measured) | 135 | 0 | 0 | 0 | 2025 | 0 |
 | shoola | 135 | 21060 | 0 | 0 | 0 | 0 |
 | padanadhamsa | 135 | 21060 | 0 | 0 | 0 | 0 |
@@ -190,13 +190,13 @@ With other options of the Dashas tab (all the measured systems of the print mode
 
 | Set | Charts | Dates | Failures | At the limit | Not checked | Exception |
 |---|---|---|---|---|---|---|
-| antardashaStart-lord | 31 | 53903 | 0 | 0 | 1314 | 0 |
-| charaAntarFromLord-true | 31 | 53903 | 0 | 0 | 1314 | 0 |
-| charaMethod-parashara | 31 | 53892 | 0 | 0 | 1314 | 0 |
-| charaMethod-parashara_charaAntarFromLord-true | 30 | 52146 | 0 | 0 | 1254 | 0 |
-| mercuryExaltation-anywhere | 30 | 52155 | 0 | 0 | 1119 | 0 |
-| padanadhamsaMethod-iranganti | 31 | 53903 | 0 | 0 | 1314 | 0 |
-| rahuExaltation-gemini | 32 | 55573 | 0 | 0 | 1465 | 0 |
+| antardashaStart-lord | 31 | 54752 | 0 | 0 | 465 | 0 |
+| charaAntarFromLord-true | 31 | 54752 | 0 | 0 | 465 | 0 |
+| charaMethod-parashara | 31 | 54741 | 0 | 0 | 465 | 0 |
+| charaMethod-parashara_charaAntarFromLord-true | 30 | 52950 | 0 | 0 | 450 | 0 |
+| mercuryExaltation-anywhere | 30 | 52824 | 0 | 0 | 450 | 0 |
+| padanadhamsaMethod-iranganti | 31 | 54752 | 0 | 0 | 465 | 0 |
+| rahuExaltation-gemini | 32 | 56558 | 0 | 0 | 480 | 0 |
 
 ## Ashtakavarga
 
@@ -303,9 +303,9 @@ The four groups of each of the nine planets, rounded (an exact half accepted eit
 
 | Charts × dates | Values | Failures | Border cases | Pending |
 |---|---|---|---|---|
-| 270 | 328146 | 0 | 9 | 532 |
+| 270 | 328146 | 0 | 9 | 180 |
 
-Per chart and reference date: the positions, R marks, kakshas, Shadbala, Tarabala, Chandrabala and the Vimshottari, Narayana, Yogini and Ashtottari dashas at the reference instant (the Muhurta page) and at the instant printed on the transit pages, with the KP lords of the ten points at the latter; the sunrise chart of the birth and the 15 rows of its Vimshottari; the four dashas (with the Chara) of the two events of the Events page; the D9 and D10 tables of the transit; the Varshaphala of the clock's year (worksheets 64 to 66 and 74: return, table of the annual chart, kakshas, strengths, offices, Muntha and the natal and annual Sahams; the 12 dasha lists of 64, 65, 75, 81 and 89 and the monthly and daily returns, docs/spec/time/varshaphala.md); the events of the month's calendar (worksheet 104); the Kota Chakra positions (without the score); the SB# and VB of the transit table (worksheet 106; the VB of the nodes pending where it differs); the Panch Pakshi (worksheet 39: the bird, the fortnight, the ruling and dying birds, the ten yamas with their five parts, the times to two seconds); the year's sign entries and the month's kaksha calendar. And 17 "Time of transits" queries on REF 0010, to the second.
+Per chart and reference date: the positions, R marks, kakshas, Shadbala, Tarabala, Chandrabala and the Vimshottari, Narayana, Yogini and Ashtottari dashas at the reference instant (the Muhurta page) and at the instant printed on the transit pages, with the KP lords of the ten points at the latter; the sunrise chart of the birth and the 15 rows of its Vimshottari; the four dashas (with the Chara) of the two events of the Events page; the D9 and D10 tables of the transit; the Varshaphala of the clock's year (worksheets 64 to 66 and 74: return, table of the annual chart, kakshas, strengths, offices, Muntha and the natal and annual Sahams; the 12 dasha lists of 64, 65, 75, 81 and 89 and the monthly and daily returns, docs/spec/time/varshaphala.md); the events of the month's calendar (worksheet 104); the Kota Chakra positions (without the score); the SB# and VB of the transit table (worksheet 106); the Panch Pakshi (worksheet 39: the bird, the fortnight, the ruling and dying birds, the ten yamas with their five parts, the times to two seconds); the year's sign entries and the month's kaksha calendar. And 17 "Time of transits" queries on REF 0010, to the second.
 
 | Chart | Border case |
 |---|---|
@@ -321,11 +321,6 @@ Per chart and reference date: the positions, R marks, kakshas, Shadbala, Tarabal
 
 | Chart | Pending |
 |---|---|
-| ref-0001 2000 | planet rahu vb: PL9 13,1, core 12.15 |
-| ref-0001 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0002 2000 | planet rahu vb: PL9 17,4, core 13.3 |
-| ref-0002 2000 | planet ketu vb: PL9 9, core 7.5 |
-| ref-0002 2000 | vb rahu: PL9 13, core 12.00 |
 | ref-0003 2000 | saham natal Karyasiddhi: PL9 Libra 28:12:19, core 238.20541226182962 |
 | ref-0003 2000 | saham natal Karyasiddhi lord: PL9 venus, core mars |
 | ref-0003 2000 | patyayini row 2: PL9 saturn-lagna-sun Thu 12-11-2026, core saturn-lagna-saturn 12-11-2026 |
@@ -342,97 +337,23 @@ Per chart and reference date: the positions, R marks, kakshas, Shadbala, Tarabal
 | ref-0003 2000 | patyayini row 13: PL9 saturn-sun-venus Sat 21-11-2026, core saturn-sun-moon 21-11-2026 |
 | ref-0003 2000 | patyayini row 14: PL9 saturn-sun-moon Sat 21-11-2026, core saturn-sun-mars 21-11-2026 |
 | ref-0003 2000 | patyayini row 15: PL9 saturn-sun-mars Sat 21-11-2026, core saturn-sun-saturn 21-11-2026 |
-| ref-0003 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0004 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0005 2000 | planet rahu vb: PL9 14,1, core 12.65 |
-| ref-0005 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0006 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0008 2000 | planet rahu vb: PL9 13,2, core 12 |
-| ref-0008 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0009 2000 | planet rahu vb: PL9 18,4, core 15.4 |
-| ref-0009 2000 | planet ketu vb: PL9 9, core 7.5 |
-| ref-0009 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0010 2000 | planet rahu vb: PL9 18,5, core 15.9 |
-| ref-0010 2000 | planet ketu vb: PL9 14, core 11.75 |
 | ref-0010 2000 | patyayini row 15: PL9 mars-mars-sun Fri 30-10-2026, core mars-venus-venus 30-10-2026 |
-| ref-0010 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0011 2000 | planet rahu vb: PL9 16,5, core 14.4 |
-| ref-0011 2000 | planet ketu vb: PL9 12, core 11 |
-| ref-0011 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0012 2000 | planet rahu vb: PL9 18,5, core 13.8 |
-| ref-0012 2000 | planet ketu vb: PL9 9, core 7.5 |
-| ref-0012 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0013 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0014 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0015 2000 | planet rahu vb: PL9 16,4, core 14.4 |
-| ref-0015 2000 | planet ketu vb: PL9 12, core 11 |
-| ref-0015 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0016 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0017 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0018 2000 | planet rahu vb: PL9 13,4, core 12 |
-| ref-0018 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0019 2000 | planet rahu vb: PL9 13,3, core 12.15 |
-| ref-0019 2000 | vb rahu: PL9 13, core 12.00 |
 | ref-0020 2000 | saham natal Karyasiddhi: PL9 Virgo 11:26:09, core 191.43588859877923 |
 | ref-0020 2000 | saham natal Karyasiddhi lord: PL9 mercury, core venus |
-| ref-0020 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0022 2000 | planet rahu vb: PL9 17,2, core 14.9 |
-| ref-0022 2000 | planet ketu vb: PL9 11, core 8.75 |
-| ref-0022 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0025 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0027 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0028 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0029 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0030 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0031 2000 | planet rahu vb: PL9 13,3, core 12 |
-| ref-0031 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0035 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0037 2000 | planet rahu vb: PL9 16,3, core 14.4 |
-| ref-0037 2000 | planet ketu vb: PL9 12, core 11 |
-| ref-0037 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0038 2000 | vb rahu: PL9 13, core 12.00 |
 | ref-0039 2000 | saham annual Mahatmya: PL9 Aries 09:56:31, core 9.948686515216878 |
 | ref-0039 2000 | saham annual Paradesa: PL9 Aquarius 18:38:16, core 318.64500825420095 |
 | ref-0039 2000 | saham annual Artha: PL9 Virgo 15:55:56, core 165.9392581005307 |
 | ref-0039 2000 | saham annual Bandhana: PL9 Gemini 01:14:54, core 61.255141948711014 |
 | ref-0039 2000 | saham annual Apamrityu: PL9 Aquarius 24:37:33, core 324.6328026670365 |
 | ref-0039 2000 | saham annual Labha: PL9 Pisces 06:37:28, core 336.6315462830279 |
-| ref-0039 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0040 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0041 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0042 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0043 2000 | planet rahu vb: PL9 16,5, core 14.65 |
-| ref-0043 2000 | planet ketu vb: PL9 17, core 13.15 |
-| ref-0043 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0044 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0050 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0051 2000 | vb rahu: PL9 13, core 12.00 |
 | ref-0056 2000 | saham annual Mahatmya: PL9 Aries 18:14:06, core 18.225817617427765 |
 | ref-0056 2000 | saham annual Paradesa: PL9 Aries 03:21:15, core 3.3451248573030625 |
 | ref-0056 2000 | saham annual Artha: PL9 Virgo 20:37:31, core 170.6163051215031 |
 | ref-0056 2000 | saham annual Bandhana: PL9 Gemini 06:18:29, core 66.2986181653927 |
 | ref-0056 2000 | saham annual Apamrityu: PL9 Aries 28:31:27, core 28.515117797726248 |
 | ref-0056 2000 | saham annual Labha: PL9 Gemini 12:21:34, core 72.35056755162562 |
-| ref-0056 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0058 2000 | planet rahu vb: PL9 17,4, core 16 |
-| ref-0058 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0060 2000 | planet rahu vb: PL9 14,1, core 12.65 |
-| ref-0060 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0061 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0063 2000 | planet rahu vb: PL9 18,6, core 15.9 |
-| ref-0063 2000 | planet ketu vb: PL9 14, core 11.75 |
-| ref-0063 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0065 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0067 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0069 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0070 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0073 2000 | vb rahu: PL9 13, core 12.00 |
 | ref-0075 2000 | saham natal Karyasiddhi: PL9 Virgo 14:50:54, core 194.84824057875295 |
 | ref-0075 2000 | saham natal Karyasiddhi lord: PL9 mercury, core venus |
-| ref-0075 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0076 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0077 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0088 2000 | planet rahu vb: PL9 14,2, core 12.65 |
 | ref-0090 2000 | saham natal Karyasiddhi: PL9 Virgo 02:12:29, core 182.20817119933298 |
 | ref-0090 2000 | saham natal Karyasiddhi lord: PL9 mercury, core venus |
 | ref-0090 2000 | saham annual Karyasiddhi: PL9 Virgo 02:12:29, core 182.20817119933298 |
@@ -440,29 +361,8 @@ Per chart and reference date: the positions, R marks, kakshas, Shadbala, Tarabal
 | ref-0090 2000 | patyayini row 13: PL9 lagna-saturn-sun Tue 28-01-2031, core lagna-saturn-jupiter 28-01-2031 |
 | ref-0090 2000 | patyayini row 14: PL9 lagna-saturn-jupiter Tue 28-01-2031, core lagna-saturn-venus 28-01-2031 |
 | ref-0090 2000 | patyayini row 15: PL9 lagna-saturn-venus Tue 28-01-2031, core lagna-mars-mars 28-01-2031 |
-| ref-0091 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0095 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0096 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0097 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0098 2000 | planet rahu vb: PL9 18,4, core 13.8 |
-| ref-0098 2000 | planet ketu vb: PL9 9, core 7.5 |
-| ref-0098 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0099 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0103 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0109 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0122 2000 | planet rahu vb: PL9 13,3, core 12.15 |
-| ref-0122 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0124 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0126 2000 | planet rahu vb: PL9 13,2, core 12.15 |
-| ref-0126 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0127 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0129 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0131 2000 | vb rahu: PL9 13, core 12.00 |
 | ref-0140 2000 | saham natal Karyasiddhi: PL9 Cancer 08:00:06, core 128.00170372728007 |
 | ref-0140 2000 | saham natal Karyasiddhi lord: PL9 moon, core sun |
-| ref-0140 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0143 2000 | planet rahu vb: PL9 16,4, core 14.4 |
-| ref-0143 2000 | planet ketu vb: PL9 12, core 11 |
 | ref-0143 2000 | saham annual Mahatmya: PL9 Taurus 26:54:46, core 56.921778580819876 |
 | ref-0143 2000 | saham annual Paradesa: PL9 Aquarius 17:48:20, core 317.8136316279435 |
 | ref-0143 2000 | saham annual Artha: PL9 Aries 15:58:00, core 15.975116817152696 |
@@ -470,78 +370,23 @@ Per chart and reference date: the positions, R marks, kakshas, Shadbala, Tarabal
 | ref-0143 2000 | saham annual Apamrityu: PL9 Capricorn 24:01:35, core 294.0349622169754 |
 | ref-0143 2000 | saham annual Labha: PL9 Aquarius 17:08:55, core 317.15682338193085 |
 | ref-0143 2000 | patyayini row 5: PL9 lagna-moon-lagna Mon 19-10-2026, core lagna-moon-lagna 20-10-2026 |
-| ref-0143 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0151 2000 | planet rahu vb: PL9 18,5, core 15.9 |
-| ref-0151 2000 | planet ketu vb: PL9 10, core 8.5 |
-| ref-0151 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0156 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0157 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0161 2000 | planet ketu vb: PL9 15, core 8.65 |
-| ref-0161 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0165 2000 | planet rahu vb: PL9 13,2, core 11.15 |
-| ref-0165 2000 | planet ketu vb: PL9 12, core 8 |
-| ref-0165 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0169 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0170 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0173 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0176 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0177 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0182 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0183 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0186 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0188 2000 | planet rahu vb: PL9 17,3, core 11.35 |
-| ref-0188 2000 | planet ketu vb: PL9 15, core 13 |
-| ref-0188 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0191 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0208 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0209 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0212 2000 | planet rahu vb: PL9 9,6, core 7.85 |
-| ref-0212 2000 | planet ketu vb: PL9 15, core 13.15 |
-| ref-0212 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0223 2000 | planet ketu vb: PL9 12, core 8.85 |
-| ref-0223 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0225 2000 | planet ketu vb: PL9 9, core 6.1 |
-| ref-0225 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0233 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0236 2000 | planet rahu vb: PL9 11,5, core 8.5 |
-| ref-0236 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0243 2000 | planet rahu vb: PL9 18,3, core 15.4 |
-| ref-0243 2000 | planet ketu vb: PL9 9, core 7.5 |
-| ref-0243 2000 | vb rahu: PL9 13, core 12.00 |
 | ref-0246 2000 | saham natal Karyasiddhi: PL9 Leo 15:32:10, core 165.5361261770007 |
 | ref-0246 2000 | saham natal Karyasiddhi lord: PL9 sun, core mercury |
-| ref-0246 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0250 2000 | vb rahu: PL9 13, core 12.00 |
 | ref-0254 2000 | saham annual Mahatmya: PL9 Aquarius 14:31:20, core 314.5275233551084 |
 | ref-0254 2000 | saham annual Paradesa: PL9 Taurus 08:20:10, core 38.34235719855732 |
 | ref-0254 2000 | saham annual Artha: PL9 Aries 19:58:22, core 19.97837319064297 |
 | ref-0254 2000 | saham annual Bandhana: PL9 Aries 05:30:43, core 5.517064503237663 |
 | ref-0254 2000 | saham annual Apamrityu: PL9 Capricorn 15:54:48, core 285.91893212768855 |
 | ref-0254 2000 | saham annual Labha: PL9 Pisces 10:45:12, core 340.7596218604844 |
-| ref-0254 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0258 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0259 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0260 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0261 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0262 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0263 2000 | vb rahu: PL9 13, core 12.00 |
 | ref-0264 2000 | saham annual Paradesa: PL9 Pisces 20:46:06, core 350.7742033201496 |
 | ref-0264 2000 | saham annual Artha: PL9 Taurus 01:47:56, core 31.804558935260225 |
 | ref-0264 2000 | saham annual Labha: PL9 Pisces 03:53:43, core 333.9012384046989 |
-| ref-0264 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0265 2000 | planet rahu vb: PL9 13,2, core 12.15 |
-| ref-0265 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0266 2000 | planet rahu vb: PL9 13,3, core 12.15 |
-| ref-0266 2000 | vb rahu: PL9 13, core 12.00 |
 | ref-0267 2000 | patyayini row 10: PL9 moon-mars-venus Wed 28-10-2026, core moon-saturn-venus 28-10-2026 |
 | ref-0267 2000 | patyayini row 11: PL9 moon-saturn-sun Wed 28-10-2026, core moon-mercury-sun 28-10-2026 |
 | ref-0267 2000 | patyayini row 12: PL9 moon-saturn-venus Wed 28-10-2026, core moon-mercury-venus 28-10-2026 |
 | ref-0267 2000 | patyayini row 13: PL9 moon-mercury-sun Wed 28-10-2026, core moon-sun-sun 28-10-2026 |
 | ref-0267 2000 | patyayini row 14: PL9 moon-mercury-venus Wed 28-10-2026, core moon-sun-venus 28-10-2026 |
 | ref-0267 2000 | patyayini row 15: PL9 moon-sun-sun Wed 28-10-2026, core moon-sun-mercury 28-10-2026 |
-| ref-0267 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0268 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0269 2000 | planet rahu vb: PL9 14,2, core 12.65 |
 | ref-0269 2000 | patyayini row 5: PL9 mars-mars-sun Tue 27-10-2026, core mars-jupiter-sun 27-10-2026 |
 | ref-0269 2000 | patyayini row 6: PL9 mars-mars-venus Tue 27-10-2026, core mars-jupiter-moon 27-10-2026 |
 | ref-0269 2000 | patyayini row 7: PL9 mars-jupiter-lagna Tue 27-10-2026, core mars-jupiter-venus 27-10-2026 |
@@ -553,8 +398,6 @@ Per chart and reference date: the positions, R marks, kakshas, Shadbala, Tarabal
 | ref-0269 2000 | patyayini row 13: PL9 mars-saturn-mercury Tue 27-10-2026, core mars-saturn-venus 27-10-2026 |
 | ref-0269 2000 | patyayini row 14: PL9 mars-saturn-sun Tue 27-10-2026, core mars-lagna-lagna 28-10-2026 |
 | ref-0269 2000 | patyayini row 15: PL9 mars-saturn-moon Tue 27-10-2026, core mars-lagna-mercury 28-10-2026 |
-| ref-0269 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0270 2000 | planet rahu vb: PL9 14,3, core 12.65 |
 | ref-0270 2000 | patyayini row 8: PL9 mars-mars-moon Tue 27-10-2026, core mars-jupiter-sun 27-10-2026 |
 | ref-0270 2000 | patyayini row 9: PL9 mars-jupiter-jupiter Tue 27-10-2026, core mars-jupiter-moon 27-10-2026 |
 | ref-0270 2000 | patyayini row 10: PL9 mars-jupiter-sun Tue 27-10-2026, core mars-jupiter-venus 27-10-2026 |
@@ -563,42 +406,11 @@ Per chart and reference date: the positions, R marks, kakshas, Shadbala, Tarabal
 | ref-0270 2000 | patyayini row 13: PL9 mars-jupiter-lagna Tue 27-10-2026, core mars-saturn-sun 27-10-2026 |
 | ref-0270 2000 | patyayini row 14: PL9 mars-saturn-saturn Tue 27-10-2026, core mars-saturn-moon 27-10-2026 |
 | ref-0270 2000 | patyayini row 15: PL9 mars-saturn-mercury Tue 27-10-2026, core mars-saturn-venus 27-10-2026 |
-| ref-0270 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0271 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0272 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0273 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0274 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0275 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0276 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0277 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0278 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0279 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0280 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0281 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0282 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0283 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0284 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0285 2000 | planet rahu vb: PL9 15,5, core 13.4 |
-| ref-0285 2000 | planet ketu vb: PL9 10, core 8.5 |
-| ref-0285 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0286 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0287 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0288 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0289 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0290 2000 | vb rahu: PL9 13, core 12.00 |
 | ref-0291 2000 | patyayini row 15: PL9 venus-jupiter-saturn Tue 03-11-2026, core venus-jupiter-mars 03-11-2026 |
-| ref-0291 2000 | vb rahu: PL9 13, core 12.00 |
-| ref-0352 2000 | planet rahu vb: PL9 15,3, core 13.9 |
-| ref-0352 2000 | planet ketu vb: PL9 12, core 11 |
 | ref-0352 2000 | saham annual Yasa: PL9 Aquarius 16:32:36, core 316.54909772621954 |
 | ref-0352 2000 | saham annual Paradesa: PL9 Pisces 15:50:50, core 345.85360502099877 |
 | ref-0352 2000 | saham annual Artha: PL9 Taurus 02:19:26, core 32.33007724029195 |
 | ref-0352 2000 | saham annual Labha: PL9 Pisces 01:37:56, core 331.6385616988248 |
-| ref-0001 2030 | planet rahu vb: PL9 13,1, core 12.15 |
-| ref-0001 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0002 2030 | planet rahu vb: PL9 17,4, core 13.3 |
-| ref-0002 2030 | planet ketu vb: PL9 9, core 7.5 |
-| ref-0002 2030 | vb rahu: PL9 13, core 12.00 |
 | ref-0003 2030 | saham natal Karyasiddhi: PL9 Libra 28:12:19, core 238.20541226182962 |
 | ref-0003 2030 | saham natal Karyasiddhi lord: PL9 venus, core mars |
 | ref-0003 2030 | patyayini row 2: PL9 saturn-lagna-sun Thu 12-11-2026, core saturn-lagna-saturn 12-11-2026 |
@@ -615,97 +427,23 @@ Per chart and reference date: the positions, R marks, kakshas, Shadbala, Tarabal
 | ref-0003 2030 | patyayini row 13: PL9 saturn-sun-venus Sat 21-11-2026, core saturn-sun-moon 21-11-2026 |
 | ref-0003 2030 | patyayini row 14: PL9 saturn-sun-moon Sat 21-11-2026, core saturn-sun-mars 21-11-2026 |
 | ref-0003 2030 | patyayini row 15: PL9 saturn-sun-mars Sat 21-11-2026, core saturn-sun-saturn 21-11-2026 |
-| ref-0005 2030 | planet rahu vb: PL9 14,1, core 12.65 |
-| ref-0008 2030 | planet rahu vb: PL9 13,2, core 12 |
-| ref-0008 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0009 2030 | planet rahu vb: PL9 18,4, core 15.4 |
-| ref-0009 2030 | planet ketu vb: PL9 9, core 7.5 |
-| ref-0009 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0010 2030 | planet rahu vb: PL9 18,5, core 15.9 |
-| ref-0010 2030 | planet ketu vb: PL9 14, core 11.75 |
 | ref-0010 2030 | patyayini row 15: PL9 mars-mars-sun Fri 30-10-2026, core mars-venus-venus 30-10-2026 |
-| ref-0010 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0011 2030 | planet rahu vb: PL9 16,5, core 14.4 |
-| ref-0011 2030 | planet ketu vb: PL9 12, core 11 |
-| ref-0011 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0012 2030 | planet rahu vb: PL9 18,5, core 13.8 |
-| ref-0012 2030 | planet ketu vb: PL9 9, core 7.5 |
-| ref-0012 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0013 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0014 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0015 2030 | planet rahu vb: PL9 16,4, core 14.4 |
-| ref-0015 2030 | planet ketu vb: PL9 12, core 11 |
-| ref-0015 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0016 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0017 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0018 2030 | planet rahu vb: PL9 13,4, core 12 |
-| ref-0018 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0019 2030 | planet rahu vb: PL9 13,3, core 12.15 |
-| ref-0019 2030 | vb rahu: PL9 13, core 12.00 |
 | ref-0020 2030 | saham natal Karyasiddhi: PL9 Virgo 11:26:09, core 191.43588859877923 |
 | ref-0020 2030 | saham natal Karyasiddhi lord: PL9 mercury, core venus |
-| ref-0020 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0022 2030 | planet rahu vb: PL9 17,2, core 14.9 |
-| ref-0022 2030 | planet ketu vb: PL9 11, core 8.75 |
-| ref-0022 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0025 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0027 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0028 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0029 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0030 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0031 2030 | planet rahu vb: PL9 13,3, core 12 |
-| ref-0031 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0035 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0037 2030 | planet rahu vb: PL9 16,3, core 14.4 |
-| ref-0037 2030 | planet ketu vb: PL9 12, core 11 |
-| ref-0037 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0038 2030 | vb rahu: PL9 13, core 12.00 |
 | ref-0039 2030 | saham annual Mahatmya: PL9 Aries 09:56:31, core 9.948686515216878 |
 | ref-0039 2030 | saham annual Paradesa: PL9 Aquarius 18:38:16, core 318.64500825420095 |
 | ref-0039 2030 | saham annual Artha: PL9 Virgo 15:55:56, core 165.9392581005307 |
 | ref-0039 2030 | saham annual Bandhana: PL9 Gemini 01:14:54, core 61.255141948711014 |
 | ref-0039 2030 | saham annual Apamrityu: PL9 Aquarius 24:37:33, core 324.6328026670365 |
 | ref-0039 2030 | saham annual Labha: PL9 Pisces 06:37:28, core 336.6315462830279 |
-| ref-0039 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0040 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0041 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0042 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0043 2030 | planet rahu vb: PL9 16,5, core 14.65 |
-| ref-0043 2030 | planet ketu vb: PL9 17, core 13.15 |
-| ref-0043 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0044 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0050 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0051 2030 | vb rahu: PL9 13, core 12.00 |
 | ref-0056 2030 | saham annual Mahatmya: PL9 Aries 18:14:06, core 18.225817617427765 |
 | ref-0056 2030 | saham annual Paradesa: PL9 Aries 03:21:15, core 3.3451248573030625 |
 | ref-0056 2030 | saham annual Artha: PL9 Virgo 20:37:31, core 170.6163051215031 |
 | ref-0056 2030 | saham annual Bandhana: PL9 Gemini 06:18:29, core 66.2986181653927 |
 | ref-0056 2030 | saham annual Apamrityu: PL9 Aries 28:31:27, core 28.515117797726248 |
 | ref-0056 2030 | saham annual Labha: PL9 Gemini 12:21:34, core 72.35056755162562 |
-| ref-0056 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0058 2030 | planet rahu vb: PL9 17,4, core 16 |
-| ref-0058 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0060 2030 | planet rahu vb: PL9 14,1, core 12.65 |
-| ref-0060 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0061 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0063 2030 | planet rahu vb: PL9 18,6, core 15.9 |
-| ref-0063 2030 | planet ketu vb: PL9 14, core 11.75 |
-| ref-0063 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0065 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0067 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0069 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0070 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0073 2030 | vb rahu: PL9 13, core 12.00 |
 | ref-0075 2030 | saham natal Karyasiddhi: PL9 Virgo 14:50:54, core 194.84824057875295 |
 | ref-0075 2030 | saham natal Karyasiddhi lord: PL9 mercury, core venus |
-| ref-0075 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0076 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0077 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0079 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0082 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0083 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0088 2030 | planet rahu vb: PL9 14,2, core 12.65 |
-| ref-0088 2030 | vb rahu: PL9 13, core 12.00 |
 | ref-0090 2030 | saham natal Karyasiddhi: PL9 Virgo 02:12:29, core 182.20817119933298 |
 | ref-0090 2030 | saham natal Karyasiddhi lord: PL9 mercury, core venus |
 | ref-0090 2030 | saham annual Karyasiddhi: PL9 Virgo 02:12:29, core 182.20817119933298 |
@@ -713,30 +451,8 @@ Per chart and reference date: the positions, R marks, kakshas, Shadbala, Tarabal
 | ref-0090 2030 | patyayini row 13: PL9 lagna-saturn-sun Tue 28-01-2031, core lagna-saturn-jupiter 28-01-2031 |
 | ref-0090 2030 | patyayini row 14: PL9 lagna-saturn-jupiter Tue 28-01-2031, core lagna-saturn-venus 28-01-2031 |
 | ref-0090 2030 | patyayini row 15: PL9 lagna-saturn-venus Tue 28-01-2031, core lagna-mars-mars 28-01-2031 |
-| ref-0090 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0091 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0095 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0096 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0097 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0098 2030 | planet rahu vb: PL9 18,4, core 13.8 |
-| ref-0098 2030 | planet ketu vb: PL9 9, core 7.5 |
-| ref-0098 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0099 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0103 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0109 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0122 2030 | planet rahu vb: PL9 13,3, core 12.15 |
-| ref-0122 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0124 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0126 2030 | planet rahu vb: PL9 13,2, core 12.15 |
-| ref-0126 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0127 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0129 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0131 2030 | vb rahu: PL9 13, core 12.00 |
 | ref-0140 2030 | saham natal Karyasiddhi: PL9 Cancer 08:00:06, core 128.00170372728007 |
 | ref-0140 2030 | saham natal Karyasiddhi lord: PL9 moon, core sun |
-| ref-0140 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0143 2030 | planet rahu vb: PL9 16,4, core 14.4 |
-| ref-0143 2030 | planet ketu vb: PL9 12, core 11 |
 | ref-0143 2030 | saham annual Mahatmya: PL9 Taurus 26:54:46, core 56.921778580819876 |
 | ref-0143 2030 | saham annual Paradesa: PL9 Aquarius 17:48:20, core 317.8136316279435 |
 | ref-0143 2030 | saham annual Artha: PL9 Aries 15:58:00, core 15.975116817152696 |
@@ -744,72 +460,23 @@ Per chart and reference date: the positions, R marks, kakshas, Shadbala, Tarabal
 | ref-0143 2030 | saham annual Apamrityu: PL9 Capricorn 24:01:35, core 294.0349622169754 |
 | ref-0143 2030 | saham annual Labha: PL9 Aquarius 17:08:55, core 317.15682338193085 |
 | ref-0143 2030 | patyayini row 5: PL9 lagna-moon-lagna Mon 19-10-2026, core lagna-moon-lagna 20-10-2026 |
-| ref-0143 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0151 2030 | planet rahu vb: PL9 18,5, core 15.9 |
-| ref-0151 2030 | planet ketu vb: PL9 10, core 8.5 |
-| ref-0151 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0156 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0157 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0161 2030 | planet ketu vb: PL9 15, core 8.65 |
-| ref-0161 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0165 2030 | planet rahu vb: PL9 13,2, core 11.15 |
-| ref-0165 2030 | planet ketu vb: PL9 12, core 8 |
-| ref-0165 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0169 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0170 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0173 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0176 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0177 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0182 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0183 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0186 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0188 2030 | planet rahu vb: PL9 17,3, core 11.35 |
-| ref-0188 2030 | planet ketu vb: PL9 15, core 13 |
-| ref-0188 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0191 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0208 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0212 2030 | planet rahu vb: PL9 9,6, core 7.85 |
-| ref-0212 2030 | planet ketu vb: PL9 15, core 13.15 |
-| ref-0223 2030 | planet ketu vb: PL9 12, core 8.85 |
-| ref-0225 2030 | planet ketu vb: PL9 9, core 6.1 |
-| ref-0236 2030 | planet rahu vb: PL9 11,5, core 8.5 |
-| ref-0243 2030 | planet rahu vb: PL9 18,3, core 15.4 |
-| ref-0243 2030 | planet ketu vb: PL9 9, core 7.5 |
-| ref-0243 2030 | vb rahu: PL9 13, core 12.00 |
 | ref-0246 2030 | saham natal Karyasiddhi: PL9 Leo 15:32:10, core 165.5361261770007 |
 | ref-0246 2030 | saham natal Karyasiddhi lord: PL9 sun, core mercury |
-| ref-0246 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0250 2030 | vb rahu: PL9 13, core 12.00 |
 | ref-0254 2030 | saham annual Mahatmya: PL9 Aquarius 14:31:20, core 314.5275233551084 |
 | ref-0254 2030 | saham annual Paradesa: PL9 Taurus 08:20:10, core 38.34235719855732 |
 | ref-0254 2030 | saham annual Artha: PL9 Aries 19:58:22, core 19.97837319064297 |
 | ref-0254 2030 | saham annual Bandhana: PL9 Aries 05:30:43, core 5.517064503237663 |
 | ref-0254 2030 | saham annual Apamrityu: PL9 Capricorn 15:54:48, core 285.91893212768855 |
 | ref-0254 2030 | saham annual Labha: PL9 Pisces 10:45:12, core 340.7596218604844 |
-| ref-0254 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0258 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0259 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0260 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0261 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0262 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0263 2030 | vb rahu: PL9 13, core 12.00 |
 | ref-0264 2030 | saham annual Paradesa: PL9 Pisces 20:46:06, core 350.7742033201496 |
 | ref-0264 2030 | saham annual Artha: PL9 Taurus 01:47:56, core 31.804558935260225 |
 | ref-0264 2030 | saham annual Labha: PL9 Pisces 03:53:43, core 333.9012384046989 |
-| ref-0264 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0265 2030 | planet rahu vb: PL9 13,2, core 12.15 |
-| ref-0265 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0266 2030 | planet rahu vb: PL9 13,3, core 12.15 |
-| ref-0266 2030 | vb rahu: PL9 13, core 12.00 |
 | ref-0267 2030 | patyayini row 10: PL9 moon-mars-venus Wed 28-10-2026, core moon-saturn-venus 28-10-2026 |
 | ref-0267 2030 | patyayini row 11: PL9 moon-saturn-sun Wed 28-10-2026, core moon-mercury-sun 28-10-2026 |
 | ref-0267 2030 | patyayini row 12: PL9 moon-saturn-venus Wed 28-10-2026, core moon-mercury-venus 28-10-2026 |
 | ref-0267 2030 | patyayini row 13: PL9 moon-mercury-sun Wed 28-10-2026, core moon-sun-sun 28-10-2026 |
 | ref-0267 2030 | patyayini row 14: PL9 moon-mercury-venus Wed 28-10-2026, core moon-sun-venus 28-10-2026 |
 | ref-0267 2030 | patyayini row 15: PL9 moon-sun-sun Wed 28-10-2026, core moon-sun-mercury 28-10-2026 |
-| ref-0267 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0268 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0269 2030 | planet rahu vb: PL9 14,2, core 12.65 |
 | ref-0269 2030 | patyayini row 5: PL9 mars-mars-sun Tue 27-10-2026, core mars-jupiter-sun 27-10-2026 |
 | ref-0269 2030 | patyayini row 6: PL9 mars-mars-venus Tue 27-10-2026, core mars-jupiter-moon 27-10-2026 |
 | ref-0269 2030 | patyayini row 7: PL9 mars-jupiter-lagna Tue 27-10-2026, core mars-jupiter-venus 27-10-2026 |
@@ -821,8 +488,6 @@ Per chart and reference date: the positions, R marks, kakshas, Shadbala, Tarabal
 | ref-0269 2030 | patyayini row 13: PL9 mars-saturn-mercury Tue 27-10-2026, core mars-saturn-venus 27-10-2026 |
 | ref-0269 2030 | patyayini row 14: PL9 mars-saturn-sun Tue 27-10-2026, core mars-lagna-lagna 28-10-2026 |
 | ref-0269 2030 | patyayini row 15: PL9 mars-saturn-moon Tue 27-10-2026, core mars-lagna-mercury 28-10-2026 |
-| ref-0269 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0270 2030 | planet rahu vb: PL9 14,3, core 12.65 |
 | ref-0270 2030 | patyayini row 8: PL9 mars-mars-moon Tue 27-10-2026, core mars-jupiter-sun 27-10-2026 |
 | ref-0270 2030 | patyayini row 9: PL9 mars-jupiter-jupiter Tue 27-10-2026, core mars-jupiter-moon 27-10-2026 |
 | ref-0270 2030 | patyayini row 10: PL9 mars-jupiter-sun Tue 27-10-2026, core mars-jupiter-venus 27-10-2026 |
@@ -831,24 +496,7 @@ Per chart and reference date: the positions, R marks, kakshas, Shadbala, Tarabal
 | ref-0270 2030 | patyayini row 13: PL9 mars-jupiter-lagna Tue 27-10-2026, core mars-saturn-sun 27-10-2026 |
 | ref-0270 2030 | patyayini row 14: PL9 mars-saturn-saturn Tue 27-10-2026, core mars-saturn-moon 27-10-2026 |
 | ref-0270 2030 | patyayini row 15: PL9 mars-saturn-mercury Tue 27-10-2026, core mars-saturn-venus 27-10-2026 |
-| ref-0270 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0271 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0272 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0273 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0274 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0275 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0276 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0277 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0278 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0279 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0280 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0281 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0282 2030 | vb rahu: PL9 13, core 12.00 |
-| ref-0285 2030 | planet rahu vb: PL9 15,5, core 13.4 |
-| ref-0285 2030 | planet ketu vb: PL9 10, core 8.5 |
 | ref-0291 2030 | patyayini row 15: PL9 venus-jupiter-saturn Tue 03-11-2026, core venus-jupiter-mars 03-11-2026 |
-| ref-0352 2030 | planet rahu vb: PL9 15,3, core 13.9 |
-| ref-0352 2030 | planet ketu vb: PL9 12, core 11 |
 | ref-0352 2030 | saham annual Yasa: PL9 Aquarius 16:32:36, core 316.54909772621954 |
 | ref-0352 2030 | saham annual Paradesa: PL9 Pisces 15:50:50, core 345.85360502099877 |
 | ref-0352 2030 | saham annual Artha: PL9 Taurus 02:19:26, core 32.33007724029195 |
@@ -858,62 +506,28 @@ Per chart and reference date: the positions, R marks, kakshas, Shadbala, Tarabal
 
 | Charts | Values | Failures | Pending |
 |---|---|---|---|
-| 135 | 11340 | 0 | 42 |
+| 135 | 11340 | 0 | 8 |
 
 The birth pages (the elements at sunrise and at birth with their ends and ghatis, sunrise and sunset, Ishtkaal, Bhayat, Bhabhog, the horas, the calendars, the Avakhada and the Ghat Chakra), the Tithi Pravesh in both variants, the tithi, karana and yoga of the 540 transit instants, and the six Print → Panchang printouts of REF 0010 (each day and the header, in the three calendar modes). Pending: the Vedic weekday, the Chaitradi month next to a full moon and the sunset searches that reach another crossing (docs/spec/time/panchanga.md). Not compared: the Tamil calendar and, in the Panchang, moonrise and moonset, the transits, the auspicious mark, the Ratriman and the table of signs.
 
 | Chart | Pending |
 |---|---|
 | ref-0009 | monthChaitradi: PL9 Chaitra, core Vaishaka |
-| ref-0010 | astrologicalWeekday: PL9 Saturday, core Sunday |
-| ref-0010 | hinduWeekday: PL9 Saturday, core Sunday |
-| ref-0013 | astrologicalWeekday: PL9 Wednesday, core Tuesday |
-| ref-0013 | hinduWeekday: PL9 Wednesday, core Tuesday |
 | ref-0013 | sunset: PL9 07:10:42, core 19:31:47 |
-| ref-0038 | astrologicalWeekday: PL9 Saturday, core Sunday |
-| ref-0038 | hinduWeekday: PL9 Saturday, core Sunday |
-| ref-0040 | astrologicalWeekday: PL9 Tuesday, core Wednesday |
-| ref-0040 | hinduWeekday: PL9 Tuesday, core Wednesday |
-| ref-0041 | astrologicalWeekday: PL9 Sunday, core Saturday |
-| ref-0041 | hinduWeekday: PL9 Sunday, core Saturday |
-| ref-0042 | astrologicalWeekday: PL9 Wednesday, core Thursday |
-| ref-0042 | hinduWeekday: PL9 Wednesday, core Thursday |
-| ref-0043 | astrologicalWeekday: PL9 Wednesday, core Tuesday |
-| ref-0043 | hinduWeekday: PL9 Wednesday, core Tuesday |
-| ref-0051 | astrologicalWeekday: PL9 Wednesday, core Tuesday |
-| ref-0051 | hinduWeekday: PL9 Wednesday, core Tuesday |
-| ref-0058 | astrologicalWeekday: PL9 Tuesday, core Wednesday |
-| ref-0058 | hinduWeekday: PL9 Tuesday, core Wednesday |
-| ref-0061 | astrologicalWeekday: PL9 Saturday, core Friday |
-| ref-0061 | hinduWeekday: PL9 Saturday, core Friday |
-| ref-0075 | astrologicalWeekday: PL9 Sunday, core Monday |
-| ref-0075 | hinduWeekday: PL9 Sunday, core Monday |
-| ref-0082 | astrologicalWeekday: PL9 Friday, core Saturday |
-| ref-0082 | hinduWeekday: PL9 Friday, core Saturday |
 | ref-0124 | nextSunrise: PL9 Wed 11:05:44, core 05:30:18 |
-| ref-0151 | astrologicalWeekday: PL9 Wednesday, core Thursday |
-| ref-0151 | hinduWeekday: PL9 Wednesday, core Thursday |
 | ref-0208 | sunset: PL9 02:09:32, core 02:09:30 |
 | ref-0273 | monthChaitradi: PL9 Ashaadh, core Shravan |
 | ref-0274 | monthChaitradi: PL9 Ashaadh, core Shravan |
-| ref-0274 | astrologicalWeekday: PL9 Tuesday, core Wednesday |
-| ref-0274 | hinduWeekday: PL9 Tuesday, core Wednesday |
-| ref-0286 | astrologicalWeekday: PL9 Tuesday, core Monday |
-| ref-0286 | hinduWeekday: PL9 Tuesday, core Monday |
-| ref-0288 | astrologicalWeekday: PL9 Thursday, core Wednesday |
-| ref-0288 | hinduWeekday: PL9 Thursday, core Wednesday |
 | ref-0289 | sunset: PL9 17:26:12, core 17:26:15 |
-| ref-0291 | astrologicalWeekday: PL9 Thursday, core Wednesday |
-| ref-0291 | hinduWeekday: PL9 Thursday, core Wednesday |
 | ref-0377 | monthChaitradi: PL9 Bhadrapada, core Aswini |
 
 ## Varshaphala
 
 | Reports | Values | Failures | Pending | Above 120 years |
 |---|---|---|---|---|
-| 172 | 333975 | 0 | 245 | 128 |
+| 172 | 334147 | 0 | 249 | 128 |
 
-The 72 returns (date, time, degrees, lord of the year, Muntha), the year's chart (signs, degrees, nakshatras, lords, dignities, R/C), Harsha and Panchavargeeya, the offices and the lord of the year, the Tajika yogas, the Sahams, the four annual dashas, the 12 months and the Tripataki Chakra (houses and vedhas). Not compared: the Kutta and the Tambira, the SB of the annual chart and, in the reports above 120 years, everything but the 72 returns (docs/spec/time/varshaphala.md).
+The 72 returns (date, time, degrees, lord of the year, Muntha), the year's chart (signs, degrees, nakshatras, lords, dignities, R/C), Harsha and Panchavargeeya, the offices and the lord of the year, the Tajika yogas, the Sahams, the four annual dashas, the 12 months and the Tripataki Chakra (houses and vedhas). Not compared: the Kutta, the SB of the annual chart and, in the reports above 120 years, everything but the 72 returns (docs/spec/time/varshaphala.md).
 
 | Report | Pending |
 |---|---|
@@ -938,6 +552,7 @@ The 72 returns (date, time, degrees, lord of the year, Muntha), the year's chart
 | ref-0126 2030 | saham Karyasiddhi lord: PL9 sun, core mercury |
 | ref-0165 2030 | yoga Manua planets: PL9 moon-mars,moon-jupiter,moon-saturn,venus-mars,venus-jupiter, core moon-mars,moon-jupiter,moon-saturn,mars-jupiter,venus-mars,venus-jupiter,venus-saturn |
 | ref-0182 2030 | yoga Manua planets: PL9 moon-mercury,moon-sun,moon-jupiter,mercury-sun,mercury-jupiter, core sun-jupiter,moon-sun,moon-mercury,moon-jupiter,mercury-sun,mercury-jupiter |
+| ref-0182 2030 | yoga Tambira: PL9 false, core true |
 | ref-0225 2030 | yoga Manua planets: PL9 mercury-sun,mercury-mars,venus-sun,venus-mars, core mercury-sun,mercury-mars,venus-sun,venus-mars,venus-jupiter |
 | ref-0263 2030 | yoga Manua planets: PL9 moon-mercury,moon-venus,moon-sun, core sun-jupiter,sun-saturn,moon-sun,moon-mercury,moon-venus,mars-jupiter,mercury-sun,mercury-mars,venus-mars,venus-jupiter |
 | ref-0263 2030 | saham Mahatmya: PL9 Libra 06:13:23, core 186.22900614000142 |
@@ -1068,9 +683,11 @@ The 72 returns (date, time, degrees, lord of the year, Muntha), the year's chart
 | ref-0039 2000 | saham Paradesa: PL9 Aries 13:03:05, core 13.0588299007469 |
 | ref-0039 2000 | saham Artha: PL9 Libra 08:33:17, core 188.56207480807973 |
 | ref-0039 2000 | saham Labha: PL9 Taurus 00:52:49, core 30.887912738782347 |
+| ref-0075 2000 | yoga Tambira: PL9 false, core true |
 | ref-0090 2000 | saham Karyasiddhi: PL9 Virgo 02:12:29, core 182.20817119933298 |
 | ref-0090 2000 | saham Karyasiddhi lord: PL9 mercury, core venus |
 | ref-0095 2000 | yoga Manua planets: PL9 moon-mercury,moon-venus, core moon-mars,moon-mercury,moon-venus |
+| ref-0129 2000 | yoga Tambira: PL9 true, core false |
 | ref-0143 2000 | yoga Kamboola planets: PL9 , core venus-saturn |
 | ref-0143 2000 | saham Yasa: PL9 Libra 03:35:42, core 183.601509643364 |
 | ref-0143 2000 | saham Paradesa: PL9 Pisces 04:36:46, core 334.6197908968669 |
@@ -1086,6 +703,7 @@ The 72 returns (date, time, degrees, lord of the year, Muntha), the year's chart
 | ref-0264 2000 | saham Paradesa: PL9 Aries 09:42:46, core 9.719326313592546 |
 | ref-0264 2000 | saham Artha: PL9 Libra 04:03:06, core 184.05777479434386 |
 | ref-0264 2000 | saham Labha: PL9 Capricorn 24:03:22, core 294.06264557271766 |
+| ref-0267 2000 | yoga Tambira: PL9 false, core true |
 | ref-0268 2000 | patyayini 7 end: PL9 30-10-2003, core 31-10-2003 01:34 |
 | ref-0268 2000 | patyayini 7.2 lord: PL9 jupiter, core lagna |
 | ref-0268 2000 | patyayini 7.3 lord: PL9 lagna, core saturn |
@@ -1167,477 +785,9 @@ The 72 returns (date, time, degrees, lord of the year, Muntha), the year's chart
 
 | Printouts | Values | Failures | Pending |
 |---|---|---|---|
-| 330 | 78720 | 0 | 465 |
+| 330 | 78720 | 0 | 0 |
 
 The Muhurta chart and its vargas (D9, D10, D16, D24, D60), positions, nakshatras and syllables, R/C, dignity, SB% and SB#, the Vimshopaka, the Avastha, the kakshas, Tarabala, Chandrabala, tithi, karana and yoga, the native's dasha chains, the Muhurta's and the native's dasha lists, the Bhava Bala and the thermometer. Not compared: Mandi, "BP" and "eM" in the drawings, and the texts (docs/spec/time/muhurta.md).
-
-| Printout | Pending |
-|---|---|
-| ref-0001 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0001 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0002 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0002 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0003 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0003 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0004 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0004 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0005 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0005 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0006 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0006 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0007 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0007 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0008 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0008 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0009 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0009 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0010 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0010 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0011 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0011 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0012 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0012 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0013 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0013 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0014 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0014 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0015 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0015 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0016 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0016 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0017 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0017 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0018 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0018 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0019 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0019 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0020 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0020 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0022 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0022 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0025 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0025 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0027 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0027 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0028 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0028 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0029 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0029 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0030 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0030 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0031 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0031 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0035 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0035 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0037 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0037 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0038 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0038 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0039 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0039 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0040 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0040 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0041 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0041 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0042 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0042 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0043 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0043 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0044 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0044 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0050 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0050 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0051 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0051 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0056 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0056 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0058 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0058 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0060 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0060 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0061 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0061 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0063 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0063 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0065 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0065 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0067 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0067 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0069 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0069 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0070 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0070 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0073 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0073 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0075 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0075 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0076 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0076 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0077 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0077 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0079 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0079 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0082 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0082 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0083 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0083 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0088 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0088 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0090 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0090 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0091 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0091 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0095 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0095 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0096 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0096 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0097 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0097 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0098 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0098 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0099 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0099 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0103 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0103 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0109 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0109 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0122 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0122 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0124 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0124 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0126 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0126 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0127 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0127 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0129 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0129 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0131 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0131 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0140 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0140 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0143 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0143 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0151 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0151 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0156 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0156 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0157 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0157 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0161 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0161 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0165 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0165 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0169 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0169 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0170 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0170 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0173 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0173 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0176 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0176 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0177 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0177 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0182 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0182 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0183 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0183 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0186 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0186 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0188 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0188 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0191 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0191 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0208 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0208 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0209 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0209 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0212 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0212 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0223 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0223 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0225 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0225 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0233 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0233 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0236 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0236 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0243 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0243 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0246 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0246 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0250 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0250 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0254 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0254 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0258 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0258 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0259 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0259 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0260 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0260 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0261 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0261 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0262 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0262 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0263 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0263 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0264 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0264 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0265 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0265 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0266 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0266 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0267 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0267 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0268 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0268 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0269 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0269 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0270 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0270 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0271 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0271 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0272 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0272 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0273 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0273 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0274 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0274 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0275 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0275 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0276 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0276 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0277 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0277 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0278 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0278 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0279 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0279 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0280 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0280 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0281 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0281 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0282 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0282 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0283 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0283 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0284 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0284 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0285 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0285 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0286 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0286 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0287 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0287 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0288 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0288 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0289 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0289 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0290 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0290 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0291 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0291 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0352 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0352 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0375 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0375 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0377 2000 | vb rahu: PL9 9, core 8.35 |
-| ref-0377 2000 | vb ketu: PL9 17, core 14.65 |
-| ref-0001 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0002 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0003 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0004 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0005 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0006 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0007 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0008 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0009 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0010 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0011 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0012 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0013 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0014 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0015 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0016 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0017 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0018 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0019 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0020 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0022 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0025 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0027 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0028 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0029 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0030 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0031 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0035 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0037 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0038 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0039 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0040 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0041 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0042 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0043 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0044 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0050 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0051 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0056 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0058 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0060 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0061 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0063 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0065 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0067 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0069 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0070 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0073 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0075 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0076 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0077 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0079 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0082 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0083 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0088 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0090 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0091 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0095 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0096 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0097 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0098 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0099 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0103 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0109 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0122 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0124 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0126 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0127 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0129 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0131 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0140 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0143 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0151 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0156 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0157 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0161 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0165 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0169 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0170 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0173 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0176 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0177 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0182 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0183 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0186 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0188 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0191 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0208 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0209 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0212 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0223 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0225 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0233 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0236 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0243 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0246 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0250 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0254 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0258 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0259 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0260 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0261 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0262 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0263 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0264 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0265 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0266 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0267 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0268 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0269 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0270 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0271 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0272 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0273 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0274 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0275 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0276 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0277 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0278 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0279 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0280 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0281 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0282 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0283 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0284 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0285 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0286 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0287 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0288 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0289 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0290 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0291 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0352 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0375 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0377 2030 | vb ketu: PL9 11, core 8.9 |
-| ref-0001 general | vb ketu: PL9 10, core 8.25 |
-| ref-0002 general | vb ketu: PL9 10, core 8.25 |
-| ref-0003 general | vb ketu: PL9 10, core 8.25 |
-| ref-0004 general | vb ketu: PL9 10, core 8.25 |
-| ref-0006 general | vb ketu: PL9 10, core 8.25 |
-| ref-0007 general | vb ketu: PL9 10, core 8.25 |
-| ref-0008 general | vb ketu: PL9 10, core 8.25 |
-| ref-0010 general | vb ketu: PL9 10, core 8.25 |
-| ref-0011 general | vb ketu: PL9 10, core 8.25 |
-| ref-0012 general | vb ketu: PL9 10, core 8.25 |
-| ref-0013 general | vb ketu: PL9 10, core 8.25 |
-| ref-0014 general | vb ketu: PL9 10, core 8.25 |
-| ref-0015 general | vb ketu: PL9 10, core 8.25 |
-| ref-0017 general | vb ketu: PL9 10, core 8.25 |
-| ref-0018 general | vb ketu: PL9 10, core 8.25 |
-| ref-0025 general | vb ketu: PL9 10, core 8.25 |
-| ref-0027 general | vb ketu: PL9 10, core 8.25 |
-| ref-0029 general | vb ketu: PL9 10, core 8.25 |
-| ref-0030 general | vb ketu: PL9 10, core 8.25 |
-| ref-0035 general | vb ketu: PL9 10, core 8.25 |
-| ref-0040 general | vb ketu: PL9 10, core 8.25 |
-| ref-0042 general | vb ketu: PL9 10, core 8.25 |
-| ref-0043 general | vb ketu: PL9 10, core 8.25 |
-| ref-0058 general | vb ketu: PL9 10, core 8.25 |
-| ref-0065 general | vb ketu: PL9 10, core 8.25 |
-| ref-0069 general | vb ketu: PL9 10, core 8.25 |
-| ref-0073 general | vb ketu: PL9 10, core 8.25 |
-| ref-0076 general | vb ketu: PL9 10, core 8.25 |
-| ref-0079 general | vb ketu: PL9 10, core 8.25 |
-| ref-0083 general | vb ketu: PL9 10, core 8.25 |
-| ref-0001 marriage | vb ketu: PL9 10, core 8.25 |
-| ref-0002 marriage | vb ketu: PL9 10, core 8.25 |
-| ref-0003 marriage | vb ketu: PL9 10, core 8.25 |
-| ref-0004 marriage | vb ketu: PL9 10, core 8.25 |
-| ref-0006 marriage | vb ketu: PL9 10, core 8.25 |
-| ref-0007 marriage | vb ketu: PL9 10, core 8.25 |
-| ref-0008 marriage | vb ketu: PL9 10, core 8.25 |
-| ref-0010 marriage | vb ketu: PL9 10, core 8.25 |
-| ref-0011 marriage | vb ketu: PL9 10, core 8.25 |
-| ref-0012 marriage | vb ketu: PL9 10, core 8.25 |
-| ref-0013 marriage | vb ketu: PL9 10, core 8.25 |
-| ref-0014 marriage | vb ketu: PL9 10, core 8.25 |
-| ref-0015 marriage | vb ketu: PL9 10, core 8.25 |
-| ref-0017 marriage | vb ketu: PL9 10, core 8.25 |
-| ref-0018 marriage | vb ketu: PL9 10, core 8.25 |
-| ref-0025 marriage | vb ketu: PL9 10, core 8.25 |
-| ref-0027 marriage | vb ketu: PL9 10, core 8.25 |
-| ref-0029 marriage | vb ketu: PL9 10, core 8.25 |
-| ref-0030 marriage | vb ketu: PL9 10, core 8.25 |
-| ref-0035 marriage | vb ketu: PL9 10, core 8.25 |
-| ref-0040 marriage | vb ketu: PL9 10, core 8.25 |
-| ref-0042 marriage | vb ketu: PL9 10, core 8.25 |
-| ref-0043 marriage | vb ketu: PL9 10, core 8.25 |
-| ref-0058 marriage | vb ketu: PL9 10, core 8.25 |
-| ref-0065 marriage | vb ketu: PL9 10, core 8.25 |
-| ref-0069 marriage | vb ketu: PL9 10, core 8.25 |
-| ref-0073 marriage | vb ketu: PL9 10, core 8.25 |
-| ref-0076 marriage | vb ketu: PL9 10, core 8.25 |
-| ref-0079 marriage | vb ketu: PL9 10, core 8.25 |
-| ref-0083 marriage | vb ketu: PL9 10, core 8.25 |
 
 ## Yogas
 

@@ -72,9 +72,11 @@ Virgo). PL9 computes the new and full moons approximately: in 4 of the 135 birth
 hours from a full moon or with the Sun a hair from changing sign, its Chaitradi month is
 another (pending on the bench).
 
-The Vedic weekday: PL9's code was not found. The `core` takes the day of the instant in
-local mean time (by the longitude), one less before that day's sunrise; this gives 118 of PL9's 135
-days (the others, pending on the bench).
+The Vedic weekday (read in PL9): the civil date on the chart's clock (its zone and summer time as
+entered), the day before when the birth is at night and the clock is between midnight and noon. Night
+is PL9's own day test, the Sun below the horizon by the Lagna (the Lagna 180° or more ahead of the
+Sun); the sunrise itself is not used, so the weekday is given beyond the polar circle too, wherever
+there is a Lagna. 135 of 135 birth weekdays.
 
 The Tamil calendar is not computed by PL9: it reads it from an almanac in a file, which covers
 1941 to 2020 (outside that it prints "NA"). A computed rule gets 33 of the 46 charts within
@@ -183,7 +185,7 @@ Print → Panchang prints, for fifteen days starting on a Sunday, at the place o
 
 ## Check
 
-In the 135 births: 8235 values, no failure; 42 pending (the Vedic weekday, the Chaitradi
+In the 135 births: 8235 values, no failure; 8 pending (the Chaitradi
 month near a full moon, and 4 sunsets or next sunrises at which the `core`'s search
 reaches another crossing). In the six Panchang printouts: 84 days and the headers, no
 failure nor pending.

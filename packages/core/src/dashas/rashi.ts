@@ -183,6 +183,33 @@ function drigOrder(lagnaSign: number, fidelity: Fidelity): number[] {
   return out;
 }
 
+/**
+ * The Drig dasha's signs as PL9 counts them on from cycle to cycle: the n-th mahadasha (n from 0) takes the group
+ * given by n brought back to 1..12 and divided by four (0 to 3: the 9th, 10th, 11th and, at the start of every
+ * cycle, the 12th from the Lagna) and, within the group, the (n mod 4)-th sign aspected, in the direction PL9 took
+ * from the sign before at the first sign aspected of the group. For the first twelve it is `drigOrder` in the pl9
+ * mode.
+ */
+function drigRun(lagnaSign: number): (step: number) => number {
+  const norm1 = (x: number) => mod12(x - 1) + 1;
+  const seq = [norm1(lagnaSign + 1 + 8)];
+  let forward = DIRECT.has(seq[0]! - 1);
+  return (step: number) => {
+    for (let c = seq.length; c <= step; c++) {
+      if (c % 4 === 1) forward = DIRECT.has(seq[c - 1]! - 1);
+      let x = norm1(lagnaSign + 1 + 8 + (norm1(c) >> 2));
+      const k = c % 4;
+      if (k) {
+        const off = forward ? 3 * k : -3 * k;
+        x = x % 3 === 1 ? x + off + 1 : x + off - (x % 3 === 2 ? 1 : 0);
+      }
+      if (x < 0) x &= 0xff;
+      seq.push(norm1(x));
+    }
+    return seq[step]! - 1;
+  };
+}
+
 /** The Navamsha's sign of the Lagna when odd; else the odd sign of the same lord (Leo for Cancer). */
 function navamshaStart(chart: RashiChart): number {
   const l9 = signOf(chart.lagna * 9);
@@ -207,6 +234,8 @@ interface Plan {
   /** The order of each run, when the runs differ; and whether every second run takes 12 years less. */
   runs?: (run: number) => number[];
   complementary?: boolean;
+  /** The sign of the n-th mahadasha (n from 0) in PL9's count, when it does not repeat the order cycle after cycle. */
+  mahadashaAt?: (step: number) => number;
 }
 
 /**
@@ -287,8 +316,13 @@ function plan(system: RashiDashaSystem, chart: RashiChart, choices: RashiDashaCh
     }
     case 'narayana':
       return { order: narayanaOrder(chart), years, subs };
-    case 'lagnaKendradi':
-      return { order: kendradi(strongerOfLagna, rashiDirection(strongerOfLagna, chart)), years, subs };
+    case 'lagnaKendradi': {
+      const step = rashiDirection(strongerOfLagna, chart);
+      const run = kendradiRun(strongerOfLagna, step);
+      // PL9 steps on from cycle to cycle: each cycle starts three signs on.
+      const mahadashaAt = fidelity === 'pl9' ? (n: number) => run(Math.floor(n / 12))[n % 12]! : undefined;
+      return { order: kendradi(strongerOfLagna, step), years, subs, mahadashaAt };
+    }
     case 'sthira': {
       // From the sign of Brahma, through the zodiac: 7, 8 and 9 years by modality.
       const first = signOf(chart.longitudes[brahma(lagna, chart.longitudes, karakas)]);
@@ -312,7 +346,7 @@ function plan(system: RashiDashaSystem, chart: RashiChart, choices: RashiDashaCh
         subs: (s) => Array.from({ length: 12 }, (_, j) => mod12(s + (s % 2 === 0 ? 1 : -1) * j)),
       };
     case 'drig':
-      return { order: drigOrder(lagna, fidelity), years, subs };
+      return { order: drigOrder(lagna, fidelity), years, subs, mahadashaAt: fidelity === 'pl9' ? drigRun(lagna) : undefined };
     case 'niryaanaShoola': {
       const first = strongerSign(mod12(lagna + 1), mod12(lagna + 7), chart.longitudes);
       const step = first % 2 === 0 ? 1 : -1;
@@ -343,13 +377,14 @@ const definedOnly = (o: object) => Object.fromEntries(Object.entries(o).filter((
 
 /**
  * The rashi dashas of PL9 that were measured: each run of twelve mahadashas from the first sign, each divided into
- * twelve equal antardashas. They begin at birth, without a balance. A sign of 0 years is passed over. See
- * docs/spec/dashas/rashi.md.
+ * twelve equal antardashas. They begin at birth, without a balance. A sign of 0 years is passed over. In the pl9 mode
+ * the Narayana, the Lagna Kendradi and the Drig are PL9's table (`pl9Table`). See docs/spec/dashas/rashi.md.
  */
 export function rashiDashas(system: RashiDashaSystem, chart: RashiChart, jdUt: number, opts: RashiOptions, fidelity: Fidelity): DashaPeriod[] {
   // Partly read in the executable; its later runs and sub-periods do not yet match PL9's cells.
   if (system === 'sreeLagnaKendradi') throw new NotImplementedOptionError('system', `${system} (not measured yet)`);
   const p = plan(system, chart, { ...DEFAULT_RASHI_CHOICES, ...definedOnly(opts) }, opts.karakas ?? 7, fidelity);
+  if (fidelity === 'pl9' && PL9_TABLE.has(system)) return pl9Table(p, jdUt, opts);
   // Corrected: the second run of these gives each sign 12 years less those of the first, as the classical rule has it.
   const complementary = p.complementary || (fidelity === 'corrected' && (system === 'narayana' || system === 'lagnaKendradi' || system === 'drig'));
   const periods: DashaPeriod[] = [];
@@ -372,17 +407,76 @@ export function rashiDashas(system: RashiDashaSystem, chart: RashiChart, jdUt: n
   return periods;
 }
 
+/** The systems whose table PL9 builds as `pl9Table` describes: their second cycle differs from the first. */
+const PL9_TABLE = new Set<RashiDashaSystem>(['narayana', 'lagnaKendradi', 'drig']);
+/** How far past the end of a row PL9 looks up the next one: five minutes. */
+const PL9_ROW_STEP = 5 / 1440;
+
+/**
+ * The Narayana, Lagna Kendradi and Drig as PL9 tabulates them. It counts the periods of each level: a sign takes its
+ * years when that count divided by 12 is even, 12 less when it is odd. The mahadashas are counted from birth, run
+ * after run (the second run takes 12 years less, the third the years again); the antardashas from the start of
+ * their mahadasha, and each takes the twelfth of its mahadasha sign's years at its own count, so that in a run of
+ * 12 years less the first twelve keep the years of the first run. Each row PL9 prints is the antardasha running at
+ * an instant: the first at birth, the next five minutes after the end of the one before. An antardasha can thus
+ * run past the end of its mahadasha, and the next row fall within the next mahadasha's; or the twelve fall short and
+ * the count goes on, past the twelfth. Each mahadasha holds the rows that fall in it, as PL9 prints them; one that no
+ * row falls in has none. A sign of 0 years is passed over. See docs/spec/dashas/rashi.md.
+ */
+function pl9Table(p: Plan, jdUt: number, opts: RashiOptions): DashaPeriod[] {
+  const mahadashaAt = p.mahadashaAt ?? ((n: number) => p.order[n % 12]!);
+  const years = (sign: number, count: number) => (Math.floor(count / 12) % 2 === 0 ? p.years(sign) : 12 - p.years(sign));
+  const periods: DashaPeriod[] = [];
+  const signs: number[] = [];
+  let t = jdUt;
+  for (let n = 0; n < opts.cycles * 12; n++) {
+    const sign = mahadashaAt(n);
+    const y = years(sign, n);
+    if (y <= 0) continue;
+    periods.push({ lord: SIGN_NAMES[sign]!, start: t, end: t + y * opts.yearDays, level: 1 });
+    signs.push(sign);
+    t += y * opts.yearDays;
+  }
+  if (opts.levels < 2) return periods;
+  for (const period of periods) period.sub = [];
+  let target = jdUt;
+  let k = 0;
+  for (;;) {
+    while (k < periods.length && periods[k]!.end < target) k++;
+    if (k >= periods.length) break;
+    const period = periods[k]!;
+    const sign = signs[k]!;
+    const order = p.subs(sign);
+    // Twelve parts of one length at a time, from the start of the mahadasha.
+    let block = period.start;
+    for (let j = 0; ; j++) {
+      const length = (years(sign, j) * opts.yearDays) / 12;
+      const start = block + (j % 12) * length;
+      let end = j % 12 === 11 ? block + 12 * length : start + length;
+      if (j % 12 === 11) block = end;
+      if (length <= 0 || end < target) continue;
+      if (Math.abs(end - period.end) < 1e-9) end = period.end;
+      period.sub!.push({ lord: SIGN_NAMES[order[j % 12]!]!, start, end, level: 2 });
+      target = end + PL9_ROW_STEP;
+      break;
+    }
+  }
+  return periods;
+}
+
 /**
  * The signs of a rashi dasha running at an instant, five levels, as PL9 prints them ("Gochara data", the Events page),
  * read in the executable: the mahadashas in the system's order, and each period divided in twelve, in the order of
- * `subs` for the sign above, as many times as needed. The Chara keeps its years run after run. The Narayana gives every
- * second run 12 years less than the first; in the pl9 mode its parts below the mahadasha are timed by the
+ * `subs` for the sign above, as many times as needed. The Chara keeps its years run after run. The Narayana, the Lagna
+ * Kendradi and the Drig give every second run 12 years less than the first (in the pl9 mode the Lagna Kendradi and
+ * the Drig count their signs on from run to run, as `pl9Table`); in the pl9 mode their parts below the mahadasha are
+ * timed by the
  * mahadasha's years of the first run for the first twelve of a level, of the second run for the next twelve, and so on
  * (PL9 counts the run by the parts of the level it is in): in a second run they do not fill the mahadasha, or run
  * past it. The corrected mode divides each period in twelve equal parts. An instant before birth takes the first sign
  * at every level. See docs/spec/time/transits.md.
  */
-export function rashiChainAt(system: 'narayana' | 'chara', chart: RashiChart, birthJdUt: number, jdUt: number, yearDays: number, fidelity: Fidelity): number[] {
+export function rashiChainAt(system: 'narayana' | 'chara' | 'lagnaKendradi' | 'drig', chart: RashiChart, birthJdUt: number, jdUt: number, yearDays: number, fidelity: Fidelity): number[] {
   if (!Number.isFinite(jdUt) || !Number.isFinite(birthJdUt)) throw new InvalidInputError('the instant and the birth must be numbers');
   const p = plan(system, chart, DEFAULT_RASHI_CHOICES, 7, fidelity);
   const yearsIn = (sign: number, step: number) => (system === 'chara' || Math.floor(step / 12) % 2 === 0 ? p.years(sign) : 12 - p.years(sign));
@@ -395,8 +489,9 @@ export function rashiChainAt(system: 'narayana' | 'chara', chart: RashiChart, bi
       t += l;
     }
   };
-  const first = walk((step) => yearsIn(p.order[step % 12]!, step) * yearDays, birthJdUt);
-  const lord = p.order[first.step % 12]!;
+  const mahadashaAt = p.mahadashaAt ?? ((step: number) => p.order[step % 12]!);
+  const first = walk((step) => yearsIn(mahadashaAt(step), step) * yearDays, birthJdUt);
+  const lord = mahadashaAt(first.step);
   const mahadasha = yearsIn(lord, first.step) * yearDays;
   const chain = [lord];
   let t = first.start;

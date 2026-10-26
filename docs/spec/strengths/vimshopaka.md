@@ -24,8 +24,11 @@ There are no exaltation or moolatrikona points.
 Rahu friend of Venus, Jupiter and Saturn, neutral with Mercury, enemy of the Sun, the Moon
 and Mars; Ketu friend of Mars and Venus, neutral with Mercury and Jupiter, enemy of the
 Sun, the Moon and Saturn. These relationships were taken from the 135 printed charts
-(they explain all the values of the nodes): the executable's table gives other values to the
-nodes, which PL9's reports do not show.
+(they explain all the values of the nodes). PL9's Muhurta and transit pages rate the nodes by
+another table, read in PL9 (option `nodes: 'time'` of `vimshopaka`): Rahu owns Gemini, Virgo and
+Aquarius and Ketu Scorpio, Sagittarius and Pisces, and Ketu is a friend of Saturn; the rest as
+above. The temporal relationship comes from the signs of the instant's own chart. Checked on the 8
+distinct values those pages print (4 instants, both nodes), rounded half up.
 
 ## Groups
 

@@ -85,7 +85,7 @@ export function computeMuhurta(eph: Ephemeris, natal: ChartInput, at: ChartInput
   const lagna = now.points.lagna;
   if (!lagna) missing.push({ what: 'lagna', reason: 'Muhurta Lagna not defined' }, { what: 'shadbala', reason: 'Muhurta Lagna not defined' }, { what: 'bhava bala', reason: 'Muhurta Lagna not defined' });
   const sb = lagna ? computeShadbala(eph, at, {}, coreOptions) : null;
-  const vim = vimshopaka(longitude, fidelity);
+  const vim = vimshopaka(longitude, fidelity, 'time');
   const planets = Object.fromEntries(PLANETS_9.map((p) => [p, {
     dignity: dignity9(p, longitude), retrograde: (now.points[p].longitudeSpeed ?? 0) < 0,
     combust: combustOf(p, longitude[p], longitude.sun, now.points[p].longitudeSpeed ?? 0), avastha: baladiAvastha(longitude[p]), vimshopaka: vim.planets[p].scores,

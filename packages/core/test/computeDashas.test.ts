@@ -120,24 +120,26 @@ describe('computeDashas with the Kalachakra', () => {
 });
 
 describe('review fixes: the rashi dashas from computeDashas', () => {
-  it('default to two levels, and give the Narayana, Kendradi and Drig only their first run', () => {
+  it('default to two levels, and give the Narayana, Kendradi and Drig every cycle asked in the pl9 mode too', () => {
     const c = computeDashas(fakeSky, input, { system: 'chara' });
     expect(c.periods[0]!.sub).toHaveLength(12);
     expect(c.periods[0]!.sub![0]!.sub).toBeUndefined();
     for (const system of ['narayana', 'lagnaKendradi', 'drig'] as const) {
-      const d = computeDashas(fakeSky, input, { system }, { fidelity: 'pl9' });
-      expect(d.periods.length, system).toBeLessThanOrEqual(12);
-      expect(() => computeDashas(fakeSky, input, { system, cycles: 2 }, { fidelity: 'pl9' }), system).toThrow(NotImplementedOptionError);
+      const one = computeDashas(fakeSky, input, { system, cycles: 1 }, { fidelity: 'pl9' });
+      const two = computeDashas(fakeSky, input, { system, cycles: 2 }, { fidelity: 'pl9' });
+      expect(one.periods.length, system).toBeLessThanOrEqual(12);
+      expect(two.periods.length, system).toBeGreaterThan(one.periods.length);
+      expect(two.periods.slice(0, one.periods.length), system).toEqual(one.periods);
     }
     expect(() => computeDashas(fakeSky, input, { system: 'chara', levels: 3 })).toThrow(NotImplementedOptionError);
     expect(() => computeDashas(fakeSky, { ...input, latitude: 89 }, { system: 'chara' })).toThrow(LagnaUndefinedError);
   });
 });
 
-describe('the second run in the corrected mode', () => {
-  it('is given, and refused in the pl9 mode', () => {
+describe('the second run', () => {
+  it('is given in both modes', () => {
     expect(computeDashas(fakeSky, input, { system: 'narayana', cycles: 2 }).periods.length).toBeGreaterThan(12);
-    expect(() => computeDashas(fakeSky, input, { system: 'narayana', cycles: 2 }, { fidelity: 'pl9' })).toThrow(NotImplementedOptionError);
+    expect(computeDashas(fakeSky, input, { system: 'narayana', cycles: 2 }, { fidelity: 'pl9' }).periods.length).toBeGreaterThan(12);
   });
 });
 

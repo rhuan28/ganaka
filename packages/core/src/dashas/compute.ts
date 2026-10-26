@@ -18,9 +18,6 @@ export const DASHA_BASES = ['moon', 'sun', 'lagna', 'mars', 'mercury', 'jupiter'
 export type DashaBase = (typeof DASHA_BASES)[number];
 export const DASHA_YEAR_OPTIONS: readonly DashaYearOption[] = ['365.25', '360', '327.85', '365.2422'];
 
-/** Rashi dashas whose second run PL9 gives otherwise than the first: only their first run is given. */
-const FIRST_RUN_ONLY: readonly string[] = ['narayana', 'lagnaKendradi', 'drig'];
-
 export interface DashaOptions {
   system: DashaSystem;
   /** 1 = mahadashas only … 5 = down to prana. */
@@ -89,8 +86,6 @@ function resolveDashaOptions(partial: Partial<DashaOptions>): DashaOptions {
     if (o.balance !== 'degree') throw new NotImplementedOptionError('balance', `${o.balance} with this system`);
   }
   if ((RASHI_DASHA_SYSTEMS as readonly string[]).includes(o.system) && o.levels > 2) throw new NotImplementedOptionError('levels', `${o.levels} with a rashi dasha`);
-  // PL9's second run of these does not follow their first: only the first is given.
-
   if (o.cycles !== undefined && !(Number.isInteger(o.cycles) && o.cycles >= 1 && o.cycles <= 20)) throw new InvalidOptionError('cycles', 'must be a whole number from 1 to 20');
   if (!VARGAS.includes(o.varga)) throw new InvalidOptionError('varga', `unknown varga "${String(o.varga)}"`);
   // Not yet measured against PL9: see the plan of stage 3A, Task 4.
@@ -127,11 +122,6 @@ export function computeDashas(eph: Ephemeris, input: ChartInput, options: Partia
     const rashi = o.system as RashiDashaSystem;
     const choices = { ...o.rashi, karakas: resolveOptions(coreOptions).karakas === 'eight' ? 8 : 7 } as const;
     let cycles = o.cycles;
-    // PL9's second run of these does not follow their first: in the pl9 mode only the first is given.
-    if (fidelity === 'pl9' && FIRST_RUN_ONLY.includes(o.system)) {
-      if (cycles !== undefined && cycles > 1) throw new NotImplementedOptionError('cycles', `${cycles} with ${o.system} in the pl9 mode: only the first run was checked`);
-      cycles = 1;
-    }
     if (cycles === undefined) {
       // As many runs of twelve as reach 120 years after birth.
       const first = rashiDashas(rashi, chart, input.jdUt, { ...choices, yearDays, levels: 1, cycles: 1 }, fidelity);

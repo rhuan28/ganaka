@@ -52,17 +52,12 @@ const secs = (hms: string) => { const [h, m, s] = hms.split(':').map(Number); re
 const palas = (g: string) => { const [a, b, c] = g.split(':').map(Number); return (a! * 60 + b!) * 60 + c!; };
 
 /**
- * The birth values known to differ from PL9's, by chart: the Vedic weekday (PL9's rule not found; the core's gives 118
- * of 135), the Chaitradi month next to a full Moon or a sign change (PL9's new and full Moons are approximate), and
+ * The birth values known to differ from PL9's, by chart: the Chaitradi month next to a full Moon or a sign change (PL9's new and full Moons are approximate), and
  * the sunsets and next sunrise where PL9's search lands on another crossing (docs/spec/time/panchanga.md).
  */
-const WEEKDAY: readonly BirthField[] = ['hinduWeekday', 'astrologicalWeekday'];
 export const KNOWN_BIRTH_PENDING: Readonly<Record<string, readonly BirthField[]>> = {
-  'ref-0009': ['monthChaitradi'], 'ref-0010': WEEKDAY, 'ref-0013': [...WEEKDAY, 'sunset'], 'ref-0038': WEEKDAY, 'ref-0040': WEEKDAY,
-  'ref-0041': WEEKDAY, 'ref-0042': WEEKDAY, 'ref-0043': WEEKDAY, 'ref-0051': WEEKDAY, 'ref-0058': WEEKDAY, 'ref-0061': WEEKDAY,
-  'ref-0075': WEEKDAY, 'ref-0082': WEEKDAY, 'ref-0124': ['nextSunrise'], 'ref-0151': WEEKDAY, 'ref-0208': ['sunset'],
-  'ref-0273': ['monthChaitradi'], 'ref-0274': [...WEEKDAY, 'monthChaitradi'], 'ref-0286': WEEKDAY, 'ref-0288': WEEKDAY,
-  'ref-0289': ['sunset'], 'ref-0291': WEEKDAY, 'ref-0377': ['monthChaitradi'],
+  'ref-0009': ['monthChaitradi'], 'ref-0013': ['sunset'], 'ref-0124': ['nextSunrise'], 'ref-0208': ['sunset'],
+  'ref-0273': ['monthChaitradi'], 'ref-0274': ['monthChaitradi'], 'ref-0289': ['sunset'], 'ref-0377': ['monthChaitradi'],
 };
 
 /** What the birth check needs of the core's birth panchanga (structurally typed, so the oracle keeps its own types). */

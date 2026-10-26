@@ -107,12 +107,14 @@ From the data:
 - Combustion: within 17° of the Sun for Mars, 14° (12° retrograde) for Mercury, 11° for
   Jupiter, 10° (8° retrograde) for Venus and 15° for Saturn; the Moon never (270 of 270 charts
   per planet).
-- Pending: the pairs the report omits in 15 of 161 Manuas and 5 of 161 Kamboolas (the rule
-  read in the executable would give them), and the Kutta and the Tambira. Both rules are read and take a
-  pair of planets; the pair comes from the report's model (program data, not code), and no
-  combination of roles (office-holders, year lord, lords of the houses of the annual Lagna, of the natal one and of the
-  Muntha, the planets) reproduces what the report prints (the best, in the Kutta, gets 130 of 161 right,
-  against 128 for "never"). The `core` computes them for the given pair.
+- Tambira and Kutta: PL9's report tests the annual Lagna's lord with each other planet (read in its report model);
+  that model skips Jupiter with the Lagna in Sagittarius or Capricorn (not Pisces) and Venus in Taurus or Scorpio (not
+  Libra), which the `pl9` mode keeps and the `corrected` one does not (the Lagna lord alone is skipped). Given a
+  Karyesh, the `core` tests that pair only. The Tambira matches in 168 of 172 reports (the other 4 pending on the bench); the Kutta, whose rule is read
+  and the `core`'s, PL9 forms in fewer charts (143 of 172 agree) and it is not compared.
+- Pending: the pairs the report omits in 15 of 161 Manuas and 5 of 161 Kamboolas: the report's model asks for every
+  pair, so the omission is in a rule not yet read. The model never lists Jupiter with Saturn in the pair yogas (it tests
+  them for the yoga's presence only) and never tests the Moon in the Kamboolas.
 
 ## The Tripataki Chakra
 
@@ -139,7 +141,9 @@ in some of them A and B swap places at night. The points: the Lagna, the planets
 15° Cancer, the middle of the houses (Sripati) and the position of the lord of a house's sign. Samartha uses
 Jupiter − Mars when Mars rules the Lagna; Karyasiddhi is Saturn − Sun + the lord of the Sun's
 sign by day, Saturn − Moon + the lord of the Moon's sign by night. The full table is in
-`packages/core/src/varshaphala/sahams.ts`.
+`packages/core/src/varshaphala/sahams.ts`. With the Sun (or the Moon) in Capricorn or Aquarius the lord is Saturn itself, and
+whether C lies between B and A is a tie: PL9 adds the 30° in 122 of the 145 ties found and not in the other 23, which
+no rule tested separates (the `core` adds it; these are the Karyasiddhi values pending on the bench).
 
 Check: the Sahams without the Lagna match to the second (Gaurava, Sastra, Jadya: 172 of 172); the
 others, to within 30" (the Lagna moves 15" per second of time, and the return is known to one
@@ -197,7 +201,7 @@ On the bench (`pnpm --filter @reverse/oracle verify`, section "Varshaphala"): th
 years at both dates and the 30 of the mean return (172 reports), plus the 72 returns of the 65
 reports of 2030 above 120 years, 334 thousand values; the pending items, listed per report (the
 pairs that some yogas omit or add, the Patyayini in 3 reports and some Sahams), do not
-fail. Not compared: the Kutta and the Tambira, and the SB (the Shadbala of the annual
+fail. Not compared: the Kutta, and the SB (the Shadbala of the annual
 chart, which matches the `core`'s in 389 of 490 values, with the median difference at zero: one
 component differs and it was not found which).
 
