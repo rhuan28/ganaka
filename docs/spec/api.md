@@ -57,6 +57,9 @@ can change a number, so that a client that keeps results can tell old ones from 
     Lagna's (see [natal-tables.md](natal-tables.md)), the natural relations of the nine, and `missing` for what a
     chart cannot give. Its own options go in `planetInfo`: `anka`, PL9's Anka value, an integer from 1 to 5 (1 when
     absent; the answer says which was used);
+  - compatibility (see [compatibility.md](compatibility.md)): `/v1/compatibility`, with `native` and `partner`, each
+    `{ birth, sex }` (`male` or `female`), answering the Ashtakoota, the Dashkoota, the distances between the two charts'
+    points and each chart's Mangala Dosha; its own options go in `compatibility`: `point`, `moon` (default) or `lagna`;
   - several of the above at once: `/v1/batch` (below);
   - chart files saved by Parashara's Light 9: `/v1/import/pl9` (below);
   - atlas: `GET /v1/atlas/cities?q=<name>&country=<ISO code>&limit=<1 to 50>` (GeoNames cities,
@@ -71,7 +74,7 @@ can change a number, so that a client that keeps results can tell old ones from 
   (the clock offset, already resolved).
 - The engine options go in `options`, with the `core` names: `ayanamsha`, `fidelity`, `gulika`
   etc. The mode is `corrected` by default; `fidelity: "pl9"` reproduces PL9.
-- The options of each area have their own object: `dasha`, `shadbala`, `ashtakavarga`, `yogas` and `planetInfo`
+- The options of each area have their own object: `dasha`, `shadbala`, `ashtakavarga`, `yogas`, `planetInfo` and `compatibility`
   (`functionalNature`, PL9's "Use functional mal/ben", and `sex`, `male` by default).
 - Unknown fields are rejected, so that a wrong name is never silently ignored.
 - Every response carries the `X-Source-Code` header with the address of the source code, and the
