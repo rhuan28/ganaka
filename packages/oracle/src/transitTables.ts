@@ -353,11 +353,12 @@ const BALADI_SHOWN: Record<string, string> = { infant: 'Infant', youth: 'Youth.'
 
 /**
  * The transit's vargas against the core (`vargaTable`): the degree as truncated, within the ephemeris's 1.5" times the
- * varga's parts; sign, dignity, bindus, the two avasthas, functional nature (the nodes' too) and houses exactly.
+ * varga's parts (plus `slack` seconds of the chart, times the parts); sign, dignity, bindus, the two avasthas,
+ * functional nature (the nodes' too) and houses exactly.
  */
 export function verifyVargas(shown: NonNullable<TransitSnapshot['vargas']>, core: Partial<Record<'D9' | 'D10', Record<string, {
   degree: number; sign: number; dignity: number; bindus: number | null; jagradadi: string; baladi: string; functional: string | null; houses: number[];
-}> | null>>): { values: number; failures: string[] } {
+}> | null>>, slack = 0): { values: number; failures: string[] } {
   const failures: string[] = [];
   let values = 0;
   for (const [varga, rows] of Object.entries(shown)) {
@@ -369,7 +370,7 @@ export function verifyVargas(shown: NonNullable<TransitSnapshot['vargas']>, core
         if (!ok) failures.push(`${varga} ${p} ${what}: PL9 ${pl9}, core ${mine}`);
       };
       const d = c ? c.degree * 3600 - sec(r!.dms) : NaN;
-      check('degree', d >= -0.5 && d <= 1.5 * parts + 1, r!.dms, c?.degree);
+      check('degree', d >= -0.5 - slack * parts && d <= (1.5 + slack) * parts + 1, r!.dms, c?.degree);
       check('sign', !!c && SIGNS[c.sign] === r!.sign, r!.sign, c && SIGNS[c.sign]);
       check('dignity', !!c && DIGNITY_SHOWN[c.dignity] === r!.dignity, r!.dignity, c && DIGNITY_SHOWN[c.dignity]);
       check('bindus', !!c && c.bindus === r!.bindus, r!.bindus, c?.bindus);

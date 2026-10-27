@@ -244,8 +244,11 @@ PDFs (`worksheetDashaLists`, `verifyVarshaLists`):
 - The levels below the annual periods (`deepenAnnual`): in the Mudda, the Vimshottari years / 120 starting
   from the lord itself; in the Patyayini, the fractions of the subperiods of the first period starting from the
   lord itself, over the true periods (those of the `corrected` mode), cycle after cycle.
-- The parts of less than 5 minutes are dropped, except the first of the year (the reports' Patyayini rule;
-  the Kalidasa at four levels also loses 3.8-minute parts).
+- The rows (the same walk as the sign dashas' tables): each row is the deepest period running at
+  a target instant, the first target the start above, each next one the row's end plus 5 minutes. A part is skipped
+  by where it falls, not by its length: one of 3.02 minutes inside the gap goes, one of 0.99 after it stays
+  (`dashaRows` with a gap). This replaced "the parts under 5 minutes dropped but the first", which left the
+  Patyayini of eight charts pending.
 - The monthly and daily returns: the return chart (75: years and months; 81: years, months and days) and the
   Mudda of its Moon (`moonMudda`), starting from the lord of the Moon's nakshatra with its balance, over
   365.2422/12 days in the monthly one (three levels) and 365.2422/360 in the daily one (one level). The
@@ -256,12 +259,44 @@ PDFs (`worksheetDashaLists`, `verifyVarshaLists`):
 Result: 49,140 values, 0 problems. Border cases: seven lists that PL9 starts one line
 later, all with a period that starts less than one minute after the clock (the bench only accepts the
 line ahead under that condition). The age at the clock: 1,620 values; one day of age (REF
-0037) turns 53 seconds after the clock and is a border case. Pending: the Patyayini
-of eight charts (the same at both dates), where PL9 omits or swaps lines with no rule found (in
-REF 0269 it shows parts of 4.57 and 4.44 minutes and omits the 4.60 one between them; in REF 0010, 0269 and
-0270 it keeps only the last parts of a short subperiod). Like the reports' pending items, what
-draws these lines is the report's model. Tested and discarded: times in single precision
-(224 of 270 lists, against 254 with the 5-minute rule).
+0037) turns 53 seconds after the clock and is a border case. Pending: the Patyayini of REF 0143 (both
+dates), one row whose start the core puts 4.7 minutes after midnight and PL9 on the day before (the start of
+the Patyayini, not the row rule). Tested and discarded: times in single precision, a minimum length, a minimum
+spacing, a fixed grid.
+
+### The variants (65–88, stage 2J)
+
+The VAR2 print model holds the worksheets the TEMPO model left out: II and III of the year (65, 66), the (L)
+variants (67–69, 73, 78–80, 84–86), the monthly and daily II and III (76, 77, 82, 83), the 8 years overview (70) and the
+3 months and 3 days overviews (87, 88). They were printed for the 135 charts from `refset/xml-tempo` and checked with
+`check-variants` against the print's clock (the PDF's creation time, the host's clock that PL9 takes for Jaipur's,
+within −300 to +180 seconds, as on the other clock pages):
+
+- The (L) pages are cast in Jaipur at the same return instant as the birth-place page; PL9 shows it in Jaipur's clock.
+  Their clock reads as true UT (the clock in Jaipur's hours less 5h30). A return seen from them is the return read in
+  Jaipur's clock: the return plus (the birth's time zone − 5.5) / 24. Their rows are dated in Jaipur's clock; the natal
+  lists on them keep the birth's.
+- The list starts (`worksheetDashaLists` with `local`): the year lists at the later of the page's clock and the return
+  read from the page (a birth after the clock: the return in Jaipur's clock); the monthly lists the same with the monthly
+  return; the one-level daily list at the daily return read from the page; the four-level daily list at the page's
+  clock when it falls within the day's one cycle of 9 periods (from the return to the end of that cycle), else at the
+  return. The rows follow the walk above (`dashaRows` with the 5-minute gap, none for the natal and daily lists).
+- New lists: the natal at four levels (73), the monthly at four (76, 79), the daily at four (82, 85) and the Tithi
+  Pravesh list of 73 (the Mudda of the Tithi Pravesh chart's Moon over 365.2422 days, four levels).
+- The "Year lord" panel of 68, 76, 79, 82 and 85 (the five offices with their Panchavargeeya, the year lord, the
+  Muntha) is not the page's chart: PL9 prints the birth-place Varshaphala of the year its print session last set. On 68,
+  printed before the 8 years overview, that is year 1; on the later pages, the last year of 70 (the age at the clock plus
+  8, from year 0 for a birth after the clock). The table, the kakshas and the Panchavargeeya of these pages are the page's
+  chart. The Muntha drawn on a return chart is the page's: the natal Lagna (at the place of birth) plus 30° per sidereal
+  year since birth.
+- The 87 and 88 overviews show an odd sequence of returns (the third month repeating the second; days 0, 0, 1); each
+  drawn chart matches its own header, and the sequence is recorded as a PL9 artifact, not a rule.
+
+Result (135 charts): 7,560 drawn return charts and their 6,210 headers, the lords panel on 675 pages, the tables of
+1,350 pages, 1,755 lists of 15 rows, 0 problems. Border cases: eleven drawings (in REF 0003, 0022, 0040, 0173, 0208, 0233, 0263,
+0273 and 0289) where a row of points sits on the line between two houses or the reader joins points of two houses
+into one row (the bench reader marks such points as `wide`); in the two checked on the image, the point lies in the
+sign the core gives.
 
 
 The 72 returns of the 135 charts: dates 9,720 of 9,720; hours 9,695, the other 25 within one second of the

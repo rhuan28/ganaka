@@ -303,9 +303,9 @@ The four groups of each of the nine planets, rounded (an exact half accepted eit
 
 | Charts × dates | Values | Failures | Border cases | Pending |
 |---|---|---|---|---|
-| 270 | 328146 | 0 | 9 | 180 |
+| 270 | 328146 | 0 | 9 | 92 |
 
-Per chart and reference date: the positions, R marks, kakshas, Shadbala, Tarabala, Chandrabala and the Vimshottari, Narayana, Yogini and Ashtottari dashas at the reference instant (the Muhurta page) and at the instant printed on the transit pages, with the KP lords of the ten points at the latter; the sunrise chart of the birth and the 15 rows of its Vimshottari; the four dashas (with the Chara) of the two events of the Events page; the D9 and D10 tables of the transit; the Varshaphala of the clock's year (worksheets 64 to 66 and 74: return, table of the annual chart, kakshas, strengths, offices, Muntha and the natal and annual Sahams; the 12 dasha lists of 64, 65, 75, 81 and 89 and the monthly and daily returns, docs/spec/time/varshaphala.md); the events of the month's calendar (worksheet 104); the Kota Chakra positions (its score and the Sanghatta and Sarvatobhadra vedhas are checked by check-chakras); the SB# and VB of the transit table (worksheet 106); the Panch Pakshi (worksheet 39: the bird, the fortnight, the ruling and dying birds, the ten yamas with their five parts, the times to two seconds); the year's sign entries and the month's kaksha calendar. And 17 "Time of transits" queries on REF 0010, to the second.
+Per chart and reference date: the positions, R marks, kakshas, Shadbala, Tarabala, Chandrabala and the Vimshottari, Narayana, Yogini and Ashtottari dashas at the reference instant (the Muhurta page) and at the instant printed on the transit pages, with the KP lords of the ten points at the latter; the sunrise chart of the birth and the 15 rows of its Vimshottari; the four dashas (with the Chara) of the two events of the Events page; the D9 and D10 tables of the transit; the Varshaphala of the clock's year (worksheets 64 to 66 and 74: return, table of the annual chart, kakshas, strengths, offices, Muntha and the natal and annual Sahams; the 12 dasha lists of 64, 65, 75, 81 and 89 and the monthly and daily returns, docs/spec/time/varshaphala.md); the events of the month's calendar (worksheet 104); the Kota Chakra positions (its score and the Sanghatta and Sarvatobhadra vedhas are checked by check-chakras, and the (L), monthly and daily variants, the event and Prashna pages and the compatibility's composite pages by check-variants); the SB# and VB of the transit table (worksheet 106); the Panch Pakshi (worksheet 39: the bird, the fortnight, the ruling and dying birds, the ten yamas with their five parts, the times to two seconds); the year's sign entries and the month's kaksha calendar. And 17 "Time of transits" queries on REF 0010, to the second.
 
 | Chart | Border case |
 |---|---|
@@ -323,21 +323,6 @@ Per chart and reference date: the positions, R marks, kakshas, Shadbala, Tarabal
 |---|---|
 | ref-0003 2000 | saham natal Karyasiddhi: PL9 Libra 28:12:19, core 238.20541226182962 |
 | ref-0003 2000 | saham natal Karyasiddhi lord: PL9 venus, core mars |
-| ref-0003 2000 | patyayini row 2: PL9 saturn-lagna-sun Thu 12-11-2026, core saturn-lagna-saturn 12-11-2026 |
-| ref-0003 2000 | patyayini row 3: PL9 saturn-lagna-saturn Thu 12-11-2026, core saturn-lagna-mercury 12-11-2026 |
-| ref-0003 2000 | patyayini row 4: PL9 saturn-lagna-mercury Thu 12-11-2026, core saturn-jupiter-jupiter 12-11-2026 |
-| ref-0003 2000 | patyayini row 5: PL9 saturn-jupiter-jupiter Thu 12-11-2026, core saturn-jupiter-sun 12-11-2026 |
-| ref-0003 2000 | patyayini row 6: PL9 saturn-jupiter-sun Thu 12-11-2026, core saturn-jupiter-venus 13-11-2026 |
-| ref-0003 2000 | patyayini row 7: PL9 saturn-jupiter-venus Fri 13-11-2026, core saturn-jupiter-moon 13-11-2026 |
-| ref-0003 2000 | patyayini row 8: PL9 saturn-jupiter-moon Fri 13-11-2026, core saturn-jupiter-mars 13-11-2026 |
-| ref-0003 2000 | patyayini row 9: PL9 saturn-jupiter-mars Fri 13-11-2026, core saturn-jupiter-saturn 13-11-2026 |
-| ref-0003 2000 | patyayini row 10: PL9 saturn-jupiter-saturn Fri 13-11-2026, core saturn-jupiter-mercury 18-11-2026 |
-| ref-0003 2000 | patyayini row 11: PL9 saturn-jupiter-mercury Wed 18-11-2026, core saturn-sun-sun 21-11-2026 |
-| ref-0003 2000 | patyayini row 12: PL9 saturn-sun-sun Sat 21-11-2026, core saturn-sun-venus 21-11-2026 |
-| ref-0003 2000 | patyayini row 13: PL9 saturn-sun-venus Sat 21-11-2026, core saturn-sun-moon 21-11-2026 |
-| ref-0003 2000 | patyayini row 14: PL9 saturn-sun-moon Sat 21-11-2026, core saturn-sun-mars 21-11-2026 |
-| ref-0003 2000 | patyayini row 15: PL9 saturn-sun-mars Sat 21-11-2026, core saturn-sun-saturn 21-11-2026 |
-| ref-0010 2000 | patyayini row 15: PL9 mars-mars-sun Fri 30-10-2026, core mars-venus-venus 30-10-2026 |
 | ref-0020 2000 | saham natal Karyasiddhi: PL9 Virgo 11:26:09, core 191.43588859877923 |
 | ref-0020 2000 | saham natal Karyasiddhi lord: PL9 mercury, core venus |
 | ref-0039 2000 | saham annual Mahatmya: PL9 Aries 09:56:31, core 9.948686515216878 |
@@ -358,9 +343,6 @@ Per chart and reference date: the positions, R marks, kakshas, Shadbala, Tarabal
 | ref-0090 2000 | saham natal Karyasiddhi lord: PL9 mercury, core venus |
 | ref-0090 2000 | saham annual Karyasiddhi: PL9 Virgo 02:12:29, core 182.20817119933298 |
 | ref-0090 2000 | saham annual Karyasiddhi lord: PL9 mercury, core venus |
-| ref-0090 2000 | patyayini row 13: PL9 lagna-saturn-sun Tue 28-01-2031, core lagna-saturn-jupiter 28-01-2031 |
-| ref-0090 2000 | patyayini row 14: PL9 lagna-saturn-jupiter Tue 28-01-2031, core lagna-saturn-venus 28-01-2031 |
-| ref-0090 2000 | patyayini row 15: PL9 lagna-saturn-venus Tue 28-01-2031, core lagna-mars-mars 28-01-2031 |
 | ref-0140 2000 | saham natal Karyasiddhi: PL9 Cancer 08:00:06, core 128.00170372728007 |
 | ref-0140 2000 | saham natal Karyasiddhi lord: PL9 moon, core sun |
 | ref-0143 2000 | saham annual Mahatmya: PL9 Taurus 26:54:46, core 56.921778580819876 |
@@ -381,53 +363,12 @@ Per chart and reference date: the positions, R marks, kakshas, Shadbala, Tarabal
 | ref-0264 2000 | saham annual Paradesa: PL9 Pisces 20:46:06, core 350.7742033201496 |
 | ref-0264 2000 | saham annual Artha: PL9 Taurus 01:47:56, core 31.804558935260225 |
 | ref-0264 2000 | saham annual Labha: PL9 Pisces 03:53:43, core 333.9012384046989 |
-| ref-0267 2000 | patyayini row 10: PL9 moon-mars-venus Wed 28-10-2026, core moon-saturn-venus 28-10-2026 |
-| ref-0267 2000 | patyayini row 11: PL9 moon-saturn-sun Wed 28-10-2026, core moon-mercury-sun 28-10-2026 |
-| ref-0267 2000 | patyayini row 12: PL9 moon-saturn-venus Wed 28-10-2026, core moon-mercury-venus 28-10-2026 |
-| ref-0267 2000 | patyayini row 13: PL9 moon-mercury-sun Wed 28-10-2026, core moon-sun-sun 28-10-2026 |
-| ref-0267 2000 | patyayini row 14: PL9 moon-mercury-venus Wed 28-10-2026, core moon-sun-venus 28-10-2026 |
-| ref-0267 2000 | patyayini row 15: PL9 moon-sun-sun Wed 28-10-2026, core moon-sun-mercury 28-10-2026 |
-| ref-0269 2000 | patyayini row 5: PL9 mars-mars-sun Tue 27-10-2026, core mars-jupiter-sun 27-10-2026 |
-| ref-0269 2000 | patyayini row 6: PL9 mars-mars-venus Tue 27-10-2026, core mars-jupiter-moon 27-10-2026 |
-| ref-0269 2000 | patyayini row 7: PL9 mars-jupiter-lagna Tue 27-10-2026, core mars-jupiter-venus 27-10-2026 |
-| ref-0269 2000 | patyayini row 8: PL9 mars-jupiter-sun Tue 27-10-2026, core mars-saturn-saturn 27-10-2026 |
-| ref-0269 2000 | patyayini row 9: PL9 mars-jupiter-moon Tue 27-10-2026, core mars-saturn-lagna 27-10-2026 |
-| ref-0269 2000 | patyayini row 10: PL9 mars-jupiter-venus Tue 27-10-2026, core mars-saturn-mercury 27-10-2026 |
-| ref-0269 2000 | patyayini row 11: PL9 mars-saturn-saturn Tue 27-10-2026, core mars-saturn-sun 27-10-2026 |
-| ref-0269 2000 | patyayini row 12: PL9 mars-saturn-lagna Tue 27-10-2026, core mars-saturn-moon 27-10-2026 |
-| ref-0269 2000 | patyayini row 13: PL9 mars-saturn-mercury Tue 27-10-2026, core mars-saturn-venus 27-10-2026 |
-| ref-0269 2000 | patyayini row 14: PL9 mars-saturn-sun Tue 27-10-2026, core mars-lagna-lagna 28-10-2026 |
-| ref-0269 2000 | patyayini row 15: PL9 mars-saturn-moon Tue 27-10-2026, core mars-lagna-mercury 28-10-2026 |
-| ref-0270 2000 | patyayini row 8: PL9 mars-mars-moon Tue 27-10-2026, core mars-jupiter-sun 27-10-2026 |
-| ref-0270 2000 | patyayini row 9: PL9 mars-jupiter-jupiter Tue 27-10-2026, core mars-jupiter-moon 27-10-2026 |
-| ref-0270 2000 | patyayini row 10: PL9 mars-jupiter-sun Tue 27-10-2026, core mars-jupiter-venus 27-10-2026 |
-| ref-0270 2000 | patyayini row 11: PL9 mars-jupiter-moon Tue 27-10-2026, core mars-jupiter-lagna 27-10-2026 |
-| ref-0270 2000 | patyayini row 12: PL9 mars-jupiter-venus Tue 27-10-2026, core mars-saturn-mercury 27-10-2026 |
-| ref-0270 2000 | patyayini row 13: PL9 mars-jupiter-lagna Tue 27-10-2026, core mars-saturn-sun 27-10-2026 |
-| ref-0270 2000 | patyayini row 14: PL9 mars-saturn-saturn Tue 27-10-2026, core mars-saturn-moon 27-10-2026 |
-| ref-0270 2000 | patyayini row 15: PL9 mars-saturn-mercury Tue 27-10-2026, core mars-saturn-venus 27-10-2026 |
-| ref-0291 2000 | patyayini row 15: PL9 venus-jupiter-saturn Tue 03-11-2026, core venus-jupiter-mars 03-11-2026 |
 | ref-0352 2000 | saham annual Yasa: PL9 Aquarius 16:32:36, core 316.54909772621954 |
 | ref-0352 2000 | saham annual Paradesa: PL9 Pisces 15:50:50, core 345.85360502099877 |
 | ref-0352 2000 | saham annual Artha: PL9 Taurus 02:19:26, core 32.33007724029195 |
 | ref-0352 2000 | saham annual Labha: PL9 Pisces 01:37:56, core 331.6385616988248 |
 | ref-0003 2030 | saham natal Karyasiddhi: PL9 Libra 28:12:19, core 238.20541226182962 |
 | ref-0003 2030 | saham natal Karyasiddhi lord: PL9 venus, core mars |
-| ref-0003 2030 | patyayini row 2: PL9 saturn-lagna-sun Thu 12-11-2026, core saturn-lagna-saturn 12-11-2026 |
-| ref-0003 2030 | patyayini row 3: PL9 saturn-lagna-saturn Thu 12-11-2026, core saturn-lagna-mercury 12-11-2026 |
-| ref-0003 2030 | patyayini row 4: PL9 saturn-lagna-mercury Thu 12-11-2026, core saturn-jupiter-jupiter 12-11-2026 |
-| ref-0003 2030 | patyayini row 5: PL9 saturn-jupiter-jupiter Thu 12-11-2026, core saturn-jupiter-sun 12-11-2026 |
-| ref-0003 2030 | patyayini row 6: PL9 saturn-jupiter-sun Thu 12-11-2026, core saturn-jupiter-venus 13-11-2026 |
-| ref-0003 2030 | patyayini row 7: PL9 saturn-jupiter-venus Fri 13-11-2026, core saturn-jupiter-moon 13-11-2026 |
-| ref-0003 2030 | patyayini row 8: PL9 saturn-jupiter-moon Fri 13-11-2026, core saturn-jupiter-mars 13-11-2026 |
-| ref-0003 2030 | patyayini row 9: PL9 saturn-jupiter-mars Fri 13-11-2026, core saturn-jupiter-saturn 13-11-2026 |
-| ref-0003 2030 | patyayini row 10: PL9 saturn-jupiter-saturn Fri 13-11-2026, core saturn-jupiter-mercury 18-11-2026 |
-| ref-0003 2030 | patyayini row 11: PL9 saturn-jupiter-mercury Wed 18-11-2026, core saturn-sun-sun 21-11-2026 |
-| ref-0003 2030 | patyayini row 12: PL9 saturn-sun-sun Sat 21-11-2026, core saturn-sun-venus 21-11-2026 |
-| ref-0003 2030 | patyayini row 13: PL9 saturn-sun-venus Sat 21-11-2026, core saturn-sun-moon 21-11-2026 |
-| ref-0003 2030 | patyayini row 14: PL9 saturn-sun-moon Sat 21-11-2026, core saturn-sun-mars 21-11-2026 |
-| ref-0003 2030 | patyayini row 15: PL9 saturn-sun-mars Sat 21-11-2026, core saturn-sun-saturn 21-11-2026 |
-| ref-0010 2030 | patyayini row 15: PL9 mars-mars-sun Fri 30-10-2026, core mars-venus-venus 30-10-2026 |
 | ref-0020 2030 | saham natal Karyasiddhi: PL9 Virgo 11:26:09, core 191.43588859877923 |
 | ref-0020 2030 | saham natal Karyasiddhi lord: PL9 mercury, core venus |
 | ref-0039 2030 | saham annual Mahatmya: PL9 Aries 09:56:31, core 9.948686515216878 |
@@ -448,9 +389,6 @@ Per chart and reference date: the positions, R marks, kakshas, Shadbala, Tarabal
 | ref-0090 2030 | saham natal Karyasiddhi lord: PL9 mercury, core venus |
 | ref-0090 2030 | saham annual Karyasiddhi: PL9 Virgo 02:12:29, core 182.20817119933298 |
 | ref-0090 2030 | saham annual Karyasiddhi lord: PL9 mercury, core venus |
-| ref-0090 2030 | patyayini row 13: PL9 lagna-saturn-sun Tue 28-01-2031, core lagna-saturn-jupiter 28-01-2031 |
-| ref-0090 2030 | patyayini row 14: PL9 lagna-saturn-jupiter Tue 28-01-2031, core lagna-saturn-venus 28-01-2031 |
-| ref-0090 2030 | patyayini row 15: PL9 lagna-saturn-venus Tue 28-01-2031, core lagna-mars-mars 28-01-2031 |
 | ref-0140 2030 | saham natal Karyasiddhi: PL9 Cancer 08:00:06, core 128.00170372728007 |
 | ref-0140 2030 | saham natal Karyasiddhi lord: PL9 moon, core sun |
 | ref-0143 2030 | saham annual Mahatmya: PL9 Taurus 26:54:46, core 56.921778580819876 |
@@ -471,32 +409,6 @@ Per chart and reference date: the positions, R marks, kakshas, Shadbala, Tarabal
 | ref-0264 2030 | saham annual Paradesa: PL9 Pisces 20:46:06, core 350.7742033201496 |
 | ref-0264 2030 | saham annual Artha: PL9 Taurus 01:47:56, core 31.804558935260225 |
 | ref-0264 2030 | saham annual Labha: PL9 Pisces 03:53:43, core 333.9012384046989 |
-| ref-0267 2030 | patyayini row 10: PL9 moon-mars-venus Wed 28-10-2026, core moon-saturn-venus 28-10-2026 |
-| ref-0267 2030 | patyayini row 11: PL9 moon-saturn-sun Wed 28-10-2026, core moon-mercury-sun 28-10-2026 |
-| ref-0267 2030 | patyayini row 12: PL9 moon-saturn-venus Wed 28-10-2026, core moon-mercury-venus 28-10-2026 |
-| ref-0267 2030 | patyayini row 13: PL9 moon-mercury-sun Wed 28-10-2026, core moon-sun-sun 28-10-2026 |
-| ref-0267 2030 | patyayini row 14: PL9 moon-mercury-venus Wed 28-10-2026, core moon-sun-venus 28-10-2026 |
-| ref-0267 2030 | patyayini row 15: PL9 moon-sun-sun Wed 28-10-2026, core moon-sun-mercury 28-10-2026 |
-| ref-0269 2030 | patyayini row 5: PL9 mars-mars-sun Tue 27-10-2026, core mars-jupiter-sun 27-10-2026 |
-| ref-0269 2030 | patyayini row 6: PL9 mars-mars-venus Tue 27-10-2026, core mars-jupiter-moon 27-10-2026 |
-| ref-0269 2030 | patyayini row 7: PL9 mars-jupiter-lagna Tue 27-10-2026, core mars-jupiter-venus 27-10-2026 |
-| ref-0269 2030 | patyayini row 8: PL9 mars-jupiter-sun Tue 27-10-2026, core mars-saturn-saturn 27-10-2026 |
-| ref-0269 2030 | patyayini row 9: PL9 mars-jupiter-moon Tue 27-10-2026, core mars-saturn-lagna 27-10-2026 |
-| ref-0269 2030 | patyayini row 10: PL9 mars-jupiter-venus Tue 27-10-2026, core mars-saturn-mercury 27-10-2026 |
-| ref-0269 2030 | patyayini row 11: PL9 mars-saturn-saturn Tue 27-10-2026, core mars-saturn-sun 27-10-2026 |
-| ref-0269 2030 | patyayini row 12: PL9 mars-saturn-lagna Tue 27-10-2026, core mars-saturn-moon 27-10-2026 |
-| ref-0269 2030 | patyayini row 13: PL9 mars-saturn-mercury Tue 27-10-2026, core mars-saturn-venus 27-10-2026 |
-| ref-0269 2030 | patyayini row 14: PL9 mars-saturn-sun Tue 27-10-2026, core mars-lagna-lagna 28-10-2026 |
-| ref-0269 2030 | patyayini row 15: PL9 mars-saturn-moon Tue 27-10-2026, core mars-lagna-mercury 28-10-2026 |
-| ref-0270 2030 | patyayini row 8: PL9 mars-mars-moon Tue 27-10-2026, core mars-jupiter-sun 27-10-2026 |
-| ref-0270 2030 | patyayini row 9: PL9 mars-jupiter-jupiter Tue 27-10-2026, core mars-jupiter-moon 27-10-2026 |
-| ref-0270 2030 | patyayini row 10: PL9 mars-jupiter-sun Tue 27-10-2026, core mars-jupiter-venus 27-10-2026 |
-| ref-0270 2030 | patyayini row 11: PL9 mars-jupiter-moon Tue 27-10-2026, core mars-jupiter-lagna 27-10-2026 |
-| ref-0270 2030 | patyayini row 12: PL9 mars-jupiter-venus Tue 27-10-2026, core mars-saturn-mercury 27-10-2026 |
-| ref-0270 2030 | patyayini row 13: PL9 mars-jupiter-lagna Tue 27-10-2026, core mars-saturn-sun 27-10-2026 |
-| ref-0270 2030 | patyayini row 14: PL9 mars-saturn-saturn Tue 27-10-2026, core mars-saturn-moon 27-10-2026 |
-| ref-0270 2030 | patyayini row 15: PL9 mars-saturn-mercury Tue 27-10-2026, core mars-saturn-venus 27-10-2026 |
-| ref-0291 2030 | patyayini row 15: PL9 venus-jupiter-saturn Tue 03-11-2026, core venus-jupiter-mars 03-11-2026 |
 | ref-0352 2030 | saham annual Yasa: PL9 Aquarius 16:32:36, core 316.54909772621954 |
 | ref-0352 2030 | saham annual Paradesa: PL9 Pisces 15:50:50, core 345.85360502099877 |
 | ref-0352 2030 | saham annual Artha: PL9 Taurus 02:19:26, core 32.33007724029195 |

@@ -111,7 +111,7 @@ the check); the chart style (presentation only). Options → Calculation → Mis
 
 Worksheets II and III of the returns and the remaining (L) variants (68, 69, 71, 76–80,
 82–88) were left out of the TEMPO model: they repeat, at another instant or place, what the pages
-of the model already show; 5C adds them if it needs any.
+of the model already show. Stage 2J printed them in the VAR2 model (section 6).
 
 Options: Options → Dashas, "Varshaphala dasha interpretation method": Mudda dasha (the
 default), Mudda dasha (Kalidasa), Mudda dasha (without dasha balance), Patyayini dasha (changes
@@ -247,3 +247,6 @@ dates, what each page prints as text; the drawings are left to stage 6.
 | 75, 81, 89 | the monthly and daily returns and the dasha lists (the Patyayini of eight charts pending) | varshaphala.md |
 | 67. Varshaphala I (L), 70. Varshaphala 8 years overview, 91, 92 | no: 67 repeats 64 at another place; 70, 91 and 92 are drawn charts (the returns of 70 are those already checked in the Varshaphala Charts) | varshaphala.md |
 | 127–129. Muhurta | positions, strengths, panchanga, thermometer, dashas, balas, vargas (the VB of the nodes pending) | muhurta.md |
+| 65–88 (VAR2). Varshaphala II, III, the (L) variants, monthly and daily II and III, 70, 87, 88 | drawn returns and headers, tables, kakshas, Panchavargeeya, offices, the lords panel (the print session's year), the dasha lists (`check-variants`) | varshaphala.md |
+| 103, 106, 108, 112, 119, 121, 124, 126, 131, 132 (TEM2) | wheels and tables of the transit, the Sarva Chancha, the event and "New Event" charts and data, the Prashna (`check-variants`) | transits.md |
+| 94, 96 (CMP2). Compatibility - Composite | both wheels, both D9, both Vimshottari lists, both charts' tables (`check-variants`) | compatibility.md |

@@ -253,6 +253,15 @@ transit-specific option that changes a number.
 - The 49 sign ingresses of 2026 with a legible day: equal.
 - The 3780 labels of the October 2026 calendar (135 charts): the lord of each one in a
   computed stretch, in order, and the 3645 numbers printed under them, equal.
+- The variant pages of the TEM2 model (stage 2J, 135 charts from `refset/xml-tempo`, the events at 1 January 2000
+  12:00 in Jaipur, checked with `check-variants` within −300 to +180 seconds of the print's clock): the inner wheels
+  (natal D9 and D10) and the transit tables of 103; the transit tables of 106 and 108; the Sarva Chancha of 112 (the
+  natal Ashtakavarga printed by house from the Lagna, the Sarva, and the Prastara with its columns from the sign its
+  header prints); the "Today" charts and the event table of 119 and 121; the two returns, the "New Event" chart at the
+  clock, its kakshas, Gochara data and Vimshopaka (rounded to a decimal) of 124 and 126; the Prashna chart, table and
+  place of 131 and the nine charts of 132, at the printed instant in Jaipur. 0 problems. The tables of 103 match at one
+  instant within the second, about 15 seconds before the clock (the Moon's D9 moves 5" a second): the bench scans by
+  quarter seconds, and one chart (REF 0043), which needs 1" more of slack, is a border case.
 - A border case: in REF 0170 (2030), the "now" page was printed at 06:30:55 Jaipur
   time, seconds before the change of the Shadbala hora lord at sunrise, and PL9
   printed Mars already after it and Saturn still before it. The "now" pages are drawn

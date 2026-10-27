@@ -27,19 +27,23 @@ describe('the dasha lists of the Varshaphala worksheets', () => {
     const total = m.slice(0, 9).reduce((t, x) => t + x.endJdUt - x.startJdUt, 0);
     expect(total).toBeCloseTo(30, 9);
   });
-  it('list fifteen rows from the one running at an instant, or from the first when the instant comes before, without the parts shorter than asked', () => {
+  it('list fifteen rows from the one running at an instant, or from the first when the instant comes before, each next row the one running a gap after the last ends', () => {
     const tree = deepenAnnual([p('venus', 0, 120), p('sun', 120, 156)], 2, 'mudda');
     const rows = dashaRows(tree, 25, 15);
     expect(rows[0]!.chain).toEqual(['venus', 'sun']);
     expect(rows).toHaveLength(15);
     expect(dashaRows(tree, -5, 3)[0]!.chain).toEqual(['venus', 'venus']);
-    // In the Sun's 36 days its own part lasts 1.8 days and Mars's 2.1: both left out below 2.5.
+    // In the Sun's 36 days its own part lasts 1.8 days and Mars's 2.1: both fall inside a gap of 2.5.
     const short = dashaRows(tree, 119, 15, 2.5).map((r) => r.chain.join('-'));
     expect(short.slice(0, 3)).toEqual(['venus-ketu', 'sun-moon', 'sun-rahu']);
   });
   it('keep the first part of the dasha however short', () => {
     const tree = [p('sun', 0, 10, [p('sun', 0, 0.001), p('moon', 0.001, 10)])];
     expect(dashaRows(tree, -1, 15, 0.5).map((r) => r.chain.join('-'))).toEqual(['sun-sun', 'sun-moon']);
+  });
+  it('skip a part by where it falls, not by its length: a longer one inside the gap goes, a shorter one after it stays', () => {
+    const tree = [p('sun', 0, 10, [p('sun', 0, 1), p('moon', 1, 4), p('mars', 4, 4.1), p('rahu', 4.1, 10)])];
+    expect(dashaRows(tree, 0.5, 15, 3.05).map((r) => r.chain.join('-'))).toEqual(['sun-sun', 'sun-mars', 'sun-rahu']);
   });
 });
 
@@ -48,7 +52,7 @@ describe('the worksheets\' dasha lists at the print\'s clock', () => {
     const { ageAt, worksheetDashaLists } = await import('../src/index');
     const at = { jdUt: natal.jdUt + 31.4 * 365.25636, utcOffsetHours: 5.5 };
     const w = worksheetDashaLists(fakeSky, natal, at, undefined, o);
-    expect(Object.keys(w.rows).sort()).toEqual(['daily', 'kalidasa', 'kalidasa4', 'monthly', 'mudda', 'muddaNone', 'natal', 'patyayini']);
+    expect(Object.keys(w.rows).sort()).toEqual(['daily', 'daily4', 'kalidasa', 'kalidasa4', 'monthly', 'monthly4', 'mudda', 'muddaNone', 'natal', 'natal4', 'patyayini', 'tithiPravesh']);
     for (const r of Object.values(w.rows)) expect(r).toHaveLength(16);
     // The clock read as UT: its local time taken for UT, as the other pages of the clock do.
     expect(w.starts.natal).toBeCloseTo(at.jdUt + 5.5 / 24, 9);
@@ -57,5 +61,17 @@ describe('the worksheets\' dasha lists at the print\'s clock', () => {
     expect(w.rows.natal[1]!.startJdUt).toBeGreaterThan(w.starts.natal);
     const age = ageAt(natal.jdUt, at.jdUt);
     expect(w.returns.monthly).toBe(monthlyReturn(fakeSky, natal, age.years, age.months, 'true', o));
+  });
+  it('read the clock and the returns in the place\'s clock on the (L) pages: the true UT, and a return earlier by its zone', async () => {
+    const { worksheetDashaLists } = await import('../src/index');
+    const at = { jdUt: natal.jdUt + 31.4 * 365.25636, utcOffsetHours: 5.5 };
+    const here = worksheetDashaLists(fakeSky, natal, at, undefined, o);
+    const there = worksheetDashaLists(fakeSky, natal, at, undefined, o, { utcOffsetHours: 5.5 });
+    // At the clock as true UT (a year's lists start there, after the return).
+    expect(here.starts.kalidasa).toBeCloseTo(at.jdUt + 5.5 / 24, 9);
+    expect(there.starts.kalidasa).toBeCloseTo(at.jdUt, 9);
+    expect(there.starts.daily).toBeCloseTo(here.returns.daily - 5.5 / 24, 9);
+    // The natal lists are the birth's.
+    expect(there.starts.natal).toBe(here.starts.natal);
   });
 });

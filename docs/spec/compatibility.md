@@ -64,3 +64,9 @@ partner (`check-compatibility`): every Ashtakoota row and total, every Dashkoota
 and the 80 houses of Mars match, but for one pair: two Moons in Chitra in different signs, where PL9 gives the
 Dashkoota's Yoni 0 and the engine 4 (the same animal). One case does not show PL9's rule, so the engine keeps the
 classical reading.
+
+The composite pages (stage 2J, the CMP2 print model, 40 pairs, `check-variants`): on 94, the two wheels (the native's
+chart inside the first, the partner's inside the second), the native's D9 and the partner's (the second D9 of the
+page), and the four-level Vimshottari lists of both at the print's clock; on 96, the planet tables of both charts
+(degree, nakshatra and SB%; the Shadbala of REF 0002, 0019, 0243 and 0250 left out, as in the Shadbala section of the
+conformance report). 0 problems.

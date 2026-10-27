@@ -54,12 +54,16 @@ export const KNOWN_VARSHA_CLOCK_PENDING: Readonly<Record<string, readonly string
 
 const LAGNA_FREE_SAHAMS = ['Gaurava', 'Sastra', 'Jadya', 'Karyasiddhi'];
 
-/** What the core gives for the worksheets of a year of age: the annual chart at the birth place, as the reports'. */
-export function computeVarshaClockInputs(eph: Ephemeris, natal: ChartInput, years: number): VarshaClockComputed {
+/**
+ * What the core gives for the worksheets of a year of age: the annual chart at the birth place, as the reports'. With
+ * `chart`, another return of that year (a monthly or daily one, `returnJdUt`) or another place (the "(L)" pages').
+ */
+export function computeVarshaClockInputs(eph: Ephemeris, natal: ChartInput, years: number, chart: { returnJdUt?: number; place?: { latitude: number; longitudeEast: number } } = {}): VarshaClockComputed {
   const o = { fidelity: 'pl9' } as const;
-  const r = computeVarshaphalaReport(eph, natal, years, o);
+  const place = chart.place ?? { latitude: natal.latitude, longitudeEast: natal.longitudeEast };
+  const r = computeVarshaphalaReport(eph, natal, years, { ...o, ...chart, place });
   const v = r.varshaphala;
-  const at = { ...natal, jdUt: v.jdUt };
+  const at = { ...natal, ...place, jdUt: v.jdUt };
   const mu = computeMuhurta(eph, natal, at, { ...o, activity: 'travelling' });
   const tc = tajikaChart(v);
   const pts = v.chart.points as Record<string, { longitude: number } | undefined>;
@@ -70,7 +74,7 @@ export function computeVarshaClockInputs(eph: Ephemeris, natal: ChartInput, year
     dignity: q.dignity, sbRatio: q.shadbalaRatio, sbStrong: q.shadbalaStrong, vb: q.vimshopaka.shadvarga, avastha: q.avastha,
     bindus: !av || p === 'ketu' ? null : av.bhinna[(p === 'rahu' ? 'lagna' : p) as 'sun'][Math.floor(lon[p]! / 30)]!,
   }]));
-  const t = computeTransits(eph, natal, { jdUt: v.jdUt, latitude: natal.latitude, longitudeEast: natal.longitudeEast }, o);
+  const t = computeTransits(eph, natal, { jdUt: v.jdUt, ...place }, o);
   const sahamsOf = (list: typeof r.sahams) => Object.fromEntries((list ?? []).map((s) => [s.name, { longitude: s.longitude, lord: s.lord, lagnaBound: !LAGNA_FREE_SAHAMS.includes(s.name) }]));
   return {
     returnJdUt: v.jdUt, lagnaSpeed: lagnaSpeedAt(eph, at), points: lon,
@@ -159,12 +163,10 @@ export function verifyVarshaClock(shown: VarshaClockShown, c: VarshaClockCompute
 }
 
 /**
- * The lists whose rows stay pending, by chart: the Patyayini's three levels where PL9 leaves out or relabels rows by no
- * rule found (in REF 0269 it prints two parts of 4.57 and 4.44 minutes and leaves out the one of 4.60 between them).
+ * The lists whose rows stay pending, by chart: the Patyayini of REF 0143, one row the core starts 4.7 minutes after
+ * midnight and PL9 on the day before (the Patyayini's start, not the row rule).
  */
-export const KNOWN_VARSHA_LISTS_PENDING: Readonly<Record<string, readonly string[]>> = Object.fromEntries(
-  ['0003', '0010', '0090', '0143', '0267', '0269', '0270', '0291'].map((id) => [`ref-${id}`, ['patyayini']]),
-);
+export const KNOWN_VARSHA_LISTS_PENDING: Readonly<Record<string, readonly string[]>> = { 'ref-0143': ['patyayini'] };
 
 const WEEKDAY = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 

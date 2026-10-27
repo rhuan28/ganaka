@@ -26,7 +26,8 @@
     "check-remedies": "tsx src/cli/check-remedies.ts",
     "check-kp": "tsx src/cli/check-kp.ts",
     "check-rectification": "tsx src/cli/check-rectification.ts",
-    "check-chakras": "tsx src/cli/check-chakras.ts"
+    "check-chakras": "tsx src/cli/check-chakras.ts",
+    "check-variants": "tsx src/cli/check-variants.ts"
   },
   "dependencies": {
     "@reverse/core": "workspace:*",
