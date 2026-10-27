@@ -137,19 +137,46 @@ bar, and the bars PL9 does not label (the short ones at the start and end of the
 
 The "Kota Chakra" worksheet numbers the 28 nakshatras, Abhijit between Uttara Ashadha and Shravana, starting
 from the natal nakshatra of the Moon, and places each transiting planet in its own (`kotaChakra`, from the data: the 2430
-printed positions). It also prints a score ("Score: -4.5") whose rule was not found: the texts
-of the chakra are encrypted, and the 270 printouts, all under the same sky, are not enough to extract it from the
-data (only the natal nakshatra changes from one to the other). The score is read and not checked.
+printed positions).
 
-## Sanghatta, Sarvatobhadra and the Ishta/Kashta of the transits (not checked)
+Its score (`kotaScore`, read in PL9): each planet in transit gets a value built up step by step — its base (Sun −0.75,
+Mars −1, Mercury +0.75, Jupiter +1, Venus +1, Saturn −1, Rahu −1, Ketu −0.75; the Moon (t − 5)/15 for the transit tithi
+t up to 14, else (25 − t)/15); a quarter more of the same sign when retrograde (not the nodes); −0.15 in an odd sign,
++0.15 in an even one; −0.3 for each sign it rules that is the 2nd, 6th, 7th, 8th or 12th from the natal Lagna, +0.3 for
+the 1st, 5th or 9th (the higher sign first, which decides some ties of the last digit); −0.5 debilitated, −0.25
+debilitated in the navamsha (Rahu's in Scorpio, Ketu's in Taurus); −0.12 in the Baladi "dead" state, +0.25 in the
+"adolescent"; less by the depth of its combustion (1 − its distance from the Sun over the orb, Mars to Saturn); −0.25
+hemmed by malefics, +0.25 by benefics (both neighbours in longitude of one nature, one of them in its sign); +0.5
+exalted, +0.25 exalted in the navamsha. The values of the planets on the places 3, 4, 5, 10, 11, 12, 17, 18, 19, 24, 25
+and 26 are added, and those on 1, 2, 3, 8, 9, 10, 15, 16, 17, 22, 23 and 24 added again (3, 10, 17 and 24 count twice).
+PL9 takes the place from the transit's nakshatra among 27 less the natal Moon's among 28, so a planet past Uttara
+Ashadha counts one place before where it is drawn; the `pl9` mode keeps that, the `corrected` one uses the drawn place.
+The score is the sum times ten cut toward zero, over ten.
 
-Pages 115 (Sanghatta Chakra) and 116 (Sarvatobhadra Chakra) are drawings: they place each planet, the
-natal ones inside and the transit ones outside in the Sanghatta and the transit ones in the grid cells in the
-Sarvatobhadra, in its nakshatra (which the transit tables and the Kota Chakra already check), and draw
-the vedha lines. Neither of the two prints a number. In the executable, the "Sarvatobhadrachakra score" and
-the cells of the Ishta/Kashta of the transits (score, phase and position) are registered in a table of
-cells, but the routine that evaluates them was not found, and no printed page shows them. They are left to
-stage 6, with the drawing of the chakras.
+## Sanghatta Chakra
+
+A transit planet pierces a natal one (`sanghattaVedhas`, from PL9's printed wheels) when their padas (of 3°20' from
+0° Aries, 0 to 107) add up to 35 modulo 36 and do not lie in the same third of the zodiac from Aries; the line is green
+for a natural benefic in transit, red for a malefic.
+
+## Sarvatobhadra Chakra
+
+The 9×9 grid has the 28 nakshatras on its border (`sarvatobhadraVedhas`, read in PL9). Each transit planet pierces
+from its nakshatra's cell by its motion: the Sun and the Moon always along the diagonal to their left (facing into the
+grid), the nodes along the one to their right; Mars to Saturn by their speed against a mean motion (Mars 0.6167° a day,
+Jupiter 0.0811, Saturn 0.0336, Mercury and Venus the Sun's): more than one and a half times slower to the left,
+between half and one and a half straight across to the opposite cell, faster than twice or retrograde to the right (a stationary planet counts as slow). A
+diagonal runs until it leaves the grid and pierces every cell after the first; a straight line pierces the opposite
+cell. A planet in the last pada of Bharani, Ashlesha, Vishakha or Shravana, or the first of Krittika, Magha, Anuradha
+or Dhanishta, also pierces the corner's vowel and its diagonal to the centre. Green for a natural benefic, red for a
+malefic (the Sun, Mars, Saturn and the nodes).
+
+## Checked (chakras)
+
+Against the 270 TEMPO printouts (135 charts at two dates, one sky: 17 October 2026, Jaipur) with `check-chakras`: every
+Kota score, every Sanghatta chord and every framed cell of the Sarvatobhadra. As the sky is one, what depends on the
+transit alone (the motions of the Sarvatobhadra, the tithi of the Kota) was checked once; the parts the sky does not
+reach were read in PL9. The Ishta/Kashta of the transits and PL9's Sarvatobhadra score are not printed and not here.
 
 ## Month calendar
 

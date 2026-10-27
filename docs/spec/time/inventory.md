@@ -237,8 +237,8 @@ dates, what each page prints as text; the drawings are left to stage 6.
 | 106. Graphical ephemeris - 3 month overview | the KP lords, the SB# and the VB of the transits (the VB of the nodes pending where it differs); the graph not | transits.md |
 | 107. Yearly transit overview | the sign ingresses with a legible day | transits.md |
 | 113. Kaksha and dasha calendar | the month's labels and the numbers under them | transits.md |
-| 114. Kota Chakra | the positions (the score not) | transits.md |
-| 115. Sanghatta, 116. Sarvatobhadra | no: drawings without numbers | transits.md |
+| 114. Kota Chakra | the positions, and the score (`check-chakras`) | transits.md |
+| 115. Sanghatta, 116. Sarvatobhadra | the vedhas: the Sanghatta's chords, the Sarvatobhadra's pierced cells (`check-chakras`) | transits.md |
 | 120. Events 1-10 | the dates and the four dashas of the two events | transits.md |
 | 8. Sunrise chart | the positions and the 15 Vimshottari lines | panchanga.md |
 | 39. Panch Pakshi | the header, the ten yamas and the 50 parts | panchanga.md |

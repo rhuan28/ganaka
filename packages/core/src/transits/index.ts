@@ -9,3 +9,4 @@ export * from './vargaTable';
 export * from './monthEvents';
 export * from './kota';
 export * from './pageRules';
+export * from './chakras';

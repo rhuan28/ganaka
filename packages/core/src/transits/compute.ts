@@ -8,6 +8,8 @@ import { AV_PLANETS, type AshtakavargaOptions, type AvPlanet, type AvSigns } fro
 import { computeShadbala } from '../strengths/compute';
 import type { ShadbalaOptions } from '../strengths/shadbala/types';
 import { vimshopaka } from '../strengths/vimshopaka';
+import { kotaScore, sanghattaVedhas, sarvatobhadraVedhas, type SbcVedha, type TransitBody } from './chakras';
+import { kotaChakra } from './kota';
 import { transitKakshas, type KakshaRow } from './kaksha';
 import { chandrabala, tarabala } from './tarabala';
 
@@ -32,6 +34,15 @@ export interface Transits {
   vimshopaka: Record<Planet9, number>;
   tarabala: ReturnType<typeof tarabala>;
   chandrabala: ReturnType<typeof chandrabala>;
+  /**
+   * The transit chakras (docs/spec/time/transits.md): the Kota Chakra's places and score (the score null without the
+   * natal Lagna), the Sanghatta's vedhas and the Sarvatobhadra's.
+   */
+  chakras: {
+    kota: { first: number; places: Partial<Record<Planet9, number>>; score: number | null };
+    sanghatta: ReturnType<typeof sanghattaVedhas>;
+    sarvatobhadra: SbcVedha[];
+  };
   /** What could not be had: the transit Lagna and the Shadbala beyond the polar circle, the kakshas without the natal Lagna. */
   missing: { what: 'lagna' | 'shadbala' | 'kakshas'; reason: string }[];
   fidelity: Fidelity;
@@ -70,6 +81,15 @@ export function computeTransits(eph: Ephemeris, natal: ChartInput, at: TransitIn
     vimshopaka: Object.fromEntries(Object.entries(vimshopaka(Object.fromEntries(PLANETS_9.map((p) => [p, now.points[p].longitude])) as Record<Planet9, number>, fidelity, 'time').planets).map(([p, x]) => [p, x.scores.shadvarga])) as Record<Planet9, number>,
     tarabala: tarabala(birth.points.moon.longitude, now.points.moon.longitude),
     chandrabala: chandrabala(birth.points.moon.longitude, now.points.moon.longitude),
+    chakras: (() => {
+      const bodies = Object.fromEntries(PLANETS_9.map((p) => [p, { longitude: now.points[p].longitude, speed: now.points[p].longitudeSpeed ?? 0 }])) as Record<Planet9, TransitBody>;
+      const kota = kotaChakra(birth.points.moon.longitude, Object.fromEntries(PLANETS_9.map((p) => [p, now.points[p].longitude])), fidelity);
+      return {
+        kota: { ...kota, score: natalLagna ? kotaScore({ moon: birth.points.moon.longitude, lagna: natalLagna.longitude }, bodies, fidelity).score : null },
+        sanghatta: sanghattaVedhas(Object.fromEntries(PLANETS_9.map((p) => [p, birth.points[p].longitude])) as Record<Planet9, number>, Object.fromEntries(PLANETS_9.map((p) => [p, now.points[p].longitude])) as Record<Planet9, number>),
+        sarvatobhadra: sarvatobhadraVedhas(bodies, fidelity),
+      };
+    })(),
     missing,
     fidelity,
   };
