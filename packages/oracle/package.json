@@ -24,7 +24,8 @@
     "check-compatibility": "tsx src/cli/check-compatibility.ts",
     "dump-yoga-contexts": "tsx src/cli/dump-yoga-contexts.ts",
     "check-remedies": "tsx src/cli/check-remedies.ts",
-    "check-kp": "tsx src/cli/check-kp.ts"
+    "check-kp": "tsx src/cli/check-kp.ts",
+    "check-rectification": "tsx src/cli/check-rectification.ts"
   },
   "dependencies": {
     "@reverse/core": "workspace:*",

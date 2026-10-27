@@ -60,6 +60,11 @@ can change a number, so that a client that keeps results can tell old ones from 
   - compatibility (see [compatibility.md](compatibility.md)): `/v1/compatibility`, with `native` and `partner`, each
     `{ birth, sex }` (`male` or `female`), answering the Ashtakoota, the Dashkoota, the distances between the two charts'
     points and each chart's Mangala Dosha; its own options go in `compatibility`: `point`, `moon` (default) or `lagna`;
+  - rectification (see [rectification.md](rectification.md)): `/v1/rectification`, with `birth`, answering the
+    Rectification Tool's rows (the moved instant, the Lagna's and the Navamsha's signs, the dasha at each event); its own
+    options go in `rectification`: `zoom` (0 to 5), `before`, `after`, `events`, `system`, `levels`; and
+    `/v1/lagna-steps`, with `birth`, answering where the time tool steps by the Ascendant and the Navamsha, and each
+    classical varga's Lagna window;
   - the Krishnamurti chart (see [kp.md](kp.md)): `/v1/kp`, with `birth`, answering the Placidus cusps with their KP
     lords, the significators of each house, the houses each planet signifies by strength, the ruling planets, Fortuna
     and the dasha balance; its own options go in `kp`: `horary`, a number from 1 to 249 for a horary chart;

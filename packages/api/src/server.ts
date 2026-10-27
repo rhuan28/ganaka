@@ -17,6 +17,7 @@ import { planetInfo } from './routes/planetInfo';
 import { compatibility } from './routes/compatibility';
 import { remedies } from './routes/remedies';
 import { kp } from './routes/kp';
+import { rectification } from './routes/rectification';
 import { strengths } from './routes/strengths';
 import { time } from './routes/time';
 
@@ -36,7 +37,7 @@ export interface ServerOptions {
 }
 
 export type Route = (app: FastifyInstance, o: ServerOptions) => void;
-const ROUTES: Route[] = [chart, dashas, strengths, time, atlas, importRoutes, natalExtras, yogas, yogaContext, planetInfo, compatibility, remedies, kp];
+const ROUTES: Route[] = [chart, dashas, strengths, time, atlas, importRoutes, natalExtras, yogas, yogaContext, planetInfo, compatibility, remedies, kp, rectification];
 const PUBLIC = new Set(['/health', '/openapi.json']);
 
 /** The calculation service: the core's results over HTTP, as JSON, never rounded. */

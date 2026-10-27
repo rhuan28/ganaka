@@ -31,6 +31,7 @@ export * from './panchanga/index';
 export * from './varshaphala/index';
 export * from './muhurta/index';
 export * from './kp';
+export { computeRectification, lagnaStep, RECTIFICATION_STEPS, vargaWindow, WINDOW_VARGAS, type Rectification, type RectificationOptions, type RectificationRow } from './rectification';
 export { computeKpChart, cuspHouse, horaryNumber, placidusCusps, type KpChart, type KpHouse, type KpOptions, type KpPlanet } from './kpChart';
 export * from './natalTables';
 export * from './yogas/natures';
