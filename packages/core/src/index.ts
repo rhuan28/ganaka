@@ -31,6 +31,7 @@ export * from './panchanga/index';
 export * from './varshaphala/index';
 export * from './muhurta/index';
 export * from './kp';
+export { computeKpChart, cuspHouse, horaryNumber, placidusCusps, type KpChart, type KpHouse, type KpOptions, type KpPlanet } from './kpChart';
 export * from './natalTables';
 export * from './yogas/natures';
 export { computeYogaContext, type YogaContext, type YogaContextVarga, type YogaContextVargaName } from './yogas/context';
