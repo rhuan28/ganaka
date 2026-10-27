@@ -7,7 +7,7 @@ import { computePositions, type ChartInput } from '../positions';
 import { dayFrame, SunriseUndefinedError } from '../sunrise';
 import { bodyAstronomy, PLANET_INFO_BODIES, type BodyAstronomy, type PlanetInfoBody } from './astronomy';
 import { combustion, deeptadi, DEFAULT_ANKA, shayanadi, type DeeptadiState, type Shayanadi } from './avasthas';
-import { finalDispositor, hemmed, NATURAL_RELATIONS_9 } from './relations';
+import { compoundRelations, finalDispositor, hemmed, NATURAL_RELATIONS_9, temporalRelations } from './relations';
 import { shashtiamsha, vargaDegree, vargaDeity } from './deities';
 import { CLASSICAL_VARGAS, type ClassicalVargaName } from '../vargas';
 import { norm360 } from '../zodiac';
@@ -16,7 +16,7 @@ import { argala, navamshaAge, navamshaNumber, dominance, goodVargas, houseEffect
 /** PL9's planet data tables, by body (docs/spec/planet-info.md). */
 
 export { MEAN_SPEED, PLANET_INFO_BODIES, declinationOf, krantiOf, speedPercentOf, type BodyAstronomy, type PlanetInfoBody } from './astronomy';
-export { NATURAL_RELATIONS_9, finalDispositor, hemmed } from './relations';
+export { NATURAL_RELATIONS_9, compoundRelations, finalDispositor, hemmed, temporalRelations } from './relations';
 export { SHASHTIAMSHA_DEITIES, shashtiamsha, vargaDegree, vargaDeity } from './deities';
 export { DASHAVARGA, SHADVARGA, navamshaAge, navamshaNumber, argala, houseEffect, pushkaraNavamsa, dominance, goodVargas, housesRuled, mrityuBhaga, navamsaFromRashi, rays, shadvargaSignLords, shadvargaElements, type SignQuality } from './columns';
 export { COMBUSTION_ORB, DEEPTADI, DEFAULT_ANKA, SHAYANADI, combustion, deeptadi, shayanadi, type Combustion, type DeeptadiState, type Shayanadi, type ShayanadiState } from './avasthas';
@@ -86,6 +86,10 @@ export interface PlanetInfo {
   navamshaOf: Partial<Record<VargaPoint, number>>;
   /** PL9's natural relations of the nine, Rahu and Ketu included: 1 friend, 0 neutral, -1 enemy. */
   naturalRelations: Record<Planet9, Record<Planet9, -1 | 0 | 1>>;
+  /** The temporal relations by the birth chart's signs: 1 friend, -1 enemy (PL9's "Tatkalika"). */
+  temporalRelations: Record<Planet9, Record<Planet9, -1 | 0 | 1>>;
+  /** The compound relations, natural plus temporal: 2 great friend to -2 great enemy (PL9's "Panchadha"). */
+  compoundRelations: Record<Planet9, Record<Planet9, -2 | -1 | 0 | 1 | 2>>;
   /** What a chart cannot give (houses without a Lagna, the sunrise beyond the polar circle), by field. */
   missing: { field: string; reason: string }[];
 }
@@ -159,5 +163,5 @@ export function computePlanetInfo(eph: Ephemeris, input: ChartInput, options: Pl
   const g0 = lagna ? Math.floor(norm360(lagna.longitude) / (360 / 108)) : null;
   const navamshas = Array.from({ length: 108 }, (_, g) => ({ sign: g % 12, number: g0 === null ? null : ((g - g0 + 108) % 108) + 1 }));
   const navamshaOf = Object.fromEntries(Object.entries(at).map(([pt, lon]) => [pt, Math.floor(norm360(lon) / (360 / 108))])) as PlanetInfo['navamshaOf'];
-  return { fidelity: core.fidelity, anka, points, deities, vargaDegrees, navamshas, navamshaOf, lagnaMrityuBhaga: lagna ? mrityuBhaga('lagna', lagna.longitude) : null, naturalRelations: NATURAL_RELATIONS_9, missing };
+  return { fidelity: core.fidelity, anka, points, deities, vargaDegrees, navamshas, navamshaOf, lagnaMrityuBhaga: lagna ? mrityuBhaga('lagna', lagna.longitude) : null, naturalRelations: NATURAL_RELATIONS_9, temporalRelations: temporalRelations(longitudes), compoundRelations: compoundRelations(longitudes), missing };
 }

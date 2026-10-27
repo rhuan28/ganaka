@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { finalDispositor, hemmed, NATURAL_RELATIONS_9 } from '../src';
+import { compoundRelations, finalDispositor, hemmed, NATURAL_RELATIONS_9, temporalRelations } from '../src';
 import type { Planet9 } from '../src/jaimini';
 
 // REF 0010: Sun Taurus, Moon Aries, Mars Leo, Mercury Taurus, Jupiter Scorpio, Venus Aries, Saturn Aquarius, Rahu Libra, Ketu Aries.
@@ -25,5 +25,31 @@ describe('the relations of the planet tables', () => {
     expect(NATURAL_RELATIONS_9.rahu.jupiter).toBe(1);
     expect(NATURAL_RELATIONS_9.ketu.mars).toBe(1);
     for (const p of Object.keys(NATURAL_RELATIONS_9) as Planet9[]) expect(NATURAL_RELATIONS_9[p][p]).toBe(0);
+  });
+
+  // PL9's "Compound relations" page for REF 0010 (capture 18), rows and columns Sun to Ketu.
+  const NINE: Planet9[] = ['sun', 'moon', 'mars', 'mercury', 'jupiter', 'venus', 'saturn', 'rahu', 'ketu'];
+  const grid = (rows: string[], values: Record<string, number>) => rows.map((r) => r.split(' ').map((x) => (x === '-' ? 0 : values[x]!)));
+  const asGrid = (m: Record<Planet9, Record<Planet9, number>>) => NINE.map((a) => NINE.map((b) => m[a][b]));
+
+  it("gives the page's natural table", () => {
+    expect(asGrid(NATURAL_RELATIONS_9)).toEqual(grid([
+      '- F F N F E E E E', 'F - N F N N N E E', 'F F - E F N N E F', 'F E N - N F N N N', 'F F F E - E N N N',
+      'E E N F N - F F F', 'E E E F N F - F E', 'E E E N F F F - E', 'E E F N N F E E -',
+    ], { F: 1, N: 0, E: -1 }));
+  });
+
+  it("gives the page's temporal table, by the signs", () => {
+    expect(asGrid(temporalRelations(LONS))).toEqual(grid([
+      '- F F E E F F E F', 'F - E F E E F E E', 'F E - F F E E F E', 'E F F - E F F E F', 'E E F E - E F F E',
+      'F E E F E - F E E', 'F F E F F F - E F', 'E E F E F E E - E', 'F E E F E E F E -',
+    ], { F: 1, E: -1 }));
+  });
+
+  it("gives the page's compound table, the natural plus the temporal", () => {
+    expect(asGrid(compoundRelations(LONS))).toEqual(grid([
+      '- GF GF E N N N GE N', 'GF - E GF E E F GE GE', 'GF N - N GF E E N N', 'N N F - E GF F E F', 'N N GF GE - GE F F E',
+      'N GE E GF E - GF N N', 'N N GE GF F GF - N N', 'GE GE N E GF N N - GE', 'N GE N F E N N GE -',
+    ], { GF: 2, F: 1, N: 0, E: -1, GE: -2 }));
   });
 });

@@ -55,8 +55,12 @@ only, so a combust Moon shows 0.
 - **Final dispositor:** the lords of the signs followed from the planet until one comes back; the first to come
   back. A planet in its own sign is its own final dispositor.
 - **Natural relations of the nine:** the classical relations of the seven, with PL9's for the nodes: Rahu befriends
-  Jupiter, Venus and Saturn, is neutral to Mercury and Ketu, and the enemy of the Sun, the Moon, Mars and Ketu; Ketu
+  Jupiter, Venus and Saturn, is neutral to Mercury, and the enemy of the Sun, the Moon, Mars and Ketu; Ketu
   befriends Mars and Venus, is neutral to Mercury and Jupiter, and the enemy of the rest. The table is in the code.
+- **Temporal and compound relations of the nine** (PL9's "Compound relations" page): the temporal relation is friend
+  when the other planet is in the 2nd, 3rd, 4th, 10th, 11th or 12th sign from this one, enemy otherwise (the same sign
+  too), the nodes as the others; the compound one is the natural plus the temporal, great friend (2) to great enemy
+  (−2). Checked against the page's three tables for REF 0010 (243 cells).
 
 ## Other columns
 

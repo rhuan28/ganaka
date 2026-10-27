@@ -47,3 +47,18 @@ const TABLE: number[][] = [
 export const NATURAL_RELATIONS_9 = Object.fromEntries(
   NINE.map((a, i) => [a, Object.fromEntries(NINE.map((b, j) => [b, TABLE[i]![j]!]))]),
 ) as Record<Planet9, Record<Planet9, -1 | 0 | 1>>;
+
+/**
+ * The temporal (Tatkalika) relations of the nine by their signs, row to column: 1 when the column's planet is in the 2nd,
+ * 3rd, 4th, 10th, 11th or 12th sign from the row's, -1 otherwise (the same sign too); 0 on the diagonal.
+ */
+export function temporalRelations(longitudes: Record<Planet9, number>): Record<Planet9, Record<Planet9, -1 | 0 | 1>> {
+  const apart = (a: Planet9, b: Planet9) => (signOf(longitudes[b]) - signOf(longitudes[a]) + 12) % 12;
+  return Object.fromEntries(NINE.map((a) => [a, Object.fromEntries(NINE.map((b) => [b, a === b ? 0 : [1, 2, 3, 9, 10, 11].includes(apart(a, b)) ? 1 : -1]))])) as Record<Planet9, Record<Planet9, -1 | 0 | 1>>;
+}
+
+/** The compound (Panchadha) relations: the natural plus the temporal, 2 great friend to -2 great enemy; 0 on the diagonal. */
+export function compoundRelations(longitudes: Record<Planet9, number>): Record<Planet9, Record<Planet9, -2 | -1 | 0 | 1 | 2>> {
+  const t = temporalRelations(longitudes);
+  return Object.fromEntries(NINE.map((a) => [a, Object.fromEntries(NINE.map((b) => [b, a === b ? 0 : NATURAL_RELATIONS_9[a][b] + t[a][b]]))])) as Record<Planet9, Record<Planet9, -2 | -1 | 0 | 1 | 2>>;
+}
