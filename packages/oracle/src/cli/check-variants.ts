@@ -7,12 +7,13 @@
 // clock is the host's (UTC-3), which PL9 takes as Jaipur's (UTC+5:30); the PDF's creation time (UTC) falls while the
 // pages are drawn, so a value tied to the clock is accepted at any instant from 5 minutes before the creation time to 3
 // after, in steps of 10 seconds (the Lagna moves a degree in four minutes: a sign it enters in that window is a border).
-// usage: check-variants <var2.json> <tem2.json> <cmp2.json>
+// And the natal pages of the REF2 model (2, 11, 12, 17, 18, 24, 35, 37), printed from the reference charts.
+// usage: check-variants <var2.json> <tem2.json> <cmp2.json> [ref2.json]
 import { readFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createSwissEphemeris } from '@reverse/ephemeris';
-import { SIDEREAL_YEAR, computeAshtakavarga, computeChart, computeDashas, computeTransits, dailyReturn, dashaRows, dashasAt, eventDashas, monthlyReturn, solarReturn, tithiPravesh, vargaTable, worksheetDashaLists, type AnnualPeriod, type Chart, type ChartInput, type VargaName } from '@reverse/core';
+import { SIDEREAL_YEAR, aspectTable, compoundRelations, computeBhavaBala, computeKpChart, lordships, NATURAL_RELATIONS_9, taraMatrix, temporalRelations, computeAshtakavarga, computeChart, computeDashas, computeTransits, dailyReturn, dashaRows, dashasAt, eventDashas, monthlyReturn, solarReturn, tithiPravesh, vargaTable, worksheetDashaLists, type AnnualPeriod, type Chart, type ChartInput, type VargaName } from '@reverse/core';
 import { loadFixtures } from '../conformance';
 import { NAKSHATRA_NAMES, verifyEvents, verifyTransitSnapshot, verifyVargas, type TransitSnapshot } from '../transitTables';
 import type { VarshaClockShown } from '../transitTables';
@@ -22,8 +23,8 @@ type Drawn = { title: string; points: Record<string, number | null>; wide?: stri
 type Page = { title: string; drawn?: Drawn[]; headers?: string[]; lists?: { label: string; rows: { chain: string; weekday: string; date: string }[] }[] } & Record<string, unknown>;
 type Read = Record<string, { created: string; pages: Record<string, Page>; errors: string[] }>;
 
-const [var2Path, tem2Path, cmp2Path] = process.argv.slice(2);
-if (!var2Path || !tem2Path || !cmp2Path) { console.error('usage: check-variants <var2.json> <tem2.json> <cmp2.json>'); process.exit(2); }
+const [var2Path, tem2Path, cmp2Path, ref2Path] = process.argv.slice(2);
+if (!var2Path || !tem2Path || !cmp2Path) { console.error('usage: check-variants <var2.json> <tem2.json> <cmp2.json> [ref2.json]'); process.exit(2); }
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const JAIPUR = { latitude: 26 + 55 / 60, longitudeEast: 75 + 49 / 60 + 40 / 3600, utcOffsetHours: 5.5 };
 const o = { fidelity: 'pl9' } as const;
@@ -466,6 +467,170 @@ function checkVarsha(id: string, n: string, page: Page, natal: ChartInput, clock
   }
 }
 
+// ---- The natal pages of the REF2 model ----
+const NINE = ['sun', 'moon', 'mars', 'mercury', 'jupiter', 'venus', 'saturn', 'rahu', 'ketu'] as const;
+const RELATION_WORDS: Record<string, number> = { 'Grt. Friend': 2, Friend: 1, Neutral: 0, Enemy: -1, 'Grt. Enemy': -2, '-': 0 };
+/** PL9's tara names where they differ from the core's. */
+const TARA_SHOWN: Record<string, string> = { Pratyak: 'Pratyari', Atimitra: 'P.mitra' };
+/**
+ * The fraction PL9 prints before an aspect (from the printouts): by the count of signs from the planet aspecting to the
+ * planet aspected, 3rd and 10th a quarter, 5th and 9th a half, 4th and 8th three quarters, 7th in full; Mars's 4th and
+ * 8th, Jupiter's, Rahu's and Ketu's 5th and 9th, Saturn's 3rd and 10th in full.
+ */
+const aspectFraction = (from: string, count: number) => {
+  const full = { mars: [4, 8], jupiter: [5, 9], rahu: [5, 9], ketu: [5, 9], saturn: [3, 10] }[from as 'mars'] ?? [];
+  if (count === 7 || full.includes(count)) return '4/4';
+  return ({ 3: '1/4', 10: '1/4', 5: '1/2', 9: '1/2', 4: '3/4', 8: '3/4' } as Record<number, string>)[count] ?? '-';
+};
+
+/** The REF2 pages and the charts each draws (12's ninth, the KP chart, is read apart). */
+const REF2_DRAWN: Record<string, number> = { '2': 2, '11': 0, '12': 8, '17': 3, '18': 0, '24': 0, '25': 0, '35': 1, '37': 1 };
+const REF2_MIN_CHARTS = 130;
+
+function checkRef2(id: string, n: string, page: Page, natal: ChartInput, clock: number) {
+  const what = `REF2 ${id} ${n}`;
+  const c = chartAt(natal.jdUt, natal);
+  const lon = (p: string) => c.points[p as 'sun']!.longitude;
+  if (n in REF2_DRAWN) check('ref2 drawn read', what, (page.drawn ?? []).length === REF2_DRAWN[n], `${(page.drawn ?? []).length} charts`);
+  // The drawings: every point in its sign; the Karakamsha D9 in the Navamsha; the Bhava chart by the Sripati houses;
+  // the Bhava and Ghatika Lagna charts with the Lagna at those lagnas' signs.
+  for (const d of (page.drawn ?? []) as Drawn[]) {
+    const varga: VargaName = /D9|Navamsha/.test(d.title) ? 'D9' : /D10/.test(d.title) ? 'D10' : 'D1';
+    let diff: string[];
+    if (/^Bhava \(Sripati\)/.test(d.title)) {
+      const first = c.vargas.D1.lagna!;
+      // A point the core has no Sripati house for fails, as one in another sign.
+      diff = Object.entries(d.points).filter(([p, s]) => s !== null && (p in NAME || p === 'lagna')).filter(([p, s]) => {
+        const h = p === 'lagna' ? 1 : c.pointHouses?.sripati[p as 'sun'];
+        return h === undefined || (first + h - 1) % 12 !== s;
+      }).map(([p, s]) => `${p} PL9 ${s} core house ${p === 'lagna' ? 1 : c.pointHouses?.sripati[p as 'sun']}`);
+    } else {
+      // The Karakamsha charts put the "Asc" at the Karakamsha (the Atmakaraka's navamsha sign).
+      const kk = c.jaimini?.karakamsha;
+      const special = /^Bhava Lagna/.test(d.title) ? c.jaimini?.specialLagnas?.bhava : /^Ghatika Lagna/.test(d.title) ? c.jaimini?.specialLagnas?.ghatika : /Karakamsha/.test(d.title) && kk !== undefined ? kk * 30 + 15 : undefined;
+      diff = signsDiffer({ ...d, points: Object.fromEntries(Object.entries(d.points).filter(([p]) => special === undefined || p !== 'lagna')) }, c, varga);
+      if (/^Bhava Lagna|^Ghatika Lagna|Karakamsha/.test(d.title) && (special === undefined || Math.floor(special / 30) !== d.points.lagna)) diff.push(`lagna PL9 ${d.points.lagna} core ${special === undefined ? 'none' : Math.floor(special / 30)}`);
+    }
+    check('ref2 drawn', `${what} "${d.title.slice(0, 30)}"`, ...judged(d, diff));
+  }
+  // The planet tables (2, 37): position, nakshatra, KP lords, SB% and SB#, as the transit tables at the birth's instant and place.
+  const tables = page.pointTables as Record<string, string[]>[] | undefined;
+  if (['2', '37'].includes(n)) {
+    check('ref2 tables read', what, Object.keys(tables?.[0] ?? {}).length === 10, Object.keys(tables?.[0] ?? {}).join(' '));
+    if (tables?.[0]) {
+      const t = computeTransits(eph, natal, { jdUt: natal.jdUt, latitude: natal.latitude, longitudeEast: natal.longitudeEast }, o);
+      const rows = n === '37' ? Object.fromEntries(Object.entries(tables[0]).map(([p, w]) => [p, [w[0]!, SIGN3[Math.floor(lon(p) / 30)]!, ...w.slice(1)]])) : tables[0];
+      // Page 37's table has no R/c column: its retrogrades are not shown.
+      const f = [...verifyTransitSnapshot(snapshotOf(rows), t).failures, ...strongDiffer(rows, t.shadbalaStrong)]
+        .filter((x) => !(CHESHTA_OUTSIDE.has(id) && /^sb |SB/.test(x)) && !(n === '37' && /^R /.test(x)));
+      check('ref2 tables', what, f.length === 0, f.join('; '));
+    }
+    // The Vimshottari list from the clock (four levels on 2, two on 37), as the other natal lists.
+    const list = page.lists?.[0];
+    check('ref2 lists read', what, !!list, 'not read');
+    if (list) {
+      const levels = list.rows[0]!.chain.split('-').length as 2 | 4;
+      const tree = computeDashas(eph, natal, { system: 'vimshottari', levels, cycles: 3 }, o).periods.map(function conv(p): AnnualPeriod {
+        return { lord: p.lord as AnnualPeriod['lord'], startJdUt: p.start, endJdUt: p.end, sub: (p.sub ?? []).map(conv) };
+      });
+      const shown: VarshaClockShown = { ...emptyShown(0), lists: { natal4: list.rows } };
+      const test = (jd: number) => { const start = jd + 5.5 / 24; return verifyVarshaLists(shown, { rows: { natal4: dashaRows(tree, start, 16) } as never, starts: { natal4: start } as never, returns: {} as never }).failures; };
+      const res = test(clock).length === 0 ? { ok: true as const } : firstGood(WINDOW.filter((_, j) => j % 3 === 0).map((w) => clock + w), test);
+      check('ref2 lists', what, res.ok === false ? false : res.ok, 'failures' in res ? res.failures.slice(0, 3).join('; ') : 'at the window edge');
+    }
+  }
+  // Page 2's edges: the Sarvashtakavarga bindus and the Bhava Bala of each house.
+  const edges = page.houseEdges as Record<string, [number, number]> | undefined;
+  if (n === '2') {
+    const av = computeAshtakavarga(eph, natal, {}, o), bb = computeBhavaBala(eph, natal, {}, o), first = c.vargas.D1.lagna!;
+    const f = Array.from({ length: 12 }, (_, h) => h + 1).filter((h) => {
+      const e = edges?.[String(h)];
+      // The Bhava Bala of the charts outside PL9's Cheshta series is left out, as their Shadbala.
+      return !e || e[0] !== av.sarva[(first + h - 1) % 12] || (!CHESHTA_OUTSIDE.has(id) && Math.abs(e[1] - bb.houses[h - 1]!.total) > 0.0051);
+    }).map((h) => `house ${h}: PL9 ${edges?.[String(h)]?.join(' ')} core ${av.sarva[(first + h - 1) % 12]} ${bb.houses[h - 1]!.total.toFixed(2)}`);
+    check('ref2 house edges', what, f.length === 0, f.join('; '));
+  }
+  // The Sudarshan Chakra (11): the Lagna's, the Moon's and the Sun's rings, each point in its sign.
+  const su = page.sudarshan as { top: number; points: Record<string, number> }[] | undefined;
+  if (su) ['lagna', 'moon', 'sun'].forEach((from, k) => {
+    const ring = su[k]!;
+    const f = [...(ring.top !== c.vargas.D1[from as 'sun'] ? [`top PL9 ${ring.top} core ${c.vargas.D1[from as 'sun']}`] : []),
+      ...Object.entries(ring.points).filter(([p, s]) => p in NAME && c.vargas.D1[p as 'sun'] !== s).map(([p, s]) => `${p} PL9 ${s} core ${c.vargas.D1[p as 'sun']}`)];
+    const known = Object.keys(ring.points).filter((p) => p in NAME);
+    check('ref2 sudarshan', `${what} ${from} ring`, f.length === 0 && known.length >= 9, f.join(', ') || known.join(' '));
+  });
+  // The Krishnamurti chart of 12: each point in its Placidus house.
+  const kp = page.kpChart as Record<string, number | null> | undefined;
+  if (kp) {
+    const k = computeKpChart(eph, natal, {}, o);
+    const f = Object.entries(kp).filter(([p, h]) => h !== null && (NINE as readonly string[]).includes(p) && k.planets[p as 'sun'].house !== h).map(([p, h]) => `${p} PL9 ${h} core ${k.planets[p as 'sun'].house}`);
+    const decided = Object.entries(kp).filter(([p, h]) => h !== null && (NINE as readonly string[]).includes(p)).map(([p]) => p);
+    check('ref2 kp chart', what, f.length === 0 && decided.length === 9, f.join(', ') || decided.join(' '));
+  }
+  // The lordships of 17: the D1's, the D9's and the D10's.
+  const lords = page.lordships as Record<string, [number, string, boolean]>[] | undefined;
+  if (n === '17') (['D1', 'D9', 'D10'] as const).forEach((v, k) => {
+    const core = lordships(c.vargas[v]);
+    const shown = lords?.[k] ?? {};
+    // "*": the lords of two houses each in the other's (two different lords).
+    const exchange = (l: (typeof core)[number]) => { const o = core[l.inHouse - 1]!; return o.inHouse === l.house && o.lord !== l.lord; };
+    const f = core.filter((l) => shown[String(l.house)]?.[0] !== l.inHouse || shown[String(l.house)]?.[1] !== l.lord || shown[String(l.house)]?.[2] !== exchange(l))
+      .map((l) => `${v} house ${l.house}: PL9 ${shown[String(l.house)]?.join(' ')} core ${l.inHouse} ${l.lord} ${exchange(l)}`);
+    check('ref2 lordships', `${what} ${v}`, f.length === 0, f.join('; '));
+  });
+  // The three relation tables of 18.
+  const rel = page.relations as Record<'natural' | 'temporal' | 'compound', Record<string, Record<string, string>>> | undefined;
+  if (rel) {
+    const lons = Object.fromEntries(NINE.map((p) => [p, lon(p)])) as Record<(typeof NINE)[number], number>;
+    const core = { natural: NATURAL_RELATIONS_9, temporal: temporalRelations(lons), compound: compoundRelations(lons) };
+    for (const kind of ['natural', 'temporal', 'compound'] as const) {
+      const f = NINE.flatMap((a) => NINE.filter((b) => a !== b && RELATION_WORDS[rel[kind]?.[a]?.[b] ?? '?'] !== core[kind][a][b]).map((b) => `${a}-${b} PL9 ${rel[kind]?.[a]?.[b]} core ${core[kind][a][b]}`));
+      check('ref2 relations', `${what} ${kind}`, f.length === 0, f.join('; '));
+    }
+  }
+  // The aspects of 24: row the planet aspected, column the planet aspecting; the fraction and the virupas cut.
+  const asp = page.aspects as Record<string, Record<string, string>> | undefined;
+  if (asp) {
+    const lons = Object.fromEntries(NINE.map((p) => [p, lon(p)])) as Record<(typeof NINE)[number], number>;
+    const t = aspectTable(lons);
+    const f = t.planets.flatMap((on, i) => t.planets.filter((from) => from !== on).map((from) => {
+      const j = t.planets.indexOf(from);
+      const count = ((Math.floor(lons[on] / 30) - Math.floor(lons[from] / 30) + 12) % 12) + 1;
+      // Cut to the virupa (an opposition of exactly 60 comes out a hair under it).
+      const v = Math.trunc(t.value[i]![j]! + 1e-9), frac = aspectFraction(from, count);
+      // A fraction over no whole virupa prints alone ("1/2", not "1/2(0)").
+      const want = frac === '-' ? (v === 0 ? '-' : `- (${v})`) : v === 0 ? frac : `${frac}(${v})`;
+      // Rahu and Ketu stand exactly opposite: PL9's cut gives 60 or 59 by a hair either way.
+      const nodes = (on === 'rahu' && from === 'ketu') || (on === 'ketu' && from === 'rahu');
+      return asp[on]?.[from] === want || (nodes && ['4/4(59)', '4/4(60)'].includes(asp[on]?.[from] ?? '')) ? null : `${on}<-${from} PL9 ${asp[on]?.[from]} core ${want}`;
+    })).filter((x): x is string => x !== null);
+    check('ref2 aspects', what, f.length === 0, f.slice(0, 6).join('; '));
+  }
+  // The bars of 24 and 25: the aspects from a planet (or on it) as a percent of 60 virupas, to a point and a half.
+  const bars = page.aspectBars as { direction: 'from' | 'on'; planet: string; percent: number[] }[] | undefined;
+  if (['24', '25'].includes(n)) check('ref2 aspect bars read', what, (bars?.length ?? 0) === (n === '24' ? 2 : 9), `${bars?.length} charts`);
+  for (const b of bars ?? []) {
+    const lons = Object.fromEntries(NINE.map((p) => [p, lon(p)])) as Record<(typeof NINE)[number], number>;
+    const t = aspectTable(lons), k = t.planets.indexOf(b.planet as never);
+    const f = t.planets.map((q, j) => {
+      const v = j === k ? 0 : (b.direction === 'from' ? t.value[j]![k]! : t.value[k]![j]!) / 60 * 100;
+      return Math.abs(v - b.percent[j]!) <= 1.5 ? null : `${q} PL9 ${b.percent[j]}% core ${v.toFixed(1)}%`;
+    }).filter((x): x is string => x !== null);
+    check('ref2 aspect bars', `${what} ${b.direction} ${b.planet}`, f.length === 0, f.join(', '));
+  }
+  // The taras of 37: the row's nakshatra counted from the column's.
+  const taras = page.taras as Record<string, Record<string, string>> | undefined;
+  if (taras) {
+    const m = taraMatrix(Object.fromEntries(['lagna', ...NINE].map((p) => [p, lon(p)])) as never);
+    const f = m.points.flatMap((row, i) => m.points.filter((col) => col !== row).map((col) => {
+      const name = m.cells[i]![m.points.indexOf(col)]!.name;
+      return taras[row]?.[col] === (TARA_SHOWN[name] ?? name) ? null : `${row}/${col} PL9 ${taras[row]?.[col]} core ${name}`;
+    })).filter((x): x is string => x !== null);
+    check('ref2 taras', what, f.length === 0, f.slice(0, 6).join('; '));
+  }
+}
+
+
 /** The partner pages' Vimshottari lists (94, 96): four levels of each chart, from the clock. */
 function checkPartnerLists(id: string, n: string, page: Page, natal: ChartInput, partner: ChartInput, clock: number) {
   const lists = page.lists ?? [];
@@ -484,18 +649,20 @@ function checkPartnerLists(id: string, n: string, page: Page, natal: ChartInput,
   });
 }
 
-for (const [file, path] of [['VAR2', var2Path], ['TEM2', tem2Path], ['CMP2', cmp2Path]] as const) {
+for (const [file, path] of [['VAR2', var2Path], ['TEM2', tem2Path], ['CMP2', cmp2Path], ...(ref2Path ? [['REF2', ref2Path] as const] : [])] as const) {
   const read = JSON.parse(readFileSync(path, 'utf8')) as Read;
   // A page that most of the model's PDFs carry and one leaves out (not read, or skipped by the reader) fails here.
   const seen = new Map<string, number>();
   for (const r of Object.values(read)) for (const n of Object.keys(r.pages)) seen.set(n, (seen.get(n) ?? 0) + 1);
-  const expected = [...seen].filter(([, c]) => c >= 0.9 * Object.keys(read).length).map(([n]) => n);
+  // REF2's pages are fixed, and its file must hold the reference charts (not a handful, not none).
+  const expected = file === 'REF2' ? Object.keys(REF2_DRAWN) : [...seen].filter(([, c]) => c >= 0.9 * Object.keys(read).length).map(([n]) => n);
+  if (file === 'REF2') check('ref2 charts', file, Object.keys(read).length >= REF2_MIN_CHARTS, `${Object.keys(read).length} charts`);
   for (const [name, r] of Object.entries(read)) {
     const missing = expected.filter((n) => !r.pages[n]);
     check('pages present', `${file} ${name}`, missing.length === 0, `missing ${missing.join(', ')}`);
     const pair = /^(REF \d{4}) x (REF \d{4})(-f)?$/.exec(name);
     const id = pair ? pair[1]! : name;
-    const natal = file === 'CMP2' ? fixtures.get(id) : tempoBirth(id);
+    const natal = file === 'CMP2' || file === 'REF2' ? fixtures.get(id) : tempoBirth(id);
     const partner = pair ? fixtures.get(pair[2]!) : undefined;
     if (!natal) { check('charts', name, false, 'no birth'); continue; }
     for (const e of r.errors) check('pages read', `${file} ${name}`, false, e);
@@ -508,6 +675,7 @@ for (const [file, path] of [['VAR2', var2Path], ['TEM2', tem2Path], ['CMP2', cmp
         page.prashnaAt = Date.UTC(yy, mm - 1, dd, h, mi, s) / 86400000 + 2440587.5 - 5.5 / 24;
         read[name]!.pages['132'] && (read[name]!.pages['132']!.prashnaAt = page.prashnaAt);
       }
+      if (file === 'REF2') { checkRef2(name, n, page, natal, clock); continue; }
       checkDrawn(file, name, n, page, natal, clock, partner);
       checkData(file, name, n, page, natal, clock, partner);
       if (file === 'VAR2') checkVarsha(name, n, page, natal, clock);

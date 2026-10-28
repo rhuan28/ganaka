@@ -6,7 +6,8 @@ reuse. Code: `packages/core/src/natalTables.ts`; endpoints in [api.md](api.md).
 - **Aspects** (`/v1/aspects`): `value[on][from]` is the graded aspect, in virupas from 0 to 60, that `from` casts on
   `on`, by [the aspect curve](strengths/aspects.md) at the angle from one to the other; rows and columns are the nine
   planets, Sun to Ketu. PL9's "Aspects on planets" page prints these values truncated. The page also prints a sign
-  fraction (1/4 to 4/4) and colours each cell; neither is computed here yet.
+  fraction (1/4 to 4/4) and colours each cell; the fraction's rule is under "Pages checked in print" below, and
+  neither is computed here yet.
 - **Taras** (`/v1/tarabala`): `cells[row][column]` is the tara of the row's nakshatra counted from the column's, for
   the Lagna and the nine planets, as PL9's "Nakshatra spatial matrix".
 - **Lordships** (`/v1/lordships`): for each house of a varga, counted from that varga's Lagna sign, its sign's lord and
@@ -65,3 +66,33 @@ unequal, is left out: PL9's arithmetic for it is not checked.
 Checked against PL9's printed "Planetary deities" and "Special" pages and the planet tables of the 135 reference
 charts (`check-natal-tables`, `check-planet-info`): the deities of the sixteen vargas (21,600 cells), the D2's degrees
 (1,620), the Shashtiamsha's nature (1,215) and the navamsha age (1,215), with no failure.
+
+## Pages checked in print
+
+A second print model (REF2) prints the natal pages that the engine computed but the first model left out. It covers
+Birth chart II, Sudarshan Chakra, Alternate Lagnas, Lordships, Compound relations, the two pages of aspects,
+Auspiciousness graph and Nakshatra spatial matrix. It was printed for the 135 reference charts and read with the
+bench's variant checker. What the prints show, beyond the rules already in these specs:
+
+- **Aspect fraction.** Before the virupas, PL9 prints a fraction from the signs counted from the aspecting planet to
+  the aspected one: the 3rd and 10th 1/4, the 5th and 9th 1/2, the 4th and 8th 3/4, the 7th 4/4. The special aspects
+  are full instead: Mars on the 4th and 8th, Jupiter, Rahu and Ketu on the 5th and 9th, Saturn on the 3rd and 10th.
+  A cell reads the fraction and the virupas cut, as "3/4(42)". With no fraction it reads "- (v)", or "-" when v is
+  0. A fraction over no whole virupa prints alone ("1/2"). Rahu and Ketu, exactly opposite, print 59 or 60 by a
+  hair. The bar charts of the same pages draw each aspect from or on a planet as a percent of 60 virupas (checked to
+  within 1.5 points, a little under one virupa).
+- **Lordships.** Each line gives a house, the house its lord occupies and the lord. When the lords of two houses
+  occupy each other's houses (two different planets), the line is marked with "*".
+- **Sudarshan Chakra.** Three rings of the twelve signs, the inner one counted from the Lagna, the middle from the
+  Moon and the outer from the Sun. Each ring's top sector is that point's sign, and every point stands in its D1
+  sign.
+- **Alternate Lagnas.** The Karakamsha charts draw "Asc" at the Karakamsha. The Bhava and Ghatika Lagna charts put
+  the Lagna in that special lagna's sign. The Sripati chart puts a point in the sign of the Lagna plus its house less
+  one. The "Krishnamurti chart" has no signs: it places each point in its Placidus house.
+- **Birth chart II.** The edges of the chart print, for each house, the Sarvashtakavarga bindus and the Bhava Bala.
+- **Nakshatra spatial matrix.** PL9's tara names are Pratyari and P.mitra for the core's Pratyak and Atimitra.
+- **Auspiciousness graph.** Only its chart is checked. The scale of the graph's bars is not known.
+
+In the 135 charts, every one of these checks passes: the charts drawn, the planet tables, the dashas, the house
+edges, the rings, the KP chart, the lordships, the relations, the aspect matrix and bars, and the taras. Shadbala
+and Bhava Bala are left out on the charts outside PL9's Cheshta Bala series.
