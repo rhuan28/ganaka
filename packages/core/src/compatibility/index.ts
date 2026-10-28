@@ -7,6 +7,7 @@ import {
   ganaOf, ganaScore, maitri, mutualFriends, nadiOf, signGap, signLord, taraCount, varna, vashya, vashyaScore, yoniOf, yoniScore,
   type Nakshatra, type Sign,
 } from './koota';
+import { mangalaCancellations, type MangalaCancellation } from './mangalaCancellation';
 
 /**
  * The compatibility of two charts as PL9's "Compatibility - Kutas" and Mangala Dosha pages give it
@@ -33,6 +34,8 @@ export interface Compatibility {
   }>>;
   /** Mars in the 1st, 2nd, 4th, 7th, 8th or 12th from the Lagna and from the Moon, per chart; null without a Lagna. */
   mangala: { native: MangalaDosha; partner: MangalaDosha };
+  /** The reasons PL9 gives for the dosha between the two to be cancelled, in its order; null without both Lagnas. */
+  mangalaCancellations: MangalaCancellation[] | null;
   missing: { field: string; reason: string }[];
 }
 export interface MangalaDosha { fromLagna: boolean | null; fromMoon: boolean; marsHouseFromLagna: number | null; marsHouseFromMoon: number }
@@ -160,12 +163,17 @@ export function computeCompatibility(eph: Ephemeris, native: Person, partner: Pe
       native: { sign: x.sign, nakshatra: x.nakshatra }, partner: { sign: y.sign, nakshatra: y.nakshatra },
     };
   }
+  const ak = bl === undefined || gl === undefined ? empty : ashtakoota(at(bl), at(gl));
+  // The cancellation reads the kootas of the Moons, as PL9's report does, whatever point the kootas above use.
+  const moonKootas = ashtakoota(at(pos[bi].points.moon.longitude), at(pos[gi].points.moon.longitude));
+  const score = (name: string) => moonKootas.rows.find((r) => r.name === name)?.score ?? 0;
   return {
     bride: brideIsNative ? 'native' : 'partner',
-    ashtakoota: bl === undefined || gl === undefined ? empty : ashtakoota(at(bl), at(gl)),
+    ashtakoota: ak,
     dashkoota: bl === undefined || gl === undefined ? { ...empty, cancelled: false } : dashkoota(at(bl), at(gl)),
     distances,
     mangala: { native: mangalaOf(pos[0]), partner: mangalaOf(pos[1]) },
+    mangalaCancellations: mangalaCancellations(pos[0], pos[1], brideIsNative ? 'native' : 'partner', { bhakoot: score('bhakoot'), gana: score('gana'), total: moonKootas.total }, core.fidelity),
     missing,
   };
 }

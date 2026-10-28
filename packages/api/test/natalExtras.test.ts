@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import {
-  aspectTable, computeChart, computeSunriseChart, lordships, panchPakshi, parseChartInput, shadvargaDispositors, taraMatrix,
+  aspectTable, computeChart, houseAspects, computeSunriseChart, lordships, panchPakshi, parseChartInput, shadvargaDispositors, taraMatrix,
 } from '@reverse/core';
 import { buildServer } from '../src/server';
 import { fakeSky } from '../../core/test/fakeSky';
@@ -23,6 +23,7 @@ describe('the natal tables', () => {
       ['/v1/panch-pakshi', { birth, at }, panchPakshi(fakeSky, natal, { ...parseChartInput(at), utcOffsetHours: 10 }, c)],
       ['/v1/aspects', { birth }, aspectTable(longitudes(PLANETS))],
       ['/v1/tarabala', { birth }, taraMatrix(longitudes(['lagna', ...PLANETS]))],
+      ['/v1/house-aspects', { birth }, { houses: houseAspects(longitudes(['lagna', ...PLANETS])) }],
       ['/v1/lordships', { birth, varga: 'D9' }, lordships(chart.vargas.D9)],
       ['/v1/dispositors', { birth }, shadvargaDispositors(chart.vargas)],
     ];

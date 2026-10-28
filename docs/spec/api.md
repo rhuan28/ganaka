@@ -53,7 +53,8 @@ can change a number, so that a client that keeps results can tell old ones from 
   - events: `/v1/events`, with `birth` and up to 20 `events`, each `{ jdUt, utcOffsetHours }`, answering the dashas
     running at each as PL9's Events pages read them (the event's clock taken as UT);
   - natal tables (see [natal-tables.md](natal-tables.md)): `/v1/sunrise-chart`, `/v1/aspects`, `/v1/tarabala`,
-    `/v1/lordships` (with `varga`, one of the sixteen classical vargas), `/v1/dispositors`;
+    `/v1/lordships` (with `varga`, one of the sixteen classical vargas), `/v1/dispositors`, `/v1/house-aspects` (by
+    house, the aspect of each planet on it and on it and its lord, as whole percents);
   - natal yogas (see [yogas.md](yogas.md)): `/v1/yogas`, answering `{ yogas, missing }`. `yogas` lists every
     yoga the engine knows with `id`, `family`, `present` and, when present, the `planets` that form it and their
     `houses` from the Lagna. `missing` lists those it cannot decide for this chart, with the `reason`.
@@ -72,7 +73,7 @@ can change a number, so that a client that keeps results can tell old ones from 
     absent; the answer says which was used);
   - compatibility (see [compatibility.md](compatibility.md)): `/v1/compatibility`, with `native` and `partner`, each
     `{ birth, sex }` (`male` or `female`), answering the Ashtakoota, the Dashkoota, the distances between the two charts'
-    points and each chart's Mangala Dosha; its own options go in `compatibility`: `point`, `moon` (default) or `lagna`;
+    points, each chart's Mangala Dosha and the reasons for its cancellation between the two (`mangalaCancellations`); its own options go in `compatibility`: `point`, `moon` (default) or `lagna`;
   - rectification (see [rectification.md](rectification.md)): `/v1/rectification`, with `birth`, answering the
     Rectification Tool's rows (the moved instant, the Lagna's and the Navamsha's signs, the dasha at each event); its own
     options go in `rectification`: `zoom` (0 to 5), `before`, `after`, `events`, `system`, `levels`; and

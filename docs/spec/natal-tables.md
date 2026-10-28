@@ -18,6 +18,22 @@ reuse. Code: `packages/core/src/natalTables.ts`; endpoints in [api.md](api.md).
 - **Sunrise chart** (`/v1/sunrise-chart`) and **Panch Pakshi** (`/v1/panch-pakshi`) return the core's
   `computeSunriseChart` and `panchPakshi`; see [time/panchanga.md](time/panchanga.md).
 
+## Aspects on the houses
+
+PL9's "Aspects on Houses" pages (four, three houses each) draw, for each house, two bar charts of the nine planets,
+Sun to Ketu, as whole percents of a full aspect. With v the graded aspect (in virupas, by [the aspect curve](strengths/aspects.md),
+the special aspects included) that the planet casts on the house's point, the Lagna's longitude plus 30° for each house
+after the first, and w the one it casts on the longitude of the house's lord (the lord of the house's sign; nothing
+when the planet is the lord):
+
+- **on the house:** trunc(v / 0.6), the percent cut;
+- **on the house and its lord:** trunc(trunc(v / 1.2) + w / 1.2). Each part counts half; PL9 cuts the house's half to
+  a whole number before it adds the lord's, so the result can be one less than the average of the two cut once.
+
+A bar of 0 is drawn as a red stub at the base, the others in green; the colour says nothing of the nature. Code:
+`houseAspects` in `packages/core/src/natalTables.ts`, in `/v1/house-aspects`. Checked against the four printed pages of
+the 135 reference charts: 29,160 bars (14,580 of each chart), no failure.
+
 ## Navamsha ages
 
 PL9's "Navamsha ages" page numbers the 108 navamshas of the zodiac (each 3°20′) from the Lagna's: the Lagna's navamsha

@@ -1,5 +1,5 @@
 import {
-  aspectTable, CLASSICAL_VARGAS, computeChart, computeSunriseChart, LagnaUndefinedError, lordships, panchPakshi, parseChartInput,
+  aspectTable, houseAspects, CLASSICAL_VARGAS, computeChart, computeSunriseChart, LagnaUndefinedError, lordships, panchPakshi, parseChartInput,
   PLANETS_9, shadvargaDispositors, SunriseUndefinedError, taraMatrix, type Chart, type ChartInput,
 } from '@reverse/core';
 import { Type } from '@sinclair/typebox';
@@ -41,6 +41,10 @@ export const natalExtras: Route = (app, { eph }) => {
   app.post<{ Body: B }>('/v1/aspects', { schema: { body: Plain, tags: ['charts'], summary: 'The graded aspects between the planets' } }, async (req) => {
     const { input, chart } = chartOf(req.body);
     return aspectTable(longitudesOf(chart, input, PLANETS_9));
+  });
+  app.post<{ Body: B }>('/v1/house-aspects', { schema: { body: Plain, tags: ['charts'], summary: 'The aspects on each house, and on the house and its lord' } }, async (req) => {
+    const { input, chart } = chartOf(req.body);
+    return { houses: houseAspects(longitudesOf(chart, input, ['lagna', ...PLANETS_9])) };
   });
   app.post<{ Body: B }>('/v1/tarabala', { schema: { body: Plain, tags: ['charts'], summary: 'The nakshatra matrix of taras' } }, async (req) => {
     const { input, chart } = chartOf(req.body);

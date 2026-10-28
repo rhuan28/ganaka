@@ -49,7 +49,47 @@ the nakshatra counted the same way on the cycle of nine (1 to 9).
 
 For each chart, the house of Mars from the Lagna and from the Moon; Mars in the 1st, 2nd, 4th, 7th, 8th or 12th from
 either is the dosha from it. PL9 evaluates only these two, without exceptions. From the Lagna it needs the Lagna.
-PL9's cancellation of the dosha between two charts is not covered.
+
+### Cancellation of the Mangala Dosha
+
+`mangalaCancellations` lists the reasons PL9 gives for the dosha between the two charts to be cancelled or eased, in
+the order of its report, each with the chart it is found in (`native`, `partner`, or `pair` for the two together).
+PL9 keeps the report's template in its data files, not in the program, so the rules come from its printed reports.
+Here the dosha is Mars in the 1st, 2nd, 4th, 7th, 8th or 12th from the Lagna only; houses count whole signs from the
+Lagna; the Bhakoot, the Gana and the Ashtakoota are the Moons', whatever `point` the kootas use; "with" is the same sign; an aspect is a full sign aspect (the 7th for all, and the 4th and 8th of Mars, the 5th
+and 9th of Jupiter, the 3rd and 10th of Saturn). The bride is the chart the kootas read as the bride.
+
+- With the dosha in neither chart, the only reason is `noDosha`.
+- Of the pair, first: `doshaBoth`, the dosha in both; `marsSaturn`, Mars in a dosha house in one chart and Saturn in
+  one in the other, the native's Mars first (the houses are the six above, though the report's words name five);
+  `maleficCount`, more of the Sun, Mars, Saturn, Rahu and Ketu in the dosha houses of the groom than of the bride;
+  `bhakootGana`, a Bhakoot of 7, a Gana of 6 and an Ashtakoota of 27 or more.
+- Then each chart that has the dosha, the native before the partner, in this order:
+  - `marsWeakened`: Mars combust, or with Jupiter or Venus or under its full aspect;
+  - `brideJupiter`: in the bride's chart only, Jupiter in the 1st, 4th, 5th, 7th, 9th or 10th;
+  - `movableSign`: Mars in the 1st, 2nd, 4th, 8th or 12th in a movable sign;
+  - `fourthSeventhSigns`: Mars in the 4th or 7th in Aries, Cancer, Scorpio or Capricorn;
+  - `marsWithMoonJupiterMercury`: Mars in the 1st, 4th, 7th, 8th or 12th, with the Moon, Jupiter or Mercury or under its
+    full aspect;
+  - `exaltedOrOwn`: Mars in Capricorn, Aries, Scorpio, Cancer or Leo, or in Capricorn, Aries or Scorpio in the D9;
+  - `twelfthSigns`: Mars in the 12th in Taurus, Gemini, Virgo or Libra;
+  - `leoCancerSigns`: Mars in the 1st, 4th, 7th, 8th or 12th in Leo, Cancer, Aries, Scorpio or Capricorn;
+  - `marsJupiter`: Mars with Jupiter;
+  - `fourthSigns`: Mars in the 4th in Aries, Scorpio, Taurus or Libra;
+  - `eighthSigns`: Mars in the 8th in Sagittarius, Pisces, Cancer or Capricorn;
+  - `dispositor`: the lord of Mars's sign in the 1st, 4th, 5th, 7th, 9th or 10th;
+  - `marsMercury`: Mars with Mercury or under its aspect;
+  - `marsMoon`: Mars with the Moon;
+  - `moonKendra`: the Moon in the 1st, 4th, 7th or 10th;
+  - `fivePlacements`: Mars in Aries in the 1st, Sagittarius in the 12th, Scorpio in the 4th, Taurus in the 7th or
+    Aquarius in the 8th; `fivePlacementsVariant`, the same with Capricorn in the 7th and Cancer in the 8th;
+  - `strongBenefics`: Jupiter or Venus exalted, in its moolatrikona or in its own sign, outside the 6th, 8th and 12th;
+    or Mars retrograde or debilitated. This one is the closest reading found, not PL9's exact rule (below).
+
+The engine names the reasons and leaves their wording to the client. Some parts never occur in the sample and are
+read from the rule's own statement: the Gana of 5 with a high total, Venus by aspect alone in `marsWeakened`, and
+several signs of the house-and-sign rules. The pair's sexes are as above; a woman native with a man partner never
+occurs in the sample.
 
 ## The answer
 
@@ -58,6 +98,10 @@ Gana, Bhakoot and Nadi a `dosha` flag; the Dashkoota says whether its cancellati
 option `point: 'lagna'` and a chart without a Lagna, the kootas come back empty and `missing` names them.
 
 ## Checked
+
+The cancellations of the Mangala Dosha: against PL9's report for the same 40 pairs, 39 give its reasons exactly,
+in order (211 of 212 reasons). The one left is `strongBenefics` in one chart, which PL9 gives to one of two charts
+with the same signs and a different Lagna, by a rule not found.
 
 Against PL9's printed Kutas page and Mangala Dosha report for 40 pairs of reference charts, 20 with a woman as the
 partner (`check-compatibility`): every Ashtakoota row and total, every Dashkoota row and total, the 400 sign distances
