@@ -5,7 +5,7 @@ import { aspectValue } from '../strengths/aspects';
 import { dignity9 } from '../strengths/dignity';
 import { vargaSign, type VargaName } from '../vargas';
 import { norm360 } from '../zodiac';
-import { naturalNatures } from '../yogas/natures';
+import { DEFAULT_NATURES, naturalNatures, type NatureTable } from '../yogas/natures';
 import { finalDispositor } from './relations';
 
 /** The other columns of PL9's planet tables (docs/spec/planet-info.md). */
@@ -141,7 +141,7 @@ export function dominance(planet: Planet9, longitudes: Record<Planet9, number>, 
  * quarter, summed. Three more when the 3rd from the planet holds more than two natural malefics (the Moon waning and
  * Mercury with malefics among them, as the yogas take the natural natures).
  */
-export function argala(planet: Planet9, longitudes: Record<Planet9, number>): number {
+export function argala(planet: Planet9, longitudes: Record<Planet9, number>, natureTable: NatureTable = DEFAULT_NATURES): number {
   const nine = Object.keys(longitudes) as Planet9[];
   const quarters = (sign: number) => {
     const q = [0, 0, 0, 0];
@@ -155,7 +155,7 @@ export function argala(planet: Planet9, longitudes: Record<Planet9, number>): nu
     const qa = quarters(from(a)), qb = quarters(from(b));
     for (let k = 0; k < 4; k++) total += Math.max(0, qa[k]! - qb[3 - k]!);
   }
-  const natures = naturalNatures(longitudes);
+  const natures = naturalNatures(longitudes, natureTable);
   if (nine.filter((p) => natures[p] === 'malefic' && signOf(longitudes[p]) === from(3)).length > 2) total += 3;
   return total;
 }

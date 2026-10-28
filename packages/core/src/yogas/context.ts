@@ -13,7 +13,7 @@ import { CLASSICAL_VARGAS } from '../vargas';
 import { nakshatraOf, norm360 } from '../zodiac';
 import { dayBirth } from './chart';
 import { computeYogaChart } from './index';
-import { functionalNatures, naturalNatures, type Nature } from './natures';
+import { functionalNatures, naturalNatures, resolveNatures, type Nature } from './natures';
 import { NINE, signOf } from './primitives';
 
 /**
@@ -62,7 +62,7 @@ export interface YogaContext {
 }
 
 export function computeYogaContext(eph: Ephemeris, input: ChartInput, coreOptions?: Partial<CoreOptions>): YogaContext {
-  const o = resolveOptions(coreOptions);
+  const o = resolveOptions(coreOptions), natureTable = resolveNatures(o.natures);
   const chart = computeChart(eph, input, o);
   const ych = computeYogaChart(eph, input, {}, o);
   const lon = ych.longitudes;
@@ -108,7 +108,7 @@ export function computeYogaContext(eph: Ephemeris, input: ChartInput, coreOption
       vargaDignity: ych.vargaDignity[p], shayanadi: info.points[p].shayanadi?.number ?? null, vimshopakaShadvarga: vim.planets[p].scores.shadvarga,
     }])) as YogaContext['planets'],
     vargas,
-    natures: { natural: naturalNatures(lon), functional: lagna ? functionalNatures({ ...lon, lagna: lagna.longitude }) : null },
+    natures: { natural: naturalNatures(lon, natureTable), functional: lagna ? functionalNatures({ ...lon, lagna: lagna.longitude }, natureTable) : null },
     shadbalaRatio: ych.shadbalaRatio,
     karakas: { seven: j.karakas.seven.map((k) => k.planet as Planet9), eight: j.karakas.eight.map((k) => k.planet as Planet9) },
     pointSigns,

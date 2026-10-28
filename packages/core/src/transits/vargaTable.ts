@@ -5,7 +5,7 @@ import { ashtakavarga, type AvSigns } from '../strengths/ashtakavarga';
 import { dignity9, NATURAL, SEVEN, type Planet7 } from '../strengths/dignity';
 import { SIGN_LORDS } from '../specialLagnas';
 import { vargaSign, type VargaName } from '../vargas';
-import { functionalNatures } from '../yogas/natures';
+import { DEFAULT_NATURES, functionalNatures, type NatureTable } from '../yogas/natures';
 
 export type Jagradadi = 'awake' | 'dreaming' | 'sleeping';
 export type FunctionalNature = 'benefic' | 'malefic' | 'neutral';
@@ -36,14 +36,14 @@ const PLANETS: readonly Planet9[] = ['sun', 'moon', 'mars', 'mercury', 'jupiter'
  * nature by the varga's Lagna; and the houses from the varga's Lagna, Moon and Sun. All from the printouts:
  * see docs/spec/time/transits.md. Null without the Lagna.
  */
-export function vargaTable(longitudes: Partial<Record<'lagna' | Planet9, number>>, varga: VargaName, fidelity: Fidelity): Record<Planet9, VargaRow> | null {
+export function vargaTable(longitudes: Partial<Record<'lagna' | Planet9, number>>, varga: VargaName, fidelity: Fidelity, natureTable: NatureTable = DEFAULT_NATURES): Record<Planet9, VargaRow> | null {
   if (longitudes.lagna === undefined) return null;
   const parts = Number(varga.slice(1));
   const inVarga = (l: number) => vargaSign(l, varga, fidelity) * 30 + (((l * parts) % 30) + 30) % 30;
   const v = Object.fromEntries((['lagna', ...PLANETS] as const).map((k) => [k, inVarga(longitudes[k]!)])) as Record<'lagna' | Planet9, number>;
   const sign = (k: 'lagna' | Planet9) => Math.floor(v[k] / 30);
   const av = ashtakavarga(Object.fromEntries((['lagna', ...SEVEN] as const).map((k) => [k, sign(k)])) as AvSigns, {}, fidelity);
-  const functional = functionalNatures(v)!;
+  const functional = functionalNatures(v, natureTable)!;
   const house = (from: number, to: number) => ((to - from + 12) % 12) + 1;
   return Object.fromEntries(PLANETS.map((p) => {
     const s = sign(p);

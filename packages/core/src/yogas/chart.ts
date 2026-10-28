@@ -7,11 +7,13 @@ import { combustInTable } from '../varshaphala/tajika';
 import { charaKarakas, type KarakaPlanet } from '../karakas';
 import { norm360 } from '../zodiac';
 import { aspectsFully, houseFrom, NINE, signOf } from './primitives';
-import { yogaNatures, type Nature, type YogaNatureOptions } from './natures';
+import { yogaNatures, type Nature, type NatureTable, type YogaNatureOptions } from './natures';
 
 export interface YogaChartOptions extends YogaNatureOptions {
   /** The native's sex, which a few yogas depend on. PL9's chart files default to male. */
   sex?: 'male' | 'female';
+  /** The natural and functional tables (PL9's defaults when absent). */
+  natures?: NatureTable;
 }
 
 /** One chart a yoga reads, the birth chart or its navamsa: the signs, the dignities and the Lagna's sign. */
@@ -84,7 +86,7 @@ export function yogaChartFrom(longitudes: Record<Planet9, number> & { lagna?: nu
       dignity: Object.fromEntries(NINE.map((p) => [p, dignity9(p, nav)])) as Record<Planet9, number>,
       lagnaSign: lagna === undefined ? null : vargaSign(lagna, 'D9', fidelity),
     },
-    natures: yogaNatures(longitudes, options), shadbalaRatio, sex: options.sex ?? 'male',
+    natures: yogaNatures(longitudes, options, options.natures), shadbalaRatio, sex: options.sex ?? 'male',
     combust: Object.fromEntries(NINE.map((p) => [p, combustInTable(p, planets[p], planets.sun, speeds[p] ?? 0)])) as Record<Planet9, boolean>,
     d4: { longitudes: d4, signs: Object.fromEntries(NINE.map((p) => [p, signOf(d4[p])])) as Record<Planet9, number> },
     atmakaraka, karakamsha: signOf(nav[atmakaraka]), karakas, gulikaSign: gulika === null ? null : signOf(gulika),

@@ -3,7 +3,7 @@ import { DEFAULT_OPTIONS, InvalidOptionError, NotImplementedOptionError, resolve
 
 describe('resolveOptions', () => {
   it('returns the observed PL9 configuration when nothing is given', () => {
-    expect(resolveOptions()).toEqual({ ayanamsha: 'lahiri', ayanamshaOffsetDegrees: 0, node: 'true', sunrise: 'centre', gulika: 'end', karakas: 'seven', bhavapada: 'parashara', fidelity: 'corrected' });
+    expect(resolveOptions()).toEqual({ ayanamsha: 'lahiri', ayanamshaOffsetDegrees: 0, node: 'true', sunrise: 'centre', gulika: 'end', karakas: 'seven', bhavapada: 'parashara', fidelity: 'corrected', natures: {} });
     expect(resolveOptions()).toEqual(DEFAULT_OPTIONS);
   });
   it('overrides only what is given', () => {

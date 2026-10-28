@@ -23,6 +23,7 @@ export * from './houses';
 export * from './vargas';
 export * from './range';
 export * from './positions';
+export * from './ephemerisTable';
 export * from './chart';
 export * from './dashas/index';
 export * from './strengths/index';

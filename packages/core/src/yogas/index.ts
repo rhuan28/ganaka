@@ -3,6 +3,7 @@ import { computeShadbala } from '../strengths/compute';
 import { SEVEN, type Planet7 } from '../strengths/dignity';
 import { computePositions, type ChartInput } from '../positions';
 import { resolveOptions, type CoreOptions } from '../options';
+import { resolveNatures } from './natures';
 import { yogaChartFrom, type YogaChart, type YogaChartOptions, type YogaResult } from './chart';
 import { NINE } from './primitives';
 import { mahapurusha } from './families/mahapurusha';
@@ -32,7 +33,8 @@ export function computeYogaChart(eph: Ephemeris, input: ChartInput, options: Yog
     ratio = Object.fromEntries(SEVEN.map((p) => [p, sb.planets[p].ratio])) as Record<Planet7, number>;
   }
   const speeds = Object.fromEntries(NINE.map((p) => [p, positions.points[p].longitudeSpeed ?? 0]));
-  return yogaChartFrom(longitudes, ratio, options, resolveOptions(coreOptions).fidelity, speeds, positions.points.gulika?.longitude ?? null);
+  const o = resolveOptions(coreOptions);
+  return yogaChartFrom(longitudes, ratio, { ...options, natures: resolveNatures(o.natures) }, o.fidelity, speeds, positions.points.gulika?.longitude ?? null);
 }
 
 /** The yogas of a birth chart that the engine knows (docs/spec/yogas.md), present or not, and those it cannot decide. */

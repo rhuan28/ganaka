@@ -80,6 +80,38 @@ executable with its default options. Code: `packages/core/src/yogas/natures.ts`.
   This rule also gives the nodes' column of PL9's transit varga tables, which the bench checks.
 - A neutral planet is neither benefic nor malefic in any yoga.
 
+**Changing the natures** (PL9's "Nature of planets"; the core option `natures`). PL9 keeps a natural table of nine
+codes and a functional table of one row of nine per sign of the Lagna; the defaults are the natures above. Its editor
+offers, for any planet, benefic, malefic or neutral, and two rules for the Moon and Mercury. Its "Independent of the
+ascendant" entry is the natural table, not a separate one. The option takes changes only: `natural` by planet, and
+`functional` by the Lagna's sign name (`aries` to `pisces`), then by planet.
+
+- *The Moon, natural.* `waning` (the default): benefic when 0° < e ≤ 180°, with e the Moon's longitude less the
+  Sun's, round the zodiac; malefic otherwise. `lessThanThirdFull`: benefic when 60° ≤ e ≤ 300°, malefic otherwise.
+- *Mercury, natural.* `withMalefics` (the default) is the rule above, with the Moon decided first. A neutral planet
+  among the two neighbours leaves Mercury as its sign made it. PL9's editor has a second rule for the natural
+  table, "with natural malefics", which reads the same codes, so it gives the same result; the core takes only
+  `withMalefics` there.
+- *Mercury, functional.* `withMalefics` makes it malefic when a planet in its sign has a malefic code in the row of
+  the chart's Lagna. The nodes count by their codes in the row (malefic by default), before they are rewritten below.
+  `withNaturalMalefics` makes it malefic when a planet in its sign is a natural malefic. Otherwise it is benefic. No
+  neighbour decides here.
+- *The nodes, functional.* Their functional nature always follows their place, as above, whatever the table holds,
+  so the option refuses a functional code for Rahu or Ketu. Their natural codes are used as given.
+- The option refuses a rule for a planet PL9 does not give it, such as a Moon rule in the functional table, where
+  PL9 prints nothing and counts the planet as neither benefic nor malefic.
+
+The table reaches every place that reads a nature: the yogas, the yoga context, the argala count of the planet
+tables (three more with over two natural malefics in the 3rd), the Kota and Sanghatta chakras and the D9 and D10
+tables of `/v1/transits`. PL9's Shadbala does not read it, nor does the Systems Approach nature of its lordship columns.
+
+Checked on the bench with the options file of PL9 changed for the 135 reference charts: the Moon less than a third
+full, Jupiter neutral, Saturn benefic, and in every row Mercury's two functional rules and the Sun's nature swapped.
+Against PL9's prints with the same change, the planet tables' functional column and argala (1,215 cells each; the
+change moved 185 functional cells and 10 argala counts) and the yogas 1 to 348 (198 presences moved in 96 charts)
+matched with no failure. With the defaults, the functional column, which was not checked before, also matches in
+all 1,215 cells.
+
 **Hemmed** (kartari): the planets just before and just after the given planet, among the nine in order of
 longitude, are both malefic (hemmed by malefics) or both benefic (hemmed by benefics). These neighbours come
 from PL9's ordered list of the planets, not from the neighbouring signs. That the list is ordered by longitude

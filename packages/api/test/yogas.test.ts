@@ -49,3 +49,18 @@ describe('the yoga context', () => {
     expect((await post('/v1/yoga-context', { birth, yogas: {} })).statusCode).toBe(400);
   });
 });
+
+describe('the natures option', () => {
+  const app = buildServer({ eph: fakeSky, keys: { k1: 'tester' }, rateLimitPerMinute: 1000, sourceUrl: 'x' });
+  const post = (body: unknown) => app.inject({ method: 'POST', url: '/v1/yoga-context', payload: body as object, headers: { 'x-api-key': 'k1' } });
+  const birth = { utc: '1995-05-27T23:15:57Z', latitude: 44.2377778, longitudeEast: 150.6744444 };
+  it('changes the natures the yogas read', async () => {
+    const r = await post({ birth, options: { natures: { natural: { jupiter: 'malefic' } } } });
+    expect(r.statusCode).toBe(200);
+    expect(r.json().natures.natural.jupiter).toBe('malefic');
+  });
+  it('refuses a code PL9 does not offer and an unknown field', async () => {
+    expect((await post({ birth, options: { natures: { natural: { sun: 'waning' } } } })).statusCode).toBe(400);
+    expect((await post({ birth, options: { natures: { other: {} } } })).statusCode).toBe(400);
+  });
+});

@@ -3,6 +3,7 @@ import { ayanamshaFrame } from '../ayanamsha';
 import type { Fidelity } from '../fidelity';
 import type { Planet9 } from '../jaimini';
 import { resolveOptions, type CoreOptions } from '../options';
+import { resolveNatures } from '../yogas/natures';
 import { computePositions, type ChartInput } from '../positions';
 import { dayFrame, SunriseUndefinedError } from '../sunrise';
 import { bodyAstronomy, PLANET_INFO_BODIES, type BodyAstronomy, type PlanetInfoBody } from './astronomy';
@@ -106,7 +107,7 @@ const NINE: Planet9[] = ['sun', 'moon', 'mars', 'mercury', 'jupiter', 'venus', '
 export function computePlanetInfo(eph: Ephemeris, input: ChartInput, options: PlanetInfoOptions = {}, coreOptions?: Partial<CoreOptions>): PlanetInfo {
   const anka = options.anka ?? DEFAULT_ANKA;
   if (!Number.isInteger(anka) || anka < 1 || anka > 5) throw new AnkaRangeError(anka);
-  const core = resolveOptions(coreOptions);
+  const core = resolveOptions(coreOptions), natureTable = resolveNatures(core.natures);
   const positions = computePositions(eph, input, core);
   const astronomy = bodyAstronomy(eph, input.jdUt, positions);
   const longitudes = Object.fromEntries(NINE.map((p) => [p, positions.points[p].longitude])) as Record<Planet9, number>;
@@ -139,7 +140,7 @@ export function computePlanetInfo(eph: Ephemeris, input: ChartInput, options: Pl
       info.shashtiamsha = shashtiamsha(lon);
       Object.assign(info, {
         ownOrExaltedShadvarga: goodVargas(p, lon, SHADVARGA, f), navamsaFromRashi: navamsaFromRashi(lon, f), pushkaraNavamsa: pushkaraNavamsa(lon, f),
-        argala: argala(p, longitudes), mrityuBhaga: mrityuBhaga(p, lon),
+        argala: argala(p, longitudes, natureTable), mrityuBhaga: mrityuBhaga(p, lon),
         shadvargaDispositors: shadvargaSignLords(lon, f), shadvargaElements: shadvargaElements(lon, f),
       });
       if (lagna) Object.assign(info, {

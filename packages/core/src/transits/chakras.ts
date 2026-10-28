@@ -2,7 +2,7 @@ import type { Fidelity } from '../fidelity';
 import { nakshatra28 } from '../dashas/engine';
 import type { Planet9 } from '../jaimini';
 import { dignity9 } from '../strengths/dignity';
-import { naturalNatures } from '../yogas/natures';
+import { DEFAULT_NATURES, naturalNatures, type NatureTable } from '../yogas/natures';
 import { norm360 } from '../zodiac';
 
 /**
@@ -50,9 +50,9 @@ function truncTenths(x: number): number {
  * past Uttara Ashadha counts one place before where it is drawn; the pl9 mode keeps that, the corrected one uses the
  * drawn place.
  */
-export function kotaScore(natal: { moon: number; lagna: number }, transit: Record<Planet9, TransitBody>, fidelity: Fidelity = 'pl9'): { score: number; values: Record<Planet9, number>; places: Record<Planet9, number> } {
+export function kotaScore(natal: { moon: number; lagna: number }, transit: Record<Planet9, TransitBody>, fidelity: Fidelity = 'pl9', natureTable: NatureTable = DEFAULT_NATURES): { score: number; values: Record<Planet9, number>; places: Record<Planet9, number> } {
   const lon = Object.fromEntries(NINE.map((p) => [p, norm360(transit[p].longitude)])) as Record<Planet9, number>;
-  const nature = naturalNatures(lon);
+  const nature = naturalNatures(lon, natureTable);
   const tithi = Math.floor(norm360(lon.moon - lon.sun) / 12) + 1;
   const lagnaSign = Math.floor(norm360(natal.lagna) / 30);
   const moon28 = nakshatra28(natal.moon, fidelity).index;
@@ -108,9 +108,9 @@ const pada = (l: number) => Math.floor(norm360(l) / (NAKSHATRA / 4));
  * up to 35 modulo 36 and do not lie in the same third of the zodiac from Aries; green for a natural benefic, red for a
  * malefic.
  */
-export function sanghattaVedhas(natal: Record<Planet9, number>, transit: Record<Planet9, number>): { transit: Planet9; natal: Planet9; benefic: boolean }[] {
+export function sanghattaVedhas(natal: Record<Planet9, number>, transit: Record<Planet9, number>, natureTable: NatureTable = DEFAULT_NATURES): { transit: Planet9; natal: Planet9; benefic: boolean }[] {
   const tLon = Object.fromEntries(NINE.map((p) => [p, norm360(transit[p])])) as Record<Planet9, number>;
-  const nature = naturalNatures(tLon);
+  const nature = naturalNatures(tLon, natureTable);
   const out: { transit: Planet9; natal: Planet9; benefic: boolean }[] = [];
   for (const t of NINE) for (const n of NINE) {
     const a = pada(tLon[t]), b = pada(natal[n]);

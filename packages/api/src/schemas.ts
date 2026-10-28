@@ -17,6 +17,9 @@ export const Birth = Type.Object({
 }, strict);
 export type Birth = Static<typeof Birth>;
 
+/** An options object the core validates itself (a wrong name or value answers 400 invalid-option). */
+export const LooseOptions = (description: string) => Type.Object({}, { additionalProperties: true, description });
+
 /** The core's options (`CoreOptions`), all optional; `fidelity` is 'corrected' unless asked. */
 export const CoreOptionsSchema = Type.Object({
   ayanamsha: Type.Optional(literals(AYANAMSHA_NAMES)),
@@ -27,11 +30,13 @@ export const CoreOptionsSchema = Type.Object({
   karakas: Type.Optional(literals(['seven', 'eight'] as const)),
   bhavapada: Type.Optional(literals(['parashara', 'knrao'] as const)),
   fidelity: Type.Optional(literals(FIDELITIES)),
+  // PL9's "Nature of planets": the core checks each planet and code (a wrong one answers 400 invalid-option).
+  natures: Type.Optional(Type.Object({
+    natural: Type.Optional(LooseOptions('the natural codes by planet, as `{ "moon": "lessThanThirdFull" }`')),
+    functional: Type.Optional(LooseOptions('the functional rows by the Lagna sign, as `{ "aries": { "sun": "neutral" } }`')),
+  }, strict)),
 }, strict);
 export type CoreOptionsBody = Static<typeof CoreOptionsSchema>;
-
-/** An options object the core validates itself (a wrong name or value answers 400 invalid-option). */
-export const LooseOptions = (description: string) => Type.Object({}, { additionalProperties: true, description });
 
 /** The error every refusal carries. */
 export const ErrorBody = Type.Object({

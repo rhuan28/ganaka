@@ -1,5 +1,6 @@
 import { InvalidOptionError } from './errors';
 import { FIDELITIES, type Fidelity } from './fidelity';
+import { resolveNatures, type NatureOptions } from './yogas/natures';
 
 export const AYANAMSHA_NAMES = [
   'lahiri', 'sayana', 'yukteshwar', 'raman', 'bhasin', 'fagan', 'krishnamurti', 'krishnamurtiNew', 'trueChitra',
@@ -24,6 +25,8 @@ export interface CoreOptions {
   bhavapada: 'parashara' | 'knrao';
   /** 'corrected' repairs PL9's proven defects; 'pl9' reproduces them. See docs/spec/corrections.md. */
   fidelity: Fidelity;
+  /** PL9's "Nature of planets": changes to the default natural and functional tables (docs/spec/yogas.md). */
+  natures: NatureOptions;
 }
 
 /** The configuration observed in the PL9 installation examined (its options screens), computed in the corrected mode. */
@@ -36,6 +39,7 @@ export const DEFAULT_OPTIONS: CoreOptions = Object.freeze({
   karakas: 'seven',
   bhavapada: 'parashara',
   fidelity: 'corrected',
+  natures: Object.freeze({}),
 }) as CoreOptions;
 
 export class NotImplementedOptionError extends Error {
@@ -60,5 +64,6 @@ export function resolveOptions(partial: Partial<CoreOptions> = {}): CoreOptions 
   if (o.karakas !== 'seven' && o.karakas !== 'eight') throw new InvalidOptionError('karakas', `unknown value "${String(o.karakas)}"`);
   if (o.bhavapada !== 'parashara' && o.bhavapada !== 'knrao') throw new InvalidOptionError('bhavapada', `unknown value "${String(o.bhavapada)}"`);
   if (o.gulika !== 'end' && o.gulika !== 'beginning') throw new InvalidOptionError('gulika', `unknown method "${String(o.gulika)}"`);
+  resolveNatures(o.natures);
   return o;
 }

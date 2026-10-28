@@ -1,3 +1,7 @@
+import type { Ephemeris } from '@reverse/ephemeris';
+import { computeChart } from '../chart';
+import type { CoreOptions } from '../options';
+import type { ChartInput } from '../positions';
 import type { Planet9 } from '../jaimini';
 import { SIGN_LORDS } from '../specialLagnas';
 import type { Planet7 } from '../strengths/dignity';
@@ -103,4 +107,18 @@ export function sahams(v: Varshaphala): Saham[] | null {
   if (!p.lagna || !middles) return null;
   const names = ['lagna', 'sun', 'moon', 'mars', 'mercury', 'jupiter', 'venus', 'saturn', 'rahu', 'ketu'] as const;
   return computeSahams({ longitude: Object.fromEntries(names.map((n) => [n, p[n]!.longitude])) as SahamInput['longitude'], middles, isDay: v.isDayChart });
+}
+
+/**
+ * The natal Sahams (PL9's Sahams page, left half): the same rule on the birth chart, Sripati houses, day or night by
+ * the Sun above the horizon as in the annual chart. Null without a Lagna.
+ */
+export function natalSahams(eph: Ephemeris, natal: ChartInput, coreOptions?: Partial<CoreOptions>): Saham[] | null {
+  const chart = computeChart(eph, natal, coreOptions);
+  const p = chart.points as Record<string, { longitude: number } | undefined>;
+  const middles = chart.houses?.sripati.middles;
+  if (!p.lagna || !middles) return null;
+  const names = ['lagna', 'sun', 'moon', 'mars', 'mercury', 'jupiter', 'venus', 'saturn', 'rahu', 'ketu'] as const;
+  const isDay = norm360(p.sun!.longitude - p.lagna.longitude) > 180;
+  return computeSahams({ longitude: Object.fromEntries(names.map((n) => [n, p[n]!.longitude])) as SahamInput['longitude'], middles, isDay });
 }

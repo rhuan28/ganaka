@@ -1,17 +1,19 @@
 // The planet tables against PL9's printed "36. Declination" and "23. Interpreting Grahas" pages, as the private
 // bench reads them: each cell the engine computes, written as PL9 writes it, against the printed one.
-// usage: check-planet-info <read.json>
+// usage: check-planet-info <read.json> [natures.json]
+// With natures.json (the core's `natures` option, as PL9's options were set for the print), the engine computes with it.
 // The read file stays in the private bench. The words PL9 prints for the avasthas and the elements are matched to
 // the engine's states by agreement over all charts: a state shown under two words is a failure.
 import { readFileSync } from 'node:fs';
 import { createSwissEphemeris } from '@reverse/ephemeris';
-import { computePlanetInfo, type PlanetInfo } from '@reverse/core';
+import { computePlanetInfo, computeYogaContext, type NatureOptions, type PlanetInfo } from '@reverse/core';
 import { loadFixtures } from '../conformance';
 
 const path = process.argv[2];
 if (!path) { console.error('usage: check-planet-info <read.json>'); process.exit(2); }
 type Read = Record<string, { declination: Record<string, Record<string, string>>; grahas: Record<string, Record<string, string>> }>;
 const read = JSON.parse(readFileSync(path, 'utf8')) as Read;
+const natures = (process.argv[3] ? JSON.parse(readFileSync(process.argv[3], 'utf8')) : {}) as NatureOptions;
 
 const pad = (n: number) => String(n).padStart(2, '0');
 // PL9 writes the sign of the value, even where it rounds to zero ("-00:00").
@@ -41,7 +43,9 @@ let charts = 0;
 for (const [chart, cells] of Object.entries(read)) {
   const input = births.get(chart);
   if (!input) { console.log(chart, 'no birth in fixtures'); continue; }
-  const info: PlanetInfo = computePlanetInfo(eph, input, {}, { fidelity: 'pl9' });
+  const info: PlanetInfo = computePlanetInfo(eph, input, {}, { fidelity: 'pl9', natures });
+  // The functional nature as the engine answers it (the yoga context's), the column PL9 prints as "Func.".
+  const functional = computeYogaContext(eph, input, { fidelity: 'pl9', natures }).natures.functional;
   charts++;
   for (const [body, c] of Object.entries(cells.declination)) {
     const p = info.points[body as keyof typeof info.points];
@@ -62,6 +66,7 @@ for (const [chart, cells] of Object.entries(read)) {
     check('Hemmed', chart, body, `${abbr(p.hemmed!.previous)},${abbr(p.hemmed!.next)}`, c.Hemmed);
     check('Fin.D.', chart, body, abbr(p.finalDispositor!), c['Fin.D.']);
     check('Arg', chart, body, String(p.argala), c.Arg);
+    if (functional) check('Func.', chart, body, functional[body][0]!.toUpperCase() + functional[body].slice(1), c['Func.']);
     if (p.rays !== undefined) check('Rays', chart, body, p.rays.toFixed(1), c.Rays);
     check('SVdisp', chart, body, p.shadvargaDispositors!.map((d) => `${abbr(d.lord)}(${d.count})`).join(' '), c.SVdisp);
     check('SVelem', chart, body, p.shadvargaElements!.map((e) => `${ELEMENT[e.quality]} (${e.count})`).join(' '), c.SVelem);

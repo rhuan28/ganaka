@@ -1,5 +1,6 @@
 import type { Ephemeris } from '@reverse/ephemeris';
 import { resolveOptions, type CoreOptions } from '../options';
+import { resolveNatures } from '../yogas/natures';
 import type { Fidelity } from '../fidelity';
 import { computePositions, type ChartInput, type PointPosition } from '../positions';
 import { PLANETS_9, type Planet9 } from '../jaimini';
@@ -59,7 +60,7 @@ export interface TransitOptions {
  * See docs/spec/time/transits.md.
  */
 export function computeTransits(eph: Ephemeris, natal: ChartInput, at: TransitInstant, coreOptions?: Partial<CoreOptions>, options: Partial<TransitOptions> = {}): Transits {
-  const fidelity = resolveOptions(coreOptions).fidelity;
+  const fidelity = resolveOptions(coreOptions).fidelity, natureTable = resolveNatures(resolveOptions(coreOptions).natures);
   const birth = computePositions(eph, natal, coreOptions);
   const now = computePositions(eph, at, coreOptions);
   const natalLagna = birth.points.lagna;
@@ -85,8 +86,8 @@ export function computeTransits(eph: Ephemeris, natal: ChartInput, at: TransitIn
       const bodies = Object.fromEntries(PLANETS_9.map((p) => [p, { longitude: now.points[p].longitude, speed: now.points[p].longitudeSpeed ?? 0 }])) as Record<Planet9, TransitBody>;
       const kota = kotaChakra(birth.points.moon.longitude, Object.fromEntries(PLANETS_9.map((p) => [p, now.points[p].longitude])), fidelity);
       return {
-        kota: { ...kota, score: natalLagna ? kotaScore({ moon: birth.points.moon.longitude, lagna: natalLagna.longitude }, bodies, fidelity).score : null },
-        sanghatta: sanghattaVedhas(Object.fromEntries(PLANETS_9.map((p) => [p, birth.points[p].longitude])) as Record<Planet9, number>, Object.fromEntries(PLANETS_9.map((p) => [p, now.points[p].longitude])) as Record<Planet9, number>),
+        kota: { ...kota, score: natalLagna ? kotaScore({ moon: birth.points.moon.longitude, lagna: natalLagna.longitude }, bodies, fidelity, natureTable).score : null },
+        sanghatta: sanghattaVedhas(Object.fromEntries(PLANETS_9.map((p) => [p, birth.points[p].longitude])) as Record<Planet9, number>, Object.fromEntries(PLANETS_9.map((p) => [p, now.points[p].longitude])) as Record<Planet9, number>, natureTable),
         sarvatobhadra: sarvatobhadraVedhas(bodies, fidelity),
       };
     })(),

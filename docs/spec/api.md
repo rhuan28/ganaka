@@ -39,6 +39,19 @@ can change a number, so that a client that keeps results can tell old ones from 
   - strengths: `/v1/strengths/shadbala`, `/v1/strengths/bhava-bala`, `/v1/strengths/ashtakavarga`,
     `/v1/strengths/vimshopaka`;
   - time: `/v1/transits`, `/v1/panchanga`, `/v1/varshaphala`, `/v1/muhurta`, `/v1/panch-pakshi` (with `at`);
+    `/v1/transits` with `vargas` (any of `D9` and `D10`) adds each varga's table of the transit as `vargaTables`;
+  - solar returns: `/v1/varshaphala` with `period` (`year` by default, `month` or `day`) casts the monthly or daily
+    return of the year, its month and day of age read from `at` or given as `months` (0 to 11) and `days` (0 to 29)
+    with `years`, and `offset` whole periods after it (negative before); the answer says which in `period`;
+  - Tithi Pravesh: `/v1/tithi-pravesh`, with `birth`, `at` and optionally `offset` (years), answering the instant of
+    the Tithi Pravesh of the year of age that holds `at`;
+  - transit calendar: `/v1/transits/month`, with `birth` and `at`, answering PL9's transit calendar and kaksha calendar
+    of the civil month of `at`, in its clock;
+  - year's ingresses: `/v1/transits/year`, with `at`, answering each planet's sign at the start of the civil year of
+    `at` and its sign ingresses in the year;
+  - natal Sahams: `/v1/sahams`, with `birth`, answering the Sahams of the birth chart;
+  - events: `/v1/events`, with `birth` and up to 20 `events`, each `{ jdUt, utcOffsetHours }`, answering the dashas
+    running at each as PL9's Events pages read them (the event's clock taken as UT);
   - natal tables (see [natal-tables.md](natal-tables.md)): `/v1/sunrise-chart`, `/v1/aspects`, `/v1/tarabala`,
     `/v1/lordships` (with `varga`, one of the sixteen classical vargas), `/v1/dispositors`;
   - natal yogas (see [yogas.md](yogas.md)): `/v1/yogas`, answering `{ yogas, missing }`. `yogas` lists every
@@ -71,6 +84,11 @@ can change a number, so that a client that keeps results can tell old ones from 
   - remedies (see [remedies.md](remedies.md)): `/v1/remedies`, with `birth`, answering the Sade Sati and the Laghu
     Kalyani Dhayya and Kantaka Saturn (three cycles each, every stay with its Julian days and span), the Mangala Dosha
     and the lords whose gems PL9 recommends;
+  - ephemeris (PL9's Export Ephemeris): `/v1/ephemeris`, with `from` (an instant and a place, as `birth`), `to` (an
+    instant: `jdUt` or `utc`), `stepDays` (at least one minute) and optionally `points` (any of the chart's points; the
+    nine and the three outer planets by default), answering a row per step with each point's position as in
+    `/v1/chart`, and `missing` where a point is not defined at the place. The last row is the last step not past `to`; a
+    table holds at most 2,000 rows;
   - several of the above at once: `/v1/batch` (below);
   - chart files saved by Parashara's Light 9: `/v1/import/pl9` (below);
   - atlas: `GET /v1/atlas/cities?q=<name>&country=<ISO code>&limit=<1 to 50>` (GeoNames cities,
@@ -84,7 +102,9 @@ can change a number, so that a client that keeps results can tell old ones from 
   `utc` (`2000-01-01T12:00:00Z`), plus `latitude`, `longitudeEast` and, if applicable, `utcOffsetHours`
   (the clock offset, already resolved).
 - The engine options go in `options`, with the `core` names: `ayanamsha`, `fidelity`, `gulika`
-  etc. The mode is `corrected` by default; `fidelity: "pl9"` reproduces PL9.
+  etc. The mode is `corrected` by default; `fidelity: "pl9"` reproduces PL9. `natures` changes PL9's tables of natural
+  and functional natures, as `{ "natural": { "moon": "lessThanThirdFull" }, "functional": { "aries": { "sun":
+  "neutral" } } }` (see [yogas.md](yogas.md)).
 - The options of each area have their own object: `dasha`, `shadbala`, `ashtakavarga`, `yogas`, `planetInfo` and `compatibility`
   (`functionalNature`, PL9's "Use functional mal/ben", and `sex`, `male` by default).
 - Unknown fields are rejected, so that a wrong name is never silently ignored.
