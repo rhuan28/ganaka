@@ -112,3 +112,34 @@ even where it rounds to zero ("-00:00").
 
 - **Ishta/Kashta** as PL9 prints them (pairs like 210/355): built from the Ishta and Kashta phala, the Shadbala and
   the Saptavarga points, but the unfavourable side and the units are not read yet.
+
+## Grahas Overview
+
+PL9's planet menu opens a "Grahas Overview" of the planet. Most of its rows are columns this spec already gives; the
+others are in `/v1/planet-info`, per point:
+
+- `percentExalted`, Sun to Saturn: the distance from the point of debilitation (Sun 190°, Moon 213°, Mars 118°,
+  Mercury 345°, Jupiter 275°, Venus 177°, Saturn 20°), as a whole percent of 180°, rounded half up. `percentFull`,
+  the distance from the Sun the same way (0 for the Sun). PL9 shows neither for the nodes.
+- `vaisheshika`, Sun to Saturn: in how many of the Dashavarga (D1, D2, D3, D7, D9, D10, D12, D16, D30, D60) the planet
+  is exalted, in moolatrikona or in its own sign.
+- `karakaForSelf`, Sun to Saturn: PL9's "Lagnesh count" row, which is 1 for the Sun, the Moon and the Atmakaraka (by
+  the `karakas` option) and 0 otherwise.
+- `jagradadi`, Sun to Ketu, from the D1 dignity: awake (`jagrat`) when exalted, in moolatrikona or in its own sign;
+  dreaming (`swapna`) with a great friend; asleep (`sushupti`) with a great enemy or in debility; otherwise dreaming,
+  unless the planet is the sign lord's natural enemy (the nodes by their rows of the natural relations too).
+- `baladi`: the sign in bands of 6°: in the odd signs (Aries, Gemini…) `bala`, `kumara`, `yuva`, `vriddha`, `mrita`;
+  in the even signs the other way round.
+- `lajjitadi`: the states that hold, in this order. "With" means in the same sign. "Aspected" means by a full sign
+  aspect (the 7th, and Mars's 4th and 8th, Jupiter's 5th and 9th, Saturn's 3rd and 10th). "Associated" means with it,
+  aspected by it, or in its sign. Benefic and malefic are the natural natures.
+  - `lajjita`: in the 5th house, associated with the Sun, Mars, Saturn, Rahu or Ketu.
+  - `garvita`: exalted or in moolatrikona.
+  - `kshudhita`: in an enemy's or great enemy's sign (by the compound relation, the dignity codes 7 and 8), or with Saturn.
+  - `trushita`: in Cancer or Pisces, aspected by a malefic and by no benefic.
+  - `mudita`: in a friend's sign, with or aspected by a benefic, or with Jupiter.
+  - `kshobhita`: with the Sun and aspected by a malefic, or with Mars, Saturn, Rahu or Ketu.
+
+The Overview's rows for the Dashavarga give the planet's sign in each varga and its house counted from that varga's
+Lagna sign: both from the chart's `vargas`. Checked on the Moon of REF 0010 (the maintainer's capture): 97%, 9%, 1,
+1, Swapna, Mrita, Kshudhita and Mudita.

@@ -50,6 +50,11 @@ can change a number, so that a client that keeps results can tell old ones from 
   - year's ingresses: `/v1/transits/year`, with `at`, answering each planet's sign at the start of the civil year of
     `at` and its sign ingresses in the year;
   - natal Sahams: `/v1/sahams`, with `birth`, answering the Sahams of the birth chart;
+  - time of transits: `/v1/transits/time`, with `birth`, `after`, `planet`, `event` (transits, fullyAspects,
+    entersSign, leavesSign, entersNakshatra, leavesNakshatra, within45, leaves45), `natal` (the Lagna or one of the nine)
+    and optionally `years` (1 to 60, 60 when absent), answering when the planet next makes the event with the natal
+    point after `after` (PL9's Research → "Time of transits"), or null within the years. The search samples every
+    half day, about 40 ms a year: a miss over 60 years holds the service for some 2.5 s;
   - events: `/v1/events`, with `birth` and up to 20 `events`, each `{ jdUt, utcOffsetHours }`, answering the dashas
     running at each as PL9's Events pages read them (the event's clock taken as UT);
   - natal tables (see [natal-tables.md](natal-tables.md)): `/v1/sunrise-chart`, `/v1/aspects`, `/v1/tarabala`,
@@ -68,7 +73,7 @@ can change a number, so that a client that keeps results can tell old ones from 
     body (declination, Kranti, speed against the mean, combustion, the Deeptadi and Shayanadi avasthas, Hemmed, final
     dispositor, argala, the navamsha number and age, the Shashtiamsha, and the others the spec lists), the deity of
     each point in the sixteen classical vargas, the degrees within the equal vargas, the 108 navamshas numbered from the
-    Lagna's and each point's pada syllable, `nama`, and the nine's natures, `natures` (see [natal-tables.md](natal-tables.md)), the natural relations of the nine, and `missing` for what a
+    Lagna's and each point's pada syllable, `nama`, the nine's natures, `natures`, and the Grahas Overview's rows (see [natal-tables.md](natal-tables.md)), the natural relations of the nine, and `missing` for what a
     chart cannot give. Its own options go in `planetInfo`: `anka`, PL9's Anka value, an integer from 1 to 5 (1 when
     absent; the answer says which was used);
   - compatibility (see [compatibility.md](compatibility.md)): `/v1/compatibility`, with `native` and `partner`, each

@@ -4,7 +4,8 @@ import { computePositions } from '../positions';
 import type { Planet9 } from '../jaimini';
 
 /** The events of PL9's Research → "Time of transits", for a transiting planet and a natal point. */
-export type TransitEvent = 'transits' | 'fullyAspects' | 'entersSign' | 'leavesSign' | 'entersNakshatra' | 'leavesNakshatra' | 'within45' | 'leaves45';
+export const TRANSIT_EVENTS = ['transits', 'fullyAspects', 'entersSign', 'leavesSign', 'entersNakshatra', 'leavesNakshatra', 'within45', 'leaves45'] as const;
+export type TransitEvent = (typeof TRANSIT_EVENTS)[number];
 
 /** The houses a planet fully aspects, counted from itself: the seventh for all, Mars, Jupiter and Saturn also their own (the nodes only the seventh, from the printouts). */
 const FULL_ASPECTS: Record<Planet9, number[]> = {

@@ -1,7 +1,7 @@
 import {
   ageAt, completedYears, computeBirthPanchanga, dailyReturn, eventDashas, kakshaCalendar, monthCalendar, monthlyReturn, natalSahams,
   computePositions, resolveNatures, resolveOptions, signIngresses, tithiPravesh, vargaTable, PLANETS_9, computeMuhurta, computePanchangTable, computePanchanga, computeTransits, computeVarshaphalaReport,
-  dashasAt, InvalidInputError, MUHURTA_ACTIVITIES, parseChartInput, type CalendarMode, type MuhurtaActivity,
+  dashasAt, InvalidInputError, MUHURTA_ACTIVITIES, parseChartInput, timeOfTransit, TRANSIT_EVENTS, type CalendarMode, type MuhurtaActivity,
 } from '@reverse/core';
 import { Type } from '@sinclair/typebox';
 import type { Route } from '../server';
@@ -39,6 +39,17 @@ const Year = Type.Object({ birth: Birth, at: Birth, options: Type.Optional(CoreO
 const Sahams = Type.Object({ birth: Birth, options: Type.Optional(CoreOptionsSchema) }, strict);
 const Event = Type.Object({ jdUt: Type.Number(), utcOffsetHours: Type.Number({ minimum: -14, maximum: 14 }) }, strict);
 const Events = Type.Object({ birth: Birth, events: Type.Array(Event, { maxItems: 20 }), options: Type.Optional(CoreOptionsSchema) }, strict);
+const NINE = ['sun', 'moon', 'mars', 'mercury', 'jupiter', 'venus', 'saturn', 'rahu', 'ketu'] as const;
+// PL9's Research -> "Time of transits": when the planet next makes the event with the natal point, after an instant.
+const TimeOfTransit = Type.Object({
+  birth: Birth, after: Birth,
+  planet: Type.Union(NINE.map((p) => Type.Literal(p))),
+  event: Type.Union(TRANSIT_EVENTS.map((e) => Type.Literal(e))),
+  natal: Type.Union(['lagna', ...NINE].map((p) => Type.Literal(p))),
+  // The search runs on the service's only thread: two of Saturn's rounds at most (a fortieth of a second a year).
+  years: Type.Optional(Type.Integer({ minimum: 1, maximum: 60 })),
+  options: Type.Optional(CoreOptionsSchema),
+}, strict);
 const Muhurta = Type.Object({
   birth: Birth, at: Birth, activity: Type.Optional(Type.Union(MUHURTA_ACTIVITIES.map((a) => Type.Literal(a)))), options: Type.Optional(CoreOptionsSchema),
 }, strict);
@@ -133,6 +144,14 @@ export const time: Route = (app, { eph }) => {
     const p = computePositions(eph, { jdUt: from, latitude: 0, longitudeEast: 0 }, o).points;
     const start = Object.fromEntries(PLANETS_9.map((k) => [k, { sign: Math.floor(p[k].longitude / 30), retrograde: p[k].retrograde ?? false }]));
     return { year, utcOffsetHours, from, to, start, ingresses: signIngresses(eph, from, to, o) };
+  });
+
+  app.post<{ Body: typeof TimeOfTransit.static }>('/v1/transits/time', { schema: { body: TimeOfTransit, tags: ['time'], summary: 'When a planet next transits, aspects, enters or leaves a natal point, its sign or its nakshatra' } }, async (req) => {
+    const natal = parseChartInput(req.body.birth), after = parseChartInput(req.body.after), o = coreOptionsOf(req.body.options);
+    const point = computePositions(eph, natal, o).points[req.body.natal as 'lagna' | (typeof NINE)[number]];
+    if (!point) throw new InvalidInputError(`the chart has no ${req.body.natal}`);
+    const found = timeOfTransit(eph, req.body.planet, req.body.event, point.longitude, after.jdUt, o, (req.body.years ?? 60) * 365.25);
+    return { natalLongitude: point.longitude, found: found ?? null };
   });
 
   app.post<{ Body: typeof Sahams.static }>('/v1/sahams', { schema: { body: Sahams, tags: ['time'], summary: 'The Sahams of the birth chart' } }, async (req) => {

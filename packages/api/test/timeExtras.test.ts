@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
   ageAt, completedYears, computeVarshaphalaReport, dailyReturn, eventDashas, kakshaCalendar, monthCalendar, monthlyReturn, natalSahams,
-  parseChartInput, signIngresses, tithiPravesh, vargaTable,
+  computePositions, parseChartInput, signIngresses, timeOfTransit, tithiPravesh, vargaTable,
 } from '@reverse/core';
 import { buildServer } from '../src/server';
 import { fakeSky } from '../../core/test/fakeSky';
@@ -56,5 +56,16 @@ describe('the time routes the pages of the app need', () => {
     expect((await post('/v1/sahams', { birth })).json().sahams).toEqual(same(natalSahams(fakeSky, natal, c)));
     const e = (await post('/v1/events', { birth, events: [{ jdUt: when.jdUt, utcOffsetHours: 5.5 }] })).json();
     expect(e.events[0].dashas).toEqual(same(eventDashas(fakeSky, natal, { jdUt: when.jdUt, utcOffsetHours: 5.5 }, c)));
+  });
+
+  it("find when a planet next makes an event with a natal point (PL9's Time of transits), as the core does", async () => {
+    const after = { utc: '2026-10-28T00:00:00Z', latitude: 0, longitudeEast: 0 };
+    const r = await post('/v1/transits/time', { birth, after, planet: 'moon', event: 'transits', natal: 'sun' });
+    expect(r.statusCode).toBe(200);
+    const sun = computePositions(fakeSky, natal, c).points.sun.longitude;
+    expect(r.json()).toEqual(same({ natalLongitude: sun, found: timeOfTransit(fakeSky, 'moon', 'transits', sun, parseChartInput(after).jdUt, c, 60 * 365.25) }));
+    expect(r.json().found.jdUt).toBeGreaterThan(parseChartInput(after).jdUt);
+    expect((await post('/v1/transits/time', { birth, after, planet: 'moon', event: 'transits', natal: 'sun', years: 61 })).statusCode).toBe(400);
+    expect((await post('/v1/transits/time', { birth, after, planet: 'uranus', event: 'transits', natal: 'sun' })).statusCode).toBe(400);
   });
 });

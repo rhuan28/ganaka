@@ -13,13 +13,15 @@ import { shashtiamsha, vargaDegree, vargaDeity } from './deities';
 import { CLASSICAL_VARGAS, type ClassicalVargaName } from '../vargas';
 import { norm360 } from '../zodiac';
 import { BY_PADA_NAAMAKSHAR } from '../panchanga/tables';
-import { argala, navamshaAge, navamshaNumber, dominance, goodVargas, houseEffect, pushkaraNavamsa, housesRuled, mrityuBhaga, navamsaFromRashi, rays, SHADVARGA, shadvargaSignLords, shadvargaElements, type SignQuality } from './columns';
+import { karakaForSelf, lajjitadi, natalBaladi, natalJagradadi, OVERVIEW_PLANETS, percentExalted, percentFull, type BaladiState, type JagradadiState, type Lajjitadi } from './overview';
+import { argala, navamshaAge, navamshaNumber, dominance, goodVargas, houseEffect, pushkaraNavamsa, housesRuled, mrityuBhaga, navamsaFromRashi, rays, DASHAVARGA, SHADVARGA, shadvargaSignLords, shadvargaElements, type SignQuality } from './columns';
 
 /** PL9's planet data tables, by body (docs/spec/planet-info.md). */
 
 export { MEAN_SPEED, PLANET_INFO_BODIES, declinationOf, krantiOf, speedPercentOf, type BodyAstronomy, type PlanetInfoBody } from './astronomy';
 export { NATURAL_RELATIONS_9, compoundRelations, finalDispositor, hemmed, temporalRelations } from './relations';
 export { SHASHTIAMSHA_DEITIES, shashtiamsha, vargaDegree, vargaDeity } from './deities';
+export { LAJJITADI, karakaForSelf, lajjitadi, natalBaladi, natalJagradadi, percentExalted, percentFull, type BaladiState, type JagradadiState, type Lajjitadi } from './overview';
 export { DASHAVARGA, SHADVARGA, navamshaAge, navamshaNumber, argala, houseEffect, pushkaraNavamsa, dominance, goodVargas, housesRuled, mrityuBhaga, navamsaFromRashi, rays, shadvargaSignLords, shadvargaElements, type SignQuality } from './columns';
 export { COMBUSTION_ORB, DEEPTADI, DEFAULT_ANKA, SHAYANADI, combustion, deeptadi, shayanadi, type Combustion, type DeeptadiState, type Shayanadi, type ShayanadiState } from './avasthas';
 
@@ -64,6 +66,17 @@ export interface PointInfo extends BodyAstronomy {
   navamshaAge?: number;
   /** The Shashtiamsha's number, 1 to 60, and nature; its name is the D60 deity. */
   shashtiamsha?: { number: number; nature: 'benefic' | 'malefic' };
+  /** PL9's Grahas Overview, Sun to Saturn: the distance from the fall and from the Sun as whole percents of 180°. */
+  percentExalted?: number;
+  percentFull?: number;
+  /** Vaisheshika count: the Dashavarga signs in which it is exalted, in moolatrikona or in its own sign. Sun to Saturn. */
+  vaisheshika?: number;
+  /** Whether it signifies the self (PL9's "Lagnesh count"): the Sun, the Moon or the Atmakaraka. Sun to Saturn. */
+  karakaForSelf?: boolean;
+  /** The natal Jagradadi and Baladi, and the Lajjitadi states (none, one or more, in PL9's order). Sun to Ketu. */
+  jagradadi?: JagradadiState;
+  baladi?: BaladiState;
+  lajjitadi?: Lajjitadi[];
 }
 
 /** The points of the deities and the degrees in the vargas: the Lagna (when defined), the nine, Mandi and Bhrigu Bindu. */
@@ -155,6 +168,14 @@ export function computePlanetInfo(eph: Ephemeris, input: ChartInput, options: Pl
         dominance: dominance(p, longitudes, lagna.longitude), houseEffect: houseEffect(lon, lagna.longitude),
         navamshaNumber: navamshaNumber(lon, lagna.longitude), navamshaAge: navamshaAge(lon, lagna.longitude),
       });
+      Object.assign(info, { jagradadi: natalJagradadi(p, longitudes), baladi: natalBaladi(lon), lajjitadi: lajjitadi(p, longitudes, lagna?.longitude, natureTable) });
+      if ((OVERVIEW_PLANETS as readonly string[]).includes(p)) {
+        const q = p as (typeof OVERVIEW_PLANETS)[number];
+        Object.assign(info, {
+          percentExalted: percentExalted(q, lon), percentFull: percentFull(lon, longitudes.sun), vaisheshika: goodVargas(p, lon, DASHAVARGA, f),
+          karakaForSelf: karakaForSelf(p, longitudes, core.karakas === 'eight' ? 8 : 7),
+        });
+      }
       const r = rays(p, longitudes);
       if (r !== null) info.rays = r;
       if (lagna && r !== null) info.housesRuled = housesRuled(p, lagna.sign);
