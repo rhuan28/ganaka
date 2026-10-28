@@ -44,8 +44,9 @@ for (const [chart, cells] of Object.entries(read)) {
   const input = births.get(chart);
   if (!input) { console.log(chart, 'no birth in fixtures'); continue; }
   const info: PlanetInfo = computePlanetInfo(eph, input, {}, { fidelity: 'pl9', natures });
-  // The functional nature as the engine answers it (the yoga context's), the column PL9 prints as "Func.".
-  const functional = computeYogaContext(eph, input, { fidelity: 'pl9', natures }).natures.functional;
+  // The functional nature as /v1/planet-info answers it, the column PL9 prints as "Func."; the yoga context's must agree.
+  const functional = info.natures.functional;
+  if (JSON.stringify(functional) !== JSON.stringify(computeYogaContext(eph, input, { fidelity: 'pl9', natures }).natures.functional)) fail('natures', `${chart}: planet-info and yoga context differ`);
   charts++;
   for (const [body, c] of Object.entries(cells.declination)) {
     const p = info.points[body as keyof typeof info.points];

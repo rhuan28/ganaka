@@ -49,6 +49,13 @@ the syllable is read from the point's navamsha (`navamshaOf`). A few padas have 
 null for them. Code: `nama` in `/v1/planet-info`, from `BY_PADA_NAAMAKSHAR` (`packages/core/src/panchanga/tables.ts`).
 Checked on capture 101: all 20 cells, the birth chart's and the transits'.
 
+## Natures in the planet tables
+
+The planet tables' "Func." column is the planet's functional nature by the Lagna, the same the yogas read (see
+[yogas.md](yogas.md) and the core option `natures`). `/v1/planet-info` gives the nine's natural and functional natures
+in `natures`. The functional ones are null without the Lagna. Checked on the INF print model: Func., 1215 cells over
+135 charts, 0 failures, with PL9's natures as shipped and with the changed table of Motor 2M.
+
 ## Varga deities
 
 PL9's "Planetary deities" page gives the deity of the Lagna, the nine, Mandi and Bhrigu Bindu in each of the sixteen

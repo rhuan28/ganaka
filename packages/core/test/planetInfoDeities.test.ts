@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { computePlanetInfo, shashtiamsha, vargaDegree, vargaDeity } from '../src';
+import { computePlanetInfo, computeYogaContext, shashtiamsha, vargaDegree, vargaDeity } from '../src';
 import { BY_PADA_NAAMAKSHAR } from '../src/panchanga/tables';
 import { fakeSky } from './fakeSky';
 
@@ -55,5 +55,12 @@ describe('the navamsha grid', () => {
     for (const [pt, pada] of Object.entries(info.navamshaOf)) expect(info.nama[pt as keyof typeof info.nama]).toBe(BY_PADA_NAAMAKSHAR[pada!] ?? null);
     // As PL9's Animated transits I (capture 101): Ardra 4 "Cha", Uttara Bhadrapada 4 "Jya", Dhanishta 3 "Goo" and 4 "Gay".
     expect([5 * 4 + 3, 25 * 4 + 3, 22 * 4 + 2, 22 * 4 + 3].map((i) => BY_PADA_NAAMAKSHAR[i])).toEqual(['Cha', 'Jya', 'Goo', 'Gay']);
+  });
+  it("gives the nine's natures as the yogas read them, the functional ones none without the Lagna", () => {
+    const birth = { jdUt: 2449865.4694144, latitude: 44.2377, longitudeEast: 150.6744 };
+    const info = computePlanetInfo(fakeSky, birth, {}, { fidelity: 'corrected' });
+    expect(info.natures.functional).toEqual(computeYogaContext(fakeSky, birth, { fidelity: 'corrected' }).natures.functional);
+    expect(info.natures.natural.jupiter).toBe('benefic');
+    expect(computePlanetInfo(fakeSky, { ...birth, latitude: 89 }, {}, { fidelity: 'corrected' }).natures.functional).toBeNull();
   });
 });

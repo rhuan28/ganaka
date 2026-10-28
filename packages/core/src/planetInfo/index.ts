@@ -3,7 +3,7 @@ import { ayanamshaFrame } from '../ayanamsha';
 import type { Fidelity } from '../fidelity';
 import type { Planet9 } from '../jaimini';
 import { resolveOptions, type CoreOptions } from '../options';
-import { resolveNatures } from '../yogas/natures';
+import { functionalNatures, naturalNatures, resolveNatures, type Nature } from '../yogas/natures';
 import { computePositions, type ChartInput } from '../positions';
 import { dayFrame, SunriseUndefinedError } from '../sunrise';
 import { bodyAstronomy, PLANET_INFO_BODIES, type BodyAstronomy, type PlanetInfoBody } from './astronomy';
@@ -88,6 +88,11 @@ export interface PlanetInfo {
   navamshaOf: Partial<Record<VargaPoint, number>>;
   /** The syllable of each point's nakshatra pada (PL9's "Nama"); null for the few padas the table gives none. */
   nama: Partial<Record<VargaPoint, string | null>>;
+  /**
+   * The nine's natures by the chart's options (`natures`): natural, and functional by the Lagna (PL9's "Func."
+   * column), null without the Lagna. The same the yogas read.
+   */
+  natures: { natural: Record<Planet9, Nature>; functional: Record<Planet9, Nature> | null };
   /** PL9's natural relations of the nine, Rahu and Ketu included: 1 friend, 0 neutral, -1 enemy. */
   naturalRelations: Record<Planet9, Record<Planet9, -1 | 0 | 1>>;
   /** The temporal relations by the birth chart's signs: 1 friend, -1 enemy (PL9's "Tatkalika"). */
@@ -168,5 +173,7 @@ export function computePlanetInfo(eph: Ephemeris, input: ChartInput, options: Pl
   const navamshas = Array.from({ length: 108 }, (_, g) => ({ sign: g % 12, number: g0 === null ? null : ((g - g0 + 108) % 108) + 1 }));
   const navamshaOf = Object.fromEntries(Object.entries(at).map(([pt, lon]) => [pt, Math.floor(norm360(lon) / (360 / 108))])) as PlanetInfo['navamshaOf'];
   const nama = Object.fromEntries(Object.entries(navamshaOf).map(([pt, pada]) => [pt, BY_PADA_NAAMAKSHAR[pada!] ?? null])) as PlanetInfo['nama'];
-  return { fidelity: core.fidelity, anka, points, deities, vargaDegrees, navamshas, navamshaOf, nama, lagnaMrityuBhaga: lagna ? mrityuBhaga('lagna', lagna.longitude) : null, naturalRelations: NATURAL_RELATIONS_9, temporalRelations: temporalRelations(longitudes), compoundRelations: compoundRelations(longitudes), missing };
+  const withLagna = lagna ? { ...longitudes, lagna: lagna.longitude } : longitudes;
+  const natures = { natural: naturalNatures(longitudes, natureTable), functional: functionalNatures(withLagna, natureTable) };
+  return { fidelity: core.fidelity, anka, points, deities, vargaDegrees, navamshas, navamshaOf, nama, natures, lagnaMrityuBhaga: lagna ? mrityuBhaga('lagna', lagna.longitude) : null, naturalRelations: NATURAL_RELATIONS_9, temporalRelations: temporalRelations(longitudes), compoundRelations: compoundRelations(longitudes), missing };
 }
