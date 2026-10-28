@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { computePlanetInfo, shashtiamsha, vargaDegree, vargaDeity } from '../src';
+import { BY_PADA_NAAMAKSHAR } from '../src/panchanga/tables';
 import { fakeSky } from './fakeSky';
 
 describe('the varga deities', () => {
@@ -48,5 +49,11 @@ describe('the navamsha grid', () => {
     expect(info.navamshas[3]!.sign).toBe(3);
     expect(info.navamshas[info.navamshaOf.lagna!]!.number).toBe(1);
     expect(info.navamshas[info.navamshaOf.sun!]!.number).toBe(info.points.sun.navamshaNumber);
+  });
+  it("gives each point its pada's syllable, PL9's Nama", () => {
+    const info = computePlanetInfo(fakeSky, { jdUt: 2449865.4694144, latitude: 44.2377, longitudeEast: 150.6744 }, {}, { fidelity: 'corrected' });
+    for (const [pt, pada] of Object.entries(info.navamshaOf)) expect(info.nama[pt as keyof typeof info.nama]).toBe(BY_PADA_NAAMAKSHAR[pada!] ?? null);
+    // As PL9's Animated transits I (capture 101): Ardra 4 "Cha", Uttara Bhadrapada 4 "Jya", Dhanishta 3 "Goo" and 4 "Gay".
+    expect([5 * 4 + 3, 25 * 4 + 3, 22 * 4 + 2, 22 * 4 + 3].map((i) => BY_PADA_NAAMAKSHAR[i])).toEqual(['Cha', 'Jya', 'Goo', 'Gay']);
   });
 });

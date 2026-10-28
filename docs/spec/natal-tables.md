@@ -41,6 +41,14 @@ is 1, the count runs in the order of the zodiac and wraps at 108. The planet tab
 counted round, so a planet in the Lagna's own navamsha shows 108. Both need the Lagna. Code:
 `packages/core/src/planetInfo/columns.ts` (`navamshaNumber`, `navamshaAge`), in `/v1/planet-info`.
 
+## Nama
+
+The planet tables of PL9's Tempo pages (Animated transits I, the Gochara tables) print a "Nama" column: the syllable of
+the point's nakshatra pada, the same as the Panchanga's naamakshar of the Moon. A pada is a navamsha of the zodiac, so
+the syllable is read from the point's navamsha (`navamshaOf`). A few padas have none in the table, and the answer gives
+null for them. Code: `nama` in `/v1/planet-info`, from `BY_PADA_NAAMAKSHAR` (`packages/core/src/panchanga/tables.ts`).
+Checked on capture 101: all 20 cells, the birth chart's and the transits'.
+
 ## Varga deities
 
 PL9's "Planetary deities" page gives the deity of the Lagna, the nine, Mandi and Bhrigu Bindu in each of the sixteen

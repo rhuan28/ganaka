@@ -12,6 +12,7 @@ import { compoundRelations, finalDispositor, hemmed, NATURAL_RELATIONS_9, tempor
 import { shashtiamsha, vargaDegree, vargaDeity } from './deities';
 import { CLASSICAL_VARGAS, type ClassicalVargaName } from '../vargas';
 import { norm360 } from '../zodiac';
+import { BY_PADA_NAAMAKSHAR } from '../panchanga/tables';
 import { argala, navamshaAge, navamshaNumber, dominance, goodVargas, houseEffect, pushkaraNavamsa, housesRuled, mrityuBhaga, navamsaFromRashi, rays, SHADVARGA, shadvargaSignLords, shadvargaElements, type SignQuality } from './columns';
 
 /** PL9's planet data tables, by body (docs/spec/planet-info.md). */
@@ -85,6 +86,8 @@ export interface PlanetInfo {
    */
   navamshas: { sign: number; number: number | null }[];
   navamshaOf: Partial<Record<VargaPoint, number>>;
+  /** The syllable of each point's nakshatra pada (PL9's "Nama"); null for the few padas the table gives none. */
+  nama: Partial<Record<VargaPoint, string | null>>;
   /** PL9's natural relations of the nine, Rahu and Ketu included: 1 friend, 0 neutral, -1 enemy. */
   naturalRelations: Record<Planet9, Record<Planet9, -1 | 0 | 1>>;
   /** The temporal relations by the birth chart's signs: 1 friend, -1 enemy (PL9's "Tatkalika"). */
@@ -164,5 +167,6 @@ export function computePlanetInfo(eph: Ephemeris, input: ChartInput, options: Pl
   const g0 = lagna ? Math.floor(norm360(lagna.longitude) / (360 / 108)) : null;
   const navamshas = Array.from({ length: 108 }, (_, g) => ({ sign: g % 12, number: g0 === null ? null : ((g - g0 + 108) % 108) + 1 }));
   const navamshaOf = Object.fromEntries(Object.entries(at).map(([pt, lon]) => [pt, Math.floor(norm360(lon) / (360 / 108))])) as PlanetInfo['navamshaOf'];
-  return { fidelity: core.fidelity, anka, points, deities, vargaDegrees, navamshas, navamshaOf, lagnaMrityuBhaga: lagna ? mrityuBhaga('lagna', lagna.longitude) : null, naturalRelations: NATURAL_RELATIONS_9, temporalRelations: temporalRelations(longitudes), compoundRelations: compoundRelations(longitudes), missing };
+  const nama = Object.fromEntries(Object.entries(navamshaOf).map(([pt, pada]) => [pt, BY_PADA_NAAMAKSHAR[pada!] ?? null])) as PlanetInfo['nama'];
+  return { fidelity: core.fidelity, anka, points, deities, vargaDegrees, navamshas, navamshaOf, nama, lagnaMrityuBhaga: lagna ? mrityuBhaga('lagna', lagna.longitude) : null, naturalRelations: NATURAL_RELATIONS_9, temporalRelations: temporalRelations(longitudes), compoundRelations: compoundRelations(longitudes), missing };
 }
