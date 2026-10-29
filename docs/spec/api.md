@@ -36,8 +36,8 @@ can change a number, so that a client that keeps results can tell old ones from 
 - The endpoints accept `POST` with a JSON body:
   - chart: `/v1/chart`;
   - dashas: `/v1/dashas`;
-  - strengths: `/v1/strengths/shadbala`, `/v1/strengths/bhava-bala`, `/v1/strengths/ashtakavarga`,
-    `/v1/strengths/vimshopaka`;
+  - strengths: `/v1/strengths/shadbala`, `/v1/strengths/bhava-bala`, `/v1/strengths/ashtakavarga` (with `varga`, a
+    classical varga's, from 0.20.0), `/v1/strengths/vimshopaka`;
   - time: `/v1/transits`, `/v1/panchanga`, `/v1/varshaphala`, `/v1/muhurta`, `/v1/panch-pakshi` (with `at`);
     `/v1/transits` with `vargas` (any of `D9` and `D10`) adds each varga's table of the transit as `vargaTables`;
   - solar returns: `/v1/varshaphala` with `period` (`year` by default, `month` or `day`) casts the monthly or daily

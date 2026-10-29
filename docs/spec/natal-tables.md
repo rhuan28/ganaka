@@ -56,6 +56,12 @@ The planet tables' "Func." column is the planet's functional nature by the Lagna
 in `natures`. The functional ones are null without the Lagna. Checked on the INF print model: Func., 1215 cells over
 135 charts, 0 failures, with PL9's natures as shipped and with the changed table of Motor 2M.
 
+`vargaNatures` (engine 0.20.0) gives them in each varga but the Rashi, as PL9's chart of a varga colours its grahas
+(Advanced options, "Color code Functional Ben/Mal"): the same rule over the varga's Lagna, signs and degrees (the
+D30, which has no degree, at its sign's middle), so a node alone in its sign takes its house from the varga's Lagna
+and a node with company the nature of the nearest by the varga's degrees. Checked on REF 0010's D9 (Scorpio Lagna)
+against PL9's capture: the nine as PL9 colours them.
+
 ## Varga deities
 
 PL9's "Planetary deities" page gives the deity of the Lagna, the nine, Mandi and Bhrigu Bindu in each of the sixteen

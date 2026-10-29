@@ -10,7 +10,7 @@ import { bodyAstronomy, PLANET_INFO_BODIES, type BodyAstronomy, type PlanetInfoB
 import { combustion, deeptadi, DEFAULT_ANKA, shayanadi, type DeeptadiState, type Shayanadi } from './avasthas';
 import { compoundRelations, finalDispositor, hemmed, NATURAL_RELATIONS_9, temporalRelations } from './relations';
 import { shashtiamsha, vargaDegree, vargaDeity } from './deities';
-import { CLASSICAL_VARGAS, type ClassicalVargaName } from '../vargas';
+import { CLASSICAL_VARGAS, vargaSign, type ClassicalVargaName } from '../vargas';
 import { norm360 } from '../zodiac';
 import { BY_PADA_NAAMAKSHAR } from '../panchanga/tables';
 import { karakaForSelf, lajjitadi, natalBaladi, natalJagradadi, OVERVIEW_PLANETS, percentExalted, percentFull, type BaladiState, type JagradadiState, type Lajjitadi } from './overview';
@@ -106,6 +106,11 @@ export interface PlanetInfo {
    * column), null without the Lagna. The same the yogas read.
    */
   natures: { natural: Record<Planet9, Nature>; functional: Record<Planet9, Nature> | null };
+  /**
+   * Engine 0.20.0 on: the functional natures in each varga but the Rashi, by its own Lagna, its signs and its degrees
+   * (PL9's chart of a varga colours them so); null without a Lagna.
+   */
+  vargaNatures: Partial<Record<ClassicalVargaName, Record<Planet9, Nature> | null>>;
   /** PL9's natural relations of the nine, Rahu and Ketu included: 1 friend, 0 neutral, -1 enemy. */
   naturalRelations: Record<Planet9, Record<Planet9, -1 | 0 | 1>>;
   /** The temporal relations by the birth chart's signs: 1 friend, -1 enemy (PL9's "Tatkalika"). */
@@ -196,5 +201,9 @@ export function computePlanetInfo(eph: Ephemeris, input: ChartInput, options: Pl
   const nama = Object.fromEntries(Object.entries(navamshaOf).map(([pt, pada]) => [pt, BY_PADA_NAAMAKSHAR[pada!] ?? null])) as PlanetInfo['nama'];
   const withLagna = lagna ? { ...longitudes, lagna: lagna.longitude } : longitudes;
   const natures = { natural: naturalNatures(longitudes, natureTable), functional: functionalNatures(withLagna, natureTable) };
-  return { fidelity: core.fidelity, anka, points, deities, vargaDegrees, navamshas, navamshaOf, nama, natures, lagnaMrityuBhaga: lagna ? mrityuBhaga('lagna', lagna.longitude) : null, naturalRelations: NATURAL_RELATIONS_9, temporalRelations: temporalRelations(longitudes), compoundRelations: compoundRelations(longitudes), missing };
+  // A varga's longitudes: its sign and the degree within it (the D30, which has none, at its sign's middle).
+  const inVarga = (lon: number, v: ClassicalVargaName) => vargaSign(lon, v, f) * 30 + (vargaDegree(lon, v) ?? 15);
+  const vargaNatures: PlanetInfo['vargaNatures'] = Object.fromEntries(CLASSICAL_VARGAS.filter((v) => v !== 'D1').map((v) => [v, functionalNatures(
+    Object.fromEntries(Object.entries(withLagna).map(([k, lon]) => [k, inVarga(lon as number, v)])) as typeof withLagna, natureTable)]));
+  return { fidelity: core.fidelity, anka, points, deities, vargaDegrees, navamshas, navamshaOf, nama, natures, vargaNatures, lagnaMrityuBhaga: lagna ? mrityuBhaga('lagna', lagna.longitude) : null, naturalRelations: NATURAL_RELATIONS_9, temporalRelations: temporalRelations(longitudes), compoundRelations: compoundRelations(longitudes), missing };
 }

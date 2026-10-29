@@ -60,6 +60,13 @@ After the two reductions:
   5 (Saturn).
 - **Sodhya Pinda:** the sum of the two.
 
+## In a varga
+
+With `varga` (engine 0.20.0; any classical varga, the Rashi by default) the eight contributors take their signs in
+that varga and the tables are counted over them, as PL9's chart of a varga writes its points (Advanced options,
+"Show Ashtakavarga scores"). Checked on REF 0010 against PL9's captures: the Sarvashtakavarga of the D1 and of the
+D9, all twelve signs.
+
 ## Options
 
 - **Ashtakavarga: Parashara** (`method: 'parashara'`): in `pl9` mode, the

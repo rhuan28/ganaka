@@ -84,6 +84,16 @@ describe('computeAshtakavarga', () => {
     expect(av.options).toEqual({ method: 'varahamihira', ekadhipatya: 'parashara', virgoMultiplier: 6 });
     expect(() => computeAshtakavarga(fakeSky, { ...input, latitude: 89 })).toThrow(LagnaUndefinedError);
   });
+  it("counts a varga's signs when asked, and refuses a varga it does not know", async () => {
+    const { ashtakavarga, computeAshtakavarga, computePositions, InvalidOptionError, vargaSign } = await import('../src/index');
+    const { fakeSky } = await import('./fakeSky');
+    const pos = computePositions(fakeSky, input, { fidelity: 'pl9' });
+    const signs = Object.fromEntries(['sun', 'moon', 'mars', 'mercury', 'jupiter', 'venus', 'saturn', 'lagna'].map((p) => [p, vargaSign(pos.points[p as 'sun']!.longitude, 'D9', 'pl9')]));
+    const d9 = computeAshtakavarga(fakeSky, input, {}, { fidelity: 'pl9' }, 'D9');
+    expect(d9.sarva).toEqual(ashtakavarga(signs as never, {}, 'pl9').sarva);
+    expect(d9.varga).toBe('D9');
+    expect(() => computeAshtakavarga(fakeSky, input, {}, undefined, 'D5' as 'D9')).toThrow(InvalidOptionError);
+  });
   it('checks its options', async () => {
     const { computeAshtakavarga, InvalidOptionError } = await import('../src/index');
     const { fakeSky } = await import('./fakeSky');

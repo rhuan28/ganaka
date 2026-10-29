@@ -8,6 +8,7 @@ import { ayanamshaFrame } from '../ayanamsha';
 import { houseCusps, midheavenLongitude } from '../houses';
 import { ephemerisInstant } from '../planets';
 import { norm360 } from '../zodiac';
+import { CLASSICAL_VARGAS, vargaSign, type ClassicalVargaName } from '../vargas';
 import { SEVEN } from './dignity';
 import { cheshta, inCheshtaSeries, type CheshtaPlanet } from './shadbala/cheshta';
 import { shadbalaDay } from './shadbala/day';
@@ -20,8 +21,14 @@ const AV_OPTION_VALUES: Record<keyof AshtakavargaOptions, readonly unknown[]> = 
   method: ['varahamihira', 'parashara'], ekadhipatya: ['parashara', 'other'], virgoMultiplier: [6, 5],
 };
 
-/** The Ashtakavarga of a chart, with the options it was computed with. See docs/spec/strengths/ashtakavarga.md. */
-export function computeAshtakavarga(eph: Ephemeris, input: ChartInput, options: Partial<AshtakavargaOptions> = {}, coreOptions?: Partial<CoreOptions>): Ashtakavarga & { options: AshtakavargaOptions; fidelity: Fidelity } {
+/**
+ * The Ashtakavarga of a chart, with the options it was computed with. See docs/spec/strengths/ashtakavarga.md.
+ * `varga`: the divisional chart whose signs it counts, as PL9's chart of a varga shows its points (the Rashi by default).
+ */
+export function computeAshtakavarga(
+  eph: Ephemeris, input: ChartInput, options: Partial<AshtakavargaOptions> = {}, coreOptions?: Partial<CoreOptions>, varga: ClassicalVargaName = 'D1',
+): Ashtakavarga & { options: AshtakavargaOptions; fidelity: Fidelity; varga: ClassicalVargaName } {
+  if (!(CLASSICAL_VARGAS as readonly string[]).includes(varga)) throw new InvalidOptionError('varga', `must be one of ${CLASSICAL_VARGAS.join(', ')}`);
   for (const [k, v] of Object.entries(options)) {
     if (!Object.hasOwn(AV_OPTION_VALUES, k)) throw new InvalidOptionError(k, 'unknown option');
     const allowed = AV_OPTION_VALUES[k as keyof AshtakavargaOptions];
@@ -32,9 +39,9 @@ export function computeAshtakavarga(eph: Ephemeris, input: ChartInput, options: 
   const positions = computePositions(eph, input, coreOptions);
   const lagna = positions.points.lagna;
   if (!lagna) throw new LagnaUndefinedError(input.latitude);
-  const signOf = (longitude: number) => Math.floor(norm360(longitude) / 30);
+  const signOf = (longitude: number) => (varga === 'D1' ? Math.floor(norm360(longitude) / 30) : vargaSign(longitude, varga, fidelity));
   const signs = { ...Object.fromEntries(AV_PLANETS.map((p) => [p, signOf(positions.points[p].longitude)])), lagna: signOf(lagna.longitude) } as AvSigns;
-  return { ...ashtakavarga(signs, o, fidelity), options: o, fidelity };
+  return { ...ashtakavarga(signs, o, fidelity), options: o, fidelity, varga };
 }
 
 const SB_OPTION_VALUES: Record<keyof ShadbalaOptions, readonly unknown[]> = {

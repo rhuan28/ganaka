@@ -63,4 +63,15 @@ describe('the navamsha grid', () => {
     expect(info.natures.natural.jupiter).toBe('benefic');
     expect(computePlanetInfo(fakeSky, { ...birth, latitude: 89 }, {}, { fidelity: 'corrected' }).natures.functional).toBeNull();
   });
+  it("gives each varga's functional natures by its own Lagna, signs and degrees", async () => {
+    const { computePositions, functionalNatures, resolveNatures, vargaSign } = await import('../src/index');
+    const birth = { jdUt: 2449865.4694144, latitude: 44.2377, longitudeEast: 150.6744 };
+    const info = computePlanetInfo(fakeSky, birth, {}, { fidelity: 'pl9' });
+    const pos = computePositions(fakeSky, birth, { fidelity: 'pl9' });
+    const at = (lon: number) => vargaSign(lon, 'D9', 'pl9') * 30 + vargaDegree(lon, 'D9')!;
+    const lons = Object.fromEntries(Object.entries(pos.points).filter(([k]) => ['sun', 'moon', 'mars', 'mercury', 'jupiter', 'venus', 'saturn', 'rahu', 'ketu', 'lagna'].includes(k)).map(([k, p]) => [k, at(p!.longitude)]));
+    expect(info.vargaNatures.D9).toEqual(functionalNatures(lons as never, resolveNatures(undefined)));
+    expect(Object.keys(info.vargaNatures)).toHaveLength(15);
+    expect(computePlanetInfo(fakeSky, { ...birth, latitude: 89 }, {}, { fidelity: 'pl9' }).vargaNatures.D9).toBeNull();
+  });
 });
