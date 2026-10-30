@@ -83,7 +83,16 @@ export function shadbala(x: ShadbalaInputs, options: Partial<ShadbalaOptions> = 
     const strong = [sthana >= STRONG.sthana[g], dg >= STRONG.dig[g], kala >= STRONG.kala[g], kal.ayana >= STRONG.ayana[g], cheshta >= STRONG.cheshta[g]].filter(Boolean).length;
     rows[p] = { ...sth, sthana, dig: dg, ...kal, kala, cheshta, naisargika, drik: dk, total, rupas: total / 60, minimum: MINIMUM[p], ratio: total / MINIMUM[p], rank: 0, ishta, kashta: 60 - ishta, strong };
   }
-  [...SEVEN].sort((a, b) => rows[b].ratio - rows[a].ratio).forEach((p, i) => { rows[p].rank = i + 1; });
+  // The rank as PL9 prints it (inferred from its pages): the ratios to two decimals, sorted by selection from the Sun
+  // to Saturn, the first of a tie taken and swapped into place; a tie can thus put a lower exact ratio first.
+  const order = [...SEVEN];
+  const key = (p: (typeof SEVEN)[number]) => Math.round(rows[p].ratio * 100) / 100;
+  for (let i = 0; i < order.length; i++) {
+    let best = i;
+    for (let j = i + 1; j < order.length; j++) if (key(order[j]!) > key(order[best]!)) best = j;
+    [order[i], order[best]] = [order[best]!, order[i]!];
+  }
+  order.forEach((p, i) => { rows[p].rank = i + 1; });
   return { planets: rows, war: war(x, rows) };
 }
 

@@ -40,3 +40,47 @@ export function gulikaLongitude(eph: Ephemeris, jdUt: number, latitude: number, 
   const instant = start + (length * part) / 8;
   return lagnaLongitude(eph, instant, latitude, longitudeEast, frame.lagnaAyanamsha(instant), frame.fidelity);
 }
+
+
+/** The Gulikaadi group: each of the seven weekday lords' upagraha, in the weekday order. */
+export const GULIKAADI = [
+  { name: 'kaalavela', lord: 'sun' },
+  { name: 'paridhi', lord: 'moon' },
+  { name: 'mrityu', lord: 'mars' },
+  { name: 'ardhaprahara', lord: 'mercury' },
+  { name: 'yamakantaka', lord: 'jupiter' },
+  { name: 'kodanda', lord: 'venus' },
+  { name: 'gulika', lord: 'saturn' },
+] as const;
+
+export interface GulikaadiRow {
+  name: (typeof GULIKAADI)[number]['name'];
+  lord: (typeof GULIKAADI)[number]['lord'];
+  /** Which eighth of the day or the night, 1 to 7 (the eighth has no lord). */
+  part: number;
+  /** When the part begins and ends, Julian days UT. */
+  start: number;
+  end: number;
+  /** The Lagna at its beginning (Parashara's method) and at its end (Kalidasa's), sidereal longitudes. */
+  beginning: number;
+  ending: number;
+}
+
+/**
+ * The Gulikaadi group as PL9 prints it (read in PL9): the day, or the night, in eight equal parts, the first ruled by
+ * the lord of the weekday by day and by the lord of the fifth weekday from it by night, the others following the weekday
+ * order; each lord's upagraha is the Lagna at the beginning and at the end of its part. Gulika is Saturn's.
+ */
+export function gulikaadi(eph: Ephemeris, jdUt: number, latitude: number, longitudeEast: number, frame: AyanamshaFrame, utcOffsetHours = 0, day?: DayFrame): { isDay: boolean; weekday: number; rows: GulikaadiRow[] } {
+  const f = day ?? dayFrame(eph, jdUt, latitude, longitudeEast, frame);
+  const { weekday, start, length } = dayPortion(f, jdUt, utcOffsetHours);
+  const first = f.isDay ? weekday : (weekday + 4) % 7;
+  const lagnaAt = (t: number) => lagnaLongitude(eph, t, latitude, longitudeEast, frame.lagnaAyanamsha(t), frame.fidelity);
+  const rows = GULIKAADI.map((u, lord) => {
+    const part = ((lord - first + 7) % 7) + 1;
+    const a = start + (length * (part - 1)) / 8;
+    const b = start + (length * part) / 8;
+    return { ...u, part, start: a, end: b, beginning: lagnaAt(a), ending: lagnaAt(b) };
+  });
+  return { isDay: f.isDay, weekday, rows };
+}

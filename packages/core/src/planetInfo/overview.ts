@@ -16,8 +16,8 @@ const SEVEN = ['sun', 'moon', 'mars', 'mercury', 'jupiter', 'venus', 'saturn'] a
 type Seven = (typeof SEVEN)[number];
 /** The points of debilitation, in degrees from 0° Aries. */
 const DEBILITATION: Record<Seven, number> = { sun: 190, moon: 213, mars: 118, mercury: 345, jupiter: 275, venus: 177, saturn: 20 };
-/** The full sign aspects beyond the 7th, by the count of signs from the planet. */
-const FULL: Partial<Record<Planet9, number[]>> = { mars: [4, 8], jupiter: [5, 9], saturn: [3, 10] };
+/** The full sign aspects beyond the 7th, by the count of signs from the planet; the nodes' 5th and 9th as PL9's Lajjitadi reads them. */
+const FULL: Partial<Record<Planet9, number[]>> = { mars: [4, 8], jupiter: [5, 9], saturn: [3, 10], rahu: [5, 9], ketu: [5, 9] };
 const NINE: Planet9[] = ['sun', 'moon', 'mars', 'mercury', 'jupiter', 'venus', 'saturn', 'rahu', 'ketu'];
 
 export type JagradadiState = 'jagrat' | 'swapna' | 'sushupti';

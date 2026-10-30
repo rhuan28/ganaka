@@ -132,30 +132,25 @@ fixtures, the second cycle included: 0 failures.
 `rashiChainAt` gives the Narayana, the Lagna Kendradi and the Drig at an
 instant by the same counts, to five levels.
 
-## Sree Lagna Kendradi (not given)
+## Sree Lagna Kendradi
 
-Read in the executable; refused (`NotImplementedOptionError`) because its
-balance does not match PL9 in a quarter of the charts.
+Read in the executable (engine 0.21.0). Given in `pl9` fidelity when the Sree Lagna, before it is brought back into
+the zodiac, is under 360°; refused (`NotImplementedOptionError`) past it, where PL9 counts the first sign 13 to 24 and
+reads the years beyond the end of its table, which follow no rule. The `corrected` fidelity wraps the sign.
 
-- **First sign:** the sign of the Sree Lagna, the Moon's arc in its nakshatra
-  (the span taken as 13.3333°) times 27, added to the Lagna (`sreeLagna()`).
-- **Balance:** its degrees in the sign over 30 times the years of the first
-  sign.
-- **Direction of the mahadashas:** forward from an odd sign, backward from an
-  even one; forward with Saturn in it; Ketu in it reverses the direction. The
-  order is the kendradi one, stepping on from run to run as the Lagna
-  Kendradi.
-- **Antardashas:** from the mahadasha sign itself, the kendras first, in its
-  direction: forward from an odd sign, backward from an even one; forward with
-  Saturn in it; backward whenever Ketu is in it (not a reversal).
-- **Years and rows:** as the Narayana, Lagna Kendradi and Drig (above).
+- **Sree Lagna:** the Moon's arc in its nakshatra (the span taken as 13.3333°) times 27, added to the Lagna, not
+  wrapped (`sreeLagnaUnwrapped()`; `sreeLagna()` wraps it).
+- **Balance:** its degrees in the sign over 30 times the years of the first sign: the first mahadasha starts that
+  part of its length before birth, and the rows from its own start.
+- **Mahadashas:** forward from an odd sign, backward from an even one; forward with Saturn in it; Ketu in it
+  reverses the direction. The kendradi order, stepping on from run to run as the Lagna Kendradi (`mahadashaAt`).
+- **Antardashas:** from the mahadasha sign, the kendras first; backward with Ketu in the sign (not a reversal), else
+  forward with Saturn in it, else forward from an odd sign and backward from an even one. Past the twelfth they go on
+  in the kendradi order run after run.
+- **Years and rows:** PL9's table, as the Narayana, Lagna Kendradi and Drig (above).
 
-Checked on the worksheet cells (135 charts with the observed options): 79 match
-with the balance above; in 32 the rows are right but all shifted, as if PL9's
-Sree Lagna were up to 18° behind or 41° ahead of `sreeLagna()` in the same
-sign; in 24, among them the charts born after the print, the first mahadasha
-has fewer years than the count gives. The balance PL9 uses there was not found,
-nor how it computes the Sree Lagna it shows as a point.
+Checked on the worksheet cells (135 charts): every date of the 77 charts under 360° but REF 0098's antardasha order
+from 2026-08 (set apart); the 58 others refused.
 
 ## Options
 

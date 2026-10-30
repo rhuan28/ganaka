@@ -39,6 +39,10 @@ can change a number, so that a client that keeps results can tell old ones from 
   - strengths: `/v1/strengths/shadbala`, `/v1/strengths/bhava-bala`, `/v1/strengths/ashtakavarga` (with `varga`, a
     classical varga's, from 0.20.0), `/v1/strengths/vimshopaka`;
   - time: `/v1/transits`, `/v1/panchanga`, `/v1/varshaphala`, `/v1/muhurta`, `/v1/panch-pakshi` (with `at`);
+    `/v1/panchanga` of the birth (no `at`) adds, from 0.21.0, `astronomy` (the day counts, the Moon's sign ingresses,
+    the new Moons before and after, the Moon's rise and set, the planetary hour and its lord, the part of the day, the
+    tropical sign of the Sun and the Tamil solar date, the last one by our own rule) and `ayanamshaShown` (the
+    ayanamsha plus the nutation, as PL9 prints it; the positions keep the other);
     `/v1/transits` with `vargas` (any of `D9` and `D10`) adds each varga's table of the transit as `vargaTables`;
   - solar returns: `/v1/varshaphala` with `period` (`year` by default, `month` or `day`) casts the monthly or daily
     return of the year, its month and day of age read from `at` or given as `months` (0 to 11) and `days` (0 to 29)
@@ -57,6 +61,8 @@ can change a number, so that a client that keeps results can tell old ones from 
     half day, about 40 ms a year: a miss over 60 years holds the service for some 2.5 s;
   - events: `/v1/events`, with `birth` and up to 20 `events`, each `{ jdUt, utcOffsetHours }`, answering the dashas
     running at each as PL9's Events pages read them (the event's clock taken as UT);
+  - upagrahas: `/v1/upagrahas` (0.21.0), with `birth`, answering the Gulikaadi group (each of the seven weekday
+    lords' eighth of the day or night, and the Lagna at its beginning and at its end) and the Dhoomadi group;
   - natal tables (see [natal-tables.md](natal-tables.md)): `/v1/sunrise-chart`, `/v1/aspects`, `/v1/tarabala`,
     `/v1/lordships` (with `varga`, one of the sixteen classical vargas), `/v1/dispositors`, `/v1/house-aspects` (by
     house, the aspect of each planet on it and on it and its lord, as whole percents);
@@ -73,8 +79,9 @@ can change a number, so that a client that keeps results can tell old ones from 
     body (declination, Kranti, speed against the mean, combustion, the Deeptadi and Shayanadi avasthas, Hemmed, final
     dispositor, argala, the navamsha number and age, the Shashtiamsha, and the others the spec lists), the deity of
     each point in the sixteen classical vargas, the degrees within the equal vargas, the 108 navamshas numbered from the
-    Lagna's and each point's pada syllable, `nama`, the nine's natures, `natures`, and the Grahas Overview's rows (see [natal-tables.md](natal-tables.md)), the natural relations of the nine, and `missing` for what a
-    chart cannot give. Its own options go in `planetInfo`: `anka`, PL9's Anka value, an integer from 1 to 5 (1 when
+    Lagna's and each point's pada syllable, `nama`, the nine's natures, `natures`, and the Grahas Overview's rows (see [natal-tables.md](natal-tables.md)), the natural relations of the nine, `health` (0.21.0: each planet's place in the three body
+    schemes of PL9's Health sheet, as indices: the subtle, by house and decanate; the gross, by sign and by house; the
+    nakshatra row, Abhijit the 22nd), and `missing` for what a chart cannot give. Its own options go in `planetInfo`: `anka`, PL9's Anka value, an integer from 1 to 5 (1 when
     absent; the answer says which was used);
   - compatibility (see [compatibility.md](compatibility.md)): `/v1/compatibility`, with `native` and `partner`, each
     `{ birth, sex }` (`male` or `female`), answering the Ashtakoota, the Dashkoota, the distances between the two charts'

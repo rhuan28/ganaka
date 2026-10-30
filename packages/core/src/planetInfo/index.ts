@@ -13,6 +13,7 @@ import { shashtiamsha, vargaDegree, vargaDeity } from './deities';
 import { CLASSICAL_VARGAS, vargaSign, type ClassicalVargaName } from '../vargas';
 import { norm360 } from '../zodiac';
 import { BY_PADA_NAAMAKSHAR } from '../panchanga/tables';
+import { healthSchemes, type HealthSchemes } from './health';
 import { karakaForSelf, lajjitadi, natalBaladi, natalJagradadi, OVERVIEW_PLANETS, percentExalted, percentFull, type BaladiState, type JagradadiState, type Lajjitadi } from './overview';
 import { argala, navamshaAge, navamshaNumber, dominance, goodVargas, houseEffect, pushkaraNavamsa, housesRuled, mrityuBhaga, navamsaFromRashi, rays, DASHAVARGA, SHADVARGA, shadvargaSignLords, shadvargaElements, type SignQuality } from './columns';
 
@@ -117,6 +118,8 @@ export interface PlanetInfo {
   temporalRelations: Record<Planet9, Record<Planet9, -1 | 0 | 1>>;
   /** The compound relations, natural plus temporal: 2 great friend to -2 great enemy (PL9's "Panchadha"). */
   compoundRelations: Record<Planet9, Record<Planet9, -2 | -1 | 0 | 1 | 2>>;
+  /** Engine 0.21.0 on: each planet's place in the Health sheet's three body schemes; null without a Lagna. */
+  health: Record<Planet9, HealthSchemes> | null;
   /** What a chart cannot give (houses without a Lagna, the sunrise beyond the polar circle), by field. */
   missing: { field: string; reason: string }[];
 }
@@ -205,5 +208,5 @@ export function computePlanetInfo(eph: Ephemeris, input: ChartInput, options: Pl
   const inVarga = (lon: number, v: ClassicalVargaName) => vargaSign(lon, v, f) * 30 + (vargaDegree(lon, v) ?? 15);
   const vargaNatures: PlanetInfo['vargaNatures'] = Object.fromEntries(CLASSICAL_VARGAS.filter((v) => v !== 'D1').map((v) => [v, functionalNatures(
     Object.fromEntries(Object.entries(withLagna).map(([k, lon]) => [k, inVarga(lon as number, v)])) as typeof withLagna, natureTable)]));
-  return { fidelity: core.fidelity, anka, points, deities, vargaDegrees, navamshas, navamshaOf, nama, natures, vargaNatures, lagnaMrityuBhaga: lagna ? mrityuBhaga('lagna', lagna.longitude) : null, naturalRelations: NATURAL_RELATIONS_9, temporalRelations: temporalRelations(longitudes), compoundRelations: compoundRelations(longitudes), missing };
+  return { fidelity: core.fidelity, anka, points, health: lagna ? healthSchemes(longitudes, lagna.longitude) : null, deities, vargaDegrees, navamshas, navamshaOf, nama, natures, vargaNatures, lagnaMrityuBhaga: lagna ? mrityuBhaga('lagna', lagna.longitude) : null, naturalRelations: NATURAL_RELATIONS_9, temporalRelations: temporalRelations(longitudes), compoundRelations: compoundRelations(longitudes), missing };
 }

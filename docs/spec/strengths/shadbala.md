@@ -160,10 +160,10 @@ option). It can be negative, and so can the total.
 - Total = Sthana + Dig + Kala + Cheshta + Naisargika + Drik; rupas = total / 60.
 - Minimums: Sun 390, Moon 360, Mars 300, Mercury 420, Jupiter 390, Venus 330,
   Saturn 300; ratio = total / minimum.
-- Ranking: 1 for the highest ratio, as PL9 keeps it in memory and as
-  its ranking report key gives it. **Pending**: the printed page
-  ranks the ratio rounded to two places, and when two ratios tie
-  that way it breaks the tie by a rule not yet found; the `core` follows the exact ratio.
+- Ranking (engine 0.21.0, inferred from the printed pages): the ratio rounded to two places, sorted by selection from
+  the Sun to Saturn: at each place the largest of the rest, the first found on a tie, swapped into place. A tie can
+  thus put a planet with a lower exact ratio first. PL9's own rank for its other uses counts the planets with a
+  strictly greater exact ratio.
 - Strong strengths: how many of Sthana, Dig, Kala, Ayana and Cheshta reach the
   minimum of the planet's group (Sun, Jupiter and Mercury; Moon and Venus; Mars and
   Saturn): Sthana 165/133/96, Dig 35/50/30, Kala 112/100/67, Ayana
@@ -196,8 +196,7 @@ difference of the totals, positive for the winner and negative for the loser.
 
 - each printed part of each planet within half a hundredth of PL9 (plus 1e-5, the
   `core`'s error measured in memory), minimums and strong strengths equal;
-- the ranking, equal, except where the printed ratio ties with another
-  planet's: there, listed separately as pending;
+- the ranking, equal, ties included (131 charts, and every option set);
 - the charts outside the Cheshta series, listed and not checked;
 - each alternative of the five options, printed in PL9 on 30 charts it
   affects (`fixtures-shadbala-options/<option>-<value>`), with the same tolerance;

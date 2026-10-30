@@ -67,8 +67,17 @@ describe('the rashi dashas of REF 0010', () => {
     expect(inDay(s[1]!.start, 27, 5, 2003)).toBe(true);
     expect(inDay(s[3]!.start, 27, 5, 2019)).toBe(true);
   });
-  it('refuses the one not measured yet', () => {
-    expect(() => run('sreeLagnaKendradi')).toThrow(NotImplementedOptionError);
+  it('starts the Sree Lagna Kendradi in Cancer before birth, by the part of it gone', () => {
+    // Sree Lagna: the Moon 0.22 degree into Krittika, times 27, on the Cancer Lagna: Cancer 22 degrees.
+    const s = run('sreeLagnaKendradi');
+    expect(s[0]!.lord.slice(0, 3)).toBe('can');
+    expect(s[0]!.start).toBeLessThan(JD10);
+    expect(s[0]!.sub!.length).toBeGreaterThan(0);
+  });
+  it('refuses the Sree Lagna Kendradi when Sree Lagna passes 360 degrees, as PL9 reads past its table', () => {
+    const late: RashiChart = { ...REF10, lagna: 350, longitudes: { ...REF10.longitudes, moon: 26 } };
+    expect(() => rashiDashas('sreeLagnaKendradi', late, JD10, { yearDays: A, levels: 2, cycles: 1 }, 'pl9')).toThrow(NotImplementedOptionError);
+    expect(rashiDashas('sreeLagnaKendradi', late, JD10, { yearDays: A, levels: 1, cycles: 1 }, 'corrected').length).toBeGreaterThan(0);
   });
 });
 

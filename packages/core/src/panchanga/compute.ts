@@ -1,12 +1,13 @@
 import type { Ephemeris } from '@reverse/ephemeris';
 import { ayanamshaFrame } from '../ayanamsha';
 import type { Fidelity } from '../fidelity';
-import { LagnaUndefinedError, pl9LocalSiderealTime } from '../lagna';
+import { LagnaUndefinedError, pl9LocalSiderealTime, pl9NutationThirteenTerms } from '../lagna';
 import { resolveOptions, type CoreOptions } from '../options';
 import { computePositions, type ChartInput } from '../positions';
 import { shadbalaDay } from '../strengths/shadbala/day';
 import { SunriseUndefinedError } from '../sunrise';
 import { nakshatraOf, signOf } from '../zodiac';
+import { birthAstronomy, type BirthAstronomy } from './astronomy';
 import { lunarDate, vikramSamvat, type LunarDate } from './calendar';
 import { KARANAS, TITHIS, YOGAS, karanaName, karanaOf, tithiOf, yogaOf } from './elements';
 import { elementEnd, elementStart, type PanchangaKind } from './ends';
@@ -137,6 +138,13 @@ export interface BirthPanchanga extends Panchanga {
   saka: number;
   avakhada: Record<string, string | null>;
   ghat: Record<string, string | null>;
+  /** The astronomical details (null where the Sun does not rise or there is no Lagna). */
+  astronomy: BirthAstronomy | null;
+  /**
+   * The ayanamsha as PL9 prints it, degrees: the one the positions take plus the nutation in longitude (read in PL9).
+   * Display only: the positions and the Lagna keep the other.
+   */
+  ayanamshaShown: number;
 }
 
 /**
@@ -179,6 +187,8 @@ export function computeBirthPanchanga(eph: Ephemeris, natal: ChartInput, coreOpt
       nakshatraPaya: T.BY_NAKSHATRA_NAKSHATRAPAYA[nak]!,
       rashiPaya: lagna === undefined ? null : PAYA_BY_HOUSE[(moonSign - signOf(lagna) + 12) % 12]!,
     },
+    ayanamshaShown: pos.ayanamshaDegrees + pl9NutationThirteenTerms(natal.jdUt, p.fidelity),
+    astronomy: p.sunrise !== null && p.sunset !== null && p.vara !== null ? birthAstronomy(eph, natal, p.sunrise, p.sunset, p.vara, coreOptions) : null,
     ghat: {
       month: T.GHAT_MONTH[moonSign]!, tithi: T.GHAT_TITHI[moonSign]!, day: T.GHAT_DAY[moonSign]!, nakshatra: T.GHAT_NAKSHATRA[moonSign]!,
       yoga: T.GHAT_YOGA[moonSign]!, karana: T.GHAT_KARANA[moonSign]!, prahar: T.GHAT_PRAHAR[moonSign]!, chandra: T.GHAT_CHANDRA[moonSign]!,

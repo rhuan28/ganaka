@@ -8,3 +8,4 @@ export * from './tithiPravesh';
 export * from './table';
 export * from './sunriseChart';
 export * from './panchPakshi';
+export { birthAstronomy, tamilDate, type BirthAstronomy, type DayPart, type TamilDate } from './astronomy';

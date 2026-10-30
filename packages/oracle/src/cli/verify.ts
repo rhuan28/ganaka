@@ -303,10 +303,22 @@ try {
   lines.push('No fixture extracted.');
   failed = true;
 }
-/** Known and unexplained differences, set apart from a date on: none now (REF 0090's was the nodes' dignity). */
-const RASHI_KNOWN: Record<string, { systems: string[]; from: string; why: string }> = {};
+/** Known and unexplained differences, set apart from a date on (REF 0090's was the nodes' dignity). */
+const RASHI_KNOWN: Record<string, { systems: string[]; from: string; why: string }> = {
+  'ref-0098': { systems: ['sreeLagnaKendradi'], from: '2026-08-15', why: 'an antardasha of the Sree Lagna Kendradi whose order is not read yet' },
+};
 const rashiKnown: string[] = [];
-const NOT_MEASURED = new Set(['sreeLagnaKendradi']);
+const NOT_MEASURED = new Set<string>();
+/** A system the core refuses for a chart (the Sree Lagna Kendradi past 360 degrees, which PL9 reads beyond its table). */
+const refused = (d: DashaFixture, input: Fixture['input'], system: string) => {
+  try {
+    dashasOf(d, input)(system as DashaSystem);
+    return false;
+  } catch (e) {
+    if (e instanceof Error && e.name === 'NotImplementedOptionError') return true;
+    throw e;
+  }
+};
 type RashiTally = Map<string, { charts: number; periods: number; failures: number; atLimit: number; apart: number; known: number }>;
 const rashiTally: RashiTally = new Map();
 const rashiFailures: string[] = [];
@@ -323,7 +335,7 @@ for (const d of set) {
     const t = tally.get(system) ?? { charts: 0, periods: 0, failures: 0, atLimit: 0, apart: 0, known: 0 };
     tally.set(system, t);
     t.charts++;
-    if (NOT_MEASURED.has(system)) { t.apart += own.length; continue; }
+    if (NOT_MEASURED.has(system) || refused(d, input, system)) { t.apart += own.length; continue; }
     let kept = own;
     const known = RASHI_KNOWN[d.id];
     if (known && known.systems.includes(system)) {

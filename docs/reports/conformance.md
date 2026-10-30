@@ -182,7 +182,7 @@ Charts: 135. Dates with the day only, with the same tolerance as the Kalachakra.
 | navamsha | 135 | 42120 | 0 | 0 | 0 | 0 |
 | narayana | 135 | 22221 | 0 | 0 | 0 | 0 |
 | lagnaKendradi | 135 | 22221 | 0 | 0 | 0 | 0 |
-| sreeLagnaKendradi (not measured) | 135 | 0 | 0 | 0 | 2025 | 0 |
+| sreeLagnaKendradi | 135 | 1140 | 0 | 0 | 870 | 15 |
 | shoola | 135 | 21060 | 0 | 0 | 0 | 0 |
 | padanadhamsa | 135 | 21060 | 0 | 0 | 0 | 0 |
 
@@ -190,13 +190,17 @@ With other options of the Dashas tab (all the measured systems of the print mode
 
 | Set | Charts | Dates | Failures | At the limit | Not checked | Exception |
 |---|---|---|---|---|---|---|
-| antardashaStart-lord | 31 | 54752 | 0 | 0 | 465 | 0 |
-| charaAntarFromLord-true | 31 | 54752 | 0 | 0 | 465 | 0 |
-| charaMethod-parashara | 31 | 54741 | 0 | 0 | 465 | 0 |
-| charaMethod-parashara_charaAntarFromLord-true | 30 | 52950 | 0 | 0 | 450 | 0 |
-| mercuryExaltation-anywhere | 30 | 52824 | 0 | 0 | 450 | 0 |
-| padanadhamsaMethod-iranganti | 31 | 54752 | 0 | 0 | 465 | 0 |
-| rahuExaltation-gemini | 32 | 56558 | 0 | 0 | 480 | 0 |
+| antardashaStart-lord | 31 | 55022 | 0 | 0 | 195 | 0 |
+| charaAntarFromLord-true | 31 | 55022 | 0 | 0 | 195 | 0 |
+| charaMethod-parashara | 31 | 55011 | 0 | 0 | 195 | 0 |
+| charaMethod-parashara_charaAntarFromLord-true | 30 | 53205 | 0 | 0 | 195 | 0 |
+| mercuryExaltation-anywhere | 30 | 53079 | 0 | 0 | 195 | 0 |
+| padanadhamsaMethod-iranganti | 31 | 55022 | 0 | 0 | 195 | 0 |
+| rahuExaltation-gemini | 32 | 56843 | 0 | 0 | 195 | 0 |
+
+Known exceptions, unexplained, set apart:
+
+- ref-0098 sreeLagnaKendradi: 15 dates from 2026-08-15 on — an antardasha of the Sree Lagna Kendradi whose order is not read yet
 
 ## Ashtakavarga
 
@@ -213,7 +217,7 @@ Each printed value — the eight tables before and after each reduction, the pin
 
 | Charts | Checked | Values | Failures | Rank pending |
 |---|---|---|---|---|
-| 135 | 131 | 25676 | 0 | 44 |
+| 135 | 131 | 25676 | 0 | 0 |
 
 Each printed part within half a hundredth of the core; minimums and strong strengths equal. The ranking still differs where PL9 swaps planets with very close ratios (docs/spec/strengths/shadbala.md).
 
@@ -221,60 +225,13 @@ Outside PL9's Cheshta series, not checked: ref-0002, ref-0019, ref-0243, ref-025
 
 | Option | Charts | Values | Failures | Rank pending |
 |---|---|---|---|---|
-| digBala-kendras | 31 | 6076 | 0 | 2 |
-| drekkana-horaRatnam | 30 | 5880 | 0 | 7 |
-| jupiterMercuryDrik-quarter | 30 | 5880 | 0 | 6 |
-| mercuryDrik-benefic | 30 | 5880 | 0 | 2 |
-| mercuryPaksha-benefic | 33 | 6468 | 0 | 4 |
+| digBala-kendras | 31 | 6076 | 0 | 0 |
+| drekkana-horaRatnam | 30 | 5880 | 0 | 0 |
+| jupiterMercuryDrik-quarter | 30 | 5880 | 0 | 0 |
+| mercuryDrik-benefic | 30 | 5880 | 0 | 0 |
+| mercuryPaksha-benefic | 33 | 6468 | 0 | 0 |
 
 PL9's memory: 11 charts, 1694 values, each within a ten-thousandth of the core.
-
-| Chart | Rank pending |
-|---|---|
-| ref-0004 | rank sun: PL9 6, core 5 |
-| ref-0004 | rank mercury: PL9 5, core 6 |
-| ref-0018 | rank sun: PL9 7, core 6 |
-| ref-0018 | rank mercury: PL9 6, core 7 |
-| ref-0073 | rank sun: PL9 4, core 5 |
-| ref-0073 | rank saturn: PL9 5, core 4 |
-| ref-0077 | rank jupiter: PL9 6, core 7 |
-| ref-0077 | rank saturn: PL9 7, core 6 |
-| ref-0079 | rank moon: PL9 6, core 7 |
-| ref-0079 | rank mercury: PL9 7, core 6 |
-| ref-0096 | rank sun: PL9 3, core 4 |
-| ref-0096 | rank venus: PL9 4, core 3 |
-| ref-0099 | rank sun: PL9 5, core 6 |
-| ref-0099 | rank mercury: PL9 6, core 5 |
-| ref-0122 | rank moon: PL9 1, core 2 |
-| ref-0122 | rank saturn: PL9 2, core 1 |
-| ref-0126 | rank mars: PL9 6, core 5 |
-| ref-0126 | rank jupiter: PL9 5, core 6 |
-| ref-0140 | rank sun: PL9 4, core 3 |
-| ref-0140 | rank mercury: PL9 3, core 4 |
-| ref-0143 | rank moon: PL9 5, core 6 |
-| ref-0143 | rank saturn: PL9 6, core 5 |
-| ref-0209 | rank sun: PL9 5, core 4 |
-| ref-0209 | rank jupiter: PL9 4, core 5 |
-| ref-0223 | rank mars: PL9 1, core 2 |
-| ref-0223 | rank saturn: PL9 2, core 1 |
-| ref-0225 | rank venus: PL9 2, core 3 |
-| ref-0225 | rank saturn: PL9 3, core 2 |
-| ref-0254 | rank mercury: PL9 6, core 7 |
-| ref-0254 | rank saturn: PL9 7, core 6 |
-| ref-0261 | rank moon: PL9 1, core 2 |
-| ref-0261 | rank jupiter: PL9 7, core 6 |
-| ref-0261 | rank venus: PL9 6, core 7 |
-| ref-0261 | rank saturn: PL9 2, core 1 |
-| ref-0276 | rank moon: PL9 6, core 7 |
-| ref-0276 | rank mercury: PL9 7, core 6 |
-| ref-0277 | rank sun: PL9 5, core 4 |
-| ref-0277 | rank jupiter: PL9 4, core 5 |
-| ref-0280 | rank sun: PL9 4, core 5 |
-| ref-0280 | rank mars: PL9 2, core 3 |
-| ref-0280 | rank venus: PL9 3, core 2 |
-| ref-0280 | rank saturn: PL9 5, core 4 |
-| ref-0291 | rank mercury: PL9 3, core 4 |
-| ref-0291 | rank saturn: PL9 4, core 3 |
 
 ## Bhava Bala
 

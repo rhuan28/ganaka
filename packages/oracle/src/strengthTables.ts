@@ -117,11 +117,7 @@ export function verifyShadbala(shown: string[], sb: Shadbala): { values: number;
   const pending: string[] = [];
   const printedRatio = new Map(shown.filter((l) => l.startsWith('ratio ')).map((l) => [l.split(' ')[1]!, l.split(' ')[2]!]));
   const printedRank = new Map(shown.filter((l) => l.startsWith('rank ')).map((l) => [l.split(' ')[1]!, Number(l.split(' ')[2])]));
-  // Pending only where the printed ratio ties another planet's, and the core's rank is one PL9 gave that tied group.
-  const tied = (planet: string, rank: number) => {
-    const group = [...printedRatio].filter(([, v]) => v === printedRatio.get(planet)).map(([p]) => p);
-    return group.length > 1 && group.some((p) => printedRank.get(p) === rank);
-  };
+  // The ranks of tied ratios follow PL9's sort since engine 0.21.0 (core shadbala): none is set apart any more.
   for (const line of shown) {
     const [part, planet, value] = line.split(' ') as [keyof ShadbalaRow, keyof Shadbala['planets'], string];
     const computed = sb.planets[planet][part];
@@ -129,7 +125,7 @@ export function verifyShadbala(shown: string[], sb: Shadbala): { values: number;
     const same = COUNTS.has(part) ? computed === printed : Math.abs(computed - printed) <= 0.005 + 1e-5;
     if (same) continue;
     const message = `${part} ${planet}: PL9 ${value}, core ${COUNTS.has(part) ? computed : computed.toFixed(4)}`;
-    (part === 'rank' && tied(planet, computed) ? pending : failures).push(message);
+    failures.push(message);
   }
   return { values: shown.length, failures, pending };
 }

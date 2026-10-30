@@ -87,14 +87,12 @@ describe('the Shadbala lines', () => {
     expect(v.failures).toEqual([expect.stringMatching(/^dig sun: PL9 46\.81, core 46\.83/), 'rank sun: PL9 2, core 3', 'strong sun: PL9 5, core 4']);
     expect(v.pending).toEqual([]);
   });
-  it('set a rank apart as pending only where the printed ratio ties another planet', () => {
-    // Mars 1.27 and Mercury 1.35 printed; make Mars print 1.35 too and swap their ranks.
+  it('fails a rank that differs from the printed one, ties included', () => {
+    // Mars 1.27 and Mercury 1.35 printed; make Mars print 1.35 too and swap their ranks: the core's ties follow PL9's
+    // sort since 0.21.0, so a different rank is a failure, not set apart.
     const shown = parseStrengths(printed(sb)).sb.map((l) => (l.startsWith('ratio mars ') ? 'ratio mars 1.35' : l));
     const swapped = { ...sb, planets: { ...sb.planets, mars: { ...sb.planets.mars, ratio: 1.35, rank: 3 }, mercury: { ...sb.planets.mercury, rank: 4 } } };
-    expect(verifyShadbala(shown, swapped)).toEqual({ values: SHADBALA_PARTS.length * 7, failures: [], pending: ['rank mars: PL9 4, core 3', 'rank mercury: PL9 3, core 4'] });
-    // A rank outside the ranks PL9 gave the tied planets is a failure all the same.
-    const far = { ...swapped, planets: { ...swapped.planets, mars: { ...swapped.planets.mars, rank: 7 } } };
-    expect(verifyShadbala(shown, far).failures).toContain('rank mars: PL9 4, core 7');
+    expect(verifyShadbala(shown, swapped)).toEqual({ values: SHADBALA_PARTS.length * 7, failures: ['rank mars: PL9 4, core 3', 'rank mercury: PL9 3, core 4'], pending: [] });
   });
 });
 

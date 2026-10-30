@@ -236,6 +236,18 @@ interface Plan {
   complementary?: boolean;
   /** The sign of the n-th mahadasha (n from 0) in PL9's count, when it does not repeat the order cycle after cycle. */
   mahadashaAt?: (step: number) => number;
+  /** The antardashas of a sign run after run, when past the twelfth they go on in the kendradi order (PL9's table). */
+  subRuns?: (sign: number) => (run: number) => number[];
+}
+
+/**
+ * Direction of the Sree Lagna Kendradi's antardashas (read in PL9): backwards with Ketu in the sign, else forwards
+ * with Saturn in it, else forwards from an odd sign and backwards from an even one.
+ */
+function antardashaDirection(sign: number, chart: RashiChart): 1 | -1 {
+  if (signOf(chart.longitudes.ketu) === sign) return -1;
+  if (signOf(chart.longitudes.saturn) === sign) return 1;
+  return sign % 2 === 0 ? 1 : -1;
 }
 
 /**
@@ -250,8 +262,13 @@ const kendradiRun = (start: number, step: 1 | -1) => (run: number) =>
  * 13.3333 degrees, times 27, added to the Lagna.
  */
 export function sreeLagna(chart: RashiChart): number {
+  return norm360(sreeLagnaUnwrapped(chart));
+}
+
+/** Sree Lagna before it is brought back into the zodiac: PL9 counts its sign from this, 13 to 24 past 360 degrees. */
+export function sreeLagnaUnwrapped(chart: RashiChart): number {
   const moon = norm360(chart.longitudes.moon);
-  return norm360((moon - Math.floor(moon / (40 / 3)) * 13.3333) * 27 + chart.lagna);
+  return (moon - Math.floor(moon / (40 / 3)) * 13.3333) * 27 + norm360(chart.lagna);
 }
 
 const fromStronger = (chart: RashiChart, start: RashiDashaChoices['antardashaStart']) => (sign: number) => {
@@ -334,9 +351,11 @@ function plan(system: RashiDashaSystem, chart: RashiChart, choices: RashiDashaCh
       const first = signOf(sl);
       return {
         order: kendradi(first, rashiDirection(first, chart)), years, elapsed: ((sl % 30) / 30) * years(first),
-        // The antardashas: the kendras first from the sign itself, in its own direction.
-        subs: (sign) => kendradi(sign, rashiDirection(sign, chart)),
+        // The antardashas: the kendras first from the sign itself, in their own direction, run after run past the twelfth.
+        subs: (sign) => kendradi(sign, antardashaDirection(sign, chart)),
+        subRuns: (sign) => kendradiRun(sign, antardashaDirection(sign, chart)),
         runs: kendradiRun(first, rashiDirection(first, chart)), complementary: true,
+        mahadashaAt: fidelity === 'pl9' ? (n) => kendradiRun(first, rashiDirection(first, chart))(Math.floor(n / 12))[n % 12]! : undefined,
       };
     }
     case 'shoola':
@@ -378,11 +397,14 @@ const definedOnly = (o: object) => Object.fromEntries(Object.entries(o).filter((
 /**
  * The rashi dashas of PL9 that were measured: each run of twelve mahadashas from the first sign, each divided into
  * twelve equal antardashas. They begin at birth, without a balance. A sign of 0 years is passed over. In the pl9 mode
- * the Narayana, the Lagna Kendradi and the Drig are PL9's table (`pl9Table`). See docs/spec/dashas/rashi.md.
+ * the Narayana, the Lagna Kendradi, the Drig and the Sree Lagna Kendradi are PL9's table (`pl9Table`). See docs/spec/dashas/rashi.md.
  */
 export function rashiDashas(system: RashiDashaSystem, chart: RashiChart, jdUt: number, opts: RashiOptions, fidelity: Fidelity): DashaPeriod[] {
-  // Partly read in the executable; its later runs and sub-periods do not yet match PL9's cells.
-  if (system === 'sreeLagnaKendradi') throw new NotImplementedOptionError('system', `${system} (not measured yet)`);
+  // PL9 counts the first sign from Sree Lagna unwrapped: past 360 degrees it reads the years past the end of its table,
+  // which follow no rule (read in PL9). Those charts are refused in its fidelity; the corrected one wraps the sign.
+  if (system === 'sreeLagnaKendradi' && fidelity === 'pl9' && sreeLagnaUnwrapped(chart) >= 360) {
+    throw new NotImplementedOptionError('system', `${system} with Sree Lagna past 360 degrees, which PL9 reads beyond its table`);
+  }
   const p = plan(system, chart, { ...DEFAULT_RASHI_CHOICES, ...definedOnly(opts) }, opts.karakas ?? 7, fidelity);
   if (fidelity === 'pl9' && PL9_TABLE.has(system)) return pl9Table(p, jdUt, opts);
   // Corrected: the second run of these gives each sign 12 years less those of the first, as the classical rule has it.
@@ -408,7 +430,7 @@ export function rashiDashas(system: RashiDashaSystem, chart: RashiChart, jdUt: n
 }
 
 /** The systems whose table PL9 builds as `pl9Table` describes: their second cycle differs from the first. */
-const PL9_TABLE = new Set<RashiDashaSystem>(['narayana', 'lagnaKendradi', 'drig']);
+const PL9_TABLE = new Set<RashiDashaSystem>(['narayana', 'lagnaKendradi', 'drig', 'sreeLagnaKendradi']);
 /** How far past the end of a row PL9 looks up the next one: five minutes. */
 const PL9_ROW_STEP = 5 / 1440;
 
@@ -428,7 +450,9 @@ function pl9Table(p: Plan, jdUt: number, opts: RashiOptions): DashaPeriod[] {
   const years = (sign: number, count: number) => (Math.floor(count / 12) % 2 === 0 ? p.years(sign) : 12 - p.years(sign));
   const periods: DashaPeriod[] = [];
   const signs: number[] = [];
-  let t = jdUt;
+  // The first mahadasha starts before birth by the part of it gone (the Sree Lagna Kendradi's balance).
+  const begin = jdUt - (p.elapsed ?? 0) * opts.yearDays;
+  let t = begin;
   for (let n = 0; n < opts.cycles * 12; n++) {
     const sign = mahadashaAt(n);
     const y = years(sign, n);
@@ -439,7 +463,7 @@ function pl9Table(p: Plan, jdUt: number, opts: RashiOptions): DashaPeriod[] {
   }
   if (opts.levels < 2) return periods;
   for (const period of periods) period.sub = [];
-  let target = jdUt;
+  let target = begin;
   let k = 0;
   for (;;) {
     while (k < periods.length && periods[k]!.end < target) k++;
@@ -456,7 +480,8 @@ function pl9Table(p: Plan, jdUt: number, opts: RashiOptions): DashaPeriod[] {
       if (j % 12 === 11) block = end;
       if (length <= 0 || end < target) continue;
       if (Math.abs(end - period.end) < 1e-9) end = period.end;
-      period.sub!.push({ lord: SIGN_NAMES[order[j % 12]!]!, start, end, level: 2 });
+      const sub = p.subRuns ? p.subRuns(sign)(Math.floor(j / 12))[j % 12]! : order[j % 12]!;
+      period.sub!.push({ lord: SIGN_NAMES[sub]!, start, end, level: 2 });
       target = end + PL9_ROW_STEP;
       break;
     }
