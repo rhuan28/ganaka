@@ -2,6 +2,7 @@ import type { Ephemeris } from '@reverse/ephemeris';
 import { ayanamshaFrame } from '../ayanamsha';
 import { lagnaLongitude } from '../lagna';
 import { resolveOptions, type CoreOptions } from '../options';
+import { planetLongitude } from '../planets';
 import { computePositions, type ChartInput } from '../positions';
 import { signOf } from '../zodiac';
 import { newMoon } from './calendar';
@@ -67,10 +68,10 @@ const TAMIL_CUTOFF_HOURS = 13;
 export function birthAstronomy(eph: Ephemeris, natal: ChartInput, sunrise: number, sunset: number, vara: number, coreOptions?: Partial<CoreOptions>): BirthAstronomy {
   const core = resolveOptions(coreOptions);
   const frame = ayanamshaFrame(eph, core.ayanamsha, core.ayanamshaOffsetDegrees, core.fidelity);
-  const at = (jd: number) => computePositions(eph, { jdUt: jd, latitude: natal.latitude, longitudeEast: natal.longitudeEast }, coreOptions);
   const birth = computePositions(eph, natal, coreOptions);
-  const moonAt = (jd: number) => at(jd).points.moon.longitude;
-  const sunAt = (jd: number) => at(jd).points.sun.longitude;
+  // The searches read only the Sun or the Moon: one body at a time, not the whole chart, keeps the route fast.
+  const moonAt = (jd: number) => planetLongitude(eph, jd, 'moon', frame.sunAyanamsha(jd), core.fidelity).longitude;
+  const sunAt = (jd: number) => planetLongitude(eph, jd, 'sun', frame.sunAyanamsha(jd), core.fidelity).longitude;
   const lagna = (jd: number) => lagnaLongitude(eph, jd, natal.latitude, natal.longitudeEast, frame.lagnaAyanamsha(jd), core.fidelity);
 
   // Night by PL9's test: the Sun below the horizon by the Lagna.
